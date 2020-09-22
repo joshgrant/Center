@@ -48,7 +48,7 @@ Larger stocks act as a time-delay buffer that gives a system stability and makes
 
 A system's boundaries are determined by setting the maximum and minimum stock values
 
-![Dimensions](README Images/Dimensions.png)
+![Dimensions](https://raw.githubusercontent.com/joshgrant/Center/master/README%20Images/Dimensions.png)
 
 #### States
 
