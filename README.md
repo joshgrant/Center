@@ -1,4 +1,4 @@
-# Center (WIP name)
+# Center (code name)
 Dynamic system builder for iOS
 
 ## Introduction
@@ -22,92 +22,132 @@ The idea for Center started out as dual efforts: to make an awesome productivity
 * AnyLogic
 * TwoBird
 
-What I found out was that apps some excelled in certain areas (organizing tasks) but failed hard at others (organizing information). Some were good at cross-referencing items but didn't have any way to track state. Essentially, what I wanted was the flexibility of software development mixed with the persistence of a database. The closest solution I found was macOS - the ability to organize many types of information as well as general automated tools (Hazel) got pretty far. However, macOS has weaknesses with hyperlinks and tasks. Personally, I don't want to use the Reminders app, but I'd rather create a file that represents a task that needs to be completed. The final problem (for me) with macOS is that applications diverge from the typical file structure and are too segmented.
+What I found out was that apps some excelled in certain areas (organizing tasks) but failed hard at others (organizing information). Some were good at cross-referencing items but didn't have any way to track state. Essentially, what I wanted was the flexibility of functional programming with the persistence of a database. The closest solution I found was macOS - it has the ability to organize many types of information and with  automated tools (Hazel) I got pretty far. However, macOS has weaknesses with hyperlinks and tasks. Personally, I don't want to use the Reminders app, but I'd rather create a file that represents a task that needs to be completed. The final problem (for me) with macOS is that applications diverge from the typical file structure and are too segmented.
 
 So, I created a huge document consolidating all of my research, examples, test projects, and requirements. Right now, it's 100,917 words long (but most of it isn't useful). I trimmed as much as I could to figure out what a useful app would be; this document is the main result. It's a rough draft, so feel free to edit anything or add clarifications. 
 
-The next sections detail the building blocks of the app. The fundamental structure is a system, which is composed of stocks and flows. There are specialized cases of each of these types, as well as other concepts such as dimensions, states, and more, that I found necessary to actually create systems that are able to be simulated. Some concepts, such as notes, fill in a gap of information organizing. Events take on the role of task-management, and processes allow for something similar to Siri Shortcuts (meta-programming of a sort). Let's dive in!
+The next sections detail the building blocks of the app. The fundamental structure is a system, which is composed of stocks and flows. There are specialized cases of each of these types, as well as other concepts such as dimensions, states, and more that I found necessary to actually create support the basic functionality. Notes fill in a gap of information organizing, events take on the role of task-management, and processes allow for something similar to Siri Shortcuts (meta-programming of a sort). Let's dive in!
 
-## What are systems?
+## What are Systems?
 
-Systems have a purpose, objective, or goal
+There are quite a few books that talk about systems, one that I found to be useful was [Thinking in Systems](https://www.goodreads.com/book/show/3828902-thinking-in-systems) which gives a simple overview of the main concepts. It contains some authorship bias, but I think that the main content is worth the read. 
 
-Systems can be connected to other systems
+At the most fundamental, systems:
+* are defined by boundaries
+* are composed of stocks and flows
+* consume input and produce output
+* contain a goal inherent in their design
 
-Systems are composed of stocks, flows, and feedback loops
+Systems can have arrangements of stocks and flows that create feedback loops. These loops either amplify or minimize disturbances to the system. These feedback loops are commonly known as reinforcing and balancing feedback loops.
 
-Systems have inputs and outputs
+Systems can fail if they exhaust their own stocks or if they exhaust the stocks of the parent system. When a system enters a failure state, it doesn't contain the ability to return to dynamic equilibrium despite having enough resources.
 
-For some systems, input comes from "source" and output goes to "sink" which are just symbolic...
-
-"Source" is an infinite repository of material, a system can draw from it forever
-
-"Sink" is an infinite output, a system can send it output forever
+Systems can be connected to other systems in a hierarchy or a network of connections. Some systems are arranged in a way that allows for easy information processing, others are arranged for resource accumulation. The configuration of a system determines its behavior. This configuration is the real goal of the system, even if the stated goal of the system is otherwise.
 
 Some example systems:
-* Political systems
 * Businesses
 * Organisms
 * Information systems
-* Software & the internet
-* Economy
+* Software & networking
+* The economy
 * Intelligence
+* Politics
 
-### System Components
+## Fundamental Components
 
-#### Dimensions
+The different system components for use in this app are listed here. These are really the atomic components because each of them is essential and indivisible. They are:
+* Stocks
+* Flows
+* Events
+* Conversions
+* Dimensions
+* Units
 
-Dimensions are simply an axis of measurement, like a number line
+### Stocks
 
-A more complex system has more dimensions
-
-
-#### Stocks
-
-Stocks can be any quantity, measured or calculated
-
-The value of a stock falls on a number-line in a dimension of what it's measuring
-
-Larger stocks act as a time-delay buffer that gives a system stability and makes it less chaotic
-
-A system's boundaries are determined by setting the maximum and minimum stock values
+Stocks can be any quantity, measured or calculated. This quantity falls within a range along a dimension of measurement. The boundary of a system is defined by the minimum and maximum values that each stock can have.
 
 ![Dimensions](https://raw.githubusercontent.com/joshgrant/Center/master/README%20Images/Dimensions.png)
 
-#### States
+From _Thinking in Systems_:
+* Stocks are the present memory of the history changes of the flows of a system
+* Stocks act as delays, buffers, or shock absorbers for when the flows of a system change quickly
+* System momentum is determined by how quickly stocks fill and empty
+* Stock levels can influence the behavior of a system
 
-States are just named ranges (these are along the temperature dimension):
+### Flows
 
-For example, temperature can be 
-* freezing
-    * -infinity ..< 0°C
-* cold
-    * 0°C ..< 15°C
-* mild
-    * 15°C ..< 24°C
-* hot
-    * 24°C ..< 32°C
-* sweltering
-   * 32°C ..< 45°C
-* fatal
-    * 45°C ..< +infinity
+Flows transfer a certain amount of an input stock to an output stock. If these stocks aren't in the same dimension, a flow can convert the input stock to the output stock via a formula. Also flows can change quickly while stocks generally do not.
 
-Of course, states are just a useful abstraction and can be quite different from one user to another. 
+Flows can be limited by a few conditions:
+* The flow rate (diameter of a pipe)
+* The input stock (no more water in hot water tank)
+* The output stock (the bathtub is full)
 
-It's valid for me to also name similar states:
-* solid
-    * -infinity ..< 0°C
-* liquid
-    * 0°C ..< 100°C
-* gas
-    * 100°C ..< +infinity (ignoring plasma)
+Flows can also have delays as well as ramp-up and ramp-down conditions. For example, a flow might take 10 seconds to begin, 5 seconds to reach full force, and 5 seconds to shut off.
 
-In essence, creating states is arbitrary. It's useful, however, because state changes can trigger events as well as give a more clear view into the system.
+### Events
 
-#### Flows
-Flows simply transfer a certain amount from one stock to another
+At the most basic, events monitor stocks level and trigger flows. Events are crucial to having a system operate semi-autonomously. However, it's important to note that events do not monitor flow states but only stock levels. Events use conditions to check the stock level whenever it changes and possibly trigger a flow. Some stocks that can be measured:
+* The current date
+* The uptime of the program
+* HealthKit data
+* Results from external sources (IFTTT, Zapier, Siri Shortcuts, etc)
+* The stock level of any system in the app
 
-Flows are triggered by events (for example time, the condition of a system, or external input)
+Of course, events that trigger on a certain date should be synced with the iOS or Google calendar if necessary.
+
+### Goals
+
+The goal of a system really is the ideal values of each of the stocks in that system. Because certain systems can be state-machines, goals can also represent ideal states. When the user gives an ideal value to a stock, that stock can report its delta to its super-system which prioritizes returning that stock to an ideal value by triggering relevant flows. The more out-of-balance a stock is, the more quickly the balancing flows are triggered. How does a system know which flows to trigger? Each flow reports which stocks it takes from and which it gives to, and the super-system can activate the flows that bring the priority stock back into balance.
+
+When a super-system and a sub-system have conflicting goals, the sub-system defers to the super-system. Generally, if a sub-system doesn't work with the super-system, both systems become less efficient and the sub-system can enter a failure state.
+
+Goals can also be moving; by creating a stock with a goal that always exceeds its current level, it's possible to create a positive feedback loop that continues to gather resources. This will eventually cause system failure if left unchecked.
+
+Also, goals need to account for loss functions that increase when the self-corrective feedback loop increases.
+
+## Abstract Components
+
+Abstract components are parts of the system that don't necessarily exist but are emergent from system behavior.
+* Feedback loops
+* Source & Sink
+
+### Feedback Loops
+
+Feedback loops can only affect future behavior because there generally is always a delay between the triggering event and the actual resource transfer.
+
+Feedback loops can be two types:
+* Balancing
+* Reinforcing
+
+Feedback loops can also compete - generally a system exhibits behavior of the dominant feedback loop. A system can be in a state of dynamic equilibrium when it regularly alternates the dominant feedback loop. This is also known as a state of homeostasis.
+
+##### Balancing feedback loops
+
+Also known as negative feedback loops, balancing feedback loops resist changes to a system. They do this by trying to maintain a stock level at an absolute value. Every change to the stock level is minimized by trying to return to this absolute value.
+
+#### Reinforcing feedback loops.
+
+Also known as positive feedback loops, reinforcing feedback loops amplify changes to a system. The main mechanism is via setting an ideal stock level that is relative to the current stock level. In this loop, every change is amplified. Reinforcing feedback loops often cause state changes in the system that activate balancing feedback loops to keep the positive feedback loop in check.
+
+The doubling rate of a stock level is approximately `70/rate of growth` (from _Thinking in Systems_).
+
+### Source & Sink
+
+A source and a sink are essentially infinite stocks that any system can use. Input from a source and output to a sink are limitless. They are essential when creating systems from scratch. Otherwise, systems would have no way to "start" because no resources could exist.
+
+## Utility Components
+
+Utility components are small pieces of the puzzle that tie everything together. They are generally simple data structures that the user can create to describe whatever system they have in mind. 
+
+### Condition
+
+A condition is just an equation that checks the value of a stock (and can also be used in search). This generally is in the form of basic operators: `>` `=` `<`. It takes an input and produces a `boolean` if the input satisfies the equation. Conditions are used most heavily with events to determine when the event should fire.
+
+Conditions can also be nested, i.e all sub-conditions must be true to satisfy the parent condition. Conditions also have 
+
+#### Conversion
 
 Flows can use a conversion if types aren't interchangable (usually ratio-based)
 * For example, I can convert BTC to USD even though they aren't the same type
@@ -115,67 +155,41 @@ Flows can use a conversion if types aren't interchangable (usually ratio-based)
 * Conversions can be one-way or reversible
 * Conversions can have a loss-function (advanced feature) which reduces the amount transferred in the flow
 
-Flows can be limited by a few things:
-* Flow rate (the pipe is too small)
-* Input stock limits (no more water in the water tank)
-* Output stock limits (the bathtub is full)
+#### Dimensions
 
-#### Feedback loops
+Dimensions are simply an axis of measurement, like a number line
 
-Feedback loops are either balancing or reinforcing
+A more complex system has more dimensions
 
-Balancing feedback loops aim to maintain homeostasis of the system
+#### States
 
-In a system with dominant balancing loops, every change is minimized
+States are just named ranges (these are along the temperature dimension):
 
-Reinforcing feedback loops aim to make a state change of the system
+For example, temperature can be 
+* freezing
+* -infinity ..< 0°C
+* cold
+* 0°C ..< 15°C
+* mild
+* 15°C ..< 24°C
+* hot
+* 24°C ..< 32°C
+* sweltering
+* 32°C ..< 45°C
+* fatal
+* 45°C ..< +infinity
 
-In a system with dominant reinforcing loops, every change is amplified
+Of course, states are just a useful abstraction and can be quite different from one user to another. 
 
-In a system with dominant reinforcing loops, the loop requires greater resources from preserved stocks
+It's valid for me to also name similar states:
+* solid
+* -infinity ..< 0°C
+* liquid
+* 0°C ..< 100°C
+* gas
+* 100°C ..< +infinity (ignoring plasma)
 
-Usually systems have a mix of balancing and reinforcing feedback loops that form a dynamic equilibrium
-
-#### Goals
-
-Goals can be real (i.e value measurements) or stated (text description)
-
-Goals can be a value of a stock, or a state (which is just a range of stock values)
-
-System goals are managed by a meta-system (the user)
-
-Goals are assigned to different stocks by giving an "ideal" value to that stock
-
-Super-system goals take precedence over sub-system goals
-
-The further the measured value is from the ideal value, the more out-of-balance a system is
-
-The more out-of-balance a system, the higher priority/stronger signal the system receives to resolve its imbalance
-
-When subsystem goals are aligned with the super-system goals, the system operates efficiently
-
-Goals can change over time or be updated as necessary
-
-Goals can also be set by the super system via experimentation (what is required to achieve a steady state)
-
-Sometimes a system can have multiple goals that work in-tandem
-
-Because a system knows which flows can influence the stock that is not-ideal, a system can "recommend" flows to activate
-
-#### Events
-
-Events trigger flows under certain conditions
-
-Conditions can include:
-* Specific dates
-* Date patterns (i.e first of every month)
-* Tick time (run time of the program)
-* User input
-* External input (IFTTT, Zapier, Siri Shortcuts, etc)
-* System state (stock levels, flow activation)
-* And more
-
-Future date events should sync with a calendar (iOS, Google)
+In essence, creating states is arbitrary. It's useful, however, because state changes can trigger events as well as give a more clear view into the system.
 
 ----
 
