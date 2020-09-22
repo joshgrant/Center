@@ -52,23 +52,33 @@ A system's boundaries are determined by setting the maximum and minimum stock va
 
 #### States
 
-States are just named ranges (I'm not being too precise for these examples) of values of a stock
+States are just named ranges (these are along the temperature dimension):
 
 For example, temperature can be 
-* "freezing" from "-infinity -> 0°C"
-* "cold" from "0°C -> 15°C"
-* "warm" from "15°C -> 30°C"
-* "hot" from "30°C -> 40°C"
-* "unbearable" from "40°C -> +infinity"
+* freezing
+    * -infinity ..< 0°C
+* cold
+    * 0°C ..< 15°C
+* mild
+    * 15°C ..< 24°C
+* hot
+    * 24°C ..< 32°C
+* sweltering
+     * 32°C ..< 45°C
+* fatal
+    * 45°C ..< +infinity
 
-Of course, states are just a useful abstraction and can be quite different from one user to another
+Of course, states are just a useful abstraction and can be quite different from one user to another. 
 
 It's valid for me to also name similar states:
-* "solid": "-infinity -> 0°C"
-* "liquid": "0°C -> 100°C"
-* "gas": "100°C -> +infinity" (you can add "plasma" if you like)
+* solid
+    * -infinity ..< 0°C
+* liquid
+    * 0°C ..< 100°C
+* gas
+    * 100°C ..< +infinity (ignoring plasma)
 
-In essence, giving states different names is just useful and arbitrary.
+In essence, creating states is arbitrary. It's useful, however, because state changes can trigger events as well as give a more clear view into the system.
 
 #### Flows
 Flows simply transfer a certain amount from one stock to another
