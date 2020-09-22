@@ -64,7 +64,7 @@ For example, temperature can be
 * hot
     * 24°C ..< 32°C
 * sweltering
-     * 32°C ..< 45°C
+   * 32°C ..< 45°C
 * fatal
     * 45°C ..< +infinity
 
