@@ -1,17 +1,32 @@
-# Center
+# Center (WIP name)
 Dynamic system builder for iOS
 
-## What is the purpose of the app?
-First, we need to understand systems. Systems are a fundamental tool, one of the most basic tools we have to analyze the world. 
-* Political systems
-* Businesses
-* Organisms
-* Information systems
-* Software & the internet
-* Economy
-* Intelligence
+## Introduction
 
-This app aims to be the best way to model systems. Of course, it will have to see a lot of iterations to reach this goal.
+> One should avoid complexities of control and concentrate on organizing the data to reflect the real structure of the world being modeled, SICP 2nd Edition
+
+The idea for Center started out as dual efforts: to make an awesome productivity app and to understand how our brains work. After all, an awesome productivity app should feel like a natural extension of our brain. So, I started doing research on different tools that could work. Here are some (not all) that I tried:
+* Every to-do app I could find (OmniFocus, Reminders, Wunderlist, etc...)
+* MindNode
+* Dynalist
+* Emacs Org-Mode
+* Scrivener
+* Paper and pencil
+* Notion.so
+* macOS (files & folders)
+* Pages, notes, and different text editors
+* MediaWiki (and other wiki software)
+* Numbers, Excel
+* Trello
+* JIRA
+* AnyLogic
+* TwoBird
+
+What I found out was that apps some excelled in certain areas (organizing tasks) but failed hard at others (organizing information). Some were good at cross-referencing items but didn't have any way to track state. Essentially, what I wanted was the flexibility of software development mixed with the persistence of a database. The closest solution I found was macOS - the ability to organize many types of information as well as general automated tools (Hazel) got pretty far. However, macOS has weaknesses with hyperlinks and tasks. Personally, I don't want to use the Reminders app, but I'd rather create a file that represents a task that needs to be completed. The final problem (for me) with macOS is that applications diverge from the typical file structure and are too segmented.
+
+So, I created a huge document consolidating all of my research, examples, test projects, and requirements. Right now, it's 100,917 words long (but most of it isn't useful). I trimmed as much as I could to figure out what a useful app would be; this document is the main result. It's a rough draft, so feel free to edit anything or add clarifications. 
+
+The next sections detail the building blocks of the app. The fundamental structure is a system, which is composed of stocks and flows. There are specialized cases of each of these types, as well as other concepts such as dimensions, states, and more, that I found necessary to actually create systems that are able to be simulated. Some concepts, such as notes, fill in a gap of information organizing. Events take on the role of task-management, and processes allow for something similar to Siri Shortcuts (meta-programming of a sort). Let's dive in!
 
 ## What are systems?
 
@@ -28,6 +43,15 @@ For some systems, input comes from "source" and output goes to "sink" which are 
 "Source" is an infinite repository of material, a system can draw from it forever
 
 "Sink" is an infinite output, a system can send it output forever
+
+Some example systems:
+* Political systems
+* Businesses
+* Organisms
+* Information systems
+* Software & the internet
+* Economy
+* Intelligence
 
 ### System Components
 
@@ -259,6 +283,14 @@ We'll introduce a few concepts to make the app more usable:
 * Library
 
 #### Processes
+
+Processes are the least developed part of the app so far. I think they can also have the most power in the future; for now they are simple procedures that convey information about steps to be taken. In code, they would be the function body. In business, the policies and rules that govern how the business is run.
+
+Processes can:
+* be nested
+* use the state of the system as well as external information to follow a set of steps
+* modify the state of the system (produce and consume stocks, trigger flows via events)
+* 
 
 Processes are condition trees that are nested
 
