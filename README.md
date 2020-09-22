@@ -31,6 +31,13 @@ For some systems, input comes from "source" and output goes to "sink" which are 
 
 ### System Components
 
+#### Dimensions
+
+Dimensions are simply an axis of measurement, like a number line
+
+A more complex system has more dimensions
+
+
 #### Stocks
 
 Stocks can be any quantity, measured or calculated
@@ -38,6 +45,10 @@ Stocks can be any quantity, measured or calculated
 The value of a stock falls on a number-line in a dimension of what it's measuring
 
 Larger stocks act as a time-delay buffer that gives a system stability and makes it less chaotic
+
+A system's boundaries are determined by setting the maximum and minimum stock values
+
+![Dimensions](/README\ Images/Dimensions.png)
 
 #### States
 
