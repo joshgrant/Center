@@ -3,8 +3,6 @@ Dynamic system builder for iOS
 
 ## Introduction
 
-> One should avoid complexities of control and concentrate on organizing the data to reflect the real structure of the world being modeled, SICP 2nd Edition
-
 The idea for Center started out as dual efforts: to make an awesome productivity app and to understand how our brains work. After all, an awesome productivity app should feel like a natural extension of our brain. So, I started doing research on different tools that could work. Here are some (not all) that I tried:
 * Every to-do app I could find (OmniFocus, Reminders, Wunderlist, etc...)
 * MindNode
@@ -21,12 +19,13 @@ The idea for Center started out as dual efforts: to make an awesome productivity
 * JIRA
 * AnyLogic
 * TwoBird
+* iOS / macOS Calendar, Google Calendar
 
 What I found out was that apps some excelled in certain areas (organizing tasks) but failed hard at others (organizing information). Some were good at cross-referencing items but didn't have any way to track state. Essentially, what I wanted was the flexibility of functional programming with the persistence of a database. The closest solution I found was macOS - it has the ability to organize many types of information and with  automated tools (Hazel) I got pretty far. However, macOS has weaknesses with hyperlinks and tasks. Personally, I don't want to use the Reminders app, but I'd rather create a file that represents a task that needs to be completed. The final problem (for me) with macOS is that applications diverge from the typical file structure and are too segmented.
 
-So, I created a huge document consolidating all of my research, examples, test projects, and requirements. Right now, it's 100,917 words long (but most of it isn't useful). I trimmed as much as I could to figure out what a useful app would be; this document is the main result. It's a rough draft, so feel free to edit anything or add clarifications. 
+So, I created a huge document consolidating all of my research, examples, test projects, and requirements. Right now, it's more than 100k words long (but most of it isn't useful). I trimmed as much as I could to figure out what a useful app would be; this document is the main result. It's a rough draft, so feel free to edit anything or add clarifications. 
 
-The next sections detail the building blocks of the app. The fundamental structure is a system, which is composed of stocks and flows. There are specialized cases of each of these types, as well as other concepts such as dimensions, states, and more that I found necessary to actually create support the basic functionality. Notes fill in a gap of information organizing, events take on the role of task-management, and processes allow for something similar to Siri Shortcuts (meta-programming of a sort). Let's dive in!
+The next sections detail the building blocks of the app. The fundamental structure is a system, which is composed of stocks and flows. There are specialized cases of each of these types, as well as other concepts such as dimensions, states, and more that I found necessary to actually support the basic functionality. Notes fill in a gap of information organizing, events take on the role of task-management, and processes allow for something similar to Siri Shortcuts (meta-programming of a sort).
 
 ## What are Systems?
 
@@ -40,7 +39,7 @@ At the most fundamental, systems:
 
 Systems can have arrangements of stocks and flows that create feedback loops. These loops either amplify or minimize disturbances to the system. These feedback loops are commonly known as reinforcing and balancing feedback loops.
 
-Systems can fail if they exhaust their own stocks or if they exhaust the stocks of the parent system. When a system enters a failure state, it doesn't contain the ability to return to dynamic equilibrium despite having enough resources.
+Systems can fail if they exhaust their own stocks or if they exhaust the stocks of the parent system. When a system enters a failure state, it doesn't contain the ability to return to dynamic equilibrium even if it eventually can collect enough resources again.
 
 Systems can be connected to other systems in a hierarchy or a network of connections. Some systems are arranged in a way that allows for easy information processing, others are arranged for resource accumulation. The configuration of a system determines its behavior. This configuration is the real goal of the system, even if the stated goal of the system is otherwise.
 
@@ -55,13 +54,13 @@ Some example systems:
 
 ## Fundamental Components
 
+> One should avoid complexities of control and concentrate on organizing the data to reflect the real structure of the world being modeled, SICP 2nd Edition
+
 The different system components for use in this app are listed here. These are really the atomic components because each of them is essential and indivisible. They are:
 * Stocks
 * Flows
 * Events
-* Conversions
-* Dimensions
-* Units
+* Goals
 
 ### Stocks
 
@@ -99,13 +98,21 @@ Of course, events that trigger on a certain date should be synced with the iOS o
 
 ### Goals
 
-The goal of a system really is the ideal values of each of the stocks in that system. Because certain systems can be state-machines, goals can also represent ideal states. When the user gives an ideal value to a stock, that stock can report its delta to its super-system which prioritizes returning that stock to an ideal value by triggering relevant flows. The more out-of-balance a stock is, the more quickly the balancing flows are triggered. How does a system know which flows to trigger? Each flow reports which stocks it takes from and which it gives to, and the super-system can activate the flows that bring the priority stock back into balance.
+The goal of a system really is the ideal values of each of the stocks in that system. Because certain systems can be state-machines (see the section on state), goals can also represent ideal states. 
 
-When a super-system and a sub-system have conflicting goals, the sub-system defers to the super-system. Generally, if a sub-system doesn't work with the super-system, both systems become less efficient and the sub-system can enter a failure state.
+Goals influence system behavior in the following way:
+1. The user gives an ideal value to a stock
+1. The stock reports its delta to ideal to the parent system
+1. The parent system prioritizes each non-ideal stock where the largest delta has highest priority
+1. The parent system selects the highest priority stock and triggers (or suggests to the user) relevant flows
 
-Goals can also be moving; by creating a stock with a goal that always exceeds its current level, it's possible to create a positive feedback loop that continues to gather resources. This will eventually cause system failure if left unchecked.
+How does a system know which flows are relevant? Each flow contains information about which stocks it drains and which stocks it fills. The parent system can activate the flows that bring the priority stock back into balance.
 
-Also, goals need to account for loss functions that increase when the self-corrective feedback loop increases.
+Goals can sometimes compete when a parent system and a child system have conflicting objectives. This creates inefficiency and its possible that the systems can enter a failure state (which is relatively common among systems that don't have enough corrective mechanisms).
+
+Goals can also move over time; by creating a stock with a goal that is larger than its current level, it's possible to create a positive feedback loop that continues to accumulate resources. This can also cause system failure if left unchecked.
+
+Lastly, goals need to account for loss functions that increase when the self-corrective feedback loop increases. This means that certain flows become less efficient at scale and goals can be constantly underachieved.
 
 ## Abstract Components
 
@@ -115,13 +122,14 @@ Abstract components are parts of the system that don't necessarily exist but are
 
 ### Feedback Loops
 
-Feedback loops can only affect future behavior because there generally is always a delay between the triggering event and the actual resource transfer.
+* Feedback loops are an arrangement of stocks and flows that either balance or change a system. 
+* Feedback loops can only affect future behavior because there is always a delay (however small) between the triggering event and the actual resource transfer.
+
+Feedback loops can also compete - generally a system exhibits behavior of the dominant feedback loop. A system can be in a state of dynamic equilibrium when it regularly alternates the dominant feedback loop. This is also known as a state of homeostasis.
 
 Feedback loops can be two types:
 * Balancing
 * Reinforcing
-
-Feedback loops can also compete - generally a system exhibits behavior of the dominant feedback loop. A system can be in a state of dynamic equilibrium when it regularly alternates the dominant feedback loop. This is also known as a state of homeostasis.
 
 ##### Balancing feedback loops
 
@@ -137,65 +145,67 @@ The doubling rate of a stock level is approximately `70/rate of growth` (from _T
 
 A source and a sink are essentially infinite stocks that any system can use. Input from a source and output to a sink are limitless. They are essential when creating systems from scratch. Otherwise, systems would have no way to "start" because no resources could exist.
 
+Source & sink exist as valid stocks for every system throughout the program.
+
 ## Utility Components
 
 Utility components are small pieces of the puzzle that tie everything together. They are generally simple data structures that the user can create to describe whatever system they have in mind. 
 
 ### Condition
 
-A condition is just an equation that checks the value of a stock (and can also be used in search). This generally is in the form of basic operators: `>` `=` `<`. It takes an input and produces a `boolean` if the input satisfies the equation. Conditions are used most heavily with events to determine when the event should fire.
+A condition is just an equation that checks the value of a stock (and can also be used in search). This generally is in the form of basic equality operators: `>`, `=`, `<`, `>=`, `<=`. Conditions take an input and produce a `boolean` if the input satisfies the equation. Conditions are used most heavily with events to determine if the event should fire.
 
-Conditions can also be nested, i.e all sub-conditions must be true to satisfy the parent condition. Conditions also have 
+Conditions can also be nested, i.e all sub-conditions must be true to satisfy the parent condition. 
 
-#### Conversion
+### Conversion
 
-Flows can use a conversion if types aren't interchangable (usually ratio-based)
-* For example, I can convert BTC to USD even though they aren't the same type
-* The ratio of BTC to USD determines how a conversion works
-* Conversions can be one-way or reversible
-* Conversions can have a loss-function (advanced feature) which reduces the amount transferred in the flow
+Conversions are used by flows if the flow's stocks don't have the same type. For example, one stock can be `BTC`, the flow can be `Sell`, and the final stock can be `USD`. Because BTC and USD aren't exchangable 1:1, the conversion contains the ratio between the two types. Conversions are reversible by default, but some aren't (for example you can't turn a cake back into eggs and flour).
 
-#### Dimensions
+Conversions can also have a loss-function (for example, buy/sell fees) which reduces the amount of material transferred in the flow.
 
-Dimensions are simply an axis of measurement, like a number line
+### Dimensions
 
-A more complex system has more dimensions
+Dimensions (or "types") represent the number-line that stocks can exist on - in fact stocks require dimensions. A dimension such as "money" is distinct from another dimension such as "number of jellybeans". Because dimensions don't have limits, it's the responsibility of stocks to set the system boundaries with maximum and minimum values.
 
-#### States
+Dimensions give the program the knowledge it needs to be able to exchange stocks of the same type. Dimensions work hand-in-hand with conversions to allow for exchanging stocks of different types. 
 
-States are just named ranges (these are along the temperature dimension):
+### States
+
+States are just user-named ranges (these are along the temperature dimension):
 
 For example, temperature can be 
 * freezing
-* -infinity ..< 0°C
+    * -infinity ..< 0°C
 * cold
-* 0°C ..< 15°C
+    * 0°C ..< 15°C
 * mild
-* 15°C ..< 24°C
+    * 15°C ..< 24°C
 * hot
-* 24°C ..< 32°C
+    * 24°C ..< 32°C
 * sweltering
-* 32°C ..< 45°C
+    * 32°C ..< 45°C
 * fatal
-* 45°C ..< +infinity
+    * 45°C ..< +infinity
 
 Of course, states are just a useful abstraction and can be quite different from one user to another. 
 
-It's valid for me to also name similar states:
+It's valid to also name similar states (ignoring plasma):
 * solid
-* -infinity ..< 0°C
+    * -infinity ..< 0°C
 * liquid
-* 0°C ..< 100°C
+    * 0°C ..< 100°C
 * gas
-* 100°C ..< +infinity (ignoring plasma)
-
-In essence, creating states is arbitrary. It's useful, however, because state changes can trigger events as well as give a more clear view into the system.
+    * 100°C ..< +infinity
+    
+The user can create states to reduce cognitive load (dealing with words rather than numbers) as well as setting "ideal states" that stocks can work towards. State changes can also trigger events. Of course, states are a useful, but optional feature.
 
 ----
 
 Let's take a concrete example and see how the concepts apply:
 
 ## Cafeteria:
+
+This is a really simple and boring example but perhaps it puts some of the ideas into context.
 
 ### Goal:
 
@@ -238,19 +248,30 @@ maximize food sales and minimize food waste
 * throw out food
     * hot food -> out
 
+
+### Events:
+
+* 6:00 A.M
+    * activate the "prepare food" flow
+* 8:00 P.M
+    * activate the "throw out food" flow
+* hot food < 10 kilograms
+    * activate the "prepare food" flow
+* external trigger (user buys food)
+    * activate the "sell food" flow
+
 ---
 
 ## System relationships
- 
-Systems can have _hierarchy_ which means that the inputs and outputs of a system come and go to the same system
 
-Systems can be in _series_ which means that the inputs comes from one system and the outputs go to another
-
-Systems can also form a _network_ which means that inputs and outputs connect many different systems
+Systems can form relationships via how they connect stocks and flows to other systems. Here are the basic types:
+* Hierarchy
+* Series
+* Network
 
 Of course, every collection of systems can have one or more of the relationship types above.
 
-### Hierarchy
+### Hierarchy (needs work)
 
 System hierarchy is when a system contains another
 
@@ -264,7 +285,7 @@ Subsystems must coordinate only with their parent
 
 Hierarchical systems are the most efficient form of relationships in systems (therefore the most general)
 
-### Series
+### Series (needs work)
 
 Systems that have a single input and a single output to different systems can form a series
 
@@ -274,7 +295,7 @@ This is like an assembly line
 
 Series are the most restricted form of relationships in systems (therefore the most relaible and fixable)
 
-### Network
+### Network (needs work)
 
 Systems that have input and output from many simultaneous sources create a network
 
@@ -296,7 +317,7 @@ We'll introduce a few concepts to make the app more usable:
 * Dashboard
 * Library
 
-#### Processes
+#### Processes (needs work)
 
 Processes are the least developed part of the app so far. I think they can also have the most power in the future; for now they are simple procedures that convey information about steps to be taken. In code, they would be the function body. In business, the policies and rules that govern how the business is run.
 
@@ -324,7 +345,7 @@ A step in a process can also trigger external sources (Zapier, etc)
 
 _Note_: this needs to be refined because should flows trigger external sources? Perhaps...
 
-#### Notes
+#### Notes (needs work)
 
 Notes are again systems, but specialized for note-taking
 
@@ -346,13 +367,13 @@ Blocks can be specailized (i.e a graph or a table)
 
 For an example of a similar block system, check out Gutenberg by Wordpress
 
-##### Auto-wiki
+##### Auto-wiki (needs work)
 The notes have a hidden feature which creates the "related notes". Each note's blocks are analyzed for its word content in the background. The words are compared across all notes (via a central syncing database) and notes with similar content show up in each other's "related" section. Additionnally, matched words or groups of words show as a hyperlink between notes. If there is a naming collision (e.g three notes with the phrase "cool beans") then tapping on the link opens a disambiguation page - really the "search" page with multiple results.
 
 In addition, notes can be "linked" to different systems, stocks, events, flows, etc. This way, systems can be described in more detail if necessary.
 Notes can be directly created from systems, stocks, etc
 
-#### History
+#### History (needs work)
 
 History tracks state changes for systems and processes by copying the system state before a state change
 
@@ -369,7 +390,7 @@ Different histories can be "loaded" which resets the value to the historical val
 
 Histories can branch when loaded from the past
 
-#### Dashboard
+#### Dashboard (needs work)
 
 The dashboard is the quick-digest overview for the user
 
