@@ -8,41 +8,21 @@
 import UIKit
 import Architecture
 
-struct TabBarViewControllerFactory {
-    
-    public static func makeAllViewControllers() -> [ViewController] {
-        return [
-            makeDashboardViewController(),
-            makeLibraryViewController(),
-            makeInboxViewController(),
-            makeSettingsViewController()
-        ]
-    }
-    
-    public static func makeDashboardViewController() -> ViewController {
-        let viewFactory = DashboardViewFactory()
-        return DashboardViewController(viewFactory: viewFactory)
-    }
-    
-    public static func makeLibraryViewController() -> ViewController {
-        return LibraryViewController()
-    }
-    
-    public static func makeInboxViewController() -> ViewController {
-        return InboxViewController()
-    }
-    
-    public static func makeSettingsViewController() -> ViewController {
-        return SettingsViewController()
-    }
-}
-
-class RootViewController: TabBarController {
-    
-    override init() {
+class RootViewController: TabBarController
+{
+    init(viewFactory: RootViewFactoryProtocol)
+    {
         super.init()
-        
+        viewControllers = viewFactory.makeAllViewControllers()
+    }
+    
+    /// Create a custom root view and assign it here...
+    //override func loadView() {
+    //}
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
         view.backgroundColor = .white
-        viewControllers = TabBarViewControllerFactory.makeAllViewControllers()
     }
 }

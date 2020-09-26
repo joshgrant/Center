@@ -8,9 +8,8 @@
 import UIKit
 import Architecture
 
-protocol DashboardViewFactoryProtocol
+protocol DashboardViewFactoryProtocol: TabBarItemFactoryProtocol
 {
-    func makeTabBarItem() -> UITabBarItem
     func makeTableView() -> TableView
 }
 
@@ -20,8 +19,8 @@ struct DashboardViewFactory: DashboardViewFactoryProtocol
     {
         return UITabBarItem(
             title: "Dashboard",
-            image: UIImage(systemName: "speedometer"),
-            selectedImage: UIImage(systemName: "speedometer"))
+            image: Icon.dashboard.getImage(),
+            selectedImage: Icon.dashboard.getImage())
     }
     
     func makeTableView() -> TableView

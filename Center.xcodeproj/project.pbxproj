@@ -36,6 +36,9 @@
 		03185034251E3401002DE065 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03185033251E3401002DE065 /* SettingsViewController.swift */; };
 		0318503F251E34B4002DE065 /* LibraryViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0318503E251E34B4002DE065 /* LibraryViewFactory.swift */; };
 		034DA0FA251DC9C100ABDC6E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DA0F9251DC9C100ABDC6E /* TabBarController.swift */; };
+		03632739251F2FD80088681D /* TableViewSectionHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03632738251F2FD80088681D /* TableViewSectionHeaderModel.swift */; };
+		03632740251F30140088681D /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866599251F2B9C00418C54 /* Icon.swift */; };
+		03632753251F30510088681D /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038665A7251F2E2800418C54 /* UIImage+Extensions.swift */; };
 		038157AC251CCA2600D60752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038157AB251CCA2600D60752 /* Assets.xcassets */; };
 		038157B4251CCA2600D60752 /* Center.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 038157B2251CCA2600D60752 /* Center.xcdatamodeld */; };
 		038157BF251CCA2600D60752 /* CenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157BE251CCA2600D60752 /* CenterTests.swift */; };
@@ -65,8 +68,11 @@
 		03866572251F28BA00418C54 /* DashboardInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866571251F28BA00418C54 /* DashboardInteractionController.swift */; };
 		03866583251F298D00418C54 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866582251F298D00418C54 /* FilterViewController.swift */; };
 		0386658B251F299700418C54 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386658A251F299700418C54 /* SearchViewController.swift */; };
-		0386659A251F2B9C00418C54 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866599251F2B9C00418C54 /* Icon.swift */; };
-		038665A8251F2E2800418C54 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038665A7251F2E2800418C54 /* UIImage+Extensions.swift */; };
+		03CE2415251F3C7F00CE699A /* DashboardViewTableSectionHeaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2414251F3C7F00CE699A /* DashboardViewTableSectionHeaderFactory.swift */; };
+		03CE2423251F3D7400CE699A /* InboxViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2422251F3D7400CE699A /* InboxViewFactory.swift */; };
+		03CE242B251F3EBE00CE699A /* TabBarItemFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE242A251F3EBE00CE699A /* TabBarItemFactoryProtocol.swift */; };
+		03CE2433251F3F4C00CE699A /* SettingsViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */; };
+		03CE243B251F40DE00CE699A /* RootViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE243A251F40DE00CE699A /* RootViewFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +181,7 @@
 		03185033251E3401002DE065 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0318503E251E34B4002DE065 /* LibraryViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewFactory.swift; sourceTree = "<group>"; };
 		034DA0F9251DC9C100ABDC6E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		03632738251F2FD80088681D /* TableViewSectionHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSectionHeaderModel.swift; sourceTree = "<group>"; };
 		038157A4251CCA2500D60752 /* Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Center.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		038157AB251CCA2600D60752 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		038157B3251CCA2600D60752 /* Center.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Center.xcdatamodel; sourceTree = "<group>"; };
@@ -213,6 +220,11 @@
 		0386658A251F299700418C54 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		03866599251F2B9C00418C54 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		038665A7251F2E2800418C54 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		03CE2414251F3C7F00CE699A /* DashboardViewTableSectionHeaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewTableSectionHeaderFactory.swift; sourceTree = "<group>"; };
+		03CE2422251F3D7400CE699A /* InboxViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewFactory.swift; sourceTree = "<group>"; };
+		03CE242A251F3EBE00CE699A /* TabBarItemFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemFactoryProtocol.swift; sourceTree = "<group>"; };
+		03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewFactory.swift; sourceTree = "<group>"; };
+		03CE243A251F40DE00CE699A /* RootViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,18 +287,19 @@
 		0303E395251DBFC10060BCB5 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				03866598251F2B6800418C54 /* Utility */,
+				03866599251F2B9C00418C54 /* Icon.swift */,
 				0303E396251DBFC10060BCB5 /* Architecture.h */,
 				0303E397251DBFC10060BCB5 /* Info.plist */,
 				0303E3F8251DC1F80060BCB5 /* ViewController.swift */,
+				03CE242A251F3EBE00CE699A /* TabBarItemFactoryProtocol.swift */,
 				0303E400251DC2010060BCB5 /* View.swift */,
-				0303E408251DC2080060BCB5 /* TableView.swift */,
+				03632760251F306E0088681D /* Table View */,
 				0303E410251DC2110060BCB5 /* NavigationController.swift */,
 				0303E426251DC3F60060BCB5 /* TabBar.swift */,
 				0303E42E251DC4230060BCB5 /* CollectionView.swift */,
-				0303E436251DC4610060BCB5 /* TableViewCell.swift */,
 				0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */,
 				034DA0F9251DC9C100ABDC6E /* TabBarController.swift */,
-				0386646D251E36DA00418C54 /* TableViewModel.swift */,
 			);
 			path = Architecture;
 			sourceTree = "<group>";
@@ -337,6 +350,7 @@
 				03185018251E30D6002DE065 /* DashboardViewFactory.swift */,
 				03866449251E353000418C54 /* DashboardDelegateDataSource.swift */,
 				03866451251E358D00418C54 /* DashboardViewModel.swift */,
+				03CE2414251F3C7F00CE699A /* DashboardViewTableSectionHeaderFactory.swift */,
 				0386645F251E35CF00418C54 /* DashboardView.swift */,
 				03866571251F28BA00418C54 /* DashboardInteractionController.swift */,
 			);
@@ -358,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				03185023251E33D4002DE065 /* InboxViewController.swift */,
+				03CE2422251F3D7400CE699A /* InboxViewFactory.swift */,
 			);
 			path = Inbox;
 			sourceTree = "<group>";
@@ -366,8 +381,20 @@
 			isa = PBXGroup;
 			children = (
 				03185033251E3401002DE065 /* SettingsViewController.swift */,
+				03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		03632760251F306E0088681D /* Table View */ = {
+			isa = PBXGroup;
+			children = (
+				0303E408251DC2080060BCB5 /* TableView.swift */,
+				0303E436251DC4610060BCB5 /* TableViewCell.swift */,
+				0386646D251E36DA00418C54 /* TableViewModel.swift */,
+				03632738251F2FD80088681D /* TableViewSectionHeaderModel.swift */,
+			);
+			path = "Table View";
 			sourceTree = "<group>";
 		};
 		0381579B251CCA2500D60752 = {
@@ -403,7 +430,6 @@
 		038157A6251CCA2500D60752 /* Center */ = {
 			isa = PBXGroup;
 			children = (
-				03866598251F2B6800418C54 /* Utility */,
 				03866475251E3AEC00418C54 /* Data Store */,
 				038157AB251CCA2600D60752 /* Assets.xcassets */,
 				038157B5251CCA2600D60752 /* Info.plist */,
@@ -469,6 +495,7 @@
 			isa = PBXGroup;
 			children = (
 				0303E374251DBDD00060BCB5 /* RootViewController.swift */,
+				03CE243A251F40DE00CE699A /* RootViewFactory.swift */,
 				03866521251F273700418C54 /* Child View Controllers */,
 			);
 			path = "Tab Bar";
@@ -669,7 +696,6 @@
 		03866598251F2B6800418C54 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				03866599251F2B9C00418C54 /* Icon.swift */,
 				038665AF251F2E2B00418C54 /* Extensions */,
 			);
 			path = Utility;
@@ -968,11 +994,15 @@
 				0303E42F251DC4230060BCB5 /* CollectionView.swift in Sources */,
 				0386646E251E36DA00418C54 /* TableViewModel.swift in Sources */,
 				0303E401251DC2010060BCB5 /* View.swift in Sources */,
+				03632739251F2FD80088681D /* TableViewSectionHeaderModel.swift in Sources */,
 				0303E43F251DC4950060BCB5 /* CollectionViewCell.swift in Sources */,
+				03CE242B251F3EBE00CE699A /* TabBarItemFactoryProtocol.swift in Sources */,
 				034DA0FA251DC9C100ABDC6E /* TabBarController.swift in Sources */,
+				03632740251F30140088681D /* Icon.swift in Sources */,
 				0303E411251DC2110060BCB5 /* NavigationController.swift in Sources */,
 				0303E409251DC2080060BCB5 /* TableView.swift in Sources */,
 				0303E3F9251DC1F80060BCB5 /* ViewController.swift in Sources */,
+				03632753251F30510088681D /* UIImage+Extensions.swift in Sources */,
 				0303E437251DC4610060BCB5 /* TableViewCell.swift in Sources */,
 				0303E427251DC3F60060BCB5 /* TabBar.swift in Sources */,
 			);
@@ -1013,18 +1043,20 @@
 				0386649E251F0FF300418C54 /* EventProtocol.swift in Sources */,
 				038664A6251F102100418C54 /* ObjectProtocol.swift in Sources */,
 				0303E380251DBE360060BCB5 /* AppDelegate.swift in Sources */,
+				03CE2433251F3F4C00CE699A /* SettingsViewFactory.swift in Sources */,
 				038664BE251F19F700418C54 /* ConditionProtocol.swift in Sources */,
 				03866564251F289800418C54 /* NavigationBarAppearanceModel.swift in Sources */,
+				03CE243B251F40DE00CE699A /* RootViewFactory.swift in Sources */,
 				03866477251E3AF900418C54 /* ObjectDataStoreProtocol.swift in Sources */,
 				038157B4251CCA2600D60752 /* Center.xcdatamodeld in Sources */,
 				0386658B251F299700418C54 /* SearchViewController.swift in Sources */,
 				038664CE251F1BC000418C54 /* ConversionProtocol.swift in Sources */,
 				03866533251F27A400418C54 /* SystemListingViewController.swift in Sources */,
 				0386648E251F0FAF00418C54 /* FlowProtocol.swift in Sources */,
+				03CE2423251F3D7400CE699A /* InboxViewFactory.swift in Sources */,
 				03866496251F0FC000418C54 /* StockProtocol.swift in Sources */,
-				038665A8251F2E2800418C54 /* UIImage+Extensions.swift in Sources */,
 				03866512251F249300418C54 /* SettingsDataStoreProtocol.swift in Sources */,
-				0386659A251F2B9C00418C54 /* Icon.swift in Sources */,
+				03CE2415251F3C7F00CE699A /* DashboardViewTableSectionHeaderFactory.swift in Sources */,
 				038664B6251F189E00418C54 /* SymbolProtocol.swift in Sources */,
 				0386644A251E353000418C54 /* DashboardDelegateDataSource.swift in Sources */,
 				03866504251F23E600418C54 /* LibraryViewModelProtocol.swift in Sources */,

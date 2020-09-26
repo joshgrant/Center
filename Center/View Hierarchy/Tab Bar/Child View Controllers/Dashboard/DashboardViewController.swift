@@ -10,9 +10,9 @@ import Architecture
 
 class DashboardViewController: ViewController
 {
-    init(viewFactory: DashboardViewFactoryProtocol) {
-        super.init()
-        
+    init(viewFactory: DashboardViewFactoryProtocol)
+    {
+        super.init()    
         self.tabBarItem = viewFactory.makeTabBarItem()
     }
 }

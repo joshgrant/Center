@@ -10,5 +10,9 @@ import Architecture
 
 class LibraryViewController: ViewController
 {
-    
+    init(viewFactory: LibraryViewFactoryProtocol)
+    {
+        super.init()
+        self.tabBarItem = viewFactory.makeTabBarItem()
+    }
 }

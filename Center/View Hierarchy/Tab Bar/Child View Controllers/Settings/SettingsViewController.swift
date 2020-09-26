@@ -10,5 +10,9 @@ import Architecture
 
 class SettingsViewController: ViewController
 {
-    
+    init(viewFactory: SettingsViewFactoryProtocol)
+    {
+        super.init()
+        self.tabBarItem = viewFactory.makeTabBarItem()
+    }
 }

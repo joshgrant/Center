@@ -5,9 +5,9 @@
 //  Created by Joshua Grant on 9/26/20.
 //
 
-import Foundation
+import UIKit
 
-enum Icon: String
+public enum Icon: String
 {
     case pin = "pin"
     case pinFill = "pin.fill"
@@ -35,4 +35,10 @@ enum Icon: String
     case filter = "line.horizontal.3.decrease.circle"
     case checkBoxEmpty = "circle"
     case checkBoxFilled = "checkmark.circle"
+    case priority = "exclamationmark.triangle.fill" // or remove the fill
+    
+    public func getImage() -> UIImage?
+    {
+        return UIImage(systemName: self.rawValue)
+    }
 }
