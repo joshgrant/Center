@@ -28,7 +28,8 @@ We have a class for observers - i.e view controllers needing to respond to exter
 
 ---
 
-1. Start with the data
+1. Start with the data. Where does it come from? A data factory
+2. Every factory must have no state, only static methods, 
 2. The data can be transformed via functions
 3. The data can be transformed into views with a ViewFactory
 4. The data can be transformed into animation with an AnimationFactory
@@ -54,3 +55,5 @@ Examples of data:
 button tap
 text
 system..
+view configuration
+
