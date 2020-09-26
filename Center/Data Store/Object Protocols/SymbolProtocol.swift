@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SymbolProtocol: Codable
+protocol SymbolProtocol
 {
     func getStringValue() -> String
     func setStringValue(_ stringValue: String)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ObjectDataStoreProtocol
+protocol DataManagerProtocol
 {
     func save()
     func undo()

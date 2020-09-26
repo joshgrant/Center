@@ -5,46 +5,68 @@
 //  Created by Joshua Grant on 9/26/20.
 //
 
-import Foundation
+import UIKit
+import CoreData
 import Architecture
 
 protocol RootViewFactoryProtocol
 {
-    func makeAllViewControllers() -> [ViewController]
-    func makeDashboardViewController() -> ViewController
-    func makeLibraryViewController() -> ViewController
-    func makeInboxViewController() -> ViewController
-    func makeSettingsViewController() -> ViewController
+    func makeAllViewControllers() -> [UIViewController]
+    func makeDashboardRootViewController() -> UIViewController
+    func makeLibraryRootViewController() -> UIViewController
+    func makeInboxRootViewController() -> UIViewController
+    func makeSettingsRootViewController() -> UIViewController
 }
 
-struct RootViewFactory: RootViewFactoryProtocol {
+struct RootViewFactory: RootViewFactoryProtocol
+{
+    var environment: RootEnvironmentProtocol
     
-    func makeAllViewControllers() -> [ViewController] {
+    init(environment: RootEnvironmentProtocol)
+    {
+        self.environment = environment
+    }
+    
+    func makeAllViewControllers() -> [UIViewController]
+    {
         return [
-            makeDashboardViewController(),
-            makeLibraryViewController(),
-            makeInboxViewController(),
-            makeSettingsViewController()
+            makeDashboardRootViewController(),
+            makeLibraryRootViewController(),
+            makeInboxRootViewController(),
+            makeSettingsRootViewController()
         ]
     }
     
-    func makeDashboardViewController() -> ViewController {
-        let viewFactory = DashboardViewFactory()
-        return DashboardViewController(viewFactory: viewFactory)
+    func makeDashboardRootViewController() -> UIViewController
+    {
+        let environment = DashboardEnvironment(dataManager: self.environment.dataManager)
+        let viewFactory = DashboardViewFactory(environment: environment)
+        let viewController = DashboardViewController(viewFactory: viewFactory)
+        let navigationController = NavigationController(rootViewController: viewController)
+        return navigationController
     }
     
-    func makeLibraryViewController() -> ViewController {
+    func makeLibraryRootViewController() -> UIViewController
+    {
         let viewFactory = LibraryViewFactory()
-        return LibraryViewController(viewFactory: viewFactory)
+        let viewController = LibraryViewController(viewFactory: viewFactory)
+        let navigationController = NavigationController(rootViewController: viewController)
+        return navigationController
     }
     
-    func makeInboxViewController() -> ViewController {
+    func makeInboxRootViewController() -> UIViewController
+    {
         let viewFactory = InboxViewFactory()
-        return InboxViewController(viewFactory: viewFactory)
+        let viewController = InboxViewController(viewFactory: viewFactory)
+        let navigationController = NavigationController(rootViewController: viewController)
+        return navigationController
     }
     
-    func makeSettingsViewController() -> ViewController {
+    func makeSettingsRootViewController() -> UIViewController
+    {
         let viewFactory = SettingsViewFactory()
-        return SettingsViewController(viewFactory: viewFactory)
+        let viewController = SettingsViewController(viewFactory: viewFactory)
+        let navigationController = NavigationController(rootViewController: viewController)
+        return navigationController
     }
 }

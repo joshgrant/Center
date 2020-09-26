@@ -14,5 +14,7 @@ class LibraryViewController: ViewController
     {
         super.init()
         self.tabBarItem = viewFactory.makeTabBarItem()
+        
+        self.navigationItem.searchController = UISearchController()
     }
 }

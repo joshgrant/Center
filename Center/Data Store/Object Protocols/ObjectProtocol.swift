@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import Architecture
 
-protocol ObjectProtocol: Codable
+// TODO: Should this conform to Codable?
+
+protocol ObjectProtocol
 {
     func getSymbol() -> SymbolProtocol
     func setSymbol(_ symbol: SymbolProtocol)

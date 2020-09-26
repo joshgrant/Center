@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 import Architecture
 
 protocol DashboardViewFactoryProtocol: TabBarItemFactoryProtocol
@@ -15,6 +16,13 @@ protocol DashboardViewFactoryProtocol: TabBarItemFactoryProtocol
 
 struct DashboardViewFactory: DashboardViewFactoryProtocol
 {
+    var environment: DashboardEnvironmentProtocol
+    
+    init(environment: DashboardEnvironmentProtocol)
+    {
+        self.environment = environment
+    }
+    
     func makeTabBarItem() -> UITabBarItem
     {
         return UITabBarItem(
@@ -25,11 +33,22 @@ struct DashboardViewFactory: DashboardViewFactoryProtocol
     
     func makeTableView() -> TableView
     {
-        let tableView = TableView()
+        let tableView = TableView(frame: .zero, style: .grouped)
         
-        let delegateDataSource = DashboardDelegateDataSource()
-        delegateDataSource.configure(tableView: tableView)
+        environment.tableViewDataSource.configure(tableView: tableView)
+        environment.tableViewDelegate.configure(tableView: tableView)
         
         return tableView
+    }
+    
+    func makeSearchController() -> UISearchController
+    {
+        let searchResultsController = SearchViewController()
+        let searchController = UISearchController(searchResultsController: searchResultsController)
+        let searchBar = searchController.searchBar
+        
+        environment.searchBarDelegate.configure(searchBar: searchBar)
+        
+        return searchController
     }
 }

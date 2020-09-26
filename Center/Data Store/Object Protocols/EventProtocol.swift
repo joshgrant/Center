@@ -9,17 +9,14 @@ import Foundation
 
 protocol EventProtocol: ObjectProtocol
 {
-    func getSymbol() -> SymbolProtocol
-    func setSymbol(_ symbol: SymbolProtocol)
-    
     func getIsActive() -> Bool
     func setIsActive(_ isActive: Bool)
     
     func getConditions() -> [Any]
     
     func getFlows() -> [FlowProtocol]
-    func linkFlow(_ flow: Flow)
-    func unlinkFlow(_ flow: Flow)
+    func linkFlow(_ flow: FlowProtocol)
+    func unlinkFlow(_ flow: FlowProtocol)
     
     func getHistory() -> [Any]
     

@@ -9,6 +9,7 @@ import UIKit
 
 public enum Icon: String
 {
+    case add = "plus"
     case pin = "pin"
     case pinFill = "pin.fill"
     case flow = "wind"

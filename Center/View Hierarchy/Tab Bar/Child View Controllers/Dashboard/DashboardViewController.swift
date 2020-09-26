@@ -10,9 +10,46 @@ import Architecture
 
 class DashboardViewController: ViewController
 {
+    var viewFactory: DashboardViewFactoryProtocol
+    let searchBarDelegate = DashboardSearchBarDelegate()
+    
+    var tableView: UITableView
+    
     init(viewFactory: DashboardViewFactoryProtocol)
     {
-        super.init()    
-        self.tabBarItem = viewFactory.makeTabBarItem()
+        self.viewFactory = viewFactory
+        self.tableView = viewFactory.makeTableView()
+        
+        super.init()
+
+        configureTabBarItem()
+        configureNavigationItem()
+    }
+    
+    override func loadView()
+    {
+        self.view = tableView
+    }
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+    }
+    
+    // MARK: - Configuration
+    
+    func configureTabBarItem()
+    {
+        tabBarItem = viewFactory.makeTabBarItem()
+    }
+    
+    func configureNavigationItem()
+    {
+        let searchResultsController = SearchViewController()
+        let searchController = UISearchController(searchResultsController: searchResultsController)
+        searchController.searchBar.delegate = searchBarDelegate
+        navigationItem.searchController = searchController
+        
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
 }
