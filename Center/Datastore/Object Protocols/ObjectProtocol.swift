@@ -7,7 +7,13 @@
 
 import Foundation
 
-protocol ObjectProtocol
+protocol ObjectProtocol: Codable
 {
     
+    // TODO: Refactor this to use "Symbol" instead of string
+    func getSymbol() -> SymbolProtocol
+    func setSymbol(_ symbol: SymbolProtocol)
+    
+    func getNoteOverviews() -> [NoteOverviewProtocol]
+    func linkNote(_ note: NoteProtocol)
 }

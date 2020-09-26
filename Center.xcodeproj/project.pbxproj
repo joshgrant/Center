@@ -52,6 +52,13 @@
 		03866496251F0FC000418C54 /* StockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866495251F0FC000418C54 /* StockProtocol.swift */; };
 		0386649E251F0FF300418C54 /* EventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386649D251F0FF300418C54 /* EventProtocol.swift */; };
 		038664A6251F102100418C54 /* ObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664A5251F102100418C54 /* ObjectProtocol.swift */; };
+		038664AE251F14A800418C54 /* NoteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664AD251F14A800418C54 /* NoteProtocol.swift */; };
+		038664B6251F189E00418C54 /* SymbolProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664B5251F189E00418C54 /* SymbolProtocol.swift */; };
+		038664BE251F19F700418C54 /* ConditionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664BD251F19F700418C54 /* ConditionProtocol.swift */; };
+		038664C6251F1B0200418C54 /* NoteBlockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664C5251F1B0200418C54 /* NoteBlockProtocol.swift */; };
+		038664CE251F1BC000418C54 /* ConversionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664CD251F1BC000418C54 /* ConversionProtocol.swift */; };
+		038664D6251F1C5C00418C54 /* DimensionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664D5251F1C5C00418C54 /* DimensionProtocol.swift */; };
+		038664DE251F1D6300418C54 /* UnitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664DD251F1D6300418C54 /* UnitProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +189,14 @@
 		03866495251F0FC000418C54 /* StockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockProtocol.swift; sourceTree = "<group>"; };
 		0386649D251F0FF300418C54 /* EventProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventProtocol.swift; sourceTree = "<group>"; };
 		038664A5251F102100418C54 /* ObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectProtocol.swift; sourceTree = "<group>"; };
+		038664AD251F14A800418C54 /* NoteProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteProtocol.swift; sourceTree = "<group>"; };
+		038664B5251F189E00418C54 /* SymbolProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolProtocol.swift; sourceTree = "<group>"; };
+		038664BD251F19F700418C54 /* ConditionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionProtocol.swift; sourceTree = "<group>"; };
+		038664C5251F1B0200418C54 /* NoteBlockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBlockProtocol.swift; sourceTree = "<group>"; };
+		038664CD251F1BC000418C54 /* ConversionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionProtocol.swift; sourceTree = "<group>"; };
+		038664D5251F1C5C00418C54 /* DimensionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimensionProtocol.swift; sourceTree = "<group>"; };
+		038664DD251F1D6300418C54 /* UnitProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitProtocol.swift; sourceTree = "<group>"; };
+		038664E5251F1FE100418C54 /* StyleGuide.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = StyleGuide.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +354,7 @@
 		0381579B251CCA2500D60752 = {
 			isa = PBXGroup;
 			children = (
+				038664E5251F1FE100418C54 /* StyleGuide.md */,
 				038157A6251CCA2500D60752 /* Center */,
 				038157BD251CCA2600D60752 /* CenterTests */,
 				038157C8251CCA2600D60752 /* CenterUITests */,
@@ -424,6 +440,13 @@
 				03866495251F0FC000418C54 /* StockProtocol.swift */,
 				0386649D251F0FF300418C54 /* EventProtocol.swift */,
 				038664A5251F102100418C54 /* ObjectProtocol.swift */,
+				038664AD251F14A800418C54 /* NoteProtocol.swift */,
+				038664C5251F1B0200418C54 /* NoteBlockProtocol.swift */,
+				038664B5251F189E00418C54 /* SymbolProtocol.swift */,
+				038664BD251F19F700418C54 /* ConditionProtocol.swift */,
+				038664CD251F1BC000418C54 /* ConversionProtocol.swift */,
+				038664D5251F1C5C00418C54 /* DimensionProtocol.swift */,
+				038664DD251F1D6300418C54 /* UnitProtocol.swift */,
 			);
 			path = "Object Protocols";
 			sourceTree = "<group>";
@@ -747,15 +770,22 @@
 				03185019251E30D6002DE065 /* DashboardViewFactory.swift in Sources */,
 				0318502C251E33F5002DE065 /* LibraryViewController.swift in Sources */,
 				03866452251E358D00418C54 /* DashboardViewModel.swift in Sources */,
+				038664C6251F1B0200418C54 /* NoteBlockProtocol.swift in Sources */,
 				0386649E251F0FF300418C54 /* EventProtocol.swift in Sources */,
 				038664A6251F102100418C54 /* ObjectProtocol.swift in Sources */,
 				0303E380251DBE360060BCB5 /* AppDelegate.swift in Sources */,
+				038664BE251F19F700418C54 /* ConditionProtocol.swift in Sources */,
 				03866477251E3AF900418C54 /* DatastoreProtocol.swift in Sources */,
 				038157B4251CCA2600D60752 /* Center.xcdatamodeld in Sources */,
+				038664CE251F1BC000418C54 /* ConversionProtocol.swift in Sources */,
 				0386648E251F0FAF00418C54 /* FlowProtocol.swift in Sources */,
 				03866496251F0FC000418C54 /* StockProtocol.swift in Sources */,
+				038664B6251F189E00418C54 /* SymbolProtocol.swift in Sources */,
 				0386644A251E353000418C54 /* DashboardDelegateDataSource.swift in Sources */,
+				038664D6251F1C5C00418C54 /* DimensionProtocol.swift in Sources */,
+				038664DE251F1D6300418C54 /* UnitProtocol.swift in Sources */,
 				0318500A251E302A002DE065 /* DashboardViewController.swift in Sources */,
+				038664AE251F14A800418C54 /* NoteProtocol.swift in Sources */,
 				0303E375251DBDD00060BCB5 /* RootViewController.swift in Sources */,
 				0303E38B251DBEDF0060BCB5 /* SceneDelegate.swift in Sources */,
 				0386647F251F0F8400418C54 /* SystemProtocol.swift in Sources */,
