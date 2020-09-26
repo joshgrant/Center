@@ -15,14 +15,14 @@ protocol NoteProtocol: ObjectProtocol
     func getLinks() -> [Any]
     func addLink(_ link: Any)
     
-    func getRelatedNotes() -> [NoteOverviewProtocol]
-}
-
-protocol NoteOverviewProtocol
-{
-    func getFirstLine() -> String
-    func getSecondLine() -> String
+    func getRelatedNotes() -> [NoteProtocol]
     
-    // A thumbnail to show if the note has any url's, images, videos inside of it
-    func getThumbnailImage() -> Any
+    // MARK: - Caching
+    
+    func getFirstLine() -> String?
+    func getSecondLine() -> String?
+    func getThumbnailImage() -> Any?
+    
+    func getLinksCount() -> Int
+    func getRelatedNotesCount() -> Int
 }

@@ -20,20 +20,14 @@ protocol SystemProtocol: ObjectProtocol
 {
     func getIdeal() -> Int
     
-    func getSuggestedFlowOverviews() -> [FlowOverviewProtocol]
+    func getSuggestedFlows() -> [FlowProtocol]
     
-    func getStockOverviews() -> [StockOverviewProtocol]
-    func linkStock(_ stock: Stock)
+    func getStocks() -> [StockProtocol]
+    func linkStock(_ stock: StockProtocol)
     
-    func getFlowOverviews() -> [FlowOverviewProtocol]
-    func linkFlow(_ flow: Flow)
+    func getFlows() -> [FlowProtocol]
+    func linkFlow(_ flow: FlowProtocol)
     
-    func getEventOverviews() -> [EventOverviewProtocol]
-    func linkEvent(_ event: Event)
-}
-
-protocol SystemOverviewProtocol: ObjectProtocol
-{
-    func getName() -> String
-    func getIdeal() -> Int
+    func getEvents() -> [EventProtocol]
+    func linkEvent(_ event: EventProtocol)
 }

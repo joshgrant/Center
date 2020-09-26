@@ -13,7 +13,11 @@ protocol NoteBlockProtocol
     func getStyle() -> Any
     func getColor() -> Any
     func getURL() -> Any
-    func getRelatedNotes() -> [NoteOverviewProtocol]
+    func getRelatedNotes() -> [NoteProtocol]
+    
+    // MARK: - Caching
+    
+    func getRelatedNotesCount() -> Int
 }
 
 protocol NoteBlockContentProtocol

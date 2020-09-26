@@ -9,11 +9,13 @@ import Foundation
 
 protocol ObjectProtocol: Codable
 {
-    
-    // TODO: Refactor this to use "Symbol" instead of string
     func getSymbol() -> SymbolProtocol
     func setSymbol(_ symbol: SymbolProtocol)
     
-    func getNoteOverviews() -> [NoteOverviewProtocol]
+    func getNotes() -> [NoteProtocol]
     func linkNote(_ note: NoteProtocol)
+    
+    // MARK: - Caching
+    
+    func getNotesCount() -> Int
 }

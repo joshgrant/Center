@@ -17,17 +17,14 @@ protocol EventProtocol: ObjectProtocol
     
     func getConditions() -> [Any]
     
-    func getFlowOverviews() -> [FlowOverviewProtocol]
+    func getFlows() -> [FlowProtocol]
     func linkFlow(_ flow: Flow)
     func unlinkFlow(_ flow: Flow)
     
-    func getHistoryOverviews() -> [Any]
-}
-
-protocol EventOverviewProtocol
-{
-    func getSymbol() -> SymbolProtocol
-    func setSymbol(_ symbol: SymbolProtocol)
+    func getHistory() -> [Any]
+    
+    // MARK: - Caching
     
     func getFlowsCount() -> Int
+    func getHistoryCount() -> Int
 }

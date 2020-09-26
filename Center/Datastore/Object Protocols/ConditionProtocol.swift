@@ -9,7 +9,7 @@ import Foundation
 
 protocol ConditionProtocol
 {
-    func getStock() -> StockOverviewProtocol
+    func getStock() -> StockProtocol
     func getTarget() -> Any
     
     // Linear, quadratic, exponential, etc

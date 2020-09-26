@@ -41,12 +41,12 @@
 		038157B4251CCA2600D60752 /* Center.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 038157B2251CCA2600D60752 /* Center.xcdatamodeld */; };
 		038157BF251CCA2600D60752 /* CenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157BE251CCA2600D60752 /* CenterTests.swift */; };
 		038157CA251CCA2600D60752 /* CenterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157C9251CCA2600D60752 /* CenterUITests.swift */; };
-		038157ED251D0A1F00D60752 /* ArchitectureNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 038157EC251D0A1F00D60752 /* ArchitectureNotes.txt */; };
+		038157ED251D0A1F00D60752 /* ArchitectureNotes.md in Resources */ = {isa = PBXBuildFile; fileRef = 038157EC251D0A1F00D60752 /* ArchitectureNotes.md */; };
 		0386644A251E353000418C54 /* DashboardDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866449251E353000418C54 /* DashboardDelegateDataSource.swift */; };
 		03866452251E358D00418C54 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866451251E358D00418C54 /* DashboardViewModel.swift */; };
 		03866460251E35CF00418C54 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386645F251E35CF00418C54 /* DashboardView.swift */; };
 		0386646E251E36DA00418C54 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386646D251E36DA00418C54 /* TableViewModel.swift */; };
-		03866477251E3AF900418C54 /* DatastoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866476251E3AF900418C54 /* DatastoreProtocol.swift */; };
+		03866477251E3AF900418C54 /* ObjectDataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866476251E3AF900418C54 /* ObjectDataStoreProtocol.swift */; };
 		0386647F251F0F8400418C54 /* SystemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386647E251F0F8400418C54 /* SystemProtocol.swift */; };
 		0386648E251F0FAF00418C54 /* FlowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386648D251F0FAF00418C54 /* FlowProtocol.swift */; };
 		03866496251F0FC000418C54 /* StockProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866495251F0FC000418C54 /* StockProtocol.swift */; };
@@ -59,6 +59,9 @@
 		038664CE251F1BC000418C54 /* ConversionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664CD251F1BC000418C54 /* ConversionProtocol.swift */; };
 		038664D6251F1C5C00418C54 /* DimensionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664D5251F1C5C00418C54 /* DimensionProtocol.swift */; };
 		038664DE251F1D6300418C54 /* UnitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664DD251F1D6300418C54 /* UnitProtocol.swift */; };
+		038664FC251F23CF00418C54 /* DashboardViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038664FB251F23CF00418C54 /* DashboardViewModelProtocol.swift */; };
+		03866504251F23E600418C54 /* LibraryViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866503251F23E500418C54 /* LibraryViewModelProtocol.swift */; };
+		03866512251F249300418C54 /* SettingsDataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866511251F249300418C54 /* SettingsDataStoreProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,12 +181,12 @@
 		038157C5251CCA2600D60752 /* CenterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CenterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		038157C9251CCA2600D60752 /* CenterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterUITests.swift; sourceTree = "<group>"; };
 		038157CB251CCA2600D60752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		038157EC251D0A1F00D60752 /* ArchitectureNotes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ArchitectureNotes.txt; sourceTree = "<group>"; };
+		038157EC251D0A1F00D60752 /* ArchitectureNotes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ArchitectureNotes.md; sourceTree = "<group>"; };
 		03866449251E353000418C54 /* DashboardDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardDelegateDataSource.swift; sourceTree = "<group>"; };
 		03866451251E358D00418C54 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		0386645F251E35CF00418C54 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		0386646D251E36DA00418C54 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
-		03866476251E3AF900418C54 /* DatastoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatastoreProtocol.swift; sourceTree = "<group>"; };
+		03866476251E3AF900418C54 /* ObjectDataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDataStoreProtocol.swift; sourceTree = "<group>"; };
 		0386647E251F0F8400418C54 /* SystemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemProtocol.swift; sourceTree = "<group>"; };
 		0386648D251F0FAF00418C54 /* FlowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowProtocol.swift; sourceTree = "<group>"; };
 		03866495251F0FC000418C54 /* StockProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockProtocol.swift; sourceTree = "<group>"; };
@@ -197,6 +200,9 @@
 		038664D5251F1C5C00418C54 /* DimensionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimensionProtocol.swift; sourceTree = "<group>"; };
 		038664DD251F1D6300418C54 /* UnitProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitProtocol.swift; sourceTree = "<group>"; };
 		038664E5251F1FE100418C54 /* StyleGuide.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = StyleGuide.md; sourceTree = "<group>"; };
+		038664FB251F23CF00418C54 /* DashboardViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModelProtocol.swift; sourceTree = "<group>"; };
+		03866503251F23E500418C54 /* LibraryViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModelProtocol.swift; sourceTree = "<group>"; };
+		03866511251F249300418C54 /* SettingsDataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDataStoreProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +327,7 @@
 				03185018251E30D6002DE065 /* DashboardViewFactory.swift */,
 				03866449251E353000418C54 /* DashboardDelegateDataSource.swift */,
 				03866451251E358D00418C54 /* DashboardViewModel.swift */,
+				038664FB251F23CF00418C54 /* DashboardViewModelProtocol.swift */,
 				0386645F251E35CF00418C54 /* DashboardView.swift */,
 			);
 			path = Dashboard;
@@ -331,6 +338,7 @@
 			children = (
 				0318502B251E33F5002DE065 /* LibraryViewController.swift */,
 				0318503E251E34B4002DE065 /* LibraryViewFactory.swift */,
+				03866503251F23E500418C54 /* LibraryViewModelProtocol.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -355,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				038664E5251F1FE100418C54 /* StyleGuide.md */,
+				038157EC251D0A1F00D60752 /* ArchitectureNotes.md */,
 				038157A6251CCA2500D60752 /* Center */,
 				038157BD251CCA2600D60752 /* CenterTests */,
 				038157C8251CCA2600D60752 /* CenterUITests */,
@@ -388,7 +397,6 @@
 				038157B5251CCA2600D60752 /* Info.plist */,
 				038157B2251CCA2600D60752 /* Center.xcdatamodeld */,
 				038157AD251CCA2600D60752 /* Preview Content */,
-				038157EC251D0A1F00D60752 /* ArchitectureNotes.txt */,
 				0303E446251DC7070060BCB5 /* View Hierarchy */,
 				0303E37F251DBE360060BCB5 /* AppDelegate.swift */,
 				0303E38A251DBEDF0060BCB5 /* SceneDelegate.swift */,
@@ -426,7 +434,8 @@
 		03866475251E3AEC00418C54 /* Datastore */ = {
 			isa = PBXGroup;
 			children = (
-				03866476251E3AF900418C54 /* DatastoreProtocol.swift */,
+				03866476251E3AF900418C54 /* ObjectDataStoreProtocol.swift */,
+				03866511251F249300418C54 /* SettingsDataStoreProtocol.swift */,
 				03866486251F0F8700418C54 /* Object Protocols */,
 			);
 			path = Datastore;
@@ -698,7 +707,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				038157ED251D0A1F00D60752 /* ArchitectureNotes.txt in Resources */,
+				038157ED251D0A1F00D60752 /* ArchitectureNotes.md in Resources */,
 				0303E44F251DC7CD0060BCB5 /* LaunchScreen.storyboard in Resources */,
 				038157AF251CCA2600D60752 /* Preview Assets.xcassets in Resources */,
 				038157AC251CCA2600D60752 /* Assets.xcassets in Resources */,
@@ -775,13 +784,15 @@
 				038664A6251F102100418C54 /* ObjectProtocol.swift in Sources */,
 				0303E380251DBE360060BCB5 /* AppDelegate.swift in Sources */,
 				038664BE251F19F700418C54 /* ConditionProtocol.swift in Sources */,
-				03866477251E3AF900418C54 /* DatastoreProtocol.swift in Sources */,
+				03866477251E3AF900418C54 /* ObjectDataStoreProtocol.swift in Sources */,
 				038157B4251CCA2600D60752 /* Center.xcdatamodeld in Sources */,
 				038664CE251F1BC000418C54 /* ConversionProtocol.swift in Sources */,
 				0386648E251F0FAF00418C54 /* FlowProtocol.swift in Sources */,
 				03866496251F0FC000418C54 /* StockProtocol.swift in Sources */,
+				03866512251F249300418C54 /* SettingsDataStoreProtocol.swift in Sources */,
 				038664B6251F189E00418C54 /* SymbolProtocol.swift in Sources */,
 				0386644A251E353000418C54 /* DashboardDelegateDataSource.swift in Sources */,
+				03866504251F23E600418C54 /* LibraryViewModelProtocol.swift in Sources */,
 				038664D6251F1C5C00418C54 /* DimensionProtocol.swift in Sources */,
 				038664DE251F1D6300418C54 /* UnitProtocol.swift in Sources */,
 				0318500A251E302A002DE065 /* DashboardViewController.swift in Sources */,
@@ -792,6 +803,7 @@
 				03185034251E3401002DE065 /* SettingsViewController.swift in Sources */,
 				03866460251E35CF00418C54 /* DashboardView.swift in Sources */,
 				0318503F251E34B4002DE065 /* LibraryViewFactory.swift in Sources */,
+				038664FC251F23CF00418C54 /* DashboardViewModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

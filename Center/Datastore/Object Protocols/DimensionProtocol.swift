@@ -11,10 +11,8 @@ protocol DimensionProtocol: ObjectProtocol
 {
     func getUnits() -> Any
     func linkUnit(_ unit: Any)
-}
-
-protocol DimensionOverviewProtocol
-{
-    func getSymbol() -> SymbolProtocol
+    
+    // MARK: - Caching
+    
     func getUnitsCount() -> Int
 }

@@ -1,11 +1,3 @@
-/* 
-  ArchitectureNotes.strings
-  Center
-
-  Created by Joshua Grant on 9/24/20.
-  
-*/
-
 Settings have to be stored somewhere - this should be detached from the actual storage. I.E we should be able to switch out NSUserDefaults with CoreData and not see any changes (perhaps different settings). I think a settings protocol makes sense?
 
 ---

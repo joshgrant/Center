@@ -14,7 +14,7 @@ protocol StockProtocol: ObjectProtocol
     
     func getAmountType() -> Any
     func getStateType() -> Any
-    func getDimension() -> Any
+    func getDimension() -> DimensionProtocol
     
     func getCurrentAmount() -> Double
     func getCurrentState() -> Any?
@@ -23,19 +23,21 @@ protocol StockProtocol: ObjectProtocol
     
     func getStates() -> [Any]
     
-    func getInflows() -> [Any]
-    func getOutflows() -> [Any]
+    func getInflows() -> [FlowProtocol]
+    func getOutflows() -> [FlowProtocol]
     
-    func getEventOverviews() -> [EventOverviewProtocol]
-    func linkEvent(_ event: Event)
-    func unlinkEvent(_ event: Event)
+    func getEvent() -> [EventProtocol]
+    func linkEvent(_ event: EventProtocol)
+    func unlinkEvent(_ event: EventProtocol)
     
     func getAmounts(from: Date, to: Date) -> [Any] // Each amount needs a date
     
-    func getHistoryOverviews() -> [Any]
-}
-
-protocol StockOverviewProtocol: ObjectProtocol
-{
-    // TODO: Name and either the value, or the state
+    func getHistory() -> [Any]
+    
+    // MARK: - Caching
+    
+    func getInflowsCount() -> Int
+    func getOutflowsCount() -> Int
+    func getEventsCount() -> Int
+    func getHistoryCount() -> Int
 }
