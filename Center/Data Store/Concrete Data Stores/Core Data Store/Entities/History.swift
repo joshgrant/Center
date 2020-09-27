@@ -8,20 +8,11 @@
 import Foundation
 import CoreData
 
-class History: NSManagedObject
+@objc(History)
+public class History: BaseObject
 {
-    
-}
-
-extension History: EntityConstructionProtocol
-{
-    static var entity: NSEntityDescription
+    public override class func entity() -> NSEntityDescription
     {
-        let entity = NSEntityDescription()
-        entity.name = String(describing: self)
-        
-        entity.properties = []
-        
-        return entity
+        CoreDataEntityManager.historyEntity
     }
 }

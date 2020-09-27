@@ -21,11 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     {
         guard let scene = scene as? UIWindowScene else { return }
         
-        let entity = Event(entity: Event.entity, insertInto: coreDataManager.context)
-        entity.title = Symbol(entity: Symbol.entity, insertInto: coreDataManager.context)
+        let entity = Event(entity: Event.entity(), insertInto: coreDataManager.context)
+        entity.title = Symbol(entity: Symbol.entity(), insertInto: coreDataManager.context)
         entity.title.stringValue = "Interesting"
-        print(entity)
-        print(entity.title)
         try! coreDataManager.context.save()
         
         let environment = RootEnvironment(dataManager: coreDataManager)

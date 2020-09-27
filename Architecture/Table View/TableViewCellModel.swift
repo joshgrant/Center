@@ -9,7 +9,7 @@ import Foundation
 
 public protocol TableViewCellModel
 {
-    var cellClass: AnyClass? { get }
+    var cellClass: AnyClass { get }
     var cellReuseIdentifier: String { get }
 }
 

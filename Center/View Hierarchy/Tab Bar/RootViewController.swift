@@ -10,15 +10,16 @@ import Architecture
 
 class RootViewController: TabBarController
 {
+    var viewFactory: RootViewFactoryProtocol
+    
     init(viewFactory: RootViewFactoryProtocol)
     {
+        self.viewFactory = viewFactory
+        
         super.init()
+        
         viewControllers = viewFactory.makeAllViewControllers()
     }
-    
-    /// Create a custom root view and assign it here...
-    //override func loadView() {
-    //}
     
     override func viewDidLoad()
     {

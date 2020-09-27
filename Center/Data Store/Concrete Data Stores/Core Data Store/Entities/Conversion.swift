@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import CoreData
+
+@objc(Conversion)
+public class Conversion: NSManagedObject
+{
+    public override class func entity() -> NSEntityDescription
+    {
+        fatalError("No entity defined")
+    }
+}

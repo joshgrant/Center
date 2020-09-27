@@ -15,11 +15,13 @@ class CenterCoreDataModel: NSManagedObjectModel
         super.init()
         
         self.entities = [
-            Event.entity,
-            Condition.entity,
-            Flow.entity,
-            History.entity,
-            Symbol.entity
+            BaseObject.entity(),
+            Event.entity(),
+            Condition.entity(),
+            Flow.entity(),
+            History.entity(),
+            Symbol.entity(),
+            Note.entity()
         ]
     }
     

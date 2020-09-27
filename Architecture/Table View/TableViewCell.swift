@@ -12,7 +12,7 @@ public protocol ConfigurableTableViewCellProtocol
     func configureWithViewModel(_ viewModel: TableViewCellModel)
 }
 
-open class TableViewCell: UITableViewCell
+open class TableViewCell: UITableViewCell, ConfigurableTableViewCellProtocol
 {
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,11 +22,8 @@ open class TableViewCell: UITableViewCell
     public required init?(coder: NSCoder) {
         fatalError("Load this view programmatically")
     }
-}
 
-extension TableViewCell: ConfigurableTableViewCellProtocol
-{
-    public func configureWithViewModel(_ viewModel: TableViewCellModel)
+    open func configureWithViewModel(_ viewModel: TableViewCellModel)
     {
         assertionFailure("Failed to properly configure the table view cell.")
     }

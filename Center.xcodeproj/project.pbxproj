@@ -72,7 +72,6 @@
 		03CE2433251F3F4C00CE699A /* SettingsViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */; };
 		03CE243B251F40DE00CE699A /* RootViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE243A251F40DE00CE699A /* RootViewFactory.swift */; };
 		03CE2443251F4E7E00CE699A /* DashboardTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2442251F4E7E00CE699A /* DashboardTableViewDelegate.swift */; };
-		03CE244B251F4E8500CE699A /* DashboardTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE244A251F4E8500CE699A /* DashboardTableViewDataSource.swift */; };
 		03CE2453251F4ED900CE699A /* DashboardSearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2452251F4ED900CE699A /* DashboardSearchBarDelegate.swift */; };
 		03CE247B251F4FCD00CE699A /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE247A251F4FCD00CE699A /* TableViewDelegate.swift */; };
 		03CE2484251F555A00CE699A /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2483251F555A00CE699A /* SearchBarDelegate.swift */; };
@@ -107,10 +106,12 @@
 		03CE25B6251F684B00CE699A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE25B5251F684B00CE699A /* Note.swift */; };
 		03CE25BE251F685000CE699A /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE25BD251F685000CE699A /* Unit.swift */; };
 		03CE25C6251F686200CE699A /* NoteBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE25C5251F686200CE699A /* NoteBlock.swift */; };
-		03CE25EC251F743000CE699A /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE25EB251F743000CE699A /* Object.swift */; };
-		03CE2676251F813800CE699A /* EntityConstructionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2675251F813800CE699A /* EntityConstructionProtocol.swift */; };
+		03CE25EC251F743000CE699A /* BaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE25EB251F743000CE699A /* BaseObject.swift */; };
 		03CE2690251F9FB600CE699A /* DashboardEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE268F251F9FB600CE699A /* DashboardEnvironment.swift */; };
 		03CE2698251FA19900CE699A /* RootEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2697251FA19900CE699A /* RootEnvironment.swift */; };
+		03F949D42520448E000E84AC /* DashboardTableViewCoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F949D32520448E000E84AC /* DashboardTableViewCoreDataSource.swift */; };
+		03F949E825204E25000E84AC /* CoreDataEntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F949E725204E25000E84AC /* CoreDataEntityManager.swift */; };
+		03F949F72520644A000E84AC /* EventTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F949F62520644A000E84AC /* EventTableViewCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,7 +263,6 @@
 		03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewFactory.swift; sourceTree = "<group>"; };
 		03CE243A251F40DE00CE699A /* RootViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewFactory.swift; sourceTree = "<group>"; };
 		03CE2442251F4E7E00CE699A /* DashboardTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewDelegate.swift; sourceTree = "<group>"; };
-		03CE244A251F4E8500CE699A /* DashboardTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewDataSource.swift; sourceTree = "<group>"; };
 		03CE2452251F4ED900CE699A /* DashboardSearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSearchBarDelegate.swift; sourceTree = "<group>"; };
 		03CE247A251F4FCD00CE699A /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		03CE2483251F555A00CE699A /* SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegate.swift; sourceTree = "<group>"; };
@@ -297,10 +297,12 @@
 		03CE25B5251F684B00CE699A /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		03CE25BD251F685000CE699A /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		03CE25C5251F686200CE699A /* NoteBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBlock.swift; sourceTree = "<group>"; };
-		03CE25EB251F743000CE699A /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
-		03CE2675251F813800CE699A /* EntityConstructionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityConstructionProtocol.swift; sourceTree = "<group>"; };
+		03CE25EB251F743000CE699A /* BaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseObject.swift; sourceTree = "<group>"; };
 		03CE268F251F9FB600CE699A /* DashboardEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardEnvironment.swift; sourceTree = "<group>"; };
 		03CE2697251FA19900CE699A /* RootEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootEnvironment.swift; sourceTree = "<group>"; };
+		03F949D32520448E000E84AC /* DashboardTableViewCoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCoreDataSource.swift; sourceTree = "<group>"; };
+		03F949E725204E25000E84AC /* CoreDataEntityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataEntityManager.swift; sourceTree = "<group>"; };
+		03F949F62520644A000E84AC /* EventTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -696,7 +698,7 @@
 			children = (
 				03CE24F3251F625400CE699A /* CenterCoreDataModel.swift */,
 				03CE2509251F637500CE699A /* CoreDataManager.swift */,
-				03CE2675251F813800CE699A /* EntityConstructionProtocol.swift */,
+				03F949E725204E25000E84AC /* CoreDataEntityManager.swift */,
 				03CE24F2251F61F700CE699A /* Entities */,
 			);
 			path = "Core Data Store";
@@ -741,6 +743,7 @@
 				03CE2492251F58FB00CE699A /* Table View Section Header */,
 				03866562251F288900418C54 /* Navigation Bar */,
 				03CE24AC251F5E6C00CE699A /* EventTableViewCell.swift */,
+				03F949F62520644A000E84AC /* EventTableViewCellModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -807,7 +810,7 @@
 			isa = PBXGroup;
 			children = (
 				03CE2442251F4E7E00CE699A /* DashboardTableViewDelegate.swift */,
-				03CE244A251F4E8500CE699A /* DashboardTableViewDataSource.swift */,
+				03F949D32520448E000E84AC /* DashboardTableViewCoreDataSource.swift */,
 				03CE2414251F3C7F00CE699A /* DashboardViewHeaderModelFactory.swift */,
 				03CE24B4251F5F2500CE699A /* DashboardViewCellModelFactory.swift */,
 			);
@@ -874,7 +877,7 @@
 				03CE25B5251F684B00CE699A /* Note.swift */,
 				03CE25BD251F685000CE699A /* Unit.swift */,
 				03CE25C5251F686200CE699A /* NoteBlock.swift */,
-				03CE25EB251F743000CE699A /* Object.swift */,
+				03CE25EB251F743000CE699A /* BaseObject.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1214,13 +1217,11 @@
 				0386649E251F0FF300418C54 /* EventProtocol.swift in Sources */,
 				03CE25C6251F686200CE699A /* NoteBlock.swift in Sources */,
 				038664A6251F102100418C54 /* ObjectProtocol.swift in Sources */,
-				03CE2676251F813800CE699A /* EntityConstructionProtocol.swift in Sources */,
 				03CE2586251F682D00CE699A /* Process.swift in Sources */,
 				0303E380251DBE360060BCB5 /* AppDelegate.swift in Sources */,
 				03CE2433251F3F4C00CE699A /* SettingsViewFactory.swift in Sources */,
 				03CE24B5251F5F2500CE699A /* DashboardViewCellModelFactory.swift in Sources */,
 				038664BE251F19F700418C54 /* ConditionProtocol.swift in Sources */,
-				03CE244B251F4E8500CE699A /* DashboardTableViewDataSource.swift in Sources */,
 				03CE249C251F597E00CE699A /* TableViewSectionHeaderViewFactory.swift in Sources */,
 				03866564251F289800418C54 /* NavigationBarAppearanceModel.swift in Sources */,
 				03CE250A251F637500CE699A /* CoreDataManager.swift in Sources */,
@@ -1233,6 +1234,7 @@
 				03CE253E251F67F700CE699A /* Dimension.swift in Sources */,
 				03CE25B6251F684B00CE699A /* Note.swift in Sources */,
 				038664CE251F1BC000418C54 /* ConversionProtocol.swift in Sources */,
+				03F949F72520644A000E84AC /* EventTableViewCellModel.swift in Sources */,
 				03CE25A6251F683E00CE699A /* Symbol.swift in Sources */,
 				03866533251F27A400418C54 /* SystemListingViewController.swift in Sources */,
 				03CE257E251F682800CE699A /* NoteStyle.swift in Sources */,
@@ -1241,10 +1243,11 @@
 				03CE2556251F680A00CE699A /* ImageNoteBlock.swift in Sources */,
 				0386648E251F0FAF00418C54 /* FlowProtocol.swift in Sources */,
 				03CE2423251F3D7400CE699A /* InboxViewFactory.swift in Sources */,
+				03F949D42520448E000E84AC /* DashboardTableViewCoreDataSource.swift in Sources */,
 				03CE2518251F66C400CE699A /* Event.swift in Sources */,
 				03866496251F0FC000418C54 /* StockProtocol.swift in Sources */,
 				03CE252E251F67EB00CE699A /* System.swift in Sources */,
-				03CE25EC251F743000CE699A /* Object.swift in Sources */,
+				03CE25EC251F743000CE699A /* BaseObject.swift in Sources */,
 				03CE2698251FA19900CE699A /* RootEnvironment.swift in Sources */,
 				03866512251F249300418C54 /* SettingsDataStoreProtocol.swift in Sources */,
 				03CE2536251F67F100CE699A /* Conversion.swift in Sources */,
@@ -1260,6 +1263,7 @@
 				038664AE251F14A800418C54 /* NoteProtocol.swift in Sources */,
 				03CE2690251F9FB600CE699A /* DashboardEnvironment.swift in Sources */,
 				0303E375251DBDD00060BCB5 /* RootViewController.swift in Sources */,
+				03F949E825204E25000E84AC /* CoreDataEntityManager.swift in Sources */,
 				03CE258E251F683100CE699A /* Setting.swift in Sources */,
 				0303E38B251DBEDF0060BCB5 /* SceneDelegate.swift in Sources */,
 				03866583251F298D00418C54 /* FilterViewController.swift in Sources */,

@@ -9,7 +9,9 @@ import Architecture
 
 public struct DashboardViewHeaderModelFactory
 {
-    func makeHeaderModels() -> [TableViewHeaderModel]
+    public let headerModels = Self.makeHeaderModels()
+    
+    private static func makeHeaderModels() -> [TableViewHeaderModel]
     {
         return [
             makePinnedHeaderModel(),
@@ -19,28 +21,28 @@ public struct DashboardViewHeaderModelFactory
         ]
     }
     
-    func makePinnedHeaderModel() -> TableViewHeaderModel
+    private static func makePinnedHeaderModel() -> TableViewHeaderModel
     {
         return TableViewHeaderModel(
             title: "Pinned",
             icon: .pinFill)
     }
     
-    func makeFlowHeaderModel() -> TableViewHeaderModel
+    private static func makeFlowHeaderModel() -> TableViewHeaderModel
     {
         return TableViewHeaderModel(
             title: "Flows",
             icon: .flow)
     }
     
-    func makeForecastHeaderModel() -> TableViewHeaderModel
+    private static func makeForecastHeaderModel() -> TableViewHeaderModel
     {
         return TableViewHeaderModel(
             title: "Forecast",
             icon: .forecast)
     }
     
-    func makePrioritySystemHeaderModel() -> TableViewHeaderModel
+    private static func makePrioritySystemHeaderModel() -> TableViewHeaderModel
     {
         return TableViewHeaderModel(
             title: "Flows",

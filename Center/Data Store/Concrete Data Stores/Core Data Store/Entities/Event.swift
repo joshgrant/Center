@@ -9,131 +9,31 @@ import Foundation
 import CoreData
 import Architecture
 
-class Event: NSManagedObject
+@objc(Event)
+public class Event: BaseObject
 {
-    @NSManaged var title: Symbol
     @NSManaged var isActive: Bool
     @NSManaged var conditions: Set<Condition>
     @NSManaged var flows: Set<Flow>
     @NSManaged var history: Set<History>
     
-    static let entity: NSEntityDescription = {
-        let entity = NSEntityDescription()
-        entity.name = String(describing: Event.self)
-        
-        entity.properties = [
-            makeTitleAttribute(),
-            makeIsActiveAttribute(),
-            makeConditionsAttribute(),
-            makeFlowsAttribute(),
-            makeHistoryAttribute(),
-            //            makeFlowsCountAttribute(),
-            //            makeHistoryCountAttribute()
-        ]
-        
-        return entity
-    }()
-}
+    public class func request() -> NSFetchRequest<Event> {
+        return NSFetchRequest<Event>(entityName: "Event")
+    }
 
-extension Event: EntityConstructionProtocol
-{
-    static func makeTitleAttribute() -> NSRelationshipDescription
+    public override class func entity() -> NSEntityDescription
     {
-        let attribute = NSRelationshipDescription()
-        attribute.name = "title"
-        attribute.deleteRule = .nullifyDeleteRule
-        attribute.minCount = 0
-        attribute.maxCount = 1
-        attribute.destinationEntity = Symbol.entity
-        return attribute
-    }
-    
-    static func makeIsActiveAttribute() -> NSAttributeDescription
-    {
-        let attribute = NSAttributeDescription()
-        attribute.name = "isActive"
-        attribute.attributeType = .booleanAttributeType
-        attribute.defaultValue = true
-        attribute.isOptional = false
-        return attribute
-    }
-    
-    static func makeConditionsAttribute() -> NSRelationshipDescription
-    {
-        let attribute = NSRelationshipDescription()
-        attribute.name = "conditions"
-        attribute.deleteRule = .nullifyDeleteRule
-        attribute.destinationEntity = Condition.entity
-        attribute.minCount = 0
-        attribute.maxCount = Int.max
-        
-        return attribute
-    }
-    
-    static func makeFlowsAttribute() -> NSRelationshipDescription
-    {
-        let attribute = NSRelationshipDescription()
-        attribute.name = "flows"
-        attribute.destinationEntity = Flow.entity
-        attribute.minCount = 0
-        attribute.maxCount = Int.max
-        return attribute
-    }
-    
-    static func makeHistoryAttribute() -> NSRelationshipDescription
-    {
-        let attribute = NSRelationshipDescription()
-        attribute.name = "history"
-        attribute.destinationEntity = History.entity
-        attribute.minCount = 0
-        attribute.maxCount = Int.max
-        return attribute
-    }
-    
-    static func makeFlowsCountAttribute() -> NSDerivedAttributeDescription
-    {
-        let attribute = NSDerivedAttributeDescription()
-        attribute.name = "flowsCount"
-        attribute.derivationExpression = NSExpression(format: "history.@count")
-        return attribute
-    }
-    
-    static func makeHistoryCountAttribute() -> NSDerivedAttributeDescription
-    {
-        let attribute = NSDerivedAttributeDescription()
-        attribute.name = "historyCount"
-        attribute.derivationExpression = NSExpression(format: "history.@count")
-        return attribute
+        return CoreDataEntityManager.eventEntity
     }
 }
 
 extension Event: TableViewCellModel
 {
-    var cellClass: AnyClass? { EventTableViewCell.self }
+    public var cellClass: AnyClass { EventTableViewCell.self }
 }
 
 extension Event: EventProtocol
 {
-    func getSymbol() -> SymbolProtocol {
-        return Symbol()
-    }
-    
-    func setSymbol(_ symbol: SymbolProtocol) {
-        
-    }
-    
-    func getNotes() -> [NoteProtocol] {
-        return []
-    }
-    
-    func linkNote(_ note: NoteProtocol) {
-        
-    }
-    
-    func getNotesCount() -> Int {
-        return 0
-    }
-    
     func linkFlow(_ flow: FlowProtocol) {
         
     }
@@ -170,3 +70,104 @@ extension Event: EventProtocol
         return 0
     }
 }
+
+/*
+ //
+ //  Machine+CoreDataProperties.swift
+ //  Flow
+ //
+ //  Created by Joshua Grant on 9/27/20.
+ //  Copyright © 2020 Joshua Grant. All rights reserved.
+ //
+ //
+ 
+ import Foundation
+ import CoreData
+ 
+ 
+ extension Machine {
+ 
+ @nonobjc public class func fetchRequest() -> NSFetchRequest<Machine> {
+ return NSFetchRequest<Machine>(entityName: "Machine")
+ }
+ 
+ @NSManaged public var name: String?
+ @NSManaged public var blocks: NSSet?
+ @NSManaged public var children: NSSet?
+ @NSManaged public var current: State?
+ @NSManaged public var flows: NSSet?
+ @NSManaged public var ideal: State?
+ @NSManaged public var parent: Machine?
+ @NSManaged public var states: NSSet?
+ 
+ }
+ 
+ // MARK: Generated accessors for blocks
+ extension Machine {
+ 
+ @objc(addBlocksObject:)
+ @NSManaged public func addToBlocks(_ value: Flow)
+ 
+ @objc(removeBlocksObject:)
+ @NSManaged public func removeFromBlocks(_ value: Flow)
+ 
+ @objc(addBlocks:)
+ @NSManaged public func addToBlocks(_ values: NSSet)
+ 
+ @objc(removeBlocks:)
+ @NSManaged public func removeFromBlocks(_ values: NSSet)
+ 
+ }
+ 
+ // MARK: Generated accessors for children
+ extension Machine {
+ 
+ @objc(addChildrenObject:)
+ @NSManaged public func addToChildren(_ value: Machine)
+ 
+ @objc(removeChildrenObject:)
+ @NSManaged public func removeFromChildren(_ value: Machine)
+ 
+ @objc(addChildren:)
+ @NSManaged public func addToChildren(_ values: NSSet)
+ 
+ @objc(removeChildren:)
+ @NSManaged public func removeFromChildren(_ values: NSSet)
+ 
+ }
+ 
+ // MARK: Generated accessors for flows
+ extension Machine {
+ 
+ @objc(addFlowsObject:)
+ @NSManaged public func addToFlows(_ value: Flow)
+ 
+ @objc(removeFlowsObject:)
+ @NSManaged public func removeFromFlows(_ value: Flow)
+ 
+ @objc(addFlows:)
+ @NSManaged public func addToFlows(_ values: NSSet)
+ 
+ @objc(removeFlows:)
+ @NSManaged public func removeFromFlows(_ values: NSSet)
+ 
+ }
+ 
+ // MARK: Generated accessors for states
+ extension Machine {
+ 
+ @objc(addStatesObject:)
+ @NSManaged public func addToStates(_ value: State)
+ 
+ @objc(removeStatesObject:)
+ @NSManaged public func removeFromStates(_ value: State)
+ 
+ @objc(addStates:)
+ @NSManaged public func addToStates(_ values: NSSet)
+ 
+ @objc(removeStates:)
+ @NSManaged public func removeFromStates(_ values: NSSet)
+ 
+ }
+
+ */

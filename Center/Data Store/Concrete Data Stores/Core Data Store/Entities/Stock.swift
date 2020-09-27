@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import CoreData
+
+@objc(Stock)
+public class Stock: BaseObject
+{
+    public override class func entity() -> NSEntityDescription
+    {
+        fatalError("No entity defined")
+    }
+}

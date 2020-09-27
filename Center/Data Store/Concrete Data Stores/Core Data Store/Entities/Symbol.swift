@@ -8,42 +8,15 @@
 import Foundation
 import CoreData
 
-class Symbol: NSManagedObject
+@objc(Symbol)
+public class Symbol: NSManagedObject
 {
     @NSManaged var stringValue: String
     @NSManaged var events: Set<Event>
     
-    static let entity: NSEntityDescription = {
-        let entity = NSEntityDescription()
-        entity.name = String(describing: Symbol.self)
-        
-        entity.properties = [
-            makeStringValueProperty(),
-            makeEventsAttribute()
-        ]
-        
-        return entity
-    }()
-}
-
-extension Symbol: EntityConstructionProtocol
-{
-    static func makeStringValueProperty() -> NSAttributeDescription
+    public override class func entity() -> NSEntityDescription
     {
-        let attribute = NSAttributeDescription()
-        attribute.name = "stringValue"
-        attribute.attributeType = .stringAttributeType
-        return attribute
-    }
-    
-    static func makeEventsAttribute() -> NSRelationshipDescription
-    {
-        let attribute = NSRelationshipDescription()
-        attribute.name = "events"
-        attribute.deleteRule = .noActionDeleteRule
-        attribute.minCount = 0
-        attribute.maxCount = Int.max
-        return attribute
+        return CoreDataEntityManager.symbolEntity
     }
 }
 

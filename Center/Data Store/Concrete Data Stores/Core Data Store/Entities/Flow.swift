@@ -8,20 +8,11 @@
 import Foundation
 import CoreData
 
-class Flow: NSManagedObject
+@objc(Flow)
+public class Flow: BaseObject
 {
-    
-}
-
-extension Flow: EntityConstructionProtocol
-{
-    static var entity: NSEntityDescription
+    public override class func entity() -> NSEntityDescription
     {
-        let entity = NSEntityDescription()
-        entity.name = String(describing: self)
-        
-        entity.properties = []
-        
-        return entity
+        CoreDataEntityManager.flowEntity
     }
 }

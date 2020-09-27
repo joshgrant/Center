@@ -15,7 +15,7 @@ protocol DashboardEnvironmentProtocol
     
     var headerModelFactory: DashboardViewHeaderModelFactory { get }
     var cellModelFactory: DashboardViewCellModelFactory { get }
-    var tableViewDataSource: DashboardTableViewDataSource { get }
+    var tableViewDataSource: DashboardTableViewCoreDataSource { get }
     var tableViewDelegate: DashboardTableViewDelegate { get }
     var searchBarDelegate: DashboardSearchBarDelegate { get }
 }
@@ -38,11 +38,10 @@ class DashboardEnvironment: DashboardEnvironmentProtocol
             dataManager: dataManager)
     }()
     
-    lazy var tableViewDataSource: DashboardTableViewDataSource = {
-        DashboardTableViewDataSource(
+    lazy var tableViewDataSource: DashboardTableViewCoreDataSource = {
+        DashboardTableViewCoreDataSource(
             headerModelFactory: headerModelFactory,
-            cellModelFactory: cellModelFactory,
-            dataManager: dataManager)
+            cellModelFactory: cellModelFactory)
     }()
     
     lazy var tableViewDelegate: DashboardTableViewDelegate = {

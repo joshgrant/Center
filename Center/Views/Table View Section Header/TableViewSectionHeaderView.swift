@@ -18,10 +18,27 @@ class TableViewSectionHeaderView: View
         super.init(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         
         configureBackgroundView()
+        
+        // TODO: Add a function to pin the stack view...
+        let mainStackView = viewFactory.makeMainStackView()
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(mainStackView)
+        
+        let topConstraint = mainStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 3)
+        topConstraint.priority = .init(1)
+        
+        NSLayoutConstraint.activate([
+            mainStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            mainStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor),
+            topConstraint,
+            mainStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
     }
     
     func configureBackgroundView()
     {
-        backgroundColor = .orange
+//        backgroundColor = .systemGroupedBackground
+        backgroundColor = .darkGray
     }
 }

@@ -22,9 +22,13 @@ struct RootViewFactory: RootViewFactoryProtocol
 {
     var environment: RootEnvironmentProtocol
     
+    var dashboardEnvironment: DashboardEnvironment
+    
     init(environment: RootEnvironmentProtocol)
     {
         self.environment = environment
+        
+        dashboardEnvironment = DashboardEnvironment(dataManager: self.environment.dataManager)
     }
     
     func makeAllViewControllers() -> [UIViewController]
@@ -39,8 +43,7 @@ struct RootViewFactory: RootViewFactoryProtocol
     
     func makeDashboardRootViewController() -> UIViewController
     {
-        let environment = DashboardEnvironment(dataManager: self.environment.dataManager)
-        let viewFactory = DashboardViewFactory(environment: environment)
+        let viewFactory = DashboardViewFactory(environment: dashboardEnvironment)
         let viewController = DashboardViewController(viewFactory: viewFactory)
         let navigationController = NavigationController(rootViewController: viewController)
         return navigationController

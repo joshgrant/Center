@@ -14,7 +14,7 @@ class DashboardTableViewDelegate: NSObject, TableViewDelegate
     
     init(headerModelFactory: DashboardViewHeaderModelFactory)
     {
-        self.headerModels = headerModelFactory.makeHeaderModels()
+        self.headerModels = headerModelFactory.headerModels
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?

@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import CoreData
+
+@objc(System)
+public class System: BaseObject
+{
+    public override class func entity() -> NSEntityDescription
+    {
+        fatalError("No entity defined")
+    }
+}
