@@ -38,6 +38,9 @@ public enum Icon: String
     case checkBoxFilled = "checkmark.circle"
     case priority = "exclamationmark.triangle.fill" // or remove the fill
     
+    case arrowDown = "arrowtriangle.down.fill"
+    case arrowRight = "arrowtriangle.right.fill"
+    
     public func getImage() -> UIImage?
     {
         return UIImage(systemName: self.rawValue)

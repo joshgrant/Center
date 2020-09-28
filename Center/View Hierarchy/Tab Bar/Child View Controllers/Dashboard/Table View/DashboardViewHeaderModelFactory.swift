@@ -45,7 +45,7 @@ public struct DashboardViewHeaderModelFactory
     private static func makePrioritySystemHeaderModel() -> TableViewHeaderModel
     {
         return TableViewHeaderModel(
-            title: "Flows",
+            title: "Priority",
             icon: .priority)
     }
 }

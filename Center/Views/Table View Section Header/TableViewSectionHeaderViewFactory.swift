@@ -17,7 +17,7 @@ protocol TableViewSectionHeaderViewFactoryProtocol
     func makeMainStackView() -> UIStackView
     
     func makeDisclosureButton() -> SectionHeaderDisclosureButton
-    func makeImageView() -> UIImageView
+    func makeImageView(image: UIImage) -> UIImageView
     func makeTitleView() -> UILabel
     func makeSearchButton() -> UIButton
     func makeLinkButton() -> UIButton
@@ -26,82 +26,112 @@ protocol TableViewSectionHeaderViewFactoryProtocol
 
 public struct TableViewSectionHeaderViewFactory: TableViewSectionHeaderViewFactoryProtocol
 {
-    var sectionHeaderModel: TableViewHeaderModel
+    public var sectionHeaderModel: TableViewHeaderModel
     
-    init(sectionHeaderModel: TableViewHeaderModel)
+    public init(sectionHeaderModel: TableViewHeaderModel)
     {
         self.sectionHeaderModel = sectionHeaderModel
     }
     
-    func makeMainStackView() -> UIStackView
+    public func makeMainStackView() -> UIStackView
     {
         let mainStackView = UIStackView()
         mainStackView.axis = .horizontal
         mainStackView.alignment = .center
+        mainStackView.spacing = 5
+        
+        mainStackView.addArrangedSubview(Spacer(width: 5))
 
-        // TODO: Verify that this works
-//        mainStackView.safeAreaInsets = UIEdgeInsets(
-//            top: 3,
-//            left: 0,
-//            bottom: 0,
-//            right: 0)
+        if sectionHeaderModel.hasDisclosureTriangle
+        {
+            mainStackView.addArrangedSubview(makeDisclosureButton())
+        }
         
-        // TODO: Create a spacer utility view
-        let spacerView = UIView()
-        let widthConstraint = spacerView.widthAnchor.constraint(equalToConstant: 0)
-        widthConstraint.priority = .init(1)
-        NSLayoutConstraint.activate([widthConstraint])
-//        spacerView.addConstraint(widthConstraint)
+        if let image = sectionHeaderModel.image
+        {
+            mainStackView.addArrangedSubview(makeImageView(image: image))
+        }
         
-        mainStackView.addArrangedSubview(makeDisclosureButton())
-        mainStackView.addArrangedSubview(makeImageView())
         mainStackView.addArrangedSubview(makeTitleView())
-        mainStackView.addArrangedSubview(UIView())
-        mainStackView.addArrangedSubview(makeDisclosureButton())
+        mainStackView.addArrangedSubview(Spacer())
         
+        if sectionHeaderModel.hasSearchButton
+        {
+            mainStackView.addArrangedSubview(makeSearchButton())
+        }
+        
+        if sectionHeaderModel.hasLinkButton
+        {
+            mainStackView.addArrangedSubview(makeLinkButton())
+        }
+        
+        if sectionHeaderModel.hasAddButton
+        {
+            mainStackView.addArrangedSubview(makeAddButton())
+        }
+        
+        if sectionHeaderModel.hasEditButton
+        {
+            mainStackView.addArrangedSubview(makeEditButton())
+        }
+        
+        mainStackView.addArrangedSubview(Spacer(width: 5))
         
         return mainStackView
     }
     
-    func makeDisclosureButton() -> SectionHeaderDisclosureButton
+    public func makeDisclosureButton() -> SectionHeaderDisclosureButton
     {
         let button = SectionHeaderDisclosureButton()
-        button.backgroundColor = .brown
+        button.setImage(UIImage(icon: .arrowDown), for: .normal)
         return button
     }
     
-    func makeImageView() -> UIImageView
+    public func makeImageView(image: UIImage) -> UIImageView
     {
-        let image = Icon.flow.getImage()
         let imageView = UIImageView(image: image)
+        imageView.tintColor = Color.tableViewHeaderIcon
         return imageView
     }
     
-    func makeTitleView() -> UILabel
+    public func makeTitleView() -> UILabel
     {
         let label = UILabel()
+        
+        label.font = .systemFont(ofSize: 13)
+        label.textColor = Color.tableViewHeaderFont
+        
         label.text = sectionHeaderModel.title
+        label.text = sectionHeaderModel.title.localizedUppercase
+        
         return label
     }
     
-    func makeSearchButton() -> UIButton
+    public func makeSearchButton() -> UIButton
     {
         let button = UIButton()
         button.setImage(Icon.search.getImage(), for: .normal)
         return button
     }
     
-    func makeLinkButton() -> UIButton
+    public func makeLinkButton() -> UIButton
     {
         let button = UIButton()
         button.setImage(Icon.link.getImage(), for: .normal)
         return button
     }
     
-    func makeAddButton() -> UIButton
+    public func makeAddButton() -> UIButton
     {
         let button = UIButton()
         button.setImage(Icon.add.getImage(), for: .normal)
+        return button
+    }
+    
+    func makeEditButton() -> UIButton
+    {
+        let button = UIButton()
+        button.setTitle("Edit", for: .normal)
         return button
     }
 }

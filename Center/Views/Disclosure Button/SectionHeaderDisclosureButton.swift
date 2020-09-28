@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SectionHeaderDisclosureButton: UIButton
+public class SectionHeaderDisclosureButton: UIButton
 {
     
 }
