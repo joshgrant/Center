@@ -6,6 +6,8 @@ target 'Center' do
   pod 'Kingfisher'
   pod 'ReSwift'
   pod 'PromiseKit'
+  pod 'SwiftyJSON'
+  pod 'Timepiece'
 
   target 'CenterTests' do
     inherit! :search_paths
