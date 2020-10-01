@@ -1,5 +1,7 @@
 platform :ios, '14.0'
 
+inhibit_all_warnings!
+
 target 'Center' do
   use_frameworks!
   pod 'RealmSwift'

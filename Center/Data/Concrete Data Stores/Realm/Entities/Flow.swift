@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Flow: Object
+class Flow: Object, Codable
 {
     @objc dynamic var symbol: Symbol!
     @objc dynamic var history: History!

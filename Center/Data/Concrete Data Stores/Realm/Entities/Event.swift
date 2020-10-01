@@ -1,5 +1,5 @@
 //
-//  Symbol.swift
+//  Event.swift
 //  Center
 //
 //  Created by Joshua Grant on 10/1/20.
@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Symbol: Object
+class Event: Object, Codable
 {
-    @objc dynamic var name = ""
+    
 }

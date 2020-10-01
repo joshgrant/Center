@@ -8,18 +8,18 @@
 import Foundation
 import RealmSwift
 
-class History: Object
+class History: Object, Codable
 {
-    let historyevents = List<HistoryEvent>()
+    var historyEvents = List<HistoryEvent>()
 }
 
-class HistoryEvent: Object
+class HistoryEvent: Object, Codable
 {
     @objc dynamic var date = Date()
     @objc dynamic var type = HistoryEventType.created
 }
 
-@objc enum HistoryEventType: Int, RealmEnum
+@objc enum HistoryEventType: Int, RealmEnum, Codable
 {
     case created
     case updated
