@@ -10,6 +10,14 @@ import RealmSwift
 
 class RealmDataManager: DataManagerProtocol
 {
+    let realm: Realm = {
+        do {
+            return try Realm()
+        } catch {
+            fatalError("Failed to configure Realm")
+        }
+    }()
+    
     func save()
     {
         print("SAVE")
@@ -34,7 +42,12 @@ class RealmDataManager: DataManagerProtocol
     {
         print("POPULATE")
         
-        let realm = try! Realm()
+        var symbols = realm.objects(Symbol.self)
+        
+        guard symbols.count == 0 else {
+            print("Data already exists in the database.")
+            return
+        }
         
         try! realm.write {
             let symbol = Symbol()
