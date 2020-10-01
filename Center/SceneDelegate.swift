@@ -15,18 +15,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     /// and abstract it to the an environment or something like that...
     /// Also, it should be agnostic - core data v. disk should be the same, just
     /// a one line switch...
-    let coreDataManager = CoreDataManager()
+//    let coreDataManager = CoreDataManager()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
     {
         guard let scene = scene as? UIWindowScene else { return }
         
-        let entity = Event(entity: Event.entity(), insertInto: coreDataManager.context)
-        entity.title = Symbol(entity: Symbol.entity(), insertInto: coreDataManager.context)
-        entity.title.stringValue = "Interesting"
-        try! coreDataManager.context.save()
+//        let entity = Event(entity: Event.entity(), insertInto: coreDataManager.context)
+//        entity.title = Symbol(entity: Symbol.entity(), insertInto: coreDataManager.context)
+//        entity.title.stringValue = "Interesting"
+//        try! coreDataManager.context.save()
+        let realmDataManager = RealmDataManager()
         
-        let environment = RootEnvironment(dataManager: coreDataManager)
+        realmDataManager.populateWithSampleData()
+        
+        let environment = RootEnvironment(dataManager: realmDataManager)
         let viewFactory = RootViewFactory(environment: environment)
         let root = RootViewController(viewFactory: viewFactory)
         

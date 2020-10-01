@@ -3,7 +3,9 @@ platform :ios, '14.0'
 target 'Center' do
   use_frameworks!
   pod 'RealmSwift'
-  pod 'Alamofire'
+  pod 'Kingfisher'
+  pod 'ReSwift'
+  pod 'PromiseKit'
 
   target 'CenterTests' do
     inherit! :search_paths

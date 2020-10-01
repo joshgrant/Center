@@ -12,30 +12,30 @@ import CoreData
 
 class DashboardViewCellModelFactory: NSObject
 {
-    var dataManager: CoreDataManager
-    
-    // TODO: Why can't we use the generic <Event> here?
-    lazy var eventFetchController: NSFetchedResultsController<Event> = {
-        let controller = NSFetchedResultsController<Event>(
-            fetchRequest: makeEventFetchRequest(),
-            managedObjectContext: dataManager.context,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-        return controller
-    }()
+//    var dataManager: CoreDataManager
+//    
+//    // TODO: Why can't we use the generic <Event> here?
+//    lazy var eventFetchController: NSFetchedResultsController<Event> = {
+//        let controller = NSFetchedResultsController<Event>(
+//            fetchRequest: makeEventFetchRequest(),
+//            managedObjectContext: dataManager.context,
+//            sectionNameKeyPath: nil,
+//            cacheName: nil)
+//        return controller
+//    }()
     
     init(dataManager: DataManagerProtocol)
     {
-        guard let dataManager = dataManager as? CoreDataManager else {
-            fatalError("The data managers aren't flexible enough")
-        }
+//        guard let dataManager = dataManager as? CoreDataManager else {
+//            fatalError("The data managers aren't flexible enough")
+//        }
         
-        self.dataManager = dataManager
-        
-        super.init()
-        
-        eventFetchController.delegate = self
-        try! eventFetchController.performFetch()
+//        self.dataManager = dataManager
+//
+//        super.init()
+//
+//        eventFetchController.delegate = self
+//        try! eventFetchController.performFetch()
     }
     
     func makeCellModels() -> [[TableViewCellModel]]
@@ -43,7 +43,7 @@ class DashboardViewCellModelFactory: NSObject
         return [
             [],
             [],
-            events(),
+//            events(),
             []
         ]
     }
@@ -53,21 +53,21 @@ class DashboardViewCellModelFactory: NSObject
 
 extension DashboardViewCellModelFactory
 {
-    func makeEventFetchRequest() -> NSFetchRequest<Event>
-    {
-        let request = Event.request()
-        // TODO: Fix the sort descriptors
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \Event.isActive, ascending: true)]
-        request.fetchLimit = 9
-        // TODO: Add conditions for only events with date condition within two weeks
-        return request
-    }
-    
-    func events() -> [TableViewCellModel]
-    {
-        // They don't map to the proper type...
-        return eventFetchController.fetchedObjects ?? []
-    }
+//    func makeEventFetchRequest() -> NSFetchRequest<Event>
+//    {
+//        let request = Event.request()
+//        // TODO: Fix the sort descriptors
+//        request.sortDescriptors = [NSSortDescriptor(keyPath: \Event.isActive, ascending: true)]
+//        request.fetchLimit = 9
+//        // TODO: Add conditions for only events with date condition within two weeks
+//        return request
+//    }
+//    
+//    func events() -> [TableViewCellModel]
+//    {
+//        // They don't map to the proper type...
+//        return eventFetchController.fetchedObjects ?? []
+//    }
 }
 
 // MARK: - Fetch controller delegate
