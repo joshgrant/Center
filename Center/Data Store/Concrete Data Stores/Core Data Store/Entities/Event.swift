@@ -12,12 +12,14 @@ import Architecture
 @objc(Event)
 public class Event: BaseObject
 {
-    @NSManaged var isActive: Bool
-    @NSManaged var conditions: Set<Condition>
-    @NSManaged var flows: Set<Flow>
-    @NSManaged var history: Set<History>
+    @NSManaged public var isActive: Bool
+    @NSManaged public var conditions: Set<Condition>
+    @NSManaged public var flows: Set<Flow>
+    @NSManaged public var history: Set<History>
     
-    public class func request() -> NSFetchRequest<Event> {
+    public class func request() -> NSFetchRequest<Event>
+    {
+        // TODO: Don't want to hardcode this...
         return NSFetchRequest<Event>(entityName: "Event")
     }
 
