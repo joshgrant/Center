@@ -1,14 +1,8 @@
 platform :ios, '14.0'
 
-target 'Architecture' do
-  use_frameworks!
-
-  target 'ArchitectureTests' do
-  end
-end
-
 target 'Center' do
   use_frameworks!
+  pod 'RealmSwift'
   pod 'Alamofire'
 
   target 'CenterTests' do
@@ -20,16 +14,8 @@ target 'Center' do
 end
 
 target 'Core' do
-  use_frameworks!
-  pod 'RealmSwift'
+    use_frameworks!
 
-  target 'CoreTests' do
-  end
-end
-
-target 'Utility' do
-  use_frameworks!
-
-  target 'UtilityTests' do
-  end
+    target 'CoreTests' do
+    end
 end

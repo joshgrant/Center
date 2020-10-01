@@ -5,7 +5,7 @@
 //  Created by Joshua Grant on 9/25/20.
 //
 
-import Architecture
+import Foundation
 
 class DashboardView: View
 {

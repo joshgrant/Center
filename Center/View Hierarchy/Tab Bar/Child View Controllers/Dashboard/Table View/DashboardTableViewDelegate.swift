@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Architecture
 
 class DashboardTableViewDelegate: NSObject, TableViewDelegate
 {

@@ -1,7 +1,6 @@
 //: A UIKit based Playground for presenting user interface
   
 import UIKit
-import Architecture
 import Center
 import PlaygroundSupport
 

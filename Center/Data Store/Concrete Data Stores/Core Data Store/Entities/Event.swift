@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreData
-import Architecture
 
 @objc(Event)
 public class Event: BaseObject

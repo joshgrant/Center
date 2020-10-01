@@ -1,14 +1,14 @@
 //
-//  ArchitectureTests.swift
-//  ArchitectureTests
+//  CoreTests.swift
+//  CoreTests
 //
-//  Created by Joshua Grant on 9/25/20.
+//  Created by Joshua Grant on 10/1/20.
 //
 
 import XCTest
-@testable import Architecture
+@testable import Core
 
-class ArchitectureTests: XCTestCase {
+class CoreTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

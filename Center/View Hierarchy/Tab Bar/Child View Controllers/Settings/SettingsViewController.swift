@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Architecture
 
 class SettingsViewController: ViewController
 {

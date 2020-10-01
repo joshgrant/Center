@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreData
-import Architecture
 
 protocol DashboardViewFactoryProtocol: TabBarItemFactoryProtocol
 {

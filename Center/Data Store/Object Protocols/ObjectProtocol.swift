@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Architecture
 
 // TODO: Should this conform to Codable?
 

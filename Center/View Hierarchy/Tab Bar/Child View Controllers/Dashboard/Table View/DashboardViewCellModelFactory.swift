@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreData
-import Architecture
 
 // TODO: Maybe a generic protocol to avoid being tied directly to CoreData?
 
