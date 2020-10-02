@@ -7,9 +7,9 @@
 
 import Foundation
 
-@objc protocol Symbol
+@objc public protocol Symbol
 {
-    var name: String { get set }
+    var name: String? { get set }
     
     /// Returns each object that uses this symbol as a name value
     /// The concrete instance of symbol should define a `List<Entity>` property

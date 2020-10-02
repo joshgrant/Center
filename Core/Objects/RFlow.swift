@@ -8,49 +8,54 @@
 import Foundation
 import RealmSwift
 
-class RFlow: Object, Flow
+open class RFlow: Object, Flow
 {
-    @objc dynamic var amount: Double = 0
-    @objc dynamic var from: Stock?
-    @objc dynamic var to: Stock?
-    @objc dynamic var duration: TimeInterval = 0
-    @objc dynamic var delay: TimeInterval = 0
-    @objc dynamic var requiresUserCompletion: Bool = false
-    @objc dynamic var contactDelegate: Contact?
+    @objc dynamic public var id: UUID = .init()
+    @objc dynamic public var symbol: Symbol?
     
-    func events() -> [Event] {
-        return []
+    @objc dynamic public var amount: Double = 0
+    @objc dynamic public var from: Stock?
+    @objc dynamic public var to: Stock?
+    @objc dynamic public var duration: TimeInterval = 0
+    @objc dynamic public var delay: TimeInterval = 0
+    @objc dynamic public var requiresUserCompletion: Bool = false
+    @objc dynamic public var contactDelegate: Contact?
+    
+    private let _events = List<REvent>()
+    private let _history = List<RFlowHistory>()
+    private let _notes = List<RNote>()
+    
+    public func events() -> [Event] {
+        _events.map { $0 as Event }
     }
     
-    func history() -> [FlowHistory] {
-        return []
+    public func history() -> [FlowHistory] {
+        _history.map { $0 as FlowHistory }
     }
     
-    func add(history: FlowHistory) {
+    public func add(history: FlowHistory) {
         
     }
     
-    func eventsCount() -> Int {
-        return 0
+    // TODO: Cache
+    public func eventsCount() -> Int {
+        _events.count
     }
     
-    func historyCount() -> Int {
-        return 0
+    // TODO: Cache
+    public func historyCount() -> Int {
+        return _history.count
     }
     
-    var id: UUID = .init()
-    
-    var symbol: Symbol?
-    
-    func notes() -> [Note] {
-        return []
+    public func notes() -> [Note] {
+        _notes.map { $0 as Note }
     }
     
-    func link(note: Note) {
+    public func link(note: Note) {
         
     }
     
-    func unlink(note: Note) {
+    public func unlink(note: Note) {
         
     }
 }

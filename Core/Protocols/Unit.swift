@@ -7,15 +7,9 @@
 
 import Foundation
 
-@objc protocol Unit: Entity
+@objc public protocol Unit: Entity
 {
     var isBaseUnit: Bool { get set }
     var relativeTo: Unit? { get set }
-    var ratio: Ratio { get set }
-}
-
-@objc protocol Ratio
-{
-    var left: Double { get set }
-    var right: Double { get set }
+    var ratio: Ratio? { get set }
 }

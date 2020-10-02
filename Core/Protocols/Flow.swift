@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import RealmSwift
 
-@objc protocol Flow: Entity
+@objc public protocol Flow: Entity
 {
     var amount: Double { get set }
     
@@ -32,18 +31,4 @@ import RealmSwift
     
     func eventsCount() -> Int
     func historyCount() -> Int
-}
-
-@objc protocol FlowHistory
-{
-    var amount: Double { get set }
-}
-
-// TODO: Perhaps link this to a contact card person
-// by referencing an ID // 
-@objc protocol Contact: Entity
-{
-    var name: String { get set }
-    var phoneNumber: String { get set }
-    var email: String { get set }
 }

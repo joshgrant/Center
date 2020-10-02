@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc protocol Entity
+@objc public protocol Entity
 {
     var id: UUID { get }
     var symbol: Symbol? { get set }

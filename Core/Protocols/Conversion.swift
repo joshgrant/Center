@@ -7,10 +7,10 @@
 
 import Foundation
 
-@objc protocol Conversion
+@objc public protocol Conversion
 {
-    var from: Symbol { get set }
-    var to: Symbol { get set }
-    var ratio: Ratio { get set }
+    var from: Symbol? { get set }
+    var to: Symbol? { get set }
+    var ratio: Ratio? { get set }
     var isReversible: Bool { get set }
 }

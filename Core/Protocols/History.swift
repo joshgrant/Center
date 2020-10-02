@@ -6,17 +6,9 @@
 //
 
 import Foundation
-import RealmSwift
 
-@objc protocol History
+@objc public protocol History
 {
     var date: Date { get set }
     var event: HistoryEvent { get set }
-}
-
-@objc enum HistoryEvent: Int, RealmEnum
-{
-    case created
-    case updated
-    case deleted
 }

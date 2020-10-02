@@ -7,9 +7,9 @@
 
 import Foundation
 
-@objc protocol Dimension: Entity
+@objc public protocol Dimension: Entity
 {
-    func units() -> Unit
+    func units() -> [Unit]
     func add(unit: Unit)
     func remove(unit: Unit)
     

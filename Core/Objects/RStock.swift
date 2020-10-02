@@ -8,64 +8,68 @@
 import Foundation
 import RealmSwift
 
-@objc class RStock: Object, Stock
+open class RStock: Object, Stock
 {
-    @objc dynamic var amount: Double = 0
-    @objc dynamic var amountType: AmountType = .Integer
-    @objc dynamic var ideal: Ideal?
-    @objc dynamic var dimension: Dimension?
-    @objc dynamic var unit: Unit?
-    @objc dynamic var id: UUID = .init()
-    @objc dynamic var symbol: Symbol?
+    @objc dynamic public var id: UUID = .init()
+    @objc dynamic public var symbol: Symbol?
     
-    var _inflows: List<RFlow>!
-    var _outflows: List<RFlow>!
+    @objc dynamic public var amount: Double = 0
+    @objc dynamic public var amountType: AmountType = .Integer
+    @objc dynamic public var ideal: Ideal?
+    @objc dynamic public var dimension: Dimension?
+    @objc dynamic public var unit: Unit?
     
-    func netAmount() -> Net? {
+    private let _inflows = List<RFlow>()
+    private let _outflows = List<RFlow>()
+    private let _events = List<REvent>()
+    private let _history = List<RStockHistory>()
+    private let _notes = List<RNote>()
+    
+    public func netAmount() -> Net? {
         return nil
     }
     
-    func inflows() -> [Flow] {
-        return []
+    public func inflows() -> [Flow] {
+        _inflows.map { $0 as Flow }
     }
     
-    func outflows() -> [Flow] {
-        return []
+    public func outflows() -> [Flow] {
+        _outflows.map { $0 as Flow }
     }
     
-    func events() -> [Event] {
-        return []
+    public func events() -> [Event] {
+        _events.map { $0 as Event }
     }
     
-    func link(event: Event) {
+    public func link(event: Event) {
         
     }
     
-    func unlink(event: Event) {
+    public func unlink(event: Event) {
         
     }
     
-    func history() -> [StockHistory] {
-        return []
+    public func history() -> [StockHistory] {
+        _history.map { $0 as StockHistory }
     }
     
-    func add(history: StockHistory) {
+    public func add(history: StockHistory) {
         
     }
     
-    func history(from: Date, to: Date) -> [StockHistory] {
+    public func history(from: Date, to: Date) -> [StockHistory] {
         return []
     }
     
-    func notes() -> [Note] {
-        return []
+    public func notes() -> [Note] {
+        _notes.map { $0 as Note }
     }
     
-    func link(note: Note) {
+    public func link(note: Note) {
         
     }
     
-    func unlink(note: Note) {
+    public func unlink(note: Note) {
         
     }
 }

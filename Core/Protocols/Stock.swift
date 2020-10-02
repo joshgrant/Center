@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import RealmSwift
 
-@objc protocol Stock: Entity
+@objc public protocol Stock: Entity
 {
     @objc dynamic var amount: Double { get set }
     @objc dynamic var amountType: AmountType { get set }
@@ -43,34 +42,4 @@ import RealmSwift
     
     /// Returns all history instances between the given dates
     func history(from: Date, to: Date) -> [StockHistory]
-}
-
-@objc protocol Net
-{
-    var timePeriod: TimePeriod { get set }
-    var amount: Double { get set }
-}
-
-@objc protocol StockHistory: History
-{
-    var amount: Double { get set }
-}
-
-@objc enum AmountType: Int, RealmEnum
-{
-    case Integer
-    case Decimal
-    case Boolean
-}
-
-@objc enum TimePeriod: Int, RealmEnum
-{
-    case millisecond
-    case second
-    case minute
-    case hour
-    case day
-    case week
-    case month
-    case year
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc protocol System: Entity
+@objc public protocol System: Entity
 {
     func percentIdeal() -> Double
     

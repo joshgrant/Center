@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import RealmSwift
 
-@objc protocol Event: Entity
+@objc public protocol Event: Entity
 {
     var isActive: Bool { get set }
     

@@ -58,6 +58,48 @@
 		03866572251F28BA00418C54 /* DashboardInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866571251F28BA00418C54 /* DashboardInteractionController.swift */; };
 		03866583251F298D00418C54 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866582251F298D00418C54 /* FilterViewController.swift */; };
 		0386658B251F299700418C54 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386658A251F299700418C54 /* SearchViewController.swift */; };
+		03A40CCD25275ACB009279F8 /* REvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40CCC25275ACB009279F8 /* REvent.swift */; };
+		03A40CD725275AD9009279F8 /* RCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40CD625275AD9009279F8 /* RCondition.swift */; };
+		03A40CE125275AE2009279F8 /* RConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40CE025275AE2009279F8 /* RConversion.swift */; };
+		03A40CE725275AE8009279F8 /* RDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40CE625275AE8009279F8 /* RDimension.swift */; };
+		03A40CED25275AEF009279F8 /* REntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40CEC25275AEF009279F8 /* REntity.swift */; };
+		03A40CF325275AFA009279F8 /* RHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40CF225275AFA009279F8 /* RHistory.swift */; };
+		03A40CF925275B02009279F8 /* RIdeal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40CF825275B02009279F8 /* RIdeal.swift */; };
+		03A40CFF25275B0A009279F8 /* RNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40CFE25275B0A009279F8 /* RNote.swift */; };
+		03A40D0525275B16009279F8 /* RSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D0425275B16009279F8 /* RSymbol.swift */; };
+		03A40D0B25275B1E009279F8 /* RSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D0A25275B1E009279F8 /* RSystem.swift */; };
+		03A40D1125275B25009279F8 /* RUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D1025275B25009279F8 /* RUnit.swift */; };
+		03A40D2625275ED0009279F8 /* HistoryEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D2525275ED0009279F8 /* HistoryEvent.swift */; };
+		03A40D3025275EEA009279F8 /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D2F25275EEA009279F8 /* Predicate.swift */; };
+		03A40D3625275EFC009279F8 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D3525275EFC009279F8 /* Priority.swift */; };
+		03A40D3C25275F0B009279F8 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D3B25275F0B009279F8 /* Relationship.swift */; };
+		03A40D4225275F2B009279F8 /* IdealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D4125275F2B009279F8 /* IdealType.swift */; };
+		03A40D4825275F3B009279F8 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D4725275F3B009279F8 /* State.swift */; };
+		03A40D4E25275F45009279F8 /* RState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D4D25275F45009279F8 /* RState.swift */; };
+		03A40D542527602B009279F8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D532527602B009279F8 /* Color.swift */; };
+		03A40D5A25276036009279F8 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D5925276036009279F8 /* Block.swift */; };
+		03A40D6025276042009279F8 /* TextBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D5F25276042009279F8 /* TextBlock.swift */; };
+		03A40D662527604F009279F8 /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D652527604F009279F8 /* TextSize.swift */; };
+		03A40D6C25276061009279F8 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D6B25276061009279F8 /* TextStyle.swift */; };
+		03A40D7225276076009279F8 /* ImageBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D7125276076009279F8 /* ImageBlock.swift */; };
+		03A40D7825276083009279F8 /* TableBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D7725276083009279F8 /* TableBlock.swift */; };
+		03A40D7E25276100009279F8 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D7D25276100009279F8 /* Net.swift */; };
+		03A40D842527610F009279F8 /* StockHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D832527610F009279F8 /* StockHistory.swift */; };
+		03A40D8A25276125009279F8 /* AmountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D8925276125009279F8 /* AmountType.swift */; };
+		03A40D902527613C009279F8 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D8F2527613C009279F8 /* TimePeriod.swift */; };
+		03A40D962527614C009279F8 /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40D952527614C009279F8 /* Ratio.swift */; };
+		03A40DA22527618D009279F8 /* FlowHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DA12527618D009279F8 /* FlowHistory.swift */; };
+		03A40DA82527619A009279F8 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DA72527619A009279F8 /* Contact.swift */; };
+		03A40DAE252761C7009279F8 /* RColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DAD252761C7009279F8 /* RColor.swift */; };
+		03A40DB8252761D2009279F8 /* RContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DB7252761D2009279F8 /* RContact.swift */; };
+		03A40DC2252761E9009279F8 /* RNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DC1252761E9009279F8 /* RNet.swift */; };
+		03A40DC8252761F3009279F8 /* RRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DC7252761F3009279F8 /* RRatio.swift */; };
+		03A40DCE2527620B009279F8 /* RBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DCD2527620B009279F8 /* RBlock.swift */; };
+		03A40DD42527622C009279F8 /* RFlowHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DD32527622C009279F8 /* RFlowHistory.swift */; };
+		03A40DDE25276237009279F8 /* RImageBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DDD25276237009279F8 /* RImageBlock.swift */; };
+		03A40DE425276244009279F8 /* RStockHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DE325276244009279F8 /* RStockHistory.swift */; };
+		03A40DEA2527624E009279F8 /* RTableBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DE92527624E009279F8 /* RTableBlock.swift */; };
+		03A40DF025276255009279F8 /* RTextBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A40DEF25276255009279F8 /* RTextBlock.swift */; };
 		03CE2415251F3C7F00CE699A /* DashboardViewHeaderModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2414251F3C7F00CE699A /* DashboardViewHeaderModelFactory.swift */; };
 		03CE2423251F3D7400CE699A /* InboxViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2422251F3D7400CE699A /* InboxViewFactory.swift */; };
 		03CE2433251F3F4C00CE699A /* SettingsViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */; };
@@ -200,6 +242,48 @@
 		0386658A251F299700418C54 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		03866599251F2B9C00418C54 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		038665A7251F2E2800418C54 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		03A40CCC25275ACB009279F8 /* REvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = REvent.swift; sourceTree = "<group>"; };
+		03A40CD625275AD9009279F8 /* RCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCondition.swift; sourceTree = "<group>"; };
+		03A40CE025275AE2009279F8 /* RConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RConversion.swift; sourceTree = "<group>"; };
+		03A40CE625275AE8009279F8 /* RDimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RDimension.swift; sourceTree = "<group>"; };
+		03A40CEC25275AEF009279F8 /* REntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = REntity.swift; sourceTree = "<group>"; };
+		03A40CF225275AFA009279F8 /* RHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RHistory.swift; sourceTree = "<group>"; };
+		03A40CF825275B02009279F8 /* RIdeal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIdeal.swift; sourceTree = "<group>"; };
+		03A40CFE25275B0A009279F8 /* RNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNote.swift; sourceTree = "<group>"; };
+		03A40D0425275B16009279F8 /* RSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSymbol.swift; sourceTree = "<group>"; };
+		03A40D0A25275B1E009279F8 /* RSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSystem.swift; sourceTree = "<group>"; };
+		03A40D1025275B25009279F8 /* RUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUnit.swift; sourceTree = "<group>"; };
+		03A40D2525275ED0009279F8 /* HistoryEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEvent.swift; sourceTree = "<group>"; };
+		03A40D2F25275EEA009279F8 /* Predicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predicate.swift; sourceTree = "<group>"; };
+		03A40D3525275EFC009279F8 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		03A40D3B25275F0B009279F8 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		03A40D4125275F2B009279F8 /* IdealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdealType.swift; sourceTree = "<group>"; };
+		03A40D4725275F3B009279F8 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		03A40D4D25275F45009279F8 /* RState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RState.swift; sourceTree = "<group>"; };
+		03A40D532527602B009279F8 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		03A40D5925276036009279F8 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		03A40D5F25276042009279F8 /* TextBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBlock.swift; sourceTree = "<group>"; };
+		03A40D652527604F009279F8 /* TextSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
+		03A40D6B25276061009279F8 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
+		03A40D7125276076009279F8 /* ImageBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBlock.swift; sourceTree = "<group>"; };
+		03A40D7725276083009279F8 /* TableBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableBlock.swift; sourceTree = "<group>"; };
+		03A40D7D25276100009279F8 /* Net.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Net.swift; sourceTree = "<group>"; };
+		03A40D832527610F009279F8 /* StockHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockHistory.swift; sourceTree = "<group>"; };
+		03A40D8925276125009279F8 /* AmountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountType.swift; sourceTree = "<group>"; };
+		03A40D8F2527613C009279F8 /* TimePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
+		03A40D952527614C009279F8 /* Ratio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
+		03A40DA12527618D009279F8 /* FlowHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowHistory.swift; sourceTree = "<group>"; };
+		03A40DA72527619A009279F8 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		03A40DAD252761C7009279F8 /* RColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RColor.swift; sourceTree = "<group>"; };
+		03A40DB7252761D2009279F8 /* RContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RContact.swift; sourceTree = "<group>"; };
+		03A40DC1252761E9009279F8 /* RNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNet.swift; sourceTree = "<group>"; };
+		03A40DC7252761F3009279F8 /* RRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRatio.swift; sourceTree = "<group>"; };
+		03A40DCD2527620B009279F8 /* RBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBlock.swift; sourceTree = "<group>"; };
+		03A40DD32527622C009279F8 /* RFlowHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RFlowHistory.swift; sourceTree = "<group>"; };
+		03A40DDD25276237009279F8 /* RImageBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RImageBlock.swift; sourceTree = "<group>"; };
+		03A40DE325276244009279F8 /* RStockHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RStockHistory.swift; sourceTree = "<group>"; };
+		03A40DE92527624E009279F8 /* RTableBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTableBlock.swift; sourceTree = "<group>"; };
+		03A40DEF25276255009279F8 /* RTextBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTextBlock.swift; sourceTree = "<group>"; };
 		03CE2414251F3C7F00CE699A /* DashboardViewHeaderModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewHeaderModelFactory.swift; sourceTree = "<group>"; };
 		03CE2422251F3D7400CE699A /* InboxViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewFactory.swift; sourceTree = "<group>"; };
 		03CE242A251F3EBE00CE699A /* TabBarItemFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemFactoryProtocol.swift; sourceTree = "<group>"; };
@@ -361,12 +445,13 @@
 		031D981725260360004BD2FD /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				03866553251F285A00418C54 /* Data Manager */,
-				03D87CD02526FD50006C9A73 /* Objects */,
-				03D87C3A2526EC59006C9A73 /* Protocols */,
 				031D981825260360004BD2FD /* Core.h */,
 				031D981925260360004BD2FD /* Info.plist */,
 				031D982425260360004BD2FD /* CoreTests */,
+				03866553251F285A00418C54 /* Data Manager */,
+				03D87CD02526FD50006C9A73 /* Objects */,
+				03D87C3A2526EC59006C9A73 /* Protocols */,
+				03A40D2425275EC4009279F8 /* Types */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -693,6 +778,22 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		03A40D2425275EC4009279F8 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				03A40D8925276125009279F8 /* AmountType.swift */,
+				03A40D2525275ED0009279F8 /* HistoryEvent.swift */,
+				03A40D4125275F2B009279F8 /* IdealType.swift */,
+				03A40D2F25275EEA009279F8 /* Predicate.swift */,
+				03A40D3525275EFC009279F8 /* Priority.swift */,
+				03A40D3B25275F0B009279F8 /* Relationship.swift */,
+				03A40D652527604F009279F8 /* TextSize.swift */,
+				03A40D6B25276061009279F8 /* TextStyle.swift */,
+				03A40D8F2527613C009279F8 /* TimePeriod.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
 		03CE245A251F4EE100CE699A /* Table View */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,19 +843,30 @@
 		03D87C3A2526EC59006C9A73 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				03D87C3B2526EC64006C9A73 /* Stock.swift */,
-				03D87C4F2526ED95006C9A73 /* Ideal.swift */,
-				03D87C722526F1E0006C9A73 /* Symbol.swift */,
-				03D87C492526EC86006C9A73 /* Entity.swift */,
-				03D87C552526EF03006C9A73 /* Unit.swift */,
-				03D87C5B2526EF09006C9A73 /* Dimension.swift */,
-				03D87C612526EFF2006C9A73 /* Flow.swift */,
-				03D87C672526F02E006C9A73 /* Event.swift */,
+				03A40D5925276036009279F8 /* Block.swift */,
+				03A40D532527602B009279F8 /* Color.swift */,
 				03D87C842526F336006C9A73 /* Condition.swift */,
+				03A40DA72527619A009279F8 /* Contact.swift */,
 				03D87C8A2526F33E006C9A73 /* Conversion.swift */,
-				03D87C902526F34A006C9A73 /* Note.swift */,
-				03D87C962526F367006C9A73 /* System.swift */,
+				03D87C5B2526EF09006C9A73 /* Dimension.swift */,
+				03D87C492526EC86006C9A73 /* Entity.swift */,
+				03D87C672526F02E006C9A73 /* Event.swift */,
+				03D87C612526EFF2006C9A73 /* Flow.swift */,
+				03A40DA12527618D009279F8 /* FlowHistory.swift */,
 				03D87CC02526FCBA006C9A73 /* History.swift */,
+				03D87C4F2526ED95006C9A73 /* Ideal.swift */,
+				03A40D7125276076009279F8 /* ImageBlock.swift */,
+				03A40D7D25276100009279F8 /* Net.swift */,
+				03D87C902526F34A006C9A73 /* Note.swift */,
+				03A40D952527614C009279F8 /* Ratio.swift */,
+				03A40D4725275F3B009279F8 /* State.swift */,
+				03D87C3B2526EC64006C9A73 /* Stock.swift */,
+				03A40D832527610F009279F8 /* StockHistory.swift */,
+				03D87C722526F1E0006C9A73 /* Symbol.swift */,
+				03D87C962526F367006C9A73 /* System.swift */,
+				03A40D7725276083009279F8 /* TableBlock.swift */,
+				03A40D5F25276042009279F8 /* TextBlock.swift */,
+				03D87C552526EF03006C9A73 /* Unit.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -762,8 +874,30 @@
 		03D87CD02526FD50006C9A73 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				03D87CD12526FD5A006C9A73 /* RStock.swift */,
+				03A40DCD2527620B009279F8 /* RBlock.swift */,
+				03A40DAD252761C7009279F8 /* RColor.swift */,
+				03A40CD625275AD9009279F8 /* RCondition.swift */,
+				03A40DB7252761D2009279F8 /* RContact.swift */,
+				03A40CE025275AE2009279F8 /* RConversion.swift */,
+				03A40CE625275AE8009279F8 /* RDimension.swift */,
+				03A40CEC25275AEF009279F8 /* REntity.swift */,
+				03A40CCC25275ACB009279F8 /* REvent.swift */,
 				03D87CF325270178006C9A73 /* RFlow.swift */,
+				03A40DD32527622C009279F8 /* RFlowHistory.swift */,
+				03A40CF225275AFA009279F8 /* RHistory.swift */,
+				03A40CF825275B02009279F8 /* RIdeal.swift */,
+				03A40DDD25276237009279F8 /* RImageBlock.swift */,
+				03A40DC1252761E9009279F8 /* RNet.swift */,
+				03A40CFE25275B0A009279F8 /* RNote.swift */,
+				03A40DC7252761F3009279F8 /* RRatio.swift */,
+				03A40D4D25275F45009279F8 /* RState.swift */,
+				03D87CD12526FD5A006C9A73 /* RStock.swift */,
+				03A40DE325276244009279F8 /* RStockHistory.swift */,
+				03A40D0425275B16009279F8 /* RSymbol.swift */,
+				03A40D0A25275B1E009279F8 /* RSystem.swift */,
+				03A40DE92527624E009279F8 /* RTableBlock.swift */,
+				03A40DEF25276255009279F8 /* RTextBlock.swift */,
+				03A40D1025275B25009279F8 /* RUnit.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -1182,17 +1316,59 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03A40D7E25276100009279F8 /* Net.swift in Sources */,
+				03A40DA82527619A009279F8 /* Contact.swift in Sources */,
+				03A40D902527613C009279F8 /* TimePeriod.swift in Sources */,
+				03A40D842527610F009279F8 /* StockHistory.swift in Sources */,
+				03A40CF925275B02009279F8 /* RIdeal.swift in Sources */,
 				03D87C4A2526EC86006C9A73 /* Entity.swift in Sources */,
+				03A40D6025276042009279F8 /* TextBlock.swift in Sources */,
+				03A40D2625275ED0009279F8 /* HistoryEvent.swift in Sources */,
+				03A40DAE252761C7009279F8 /* RColor.swift in Sources */,
+				03A40D962527614C009279F8 /* Ratio.swift in Sources */,
+				03A40DB8252761D2009279F8 /* RContact.swift in Sources */,
 				03D87C8B2526F33E006C9A73 /* Conversion.swift in Sources */,
+				03A40DCE2527620B009279F8 /* RBlock.swift in Sources */,
+				03A40CFF25275B0A009279F8 /* RNote.swift in Sources */,
+				03A40CE125275AE2009279F8 /* RConversion.swift in Sources */,
+				03A40DE425276244009279F8 /* RStockHistory.swift in Sources */,
+				03A40DC2252761E9009279F8 /* RNet.swift in Sources */,
+				03A40DC8252761F3009279F8 /* RRatio.swift in Sources */,
+				03A40CED25275AEF009279F8 /* REntity.swift in Sources */,
+				03A40D4825275F3B009279F8 /* State.swift in Sources */,
 				03D87C852526F336006C9A73 /* Condition.swift in Sources */,
 				03D87C562526EF03006C9A73 /* Unit.swift in Sources */,
+				03A40D4225275F2B009279F8 /* IdealType.swift in Sources */,
+				03A40D662527604F009279F8 /* TextSize.swift in Sources */,
 				03D87C972526F367006C9A73 /* System.swift in Sources */,
+				03A40DEA2527624E009279F8 /* RTableBlock.swift in Sources */,
 				03D87CD22526FD5A006C9A73 /* RStock.swift in Sources */,
+				03A40D0B25275B1E009279F8 /* RSystem.swift in Sources */,
+				03A40DA22527618D009279F8 /* FlowHistory.swift in Sources */,
+				03A40D6C25276061009279F8 /* TextStyle.swift in Sources */,
 				03D87C502526ED95006C9A73 /* Ideal.swift in Sources */,
+				03A40D4E25275F45009279F8 /* RState.swift in Sources */,
+				03A40DD42527622C009279F8 /* RFlowHistory.swift in Sources */,
 				03D87C622526EFF2006C9A73 /* Flow.swift in Sources */,
 				03D87C5C2526EF09006C9A73 /* Dimension.swift in Sources */,
+				03A40D1125275B25009279F8 /* RUnit.swift in Sources */,
+				03A40D7825276083009279F8 /* TableBlock.swift in Sources */,
+				03A40CF325275AFA009279F8 /* RHistory.swift in Sources */,
 				03D87CF425270178006C9A73 /* RFlow.swift in Sources */,
+				03A40D8A25276125009279F8 /* AmountType.swift in Sources */,
+				03A40DDE25276237009279F8 /* RImageBlock.swift in Sources */,
+				03A40D542527602B009279F8 /* Color.swift in Sources */,
+				03A40D5A25276036009279F8 /* Block.swift in Sources */,
 				03D87C912526F34A006C9A73 /* Note.swift in Sources */,
+				03A40D0525275B16009279F8 /* RSymbol.swift in Sources */,
+				03A40CCD25275ACB009279F8 /* REvent.swift in Sources */,
+				03A40D7225276076009279F8 /* ImageBlock.swift in Sources */,
+				03A40CD725275AD9009279F8 /* RCondition.swift in Sources */,
+				03A40D3625275EFC009279F8 /* Priority.swift in Sources */,
+				03A40CE725275AE8009279F8 /* RDimension.swift in Sources */,
+				03A40D3025275EEA009279F8 /* Predicate.swift in Sources */,
+				03A40D3C25275F0B009279F8 /* Relationship.swift in Sources */,
+				03A40DF025276255009279F8 /* RTextBlock.swift in Sources */,
 				03D87C732526F1E0006C9A73 /* Symbol.swift in Sources */,
 				03D87CC12526FCBA006C9A73 /* History.swift in Sources */,
 				03D87C682526F02E006C9A73 /* Event.swift in Sources */,
