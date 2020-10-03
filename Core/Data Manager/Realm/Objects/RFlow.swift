@@ -52,6 +52,26 @@ extension RFlow
     }
 }
 
+// MARK: - Note storage
+
+extension RFlow
+{
+    public func notes() -> [Note]
+    {
+        _notes.map { $0 as Note }
+    }
+    
+    public func append(note: Note) throws
+    {
+        
+    }
+    
+    public func remove(note: Note) throws
+    {
+        
+    }
+}
+
 // MARK: - History storage
 
 extension RFlow

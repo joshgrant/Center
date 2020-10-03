@@ -24,12 +24,6 @@ open class RNote: Object, Note
     private let _flows = LinkingObjects(fromType: RFlow.self, property: "_notes")
     private let _units = LinkingObjects(fromType: RUnit.self, property: "_notes")
     
-    // TODO: Cache
-    public func relatedNotes() -> [Note]
-    {
-        return []
-    }
-    
     public func getFirstLink() -> String?
     {
         return nil
@@ -43,11 +37,6 @@ open class RNote: Object, Note
     public func getThumbnailImage() -> Any?
     {
         return nil
-    }
-    
-    public func relatedNotesCount() -> Int
-    {
-        return 0
     }
 }
 

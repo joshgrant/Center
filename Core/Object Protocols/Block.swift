@@ -13,6 +13,4 @@ import Foundation
     var mainColor: Color? { get set }
     var tintColor: Color? { get set }
     var backgroundColor: Color? { get set }
-    
-    func relatedNotes() -> [Note]
 }

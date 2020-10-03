@@ -17,8 +17,6 @@ import Foundation
     func append(block: Block) throws
     func remove(block: Block) throws
     
-    func relatedNotes() -> [Note]
-    
     // MARK: - Caching
     
     func getFirstLink() -> String?

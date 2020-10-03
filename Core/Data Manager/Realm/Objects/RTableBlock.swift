@@ -15,9 +15,4 @@ open class RTableBlock: Object, TableBlock
     @objc dynamic public var mainColor: Color?
     @objc dynamic public var tintColor: Color?
     @objc dynamic public var backgroundColor: Color?
-    
-    // TODO: Cache
-    public func relatedNotes() -> [Note] {
-        []
-    }
 }
