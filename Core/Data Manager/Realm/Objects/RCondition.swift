@@ -10,6 +10,7 @@ import RealmSwift
 
 open class RCondition: Object, Condition
 {
+    @objc dynamic public var id: UUID = .init()
     @objc dynamic public var stock: Stock?
     @objc dynamic public var predicate: Predicate = .equal
     @objc dynamic public var target: Double = 0

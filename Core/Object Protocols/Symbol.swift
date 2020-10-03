@@ -16,5 +16,5 @@ import Foundation
     
     /// Returns each object that uses this symbol as a name value
     /// The concrete instance of symbol should define a `List<Identified>` property
-    func references() -> [Identified]
+    func references() -> [Entity]
 }

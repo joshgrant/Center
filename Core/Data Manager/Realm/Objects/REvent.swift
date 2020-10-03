@@ -19,64 +19,6 @@ open class REvent: Object, Event
     private let _history = List<RHistory>()
     private let _notes = List<RNote>()
     
-    public func conditions() -> [Condition]
-    {
-        _conditions.map { $0 as Condition }
-    }
-    
-    public func add(condition: Condition) throws
-    {
-        let condition: RCondition = try condition.unwrap()
-        try realm?.write {
-            _conditions.append(condition)
-        }
-    }
-    
-    public func delete(condition: Condition) throws
-    {
-        let condition: RCondition = try condition.unwrap()
-        
-        guard let index = _conditions.index(of: condition) else {
-            throw RealmError.noObjectIndex
-        }
-        
-        try realm?.write {
-            _conditions.remove(at: index)
-        }
-    }
-    
-    public func flows() -> [Flow]
-    {
-        _flows.map { $0 as Flow }
-    }
-    
-    public func link(flow: Flow) throws
-    {
-        
-    }
-    
-    public func unlink(flow: Flow) throws
-    {
-        
-    }
-    
-    public func history() -> [History]
-    {
-        _history.map { $0 as History }
-    }
-    
-    // TODO: Cache
-    public func flowsCount() -> Int
-    {
-        _flows.count
-    }
-    
-    // TODO: Cache
-    public func historyCount() -> Int
-    {
-        _history.count
-    }
-    
     public func notes() -> [Note]
     {
         _notes.map { $0 as Note }
@@ -101,5 +43,65 @@ open class REvent: Object, Event
         try realm?.write {
             _notes.remove(at: index)
         }
+    }
+}
+
+// MARK: - Condition storage
+
+extension REvent
+{
+    public func conditions() -> [Condition]
+    {
+        _conditions.map { $0 as Condition }
+    }
+    
+    public func append(condition: Condition) throws
+    {
+        
+    }
+    
+    public func remove(condition: Condition) throws
+    {
+        
+    }
+}
+
+// MARK: - Flow storage
+
+extension REvent
+{
+    public func flows() -> [Flow]
+    {
+        _flows.map { $0 as Flow }
+    }
+    
+    public func append(flow: Flow) throws
+    {
+        
+    }
+    
+    public func remove(flow: Flow) throws
+    {
+        
+    }
+}
+
+// MARK: - History storage
+
+extension REvent
+{
+    public func history() -> [History]
+    {
+        _history.map { $0 as History }
+    }
+    
+    public func append(history: History) throws
+    {
+        
+    }
+    
+    public func history(from: Date, to: Date) throws -> [History]
+    {
+        return []
     }
 }

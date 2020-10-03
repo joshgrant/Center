@@ -10,6 +10,7 @@ import RealmSwift
 
 open class RTextBlock: Object, TextBlock
 {
+    @objc dynamic public var id: UUID = .init()
     @objc dynamic public var textSize: TextSize = .body
     @objc dynamic public var textStyle: TextStyle = .normal
     @objc dynamic public var url: URL?

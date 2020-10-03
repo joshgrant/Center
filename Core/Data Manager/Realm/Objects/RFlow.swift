@@ -22,48 +22,55 @@ open class RFlow: Object, Flow
     @objc dynamic public var contactDelegate: Contact?
     
     private let _events = List<REvent>()
-    private let _history = List<RFlowHistory>()
+    private let _history = List<RHistory>()
     private let _notes = List<RNote>()
-    
+}
+
+// MARK: - Event storage
+
+extension RFlow
+{
     public func events() -> [Event]
     {
         _events.map { $0 as Event }
     }
     
-    public func history() -> [FlowHistory]
+    public func append(event: Event) throws
     {
-        _history.map { $0 as FlowHistory }
+        let event: REvent = try event.unwrap()
+        try realm?.write {
+            _events.append(event)
+        }
     }
     
-    public func add(history: FlowHistory)
+    public func remove(event: Event) throws
     {
-        
+        let event: REvent = try event.unwrap()
+        try realm?.write {
+            try _events.remove(object: event)
+        }
+    }
+}
+
+// MARK: - History storage
+
+extension RFlow
+{
+    public func history() -> [History]
+    {
+        _history.map { $0 as History }
     }
     
-    // TODO: Cache
-    public func eventsCount() -> Int
+    public func append(history: History) throws
     {
-        _events.count
+        let history: RHistory = try history.unwrap()
+        try realm?.write {
+            _history.append(history)
+        }
     }
     
-    // TODO: Cache
-    public func historyCount() -> Int
+    public func history(from: Date, to: Date) throws -> [History]
     {
-        return _history.count
-    }
-    
-    public func notes() -> [Note]
-    {
-        _notes.map { $0 as Note }
-    }
-    
-    public func link(note: Note) throws
-    {
-        
-    }
-    
-    public func unlink(note: Note) throws
-    {
-        
+        return []
     }
 }

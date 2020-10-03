@@ -24,36 +24,6 @@ open class RNote: Object, Note
     private let _flows = LinkingObjects(fromType: RFlow.self, property: "_notes")
     private let _units = LinkingObjects(fromType: RUnit.self, property: "_notes")
     
-    public func blocks() -> [Block]
-    {
-        _blocks.map { $0 as Block }
-    }
-    
-    public func add(block: Block)
-    {
-        
-    }
-    
-    public func delete(block: Block)
-    {
-        
-    }
-    
-    public func links() -> [Entity]
-    {
-        _links.map { $0 as Entity }
-    }
-    
-    public func link(entity: Entity)
-    {
-        
-    }
-    
-    public func unlink(entity: Entity)
-    {
-        
-    }
-    
     // TODO: Cache
     public func relatedNotes() -> [Note]
     {
@@ -75,29 +45,68 @@ open class RNote: Object, Note
         return nil
     }
     
-    // TODO: Cache
-    public func linksCount() -> Int
-    {
-        _links.count
-    }
-    
     public func relatedNotesCount() -> Int
     {
         return 0
     }
+}
+
+// MARK: - Link storage
+
+extension RNote
+{
+    public func links() -> [Entity]
+    {
+        _links.map { $0 as Entity }
+    }
     
+    public func append(link: Entity) throws
+    {
+        
+    }
+    
+    public func remove(link: Entity) throws
+    {
+        
+    }
+}
+
+// MARK: - Note storage
+
+extension RNote
+{
     public func notes() -> [Note]
     {
         _notes.map { $0 as Note }
     }
     
-    public func link(note: Note) throws
+    public func append(note: Note) throws
     {
         
     }
     
-    public func unlink(note: Note)
+    public func remove(note: Note) throws
     {
+        
+    }
+}
+
+// MARK: - Block storage
+
+extension RNote
+{
+    public func blocks() -> [Block]
+    {
+        _blocks.map { $0 as Block }
+    }
     
+    public func append(block: Block) throws
+    {
+        
+    }
+    
+    public func remove(block: Block) throws
+    {
+        
     }
 }

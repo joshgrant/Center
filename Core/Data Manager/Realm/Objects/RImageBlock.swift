@@ -10,6 +10,7 @@ import RealmSwift
 
 open class RImageBlock: Object, ImageBlock
 {
+    @objc dynamic public var id: UUID = .init()
     @objc dynamic public var image: Data?
     @objc dynamic public var caption: String?
     @objc dynamic public var url: URL?
