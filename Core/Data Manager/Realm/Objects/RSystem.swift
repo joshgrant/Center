@@ -29,80 +29,104 @@ open class RSystem: Object, System
 
 // MARK: - Event storage
 
-extension RSystem
+public extension RSystem
 {
-    public func events() -> [Event]
+    func events() -> [Event]
     {
         _events.map { $0 as Event }
     }
     
-    public func append(event: Event) throws
+    func append(event: Event) throws
     {
-        
+        let event: REvent = try event.unwrap()
+        try realm?.write {
+            _events.append(event)
+        }
     }
     
-    public func remove(event: Event) throws
+    func remove(event: Event) throws
     {
-        
+        let event: REvent = try event.unwrap()
+        try realm?.write {
+            try _events.remove(object: event)
+        }
     }
 }
 
 // MARK: - Flow storage
 
-extension RSystem
+public extension RSystem
 {
-    public func flows() -> [Flow]
+    func flows() -> [Flow]
     {
         _flows.map { $0 as Flow }
     }
     
-    public func append(flow: Flow) throws
+    func append(flow: Flow) throws
     {
-        
+        let flow: RFlow = try flow.unwrap()
+        try realm?.write {
+            _flows.append(flow)
+        }
     }
     
-    public func remove(flow: Flow) throws
+    func remove(flow: Flow) throws
     {
-        
+        let flow: RFlow = try flow.unwrap()
+        try realm?.write {
+            try _flows.remove(object: flow)
+        }
     }
 }
 
 // MARK: - Note storage
 
-extension RSystem
+public extension RSystem
 {
-    public func notes() -> [Note]
+    func notes() -> [Note]
     {
         _notes.map { $0 as Note }
     }
     
-    public func append(note: Note) throws
+    func append(note: Note) throws
     {
-        
+        let note: RNote = try note.unwrap()
+        try realm?.write {
+            _notes.append(note)
+        }
     }
     
-    public func remove(note: Note) throws
+    func remove(note: Note) throws
     {
-        
+        let note: RNote = try note.unwrap()
+        try realm?.write {
+            try _notes.remove(object: note)
+        }
     }
 }
 
 // MARK: - Stock storage
 
-extension RSystem
+public extension RSystem
 {
-    public func stocks() -> [Stock]
+    func stocks() -> [Stock]
     {
         _stocks.map { $0 as Stock }
     }
     
-    public func append(stock: Stock) throws
+    func append(stock: Stock) throws
     {
-        
+        let stock: RStock = try stock.unwrap()
+        try realm?.write {
+            _stocks.append(stock)
+        }
     }
     
-    public func remove(stock: Stock) throws
+    func remove(stock: Stock) throws
     {
-        
+        let stock: RStock = try stock.unwrap()
+        try realm?.write {
+            try _stocks.remove(object: stock)
+        }
     }
 }

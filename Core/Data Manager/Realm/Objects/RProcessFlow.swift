@@ -38,12 +38,18 @@ public extension RProcessFlow
     
     func append(requiredStock: Stock) throws
     {
-        
+        let requiredStock: RStock = try requiredStock.unwrap()
+        try realm?.write {
+            _requiredStocks.append(requiredStock)
+        }
     }
     
     func remove(requiredStock: Stock) throws
     {
-        
+        let requiredStock: RStock = try requiredStock.unwrap()
+        try realm?.write {
+            try _requiredStocks.remove(object: requiredStock)
+        }
     }
 }
 
@@ -58,12 +64,18 @@ public extension RProcessFlow
     
     func append(producedStock: Stock) throws
     {
-        
+        let producedStock: RStock = try producedStock.unwrap()
+        try realm?.write {
+            _producedStocks.append(producedStock)
+        }
     }
     
     func remove(producedStock: Stock) throws
     {
-        
+        let producedStock: RStock = try producedStock.unwrap()
+        try realm?.write {
+            try _producedStocks.remove(object: producedStock)
+        }
     }
 }
 
@@ -78,12 +90,18 @@ public extension RProcessFlow
     
     func append(event: Event) throws
     {
-        
+        let event: REvent = try event.unwrap()
+        try realm?.write {
+            _events.append(event)
+        }
     }
     
     func remove(event: Event) throws
     {
-        
+        let event: REvent = try event.unwrap()
+        try realm?.write {
+            try _events.remove(object: event)
+        }
     }
 }
 
@@ -98,12 +116,18 @@ public extension RProcessFlow
     
     func append(note: Note) throws
     {
-        
+        let note: RNote = try note.unwrap()
+        try realm?.write {
+            _notes.append(note)
+        }
     }
     
     func remove(note: Note) throws
     {
-        
+        let note: RNote = try note.unwrap()
+        try realm?.write {
+            try _notes.remove(object: note)
+        }
     }
 }
 
@@ -118,7 +142,10 @@ public extension RProcessFlow
     
     func append(history: History) throws
     {
-        
+        let history: RHistory = try history.unwrap()
+        try realm?.write {
+            _history.append(history)
+        }
     }
     
     func history(from: Date, to: Date) throws -> [History]
@@ -138,11 +165,17 @@ public extension RProcessFlow
     
     func append(step: ProcessFlow) throws
     {
-        
+        let step: RProcessFlow = try step.unwrap()
+        try realm?.write {
+            _steps.append(step)
+        }
     }
     
     func remove(step: ProcessFlow) throws
     {
-        
+        let step: RProcessFlow = try step.unwrap()
+        try realm?.write {
+            try _steps.remove(object: step)
+        }
     }
 }

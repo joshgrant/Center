@@ -28,14 +28,14 @@ open class RFlow: Object, Flow
 
 // MARK: - Event storage
 
-extension RFlow
+public extension RFlow
 {
-    public func events() -> [Event]
+    func events() -> [Event]
     {
         _events.map { $0 as Event }
     }
     
-    public func append(event: Event) throws
+    func append(event: Event) throws
     {
         let event: REvent = try event.unwrap()
         try realm?.write {
@@ -43,7 +43,7 @@ extension RFlow
         }
     }
     
-    public func remove(event: Event) throws
+    func remove(event: Event) throws
     {
         let event: REvent = try event.unwrap()
         try realm?.write {
@@ -54,34 +54,40 @@ extension RFlow
 
 // MARK: - Note storage
 
-extension RFlow
+public extension RFlow
 {
-    public func notes() -> [Note]
+    func notes() -> [Note]
     {
         _notes.map { $0 as Note }
     }
     
-    public func append(note: Note) throws
+    func append(note: Note) throws
     {
-        
+        let note: RNote = try note.unwrap()
+        try realm?.write {
+            _notes.append(note)
+        }
     }
     
-    public func remove(note: Note) throws
+    func remove(note: Note) throws
     {
-        
+        let note: RNote = try note.unwrap()
+        try realm?.write {
+            try _notes.remove(object: note)
+        }
     }
 }
 
 // MARK: - History storage
 
-extension RFlow
+public extension RFlow
 {
-    public func history() -> [History]
+    func history() -> [History]
     {
         _history.map { $0 as History }
     }
     
-    public func append(history: History) throws
+    func append(history: History) throws
     {
         let history: RHistory = try history.unwrap()
         try realm?.write {
@@ -89,7 +95,7 @@ extension RFlow
         }
     }
     
-    public func history(from: Date, to: Date) throws -> [History]
+    func history(from: Date, to: Date) throws -> [History]
     {
         return []
     }

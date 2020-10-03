@@ -24,7 +24,7 @@ open class RNote: Object, Note
     private let _flows = LinkingObjects(fromType: RFlow.self, property: "_notes")
     private let _units = LinkingObjects(fromType: RUnit.self, property: "_notes")
     
-    public func getFirstLink() -> String?
+    public func getFirstLine() -> String?
     {
         return nil
     }
@@ -42,60 +42,78 @@ open class RNote: Object, Note
 
 // MARK: - Link storage
 
-extension RNote
+public extension RNote
 {
-    public func links() -> [Entity]
+    func links() -> [Entity]
     {
         _links.map { $0 as Entity }
     }
     
-    public func append(link: Entity) throws
+    func append(link: Entity) throws
     {
-        
+        let link: REntity = try link.unwrap()
+        try realm?.write {
+            _links.append(link)
+        }
     }
     
-    public func remove(link: Entity) throws
+    func remove(link: Entity) throws
     {
-        
+        let link: REntity = try link.unwrap()
+        try realm?.write {
+            try _links.remove(object: link)
+        }
     }
 }
 
 // MARK: - Note storage
 
-extension RNote
+public extension RNote
 {
-    public func notes() -> [Note]
+    func notes() -> [Note]
     {
         _notes.map { $0 as Note }
     }
     
-    public func append(note: Note) throws
+    func append(note: Note) throws
     {
-        
+        let note: RNote = try note.unwrap()
+        try realm?.write {
+            _notes.append(note)
+        }
     }
     
-    public func remove(note: Note) throws
+    func remove(note: Note) throws
     {
-        
+        let note: RNote = try note.unwrap()
+        try realm?.write {
+            try _notes.remove(object: note)
+        }
     }
 }
 
 // MARK: - Block storage
 
-extension RNote
+public extension RNote
 {
-    public func blocks() -> [Block]
+    func blocks() -> [Block]
     {
         _blocks.map { $0 as Block }
     }
     
-    public func append(block: Block) throws
+    func append(block: Block) throws
     {
-        
+        let block: RBlock = try block.unwrap()
+        try realm?.write {
+            _blocks.append(block)
+        }
     }
     
-    public func remove(block: Block) throws
+    func remove(block: Block) throws
     {
-        
+        let block: RBlock = try block.unwrap()
+        try realm?.write {
+            try _blocks.remove(object: block)
+        }
     }
 }

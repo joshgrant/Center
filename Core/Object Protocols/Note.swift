@@ -19,7 +19,7 @@ import Foundation
     
     // MARK: - Caching
     
-    func getFirstLink() -> String?
+    func getFirstLine() -> String?
     func getSecondLine() -> String?
     func getThumbnailImage() -> Any?
 }

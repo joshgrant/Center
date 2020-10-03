@@ -24,14 +24,14 @@ open class RSymbol: Object, Symbol
 
 // MARK: - Link storage
 
-extension RSymbol
+public extension RSymbol
 {
-    public func links() -> [Entity]
+    func links() -> [Entity]
     {
         _links.map { $0 as Entity }
     }
     
-    public func append(link: Entity) throws
+    func append(link: Entity) throws
     {
         let link: REntity = try link.unwrap()
         try realm?.write {
@@ -39,7 +39,7 @@ extension RSymbol
         }
     }
     
-    public func remove(link: Entity) throws
+    func remove(link: Entity) throws
     {
         let link: REntity = try link.unwrap()
         try realm?.write {
@@ -50,14 +50,14 @@ extension RSymbol
 
 // MARK: - Note storage
 
-extension RSymbol
+public extension RSymbol
 {
-    public func notes() -> [Note]
+    func notes() -> [Note]
     {
         _notes.map { $0 as Note }
     }
     
-    public func append(note: Note) throws
+    func append(note: Note) throws
     {
         let note: RNote = try note.unwrap()
         try realm?.write {
@@ -65,7 +65,7 @@ extension RSymbol
         }
     }
     
-    public func remove(note: Note) throws
+    func remove(note: Note) throws
     {
         let note: RNote = try note.unwrap()
         try realm?.write {

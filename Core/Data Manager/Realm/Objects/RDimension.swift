@@ -18,20 +18,26 @@ open class RDimension: Object, Dimension
 
 // MARK: - Unit storage
 
-extension RDimension
+public extension RDimension
 {
-    public func units() -> [Unit]
+    func units() -> [Unit]
     {
         _units.map { $0 as Unit }
     }
     
-    public func append(unit: Unit) throws
+    func append(unit: Unit) throws
     {
-        
+        let unit: RUnit = try unit.unwrap()
+        try realm?.write {
+            _units.append(unit)
+        }
     }
     
-    public func remove(unit: Unit) throws
+    func remove(unit: Unit) throws
     {
-        
+        let unit: RUnit = try unit.unwrap()
+        try realm?.write {
+            try _units.remove(object: unit)
+        }
     }
 }

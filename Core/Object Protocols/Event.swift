@@ -12,7 +12,8 @@ import Foundation
     Named,
     FlowStorage,
     HistoryStorage,
-    ConditionStorage
+    ConditionStorage,
+    NoteStorage
 {
     var isActive: Bool { get set }
 }

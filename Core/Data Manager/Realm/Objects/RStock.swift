@@ -35,14 +35,14 @@ open class RStock:
 
 // MARK: - Inflows
 
-extension RStock
+public extension RStock
 {
-    public func inflows() -> [Flow]
+    func inflows() -> [Flow]
     {
         _inflows.map { $0 as Flow }
     }
     
-    public func append(inflow: Flow) throws
+    func append(inflow: Flow) throws
     {
         let inflow: RFlow = try inflow.unwrap()
         try realm?.write {
@@ -50,7 +50,7 @@ extension RStock
         }
     }
     
-    public func remove(inflow: Flow) throws
+    func remove(inflow: Flow) throws
     {
         let inflow: RFlow = try inflow.unwrap()
         try realm?.write {
@@ -61,14 +61,14 @@ extension RStock
 
 // MARK: - Outflows
 
-extension RStock
+public extension RStock
 {
-    public func outflows() -> [Flow]
+    func outflows() -> [Flow]
     {
         _outflows.map { $0 as Flow }
     }
     
-    public func append(outflow: Flow) throws
+    func append(outflow: Flow) throws
     {
         let outflow: RFlow = try outflow.unwrap()
         try realm?.write {
@@ -76,7 +76,7 @@ extension RStock
         }
     }
     
-    public func remove(outflow: Flow) throws
+    func remove(outflow: Flow) throws
     {
         let outflow: RFlow = try outflow.unwrap()
         try realm?.write {
@@ -87,14 +87,14 @@ extension RStock
 
 // MARK: - Events
 
-extension RStock
+public extension RStock
 {
-    public func events() -> [Event]
+    func events() -> [Event]
     {
         _events.map { $0 as Event }
     }
     
-    public func append(event: Event) throws
+    func append(event: Event) throws
     {
         let event: REvent = try event.unwrap()
         try realm?.write {
@@ -102,7 +102,7 @@ extension RStock
         }
     }
     
-    public func remove(event: Event) throws
+    func remove(event: Event) throws
     {
         let event: REvent = try event.unwrap()
         try realm?.write {
@@ -113,14 +113,14 @@ extension RStock
 
 // MARK: - History
 
-extension RStock
+public extension RStock
 {
-    public func history() -> [History]
+    func history() -> [History]
     {
         _history.map { $0 as History }
     }
     
-    public func append(history: History) throws
+    func append(history: History) throws
     {
         let history: RHistory = try history.unwrap()
         try realm?.write {
@@ -128,20 +128,20 @@ extension RStock
         }
     }
     
-    public func history(from: Date, to: Date) throws -> [History]
+    func history(from: Date, to: Date) throws -> [History]
     {
         return []
     }
 }
 
-extension RStock
+public extension RStock
 {
-    public func notes() -> [Note]
+    func notes() -> [Note]
     {
         _notes.map { $0 as Note }
     }
     
-    public func append(note: Note) throws
+    func append(note: Note) throws
     {
         let note: RNote = try note.unwrap()
         try realm?.write {
@@ -149,7 +149,7 @@ extension RStock
         }
     }
     
-    public func remove(note: Note) throws
+    func remove(note: Note) throws
     {
         let note: RNote = try note.unwrap()
         try realm?.write {

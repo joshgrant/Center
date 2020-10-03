@@ -36,11 +36,18 @@ public extension RTransferFlow
     
     func append(event: Event) throws
     {
-        
+        let event: REvent = try event.unwrap()
+        try realm?.write {
+            _events.append(event)
+        }
     }
     
     func remove(event: Event) throws
     {
+        let event: REvent = try event.unwrap()
+        try realm?.write {
+            try _events.remove(object: event)
+        }
         
     }
 }
@@ -56,11 +63,18 @@ public extension RTransferFlow
     
     func append(note: Note) throws
     {
-        
+        let note: RNote = try note.unwrap()
+        try realm?.write {
+            _notes.append(note)
+        }
     }
     
     func remove(note: Note) throws
     {
+        let note: RNote = try note.unwrap()
+        try realm?.write {
+            try _notes.remove(object: note)
+        }
         
     }
 }
@@ -76,7 +90,10 @@ public extension RTransferFlow
     
     func append(history: History) throws
     {
-        
+        let history: RHistory = try history.unwrap()
+        try realm?.write {
+            _history.append(history)
+        }
     }
     
     func history(from: Date, to: Date) throws -> [History]

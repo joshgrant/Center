@@ -21,14 +21,14 @@ open class RUnit: Object, Unit
 
 // MARK: - Note storage
 
-extension RUnit
+public extension RUnit
 {
-    public func notes() -> [Note]
+    func notes() -> [Note]
     {
         _notes.map { $0 as Note }
     }
     
-    public func append(note: Note) throws
+    func append(note: Note) throws
     {
         let note: RNote = try note.unwrap()
         try realm?.write {
@@ -36,7 +36,7 @@ extension RUnit
         }
     }
     
-    public func remove(note: Note) throws
+    func remove(note: Note) throws
     {
         let note: RNote = try note.unwrap()
         try realm?.write {
