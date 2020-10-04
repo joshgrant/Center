@@ -15,7 +15,13 @@ open class RSymbol: Object, Symbol
     
     let _references = List<REntity>()
     let _links = List<REntity>()
-    let _notes = List<RNote>()
+    
+    public var linkedColors = LinkingObjects(fromType: RColor.self, property: "symbol")
+    public var linkedContacts = LinkingObjects(fromType: RContact.self, property: "symbol")
+    public var linkedDimensions = LinkingObjects(fromType: RDimension.self, property: "symbol")
+    public var linkedTransferFlows = LinkingObjects(fromType: RTransferFlow.self, property: "symbol")
+    public var linkedProcessFlows = LinkingObjects(fromType: RProcessFlow.self, property: "symbol")
+    public var linkedNotes = LinkingObjects(fromType: RNote.self, property: "symbol")
     
     public func references() -> [Entity] {
         _references.map { $0 as Entity }
@@ -47,30 +53,3 @@ public extension RSymbol
         }
     }
 }
-
-// MARK: - Note storage
-
-public extension RSymbol
-{
-    func notes() -> [Note]
-    {
-        _notes.map { $0 as Note }
-    }
-    
-    func append(note: Note) throws
-    {
-        let note: RNote = try note.unwrap()
-        try realm?.write {
-            _notes.append(note)
-        }
-    }
-    
-    func remove(note: Note) throws
-    {
-        let note: RNote = try note.unwrap()
-        try realm?.write {
-            try _notes.remove(object: note)
-        }
-    }
-}
-

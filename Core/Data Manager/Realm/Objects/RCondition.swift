@@ -16,4 +16,6 @@ open class RCondition: Object, Condition
     @objc dynamic public var target: Double = 0
     @objc dynamic public var priority: Priority = .linear
     @objc dynamic public var relationship: Relationship = .direct
+    
+    public var events = LinkingObjects(fromType: REvent.self, property: "_conditions")
 }

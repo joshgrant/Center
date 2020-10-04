@@ -17,6 +17,9 @@ open class RContact: Object, Contact
     @objc dynamic public var email: String?
     
     let _notes = List<RNote>()
+    
+    public var transferFlows = LinkingObjects(fromType: RTransferFlow.self, property: "contactDelegate")
+    public var processFlows = LinkingObjects(fromType: RProcessFlow.self, property: "contactDelegate")
 }
 
 // MARK: - Note storage

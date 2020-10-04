@@ -9,8 +9,8 @@ import Foundation
 
 @objc public protocol Conversion: Entity
 {
-    var from: Symbol? { get set }
-    var to: Symbol? { get set }
+    var from: Unit? { get set }
+    var to: Unit? { get set }
     var ratio: Ratio? { get set }
     var isReversible: Bool { get set }
 }

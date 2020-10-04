@@ -15,4 +15,6 @@ open class RState: Object, State
     @objc dynamic public var name: String?
     @objc dynamic public var min: Double = 0
     @objc dynamic public var max: Double = 0
+    
+    public var ideals = LinkingObjects(fromType: RIdeal.self, property: "state")
 }

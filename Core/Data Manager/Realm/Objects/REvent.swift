@@ -18,6 +18,9 @@ open class REvent: Object, Event
     private let _flows = List<RFlow>()
     private let _history = List<RHistory>()
     private let _notes = List<RNote>()
+    
+    public var linkedTransferFlows = LinkingObjects(fromType: RTransferFlow.self, property: "_events")
+    public var linkedProcessFlows = LinkingObjects(fromType: RProcessFlow.self, property: "_events")
 }
 
 // MARK: - Condition storage

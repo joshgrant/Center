@@ -17,12 +17,15 @@ open class RNote: Object, Note
     private let _links = List<REntity>()
     private let _notes = List<RNote>()
     
-    private let _contacts = LinkingObjects(fromType: RContact.self, property: "_notes")
-    private let _dimensions = LinkingObjects(fromType: RDimension.self, property: "_notes")
-    private let _entities = LinkingObjects(fromType: REntity.self, property: "_notes")
-    private let _events = LinkingObjects(fromType: REvent.self, property: "_notes")
-    private let _flows = LinkingObjects(fromType: RFlow.self, property: "_notes")
-    private let _units = LinkingObjects(fromType: RUnit.self, property: "_notes")
+    public var linkedContacts = LinkingObjects(fromType: RContact.self, property: "_notes")
+    public var linkedDimensions = LinkingObjects(fromType: RDimension.self, property: "_notes")
+    public var linkedEntities = LinkingObjects(fromType: REntity.self, property: "_notes")
+    public var linkedEvents = LinkingObjects(fromType: REvent.self, property: "_notes")
+    public var linkedUnits = LinkingObjects(fromType: RUnit.self, property: "_notes")
+    public var linkedTransferFlows = LinkingObjects(fromType: RTransferFlow.self, property: "_notes")
+    public var linkedProcessFlows = LinkingObjects(fromType: RProcessFlow.self, property: "_notes")
+    
+    public var linkedNotes = LinkingObjects(fromType: RNote.self, property: "_notes")
     
     public func getFirstLine() -> String?
     {

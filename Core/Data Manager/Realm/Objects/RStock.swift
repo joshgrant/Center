@@ -8,9 +8,7 @@
 import Foundation
 import RealmSwift
 
-open class RStock:
-    Object,
-    Stock
+open class RStock: Object, Stock
 {
     @objc dynamic public var id: UUID = .init()
     @objc dynamic public var symbol: Symbol?
@@ -20,6 +18,13 @@ open class RStock:
     @objc dynamic public var ideal: Ideal?
     @objc dynamic public var dimension: Dimension?
     @objc dynamic public var unit: Unit?
+    
+    public var conditions = LinkingObjects(fromType: RCondition.self, property: "stock")
+    public var transferFlowFrom = LinkingObjects(fromType: RTransferFlow.self, property: "from")
+    public var transferFlowTo = LinkingObjects(fromType: RTransferFlow.self, property: "to")
+    
+    public var processFlowRequired = LinkingObjects(fromType: RProcessFlow.self, property: "_requiredStocks")
+    public var processFlowProduced = LinkingObjects(fromType: RProcessFlow.self, property: "_producedStocks")
     
     private let _inflows = List<RFlow>()
     private let _outflows = List<RFlow>()

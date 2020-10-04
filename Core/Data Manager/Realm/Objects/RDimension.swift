@@ -14,6 +14,8 @@ open class RDimension: Object, Dimension
     @objc dynamic public var symbol: Symbol?
     
     public let _units = List<RUnit>()
+    
+    public var linkedStocks = LinkingObjects(fromType: RStock.self, property: "dimension")
 }
 
 // MARK: - Unit storage

@@ -9,7 +9,6 @@ import Foundation
 
 @objc public protocol Symbol:
     Entity,
-    NoteStorage,
     LinkStorage
 {
     var name: String? { get set }

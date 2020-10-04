@@ -77,6 +77,50 @@ public extension RSystem
             try _flows.remove(object: flow)
         }
     }
+    
+    /*
+     func processFlows() -> [ProcessFlow]
+     {
+     _processFlows.map { $0 as ProcessFlow }
+     }
+     
+     func append(processFlow: ProcessFlow) throws
+     {
+     let processFlow: RProcessFlow = try processFlow.unwrap()
+     try realm?.write {
+     _processFlows.append(processFlow)
+     }
+     }
+     
+     func remove(processFlow: ProcessFlow) throws
+     {
+     let processFlow: RProcessFlow = try processFlow.unwrap()
+     try realm?.write {
+     try _processFlows.remove(object: processFlow)
+     }
+     }
+     
+     func transferFlows() -> [TransferFlow]
+     {
+     _transferFlows.map { $0 as TransferFlow }
+     }
+     
+     func append(transferFlow: TransferFlow) throws
+     {
+     let transferFlow: RTransferFlow = try transferFlow.unwrap()
+     try realm?.write {
+     _transferFlows.append(transferFlow)
+     }
+     }
+     
+     func remove(transferFlow: TransferFlow) throws
+     {
+     let transferFlow: RTransferFlow = try transferFlow.unwrap()
+     try realm?.write {
+     try _transferFlows.remove(object: transferFlow)
+     }
+     }
+     */
 }
 
 // MARK: - Note storage

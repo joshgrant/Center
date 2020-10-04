@@ -17,6 +17,13 @@ open class RUnit: Object, Unit
     @objc dynamic public var ratio: Ratio?
     
     public let _notes = List<RNote>()
+    
+    // TODO: Check that the naming makes sense
+    public var convertsFrom = LinkingObjects(fromType: RConversion.self, property: "from")
+    public var convertsTo = LinkingObjects(fromType: RConversion.self, property: "to")
+
+    public var dimensions = LinkingObjects(fromType: RUnit.self, property: "_units")
+    public var linkedStocks = LinkingObjects(fromType: RUnit.self, property: "unit")
 }
 
 // MARK: - Note storage

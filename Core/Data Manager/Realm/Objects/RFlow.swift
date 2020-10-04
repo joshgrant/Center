@@ -12,18 +12,13 @@ open class RFlow: Object, Flow
 {
     @objc dynamic public var id: UUID = .init()
     @objc dynamic public var symbol: Symbol?
-    
-    @objc dynamic public var amount: Double = 0
-    @objc dynamic public var from: Stock?
-    @objc dynamic public var to: Stock?
-    @objc dynamic public var duration: TimeInterval = 0
-    @objc dynamic public var delay: TimeInterval = 0
-    @objc dynamic public var requiresUserCompletion: Bool = false
     @objc dynamic public var contactDelegate: Contact?
     
-    private let _events = List<REvent>()
-    private let _history = List<RHistory>()
-    private let _notes = List<RNote>()
+    public let _events = List<REvent>()
+    public let _history = List<RHistory>()
+    public let _notes = List<RNote>()
+    
+    public var linkedStock
 }
 
 // MARK: - Event storage
