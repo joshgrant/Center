@@ -10,7 +10,8 @@ import Foundation
 @objc public protocol Note:
     Entity,
     LinkStorage,
-    NoteStorage
+    NoteStorage,
+    Pinnable
 {
     /// The concrete instance of symbol should define a `List<Block>` property
     func blocks() -> [Block]

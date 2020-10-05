@@ -13,7 +13,8 @@ public protocol System:
     NoteStorage,
     StockStorage,
     FlowStorage,
-    EventStorage
+    EventStorage,
+    Pinnable
 {
     func percentIdeal() -> Double
     func suggestedFlows() -> [Flow]

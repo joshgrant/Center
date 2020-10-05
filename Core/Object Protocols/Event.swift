@@ -13,7 +13,8 @@ import Foundation
     FlowStorage,
     HistoryStorage,
     ConditionStorage,
-    NoteStorage
+    NoteStorage,
+    Pinnable
 {
     var isActive: Bool { get set }
 }

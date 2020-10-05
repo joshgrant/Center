@@ -15,6 +15,7 @@ open class RContact: Object, Contact
     @objc dynamic public var name: String?
     @objc dynamic public var phoneNumber: String?
     @objc dynamic public var email: String?
+    @objc dynamic public var isPinned: Bool = false
     
     let _notes = List<RNote>()
     

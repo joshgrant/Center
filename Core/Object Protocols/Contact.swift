@@ -9,7 +9,7 @@ import Foundation
 
 // TODO: Link to contact card in iOS
 
-@objc public protocol Contact: Entity, NoteStorage
+@objc public protocol Contact: Entity, NoteStorage, Pinnable
 {
     var name: String? { get set }
     var phoneNumber: String? { get set }

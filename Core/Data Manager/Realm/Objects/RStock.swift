@@ -19,6 +19,8 @@ open class RStock: Object, Stock
     @objc dynamic public var dimension: Dimension?
     @objc dynamic public var unit: Unit?
     
+    @objc dynamic public var isPinned: Bool = false
+    
     public var conditions = LinkingObjects(fromType: RCondition.self, property: "stock")
     public var transferFlowFrom = LinkingObjects(fromType: RTransferFlow.self, property: "from")
     public var transferFlowTo = LinkingObjects(fromType: RTransferFlow.self, property: "to")

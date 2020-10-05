@@ -13,12 +13,13 @@ open class RFlow: Object, Flow
     @objc dynamic public var id: UUID = .init()
     @objc dynamic public var symbol: Symbol?
     @objc dynamic public var contactDelegate: Contact?
+    @objc dynamic public var isPinned: Bool = false
     
     public let _events = List<REvent>()
     public let _history = List<RHistory>()
     public let _notes = List<RNote>()
     
-    public var linkedStock
+    public var linkedStocks = LinkingObjects(fromType: RStock.self, property: "")
 }
 
 // MARK: - Event storage

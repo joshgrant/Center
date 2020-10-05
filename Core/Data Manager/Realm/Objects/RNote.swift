@@ -12,6 +12,7 @@ open class RNote: Object, Note
 {
     @objc dynamic public var id: UUID = .init()
     @objc dynamic public var symbol: Symbol?
+    @objc dynamic public var isPinned: Bool = false
     
     private let _blocks = List<RBlock>()
     private let _links = List<REntity>()

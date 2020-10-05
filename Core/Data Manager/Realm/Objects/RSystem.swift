@@ -12,6 +12,7 @@ open class RSystem: Object, System
 {
     @objc dynamic public var id: UUID = .init()
     @objc dynamic public var symbol: Symbol?
+    @objc dynamic public var isPinned: Bool = false
     
     private let _stocks = List<RStock>()
     private let _flows = List<RFlow>()

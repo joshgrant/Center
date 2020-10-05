@@ -12,7 +12,8 @@ import Foundation
     Named,
     EventStorage,
     HistoryStorage,
-    NoteStorage
+    NoteStorage,
+    Pinnable
 {
     var contactDelegate: Contact? { get set }
 }

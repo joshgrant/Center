@@ -13,6 +13,7 @@ open class REvent: Object, Event
     @objc dynamic public var id: UUID = .init()
     @objc dynamic public var symbol: Symbol?
     @objc dynamic public var isActive: Bool = true
+    @objc dynamic public var isPinned: Bool = false
     
     private let _conditions = List<RCondition>()
     private let _flows = List<RFlow>()

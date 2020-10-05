@@ -73,6 +73,9 @@
 		0373AF1D252600C200B92093 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE24DC251F60E000CE699A /* Array+Extensions.swift */; };
 		0373AF20252600C400B92093 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E94B252521B1D900DE2340 /* UIView+Extensions.swift */; };
 		0373AF23252600C600B92093 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038665A7251F2E2800418C54 /* UIImage+Extensions.swift */; };
+		0380CB9A252B3D1C0049DAAD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0380CB98252B3D1C0049DAAD /* Model.xcdatamodeld */; };
+		0380CBA3252B40D90049DAAD /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CBA2252B40D90049DAAD /* UseCase.swift */; };
+		0380CBB1252B43F20049DAAD /* Pinnable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CBB0252B43F20049DAAD /* Pinnable.swift */; };
 		038157AC251CCA2600D60752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038157AB251CCA2600D60752 /* Assets.xcassets */; };
 		038157BF251CCA2600D60752 /* CenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157BE251CCA2600D60752 /* CenterTests.swift */; };
 		038157CA251CCA2600D60752 /* CenterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157C9251CCA2600D60752 /* CenterUITests.swift */; };
@@ -293,6 +296,9 @@
 		036854C625289FAB00782265 /* RProcessFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RProcessFlow.swift; sourceTree = "<group>"; };
 		036854DA252999F400782265 /* RBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RBlock.swift; sourceTree = "<group>"; };
 		036854DB252999F400782265 /* RFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFlow.swift; sourceTree = "<group>"; };
+		0380CB99252B3D1C0049DAAD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		0380CBA2252B40D90049DAAD /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
+		0380CBB0252B43F20049DAAD /* Pinnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pinnable.swift; sourceTree = "<group>"; };
 		038157A4251CCA2500D60752 /* Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Center.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		038157AB251CCA2600D60752 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		038157B5251CCA2600D60752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -538,6 +544,7 @@
 				03A40E112527A0B3009279F8 /* Protocols */,
 				036853F12528843600782265 /* Storage Protocols */,
 				03A40D2425275EC4009279F8 /* Types */,
+				0380CBA1252B3E270049DAAD /* Use Cases */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -599,6 +606,7 @@
 				036853242528425200782265 /* Architecture.h */,
 				036853252528425200782265 /* Info.plist */,
 				036853582528426800782265 /* Observer.swift */,
+				0380CBA2252B40D90049DAAD /* UseCase.swift */,
 			);
 			path = Architecture;
 			sourceTree = "<group>";
@@ -635,6 +643,21 @@
 				0368544E2528885D00782265 /* UnitStorage.swift */,
 			);
 			path = "Storage Protocols";
+			sourceTree = "<group>";
+		};
+		0380CB97252B3D0A0049DAAD /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				0380CB98252B3D1C0049DAAD /* Model.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		0380CBA1252B3E270049DAAD /* Use Cases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Use Cases";
 			sourceTree = "<group>";
 		};
 		0381579B251CCA2500D60752 = {
@@ -838,6 +861,7 @@
 			isa = PBXGroup;
 			children = (
 				03866476251E3AF900418C54 /* DataManagerProtocol.swift */,
+				0380CB97252B3D0A0049DAAD /* Core Data */,
 				031D986525260496004BD2FD /* Realm */,
 			);
 			path = "Data Manager";
@@ -940,6 +964,7 @@
 				036853A8252877EC00782265 /* Named.swift */,
 				03293DDC2527A86F00EB34B4 /* Entity+Extensions.swift */,
 				036853BC252878F100782265 /* List+Extensions.swift */,
+				0380CBB0252B43F20049DAAD /* Pinnable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1593,6 +1618,8 @@
 				03A40CCD25275ACB009279F8 /* REvent.swift in Sources */,
 				03A40D7225276076009279F8 /* ImageBlock.swift in Sources */,
 				03A40CD725275AD9009279F8 /* RCondition.swift in Sources */,
+				0380CB9A252B3D1C0049DAAD /* Model.xcdatamodeld in Sources */,
+				0380CBB1252B43F20049DAAD /* Pinnable.swift in Sources */,
 				03A40D3625275EFC009279F8 /* Priority.swift in Sources */,
 				03A40CE725275AE8009279F8 /* RDimension.swift in Sources */,
 				03A40D3025275EEA009279F8 /* Predicate.swift in Sources */,
@@ -1629,6 +1656,7 @@
 				0368534A2528425C00782265 /* View.swift in Sources */,
 				036853462528425C00782265 /* NavigationController.swift in Sources */,
 				036853482528425C00782265 /* CollectionViewCell.swift in Sources */,
+				0380CBA3252B40D90049DAAD /* UseCase.swift in Sources */,
 				036853762528471C00782265 /* ObserverForViewController.swift in Sources */,
 				036853472528425C00782265 /* Color.swift in Sources */,
 			);
@@ -2279,6 +2307,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0380CB98252B3D1C0049DAAD /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0380CB99252B3D1C0049DAAD /* Model.xcdatamodel */,
+			);
+			currentVersion = 0380CB99252B3D1C0049DAAD /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0381579C251CCA2500D60752 /* Project object */;
 }

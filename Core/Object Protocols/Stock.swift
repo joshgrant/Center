@@ -12,7 +12,8 @@ import Foundation
     Named,
     EventStorage,
     HistoryStorage,
-    NoteStorage
+    NoteStorage,
+    Pinnable
 {
     @objc dynamic var amount: Double { get set }
     @objc dynamic var amountType: AmountType { get set }
