@@ -7,9 +7,14 @@
 
 import Foundation
 
-public enum AmountType: Int
+public enum AmountType: Int16
 {
-    case Integer
-    case Decimal
-    case Boolean
+    case integer
+    case decimal
+    case boolean
+}
+
+extension AmountType: FallbackProtocol
+{
+    static let fallback: AmountType = .integer
 }

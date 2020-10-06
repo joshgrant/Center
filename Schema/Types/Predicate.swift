@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Predicate: Int
+public enum Predicate: Int16
 {
     case lessThan
     case lessThanOrEqualTo
@@ -17,4 +17,9 @@ public enum Predicate: Int
     case notEqual
     case didChange
     case didNotChange
+}
+
+extension Predicate: FallbackProtocol
+{
+    static let fallback: Predicate = .equal
 }

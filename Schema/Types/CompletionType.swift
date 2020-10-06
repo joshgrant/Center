@@ -7,9 +7,14 @@
 
 import Foundation
 
-public enum CompletionType: Int
+public enum CompletionType: Int16
 {
     // TODO: Not sure which completion type suits them all
     case children
     case boolean
+}
+
+extension CompletionType: FallbackProtocol
+{
+    static let fallback: CompletionType = .boolean
 }

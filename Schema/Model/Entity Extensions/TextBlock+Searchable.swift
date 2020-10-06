@@ -7,6 +7,27 @@
 
 import Foundation
 
+extension TextBlock
+{
+    var textStyleType: TextStyle {
+        get {
+            TextStyle(rawValue: textStyleTypeRaw) ?? .fallback
+        }
+        set {
+            textStyleTypeRaw = newValue.rawValue
+        }
+    }
+    
+    var textSizeType: TextSize {
+        get {
+            TextSize(rawValue: textSizeTypeRaw) ?? .fallback
+        }
+        set {
+            textSizeTypeRaw = newValue.rawValue
+        }
+    }
+}
+
 extension TextBlock: Searchable
 {
     public static func predicate(for queryString: String) -> NSPredicate

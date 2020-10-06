@@ -7,9 +7,14 @@
 
 import Foundation
 
-public enum HistoryEvent: Int
+public enum HistoryEvent: Int16
 {
     case created
     case updated
     case deleted
+}
+
+extension HistoryEvent: FallbackProtocol
+{
+    static let fallback: HistoryEvent = .created
 }

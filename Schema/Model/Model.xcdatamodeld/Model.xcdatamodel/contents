@@ -4,6 +4,7 @@
         <attribute name="url" optional="YES" attributeType="URI"/>
         <relationship name="backgroundColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" inverseName="backgroundColorOf" inverseEntity="Color"/>
         <relationship name="mainColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" inverseName="mainColorOf" inverseEntity="Color"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="blocks" inverseEntity="Note"/>
         <relationship name="tintColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" inverseName="tintColorOf" inverseEntity="Color"/>
     </entity>
     <entity name="Color" representedClassName="Color" parentEntity="Entity" syncable="YES" codeGenerationType="class">
@@ -12,13 +13,15 @@
         <attribute name="saturation" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="backgroundColorOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Block" inverseName="backgroundColor" inverseEntity="Block"/>
         <relationship name="mainColorOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Block" inverseName="mainColor" inverseEntity="Block"/>
+        <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Symbol" inverseName="nameOfColor" inverseEntity="Symbol"/>
         <relationship name="tintColorOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Block" inverseName="tintColor" inverseEntity="Block"/>
     </entity>
     <entity name="Condition" representedClassName="Condition" parentEntity="Entity" syncable="YES" codeGenerationType="class">
-        <attribute name="predicate" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="relationship" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="predicateTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="priorityTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="relationshipTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="target" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="conditions" inverseEntity="Event"/>
         <relationship name="stock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="linkedConditions" inverseEntity="Stock"/>
     </entity>
     <entity name="Contact" representedClassName="Contact" parentEntity="Entity" syncable="YES" codeGenerationType="class">
@@ -26,6 +29,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
         <relationship name="flows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flow" inverseName="actor" inverseEntity="Flow"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="noteOfContact" inverseEntity="Note"/>
     </entity>
     <entity name="Conversion" representedClassName="Conversion" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="isReversible" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -35,24 +39,44 @@
     </entity>
     <entity name="Dimension" representedClassName="Dimension" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <relationship name="dimensionOf" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="dimension" inverseEntity="Stock"/>
+        <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Symbol" inverseName="nameOfDimension" inverseEntity="Symbol"/>
+        <relationship name="units" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Unit" inverseName="dimension" inverseEntity="Unit"/>
     </entity>
     <entity name="Entity" representedClassName="Entity" isAbstract="YES" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isPinned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="linkedNotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="links" inverseEntity="Note"/>
         <relationship name="linkedSymbols" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Symbol" inverseName="links" inverseEntity="Symbol"/>
     </entity>
     <entity name="Event" representedClassName="Event" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="conditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Condition" inverseName="events" inverseEntity="Condition"/>
+        <relationship name="flows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flow" inverseName="events" inverseEntity="Flow"/>
+        <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="History" inverseName="historyOfEvent" inverseEntity="History"/>
+        <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Symbol" inverseName="nameOfEvent" inverseEntity="Symbol"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="noteOfEvent" inverseEntity="Note"/>
+        <relationship name="stocks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="events" inverseEntity="Stock"/>
+        <relationship name="systems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="System" inverseName="events" inverseEntity="System"/>
     </entity>
     <entity name="ExternalIdeal" representedClassName="ExternalIdeal" parentEntity="Ideal" syncable="YES" codeGenerationType="class"/>
     <entity name="Flow" representedClassName="Flow" isAbstract="YES" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <relationship name="actor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="flows" inverseEntity="Contact"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="flows" inverseEntity="Event"/>
+        <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="History" inverseName="historyOfFlow" inverseEntity="History"/>
+        <relationship name="inflowForStock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="inflows" inverseEntity="Stock"/>
+        <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Symbol" inverseName="nameOfFlow" inverseEntity="Symbol"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="noteOfFlow" inverseEntity="Note"/>
+        <relationship name="outflowForStock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="outflows" inverseEntity="Stock"/>
         <relationship name="suggestedIn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="System" inverseName="suggestedFlows" inverseEntity="System"/>
+        <relationship name="systems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="System" inverseName="flows" inverseEntity="System"/>
     </entity>
     <entity name="History" representedClassName="History" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="event" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="eventTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="historyOfEvent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="history" inverseEntity="Event"/>
+        <relationship name="historyOfFlow" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Flow" inverseName="history" inverseEntity="Flow"/>
+        <relationship name="historyOfStock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="history" inverseEntity="Stock"/>
     </entity>
     <entity name="Ideal" representedClassName="Ideal" isAbstract="YES" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <relationship name="idealOf" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="ideal" inverseEntity="Stock"/>
@@ -68,17 +92,32 @@
     </entity>
     <entity name="Net" representedClassName="Net" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="timePeriod" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timePeriodTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Note" representedClassName="Note" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="firstLine" optional="YES" attributeType="String"/>
         <attribute name="secondLine" optional="YES" attributeType="String"/>
+        <relationship name="blocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Block" inverseName="note" inverseEntity="Block"/>
+        <relationship name="links" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entity" inverseName="linkedNotes" inverseEntity="Entity"/>
+        <relationship name="noteOfContact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="notes" inverseEntity="Contact"/>
+        <relationship name="noteOfEvent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="notes" inverseEntity="Event"/>
+        <relationship name="noteOfFlow" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Flow" inverseName="notes" inverseEntity="Flow"/>
+        <relationship name="noteOfStock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="notes" inverseEntity="Stock"/>
+        <relationship name="noteOfSystem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="System" inverseName="notes" inverseEntity="System"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="subnotes" inverseEntity="Note"/>
+        <relationship name="relatedNotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="relatedNotes" inverseEntity="Note"/>
+        <relationship name="subnotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="parent" inverseEntity="Note"/>
         <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="thumbnailOf" inverseEntity="Image"/>
     </entity>
     <entity name="ProcessFlow" representedClassName="ProcessFlow" parentEntity="Flow" syncable="YES" codeGenerationType="class">
-        <attribute name="completionType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="completionOrderTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="completionTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="percentComplete" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProcessFlow" inverseName="subflows" inverseEntity="ProcessFlow"/>
+        <relationship name="producedStocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stock" inverseName="producedStockOfProcessFlows" inverseEntity="Stock"/>
+        <relationship name="requiredStocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stock" inverseName="requiredStockOfProcessFlows" inverseEntity="Stock"/>
+        <relationship name="subflows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProcessFlow" inverseName="parent" inverseEntity="ProcessFlow"/>
     </entity>
     <entity name="Ratio" representedClassName="Ratio" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="left" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -96,11 +135,20 @@
     </entity>
     <entity name="Stock" representedClassName="Stock" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="amountType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="amountTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="dimension" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dimension" inverseName="dimensionOf" inverseEntity="Dimension"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="stocks" inverseEntity="Event"/>
+        <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="History" inverseName="historyOfStock" inverseEntity="History"/>
         <relationship name="ideal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ideal" inverseName="idealOf" inverseEntity="Ideal"/>
         <relationship name="idealFor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StockIdeal" inverseName="stock" inverseEntity="StockIdeal"/>
+        <relationship name="inflows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flow" inverseName="inflowForStock" inverseEntity="Flow"/>
         <relationship name="linkedConditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Condition" inverseName="stock" inverseEntity="Condition"/>
+        <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Symbol" inverseName="nameOfStock" inverseEntity="Symbol"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="noteOfStock" inverseEntity="Note"/>
+        <relationship name="outflows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flow" inverseName="outflowForStock" inverseEntity="Flow"/>
+        <relationship name="producedStockOfProcessFlows" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProcessFlow" inverseName="producedStocks" inverseEntity="ProcessFlow"/>
+        <relationship name="requiredStockOfProcessFlows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProcessFlow" inverseName="requiredStocks" inverseEntity="ProcessFlow"/>
+        <relationship name="systems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="System" inverseName="stocks" inverseEntity="System"/>
         <relationship name="transferFlowsFrom" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransferFlow" inverseName="from" inverseEntity="TransferFlow"/>
         <relationship name="transferFlowsTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransferFlow" inverseName="to" inverseEntity="TransferFlow"/>
         <relationship name="unit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Unit" inverseName="linkedStocks" inverseEntity="Unit"/>
@@ -111,10 +159,22 @@
     <entity name="Symbol" representedClassName="Symbol" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="links" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entity" inverseName="linkedSymbols" inverseEntity="Entity"/>
+        <relationship name="nameOfColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" inverseName="name" inverseEntity="Color"/>
+        <relationship name="nameOfDimension" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dimension" inverseName="name" inverseEntity="Dimension"/>
+        <relationship name="nameOfEvent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="name" inverseEntity="Event"/>
+        <relationship name="nameOfFlow" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Flow" inverseName="name" inverseEntity="Flow"/>
+        <relationship name="nameOfStock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="name" inverseEntity="Stock"/>
+        <relationship name="nameOfSystem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="System" inverseName="name" inverseEntity="System"/>
+        <relationship name="nameOfUnit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Unit" inverseName="name" inverseEntity="Unit"/>
     </entity>
     <entity name="System" representedClassName="System" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="percentIdeal" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="systems" inverseEntity="Event"/>
+        <relationship name="flows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flow" inverseName="systems" inverseEntity="Flow"/>
         <relationship name="idealFor" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SystemIdeal" inverseName="system" inverseEntity="SystemIdeal"/>
+        <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Symbol" inverseName="nameOfSystem" inverseEntity="Symbol"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="noteOfSystem" inverseEntity="Note"/>
+        <relationship name="stocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stock" inverseName="systems" inverseEntity="Stock"/>
         <relationship name="suggestedFlows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flow" inverseName="suggestedIn" inverseEntity="Flow"/>
     </entity>
     <entity name="SystemIdeal" representedClassName="SystemIdeal" parentEntity="Ideal" syncable="YES" codeGenerationType="class">
@@ -123,8 +183,8 @@
     <entity name="TableBlock" representedClassName="TableBlock" parentEntity="Block" syncable="YES" codeGenerationType="class"/>
     <entity name="TextBlock" representedClassName="TextBlock" parentEntity="Block" syncable="YES" codeGenerationType="class">
         <attribute name="content" optional="YES" attributeType="String"/>
-        <attribute name="textSize" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="textStyle" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="textSizeTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="textStyleTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="TransferFlow" representedClassName="TransferFlow" parentEntity="Flow" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -139,7 +199,9 @@
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Unit" inverseName="relativeTo" inverseEntity="Unit"/>
         <relationship name="conversionsFrom" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversion" inverseName="from" inverseEntity="Conversion"/>
         <relationship name="conversionsTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversion" inverseName="to" inverseEntity="Conversion"/>
+        <relationship name="dimension" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dimension" inverseName="units" inverseEntity="Dimension"/>
         <relationship name="linkedStocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stock" inverseName="unit" inverseEntity="Stock"/>
+        <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Symbol" inverseName="nameOfUnit" inverseEntity="Symbol"/>
         <relationship name="ratio" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ratio" inverseName="linkedUnit" inverseEntity="Ratio"/>
         <relationship name="relativeTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Unit" inverseName="children" inverseEntity="Unit"/>
     </entity>
@@ -147,35 +209,35 @@
         <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Block" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="Color" positionX="-54" positionY="-9" width="128" height="133"/>
-        <element name="Condition" positionX="-36" positionY="9" width="128" height="118"/>
-        <element name="Contact" positionX="-18" positionY="27" width="128" height="103"/>
+        <element name="Block" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Color" positionX="-54" positionY="-9" width="128" height="148"/>
+        <element name="Condition" positionX="-36" positionY="9" width="128" height="133"/>
+        <element name="Contact" positionX="-18" positionY="27" width="128" height="118"/>
         <element name="Conversion" positionX="0" positionY="45" width="128" height="103"/>
-        <element name="Dimension" positionX="18" positionY="63" width="128" height="58"/>
-        <element name="Entity" positionX="9" positionY="54" width="128" height="88"/>
-        <element name="Event" positionX="36" positionY="81" width="128" height="58"/>
+        <element name="Dimension" positionX="18" positionY="63" width="128" height="88"/>
+        <element name="Entity" positionX="9" positionY="54" width="128" height="103"/>
+        <element name="Event" positionX="36" positionY="81" width="128" height="163"/>
         <element name="ExternalIdeal" positionX="-18" positionY="90" width="128" height="43"/>
-        <element name="Flow" positionX="-9" positionY="36" width="128" height="73"/>
-        <element name="History" positionX="9" positionY="54" width="128" height="88"/>
+        <element name="Flow" positionX="-9" positionY="36" width="128" height="178"/>
+        <element name="History" positionX="9" positionY="54" width="128" height="133"/>
         <element name="Ideal" positionX="18" positionY="63" width="128" height="58"/>
         <element name="Image" positionX="18" positionY="90" width="128" height="88"/>
         <element name="ImageBlock" positionX="27" positionY="72" width="128" height="73"/>
         <element name="Net" positionX="36" positionY="81" width="128" height="73"/>
-        <element name="Note" positionX="45" positionY="90" width="128" height="88"/>
-        <element name="ProcessFlow" positionX="0" positionY="45" width="128" height="88"/>
+        <element name="Note" positionX="45" positionY="90" width="128" height="238"/>
+        <element name="ProcessFlow" positionX="0" positionY="45" width="128" height="163"/>
         <element name="Ratio" positionX="0" positionY="45" width="128" height="103"/>
         <element name="State" positionX="9" positionY="54" width="128" height="88"/>
         <element name="StateIdeal" positionX="27" positionY="135" width="128" height="58"/>
-        <element name="Stock" positionX="18" positionY="63" width="128" height="178"/>
+        <element name="Stock" positionX="18" positionY="63" width="128" height="313"/>
         <element name="StockIdeal" positionX="36" positionY="144" width="128" height="58"/>
-        <element name="Symbol" positionX="27" positionY="72" width="128" height="73"/>
-        <element name="System" positionX="36" positionY="81" width="128" height="88"/>
+        <element name="Symbol" positionX="27" positionY="72" width="128" height="178"/>
+        <element name="System" positionX="36" positionY="81" width="128" height="163"/>
         <element name="SystemIdeal" positionX="-9" positionY="99" width="128" height="58"/>
         <element name="TableBlock" positionX="45" positionY="90" width="128" height="43"/>
         <element name="TextBlock" positionX="-9" positionY="36" width="128" height="88"/>
         <element name="TransferFlow" positionX="-9" positionY="36" width="128" height="133"/>
-        <element name="Unit" positionX="0" positionY="45" width="128" height="148"/>
+        <element name="Unit" positionX="0" positionY="45" width="128" height="178"/>
         <element name="ValueIdeal" positionX="18" positionY="126" width="128" height="58"/>
     </elements>
 </model>

@@ -7,9 +7,14 @@
 
 import Foundation
 
-public enum Priority: Int
+public enum Priority: Int16
 {
     case linear
     case quadratic
     case exponential
+}
+
+extension Priority: FallbackProtocol
+{
+    static let fallback: Priority = .linear
 }

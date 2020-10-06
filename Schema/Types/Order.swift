@@ -7,9 +7,14 @@
 
 import Foundation
 
-public enum Order: Int
+public enum Order: Int16
 {
     case sequential
     case parallel
     case independent
+}
+
+public extension Order: FallbackProtocol
+{
+    static let fallback: Order = .sequential
 }

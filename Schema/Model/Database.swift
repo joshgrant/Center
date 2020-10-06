@@ -18,12 +18,25 @@ open class DataManager: DataManagerProtocol
     public static let shared = DataManager()
     
     public lazy var container: Container = {
-        let container = Container(name: "Model.xcdatamodeld")
+        
+        let modelName = "Model"
+        
+        guard let url = Bundle(for: type(of: self)).url(forResource: modelName, withExtension: "momd") else {
+            fatalError("Failed to load model from bundle")
+        }
+        
+        guard let model = Model(contentsOf: url) else {
+            fatalError("Failed to initialized model from: \(url)")
+        }
+        
+        let container = Container(name: modelName, managedObjectModel: model)
+        
         container.loadPersistentStores { (description, error) in
             if let error = error {
                 fatalError(error.localizedDescription)
             }
         }
+        
         return container
     }()
     
@@ -68,6 +81,8 @@ open class DataManager: DataManagerProtocol
     
     public func populate()
     {
-        // TODO: Populate the database with sample data
+        // TODO: Populate the database with default data
+        
+        let dateStock = Stock()
     }
 }

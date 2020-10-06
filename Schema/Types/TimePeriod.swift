@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TimePeriod: Int
+public enum TimePeriod: Int16
 {
     case millisecond
     case second
@@ -17,4 +17,9 @@ public enum TimePeriod: Int
     case week
     case month
     case year
+}
+
+extension TimePeriod: FallbackProtocol
+{
+    static let fallback: TimePeriod = .hour
 }

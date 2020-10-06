@@ -7,8 +7,13 @@
 
 import Foundation
 
-public enum Relationship: Int
+public enum Relationship: Int16
 {
     case direct
     case inverse
+}
+
+extension Relationship: FallbackProtocol
+{
+    static let fallback: Relationship = .direct
 }

@@ -11,11 +11,13 @@ import CoreData
 
 class SchemaTests: XCTestCase
 {
-    var schema: DataManager!
+    let schema = DataManager()
     
     override func setUpWithError() throws
     {
-        schema = DataManager()
+        print("Schema: \(schema)")
+        print("Context: \(schema.context)")
+        print("Container: \(schema.container)")
     }
 
     override func tearDownWithError() throws
@@ -23,12 +25,10 @@ class SchemaTests: XCTestCase
         try schema.erase()
     }
 
-    func testExample() throws
+    func testSearch() throws
     {
         let context = schema.context
-//        let symbol = Symbol(context: context)
-        
-        
+        let symbol = Symbol(context: context)
         symbol.name = "Hello"
         
         let fetchRequest: NSFetchRequest<Symbol> = Symbol.fetchRequest()

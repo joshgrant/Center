@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum IdealType: Int
+public enum IdealType: Int16
 {
     /// This sets up the stock as a state machine type with ideal being a state
     case state
@@ -21,4 +21,9 @@ public enum IdealType: Int
     
     /// This sets the ideal value to another stock in the system
     case stock
+}
+
+extension IdealType: FallbackProtocol
+{
+    static let fallback: IdealType = .state
 }

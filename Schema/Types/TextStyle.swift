@@ -7,10 +7,15 @@
 
 import Foundation
 
-public enum TextStyle: Int
+public enum TextStyle: Int16
 {
     case bold
     case italic
     case boldItalic
     case normal
+}
+
+extension TextStyle: FallbackProtocol
+{
+    static let fallback: TextStyle = .normal
 }
