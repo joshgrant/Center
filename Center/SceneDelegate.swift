@@ -7,6 +7,7 @@
 
 import UIKit
 import Architecture
+import Schema
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -22,15 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     {
         guard let scene = scene as? UIWindowScene else { return }
         
-        //        let entity = Event(entity: Event.entity(), insertInto: coreDataManager.context)
-        //        entity.title = Symbol(entity: Symbol.entity(), insertInto: coreDataManager.context)
-        //        entity.title.stringValue = "Interesting"
-        //        try! coreDataManager.context.save()
-        let realmDataManager = RealmDataManager()
+        let dataManager = DataManager.shared
         
-        realmDataManager.populateWithSampleData()
-        
-        let environment = RootEnvironment(dataManager: realmDataManager)
+        let environment = RootEnvironment(dataManager: dataManager)
         let viewFactory = RootViewFactory(environment: environment)
         let root = RootViewController(viewFactory: viewFactory)
         

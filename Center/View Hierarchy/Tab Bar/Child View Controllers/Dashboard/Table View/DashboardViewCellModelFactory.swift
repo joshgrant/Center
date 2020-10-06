@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Schema
 
 // TODO: Maybe a generic protocol to avoid being tied directly to CoreData?
 
@@ -71,6 +72,8 @@ extension DashboardViewCellModelFactory
 }
 
 // MARK: - Fetch controller delegate
+
+// TODO: Use an observer for this...
 
 extension DashboardViewCellModelFactory: NSFetchedResultsControllerDelegate
 {

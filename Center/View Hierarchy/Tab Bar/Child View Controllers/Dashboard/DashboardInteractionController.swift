@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Schema
 // Each of these should activate a useCase
 
 protocol DashboardInteractionControllerProtocol
@@ -15,12 +15,12 @@ protocol DashboardInteractionControllerProtocol
     
     func search(_ value: String)
     
-    func selectPinnedObject(_ object: ObjectProtocol)
+    func selectPinnedEntity(_ entity: Entity)
     
-    func selectSuggestedFlow(_ flow: FlowProtocol)
-    func completeSuggestedFlow(_ flow: FlowProtocol)
+    func selectSuggestedFlow(_ flow: Flow)
+    func completeSuggestedFlow(_ flow: Flow)
     
-    func selectForecastEvent(_ event: EventProtocol)
+    func selectForecastEvent(_ event: Event)
     
-    func selectPrioritySystem(_ system: SystemProtocol)
+    func selectPrioritySystem(_ system: System)
 }

@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Scene updates
 
-extension Notification.Name
+public extension Notification.Name
 {
     static let sceneDidBecomeActive = Notification.Name(rawValue: "sceneDidBecomeActive")
     static let sceneWillResignActive = Notification.Name(rawValue: "sceneWillResignActive")

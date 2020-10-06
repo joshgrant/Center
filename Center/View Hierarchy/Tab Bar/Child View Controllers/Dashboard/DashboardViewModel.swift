@@ -6,26 +6,27 @@
 //
 
 import UIKit
+import Schema
 
 protocol DashboardViewModelProtocol
 {
     // MARK: Pins
     
-    func getPinnedObjects() -> [ObjectProtocol]
-    func addPinnedObject(_ object: ObjectProtocol)
-    func removePinnedObject(_ object: ObjectProtocol)
+    func getPinnedObjects() -> [Entity]
+    func addPinnedObject(_ object: Entity)
+    func removePinnedObject(_ object: Entity)
     
     // MARK: Flows
     
-    func getUserActionableFlows() -> [FlowProtocol]
+    func getUserActionableFlows() -> [Flow]
     
     // MARK: Events
     
-    func getForcastedEvents() -> [EventProtocol]
+    func getForcastedEvents() -> [Event]
     
     // MARK: Systems
     
-    func getPrioritySystems() -> [SystemProtocol]
+    func getPrioritySystems() -> [System]
 }
 
 struct DashboardViewControllerModel

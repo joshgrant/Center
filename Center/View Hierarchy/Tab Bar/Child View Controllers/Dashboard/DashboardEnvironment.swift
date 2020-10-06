@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Schema
 
 protocol DashboardEnvironmentProtocol
 {

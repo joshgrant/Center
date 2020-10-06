@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Architecture
 
 protocol SettingsViewFactoryProtocol: TabBarItemFactoryProtocol
 {

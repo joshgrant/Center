@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Architecture
 
 // TODO: This needs to be instantiated with context -
 // i.e what are the relevant filters that should be applied?

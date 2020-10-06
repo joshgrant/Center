@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Architecture
 
 class DashboardView: View
 {
