@@ -14,7 +14,7 @@ public enum Order: Int16
     case independent
 }
 
-public extension Order: FallbackProtocol
+extension Order: FallbackProtocol
 {
     static let fallback: Order = .sequential
 }

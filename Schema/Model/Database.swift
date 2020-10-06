@@ -82,7 +82,5 @@ open class DataManager: DataManagerProtocol
     public func populate()
     {
         // TODO: Populate the database with default data
-        
-        let dateStock = Stock()
     }
 }

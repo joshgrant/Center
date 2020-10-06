@@ -9,16 +9,6 @@ import Foundation
 
 extension Condition
 {
-    var relationshipType: Relationship
-    {
-        get {
-            Relationship(rawValue: relationshipTypeRaw) ?? .fallback
-        }
-        set {
-            relationshipTypeRaw = newValue.rawValue
-        }
-    }
-    
     var priorityType: Priority
     {
         get {
@@ -29,13 +19,14 @@ extension Condition
         }
     }
     
-    var predicateType: Predicate
+    var comparisonType: Comparison
     {
         get {
-            Predicate(rawValue: predicateTypeRaw) ?? .fallback
+            let value = UInt(comparisonTypeRaw)
+            return Comparison(rawValue: value) ?? .fallback
         }
         set {
-            predicateTypeRaw = newValue.rawValue
+            comparisonTypeRaw = Int16(newValue.rawValue)
         }
     }
 }
