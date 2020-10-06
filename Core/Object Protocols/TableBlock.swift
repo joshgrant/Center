@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc public protocol TableBlock: Block
+@objc public protocol TableBlock: Block, Searchable
 {
     // TODO: Column objects, row objects, cell objects, with values
     // Column styling, row styling, etc

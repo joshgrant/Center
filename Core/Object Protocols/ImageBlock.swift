@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc public protocol ImageBlock: Block
+@objc public protocol ImageBlock: Block, Searchable
 {
     var image: Data? { get set }
     var caption: String? { get set }

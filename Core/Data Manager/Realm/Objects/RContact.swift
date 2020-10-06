@@ -48,3 +48,34 @@ public extension RContact
         }
     }
 }
+
+// MARK: - Searchable
+
+extension RContact
+{
+    public static func predicate(for queryString: String) -> NSPredicate
+    {
+        let predicates = [
+            makeNamePredicate(queryString),
+            makePhoneNumberPredicate(queryString),
+            makeEmailPredicate(queryString)]
+            .compactMap { $0 }
+        
+        return NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
+    }
+    
+    private static func makeNamePredicate(_ queryString: String) -> NSPredicate?
+    {
+        return NSPredicate(format: "name CONTAINS[cd] %@", queryString)
+    }
+    
+    private static func makePhoneNumberPredicate(_ queryString: String) -> NSPredicate?
+    {
+        return NSPredicate(format: "phoneNumber CONTAINS[cd] %@", queryString)
+    }
+    
+    private static func makeEmailPredicate(_ queryString: String) -> NSPredicate?
+    {
+        return NSPredicate(format: "email CONTAINS[cd] %@", queryString)
+    }
+}

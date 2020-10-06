@@ -9,7 +9,8 @@ import Foundation
 
 @objc public protocol Symbol:
     Entity,
-    LinkStorage
+    LinkStorage,
+    Searchable
 {
     var name: String? { get set }
     

@@ -12,6 +12,7 @@
 		0303E380251DBE360060BCB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E37F251DBE360060BCB5 /* AppDelegate.swift */; };
 		0303E38B251DBEDF0060BCB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E38A251DBEDF0060BCB5 /* SceneDelegate.swift */; };
 		0303E44F251DC7CD0060BCB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0303E44E251DC7CD0060BCB5 /* LaunchScreen.storyboard */; };
+		03122F26252C152200ECBEBF /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03122F25252C152200ECBEBF /* SearchResult.swift */; };
 		0318500A251E302A002DE065 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03185009251E302A002DE065 /* DashboardViewController.swift */; };
 		03185019251E30D6002DE065 /* DashboardViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03185018251E30D6002DE065 /* DashboardViewFactory.swift */; };
 		03185024251E33D4002DE065 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03185023251E33D4002DE065 /* InboxViewController.swift */; };
@@ -74,8 +75,13 @@
 		0373AF20252600C400B92093 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E94B252521B1D900DE2340 /* UIView+Extensions.swift */; };
 		0373AF23252600C600B92093 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038665A7251F2E2800418C54 /* UIImage+Extensions.swift */; };
 		0380CB9A252B3D1C0049DAAD /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0380CB98252B3D1C0049DAAD /* Model.xcdatamodeld */; };
-		0380CBA3252B40D90049DAAD /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CBA2252B40D90049DAAD /* UseCase.swift */; };
 		0380CBB1252B43F20049DAAD /* Pinnable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CBB0252B43F20049DAAD /* Pinnable.swift */; };
+		0380CBD3252B479F0049DAAD /* SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CBD2252B479F0049DAAD /* SearchQuery.swift */; };
+		0380CBE3252B484C0049DAAD /* RSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CBE2252B484C0049DAAD /* RSearchResult.swift */; };
+		0380CBF2252B48BE0049DAAD /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CBF1252B48BE0049DAAD /* Search.swift */; };
+		0380CC0C252B49820049DAAD /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CC0B252B49820049DAAD /* SearchUseCase.swift */; };
+		0380CC13252B499F0049DAAD /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CBA2252B40D90049DAAD /* UseCase.swift */; };
+		0380CC28252B740A0049DAAD /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CC27252B740A0049DAAD /* Searchable.swift */; };
 		038157AC251CCA2600D60752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038157AB251CCA2600D60752 /* Assets.xcassets */; };
 		038157BF251CCA2600D60752 /* CenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157BE251CCA2600D60752 /* CenterTests.swift */; };
 		038157CA251CCA2600D60752 /* CenterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157C9251CCA2600D60752 /* CenterUITests.swift */; };
@@ -250,6 +256,7 @@
 		0303E436251DC4610060BCB5 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		0303E44E251DC7CD0060BCB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		03122F25252C152200ECBEBF /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		03185009251E302A002DE065 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		03185018251E30D6002DE065 /* DashboardViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewFactory.swift; sourceTree = "<group>"; };
 		03185023251E33D4002DE065 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +306,11 @@
 		0380CB99252B3D1C0049DAAD /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0380CBA2252B40D90049DAAD /* UseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCase.swift; sourceTree = "<group>"; };
 		0380CBB0252B43F20049DAAD /* Pinnable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pinnable.swift; sourceTree = "<group>"; };
+		0380CBD2252B479F0049DAAD /* SearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchQuery.swift; sourceTree = "<group>"; };
+		0380CBE2252B484C0049DAAD /* RSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSearchResult.swift; sourceTree = "<group>"; };
+		0380CBF1252B48BE0049DAAD /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		0380CC0B252B49820049DAAD /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
+		0380CC27252B740A0049DAAD /* Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
 		038157A4251CCA2500D60752 /* Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Center.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		038157AB251CCA2600D60752 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		038157B5251CCA2600D60752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -536,6 +548,7 @@
 		031D981725260360004BD2FD /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				0380CC1A252B49A10049DAAD /* Architecture */,
 				031D981825260360004BD2FD /* Core.h */,
 				031D981925260360004BD2FD /* Info.plist */,
 				031D982425260360004BD2FD /* CoreTests */,
@@ -544,7 +557,7 @@
 				03A40E112527A0B3009279F8 /* Protocols */,
 				036853F12528843600782265 /* Storage Protocols */,
 				03A40D2425275EC4009279F8 /* Types */,
-				0380CBA1252B3E270049DAAD /* Use Cases */,
+				0380CBA1252B3E270049DAAD /* Business Logic */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -606,7 +619,6 @@
 				036853242528425200782265 /* Architecture.h */,
 				036853252528425200782265 /* Info.plist */,
 				036853582528426800782265 /* Observer.swift */,
-				0380CBA2252B40D90049DAAD /* UseCase.swift */,
 			);
 			path = Architecture;
 			sourceTree = "<group>";
@@ -653,11 +665,31 @@
 			path = "Core Data";
 			sourceTree = "<group>";
 		};
-		0380CBA1252B3E270049DAAD /* Use Cases */ = {
+		0380CBA1252B3E270049DAAD /* Business Logic */ = {
 			isa = PBXGroup;
 			children = (
+				0380CC0B252B49820049DAAD /* SearchUseCase.swift */,
 			);
-			path = "Use Cases";
+			path = "Business Logic";
+			sourceTree = "<group>";
+		};
+		0380CBEA252B48B20049DAAD /* Searching */ = {
+			isa = PBXGroup;
+			children = (
+				0380CBD2252B479F0049DAAD /* SearchQuery.swift */,
+				0380CBE2252B484C0049DAAD /* RSearchResult.swift */,
+				03122F25252C152200ECBEBF /* SearchResult.swift */,
+				0380CBF1252B48BE0049DAAD /* Search.swift */,
+			);
+			path = Searching;
+			sourceTree = "<group>";
+		};
+		0380CC1A252B49A10049DAAD /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				0380CBA2252B40D90049DAAD /* UseCase.swift */,
+			);
+			path = Architecture;
 			sourceTree = "<group>";
 		};
 		0381579B251CCA2500D60752 = {
@@ -965,6 +997,7 @@
 				03293DDC2527A86F00EB34B4 /* Entity+Extensions.swift */,
 				036853BC252878F100782265 /* List+Extensions.swift */,
 				0380CBB0252B43F20049DAAD /* Pinnable.swift */,
+				0380CC27252B740A0049DAAD /* Searchable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1041,6 +1074,7 @@
 				03A40D7725276083009279F8 /* TableBlock.swift */,
 				03A40D5F25276042009279F8 /* TextBlock.swift */,
 				03D87C552526EF03006C9A73 /* Unit.swift */,
+				0380CBEA252B48B20049DAAD /* Searching */,
 			);
 			path = "Object Protocols";
 			sourceTree = "<group>";
@@ -1561,6 +1595,7 @@
 			files = (
 				03A40D7E25276100009279F8 /* Net.swift in Sources */,
 				03A40DA82527619A009279F8 /* Contact.swift in Sources */,
+				03122F26252C152200ECBEBF /* SearchResult.swift in Sources */,
 				03A40D902527613C009279F8 /* TimePeriod.swift in Sources */,
 				036854332528873800782265 /* HistoryStorage.swift in Sources */,
 				03A40CF925275B02009279F8 /* RIdeal.swift in Sources */,
@@ -1581,26 +1616,31 @@
 				0368542B252886C700782265 /* LinkStorage.swift in Sources */,
 				03A40DC8252761F3009279F8 /* RRatio.swift in Sources */,
 				036854B125289F3800782265 /* ProcessFlow.swift in Sources */,
+				0380CBE3252B484C0049DAAD /* RSearchResult.swift in Sources */,
 				03A40CED25275AEF009279F8 /* REntity.swift in Sources */,
 				036853A9252877EC00782265 /* Named.swift in Sources */,
 				03A40D4825275F3B009279F8 /* State.swift in Sources */,
 				03D87C852526F336006C9A73 /* Condition.swift in Sources */,
 				03D87C562526EF03006C9A73 /* Unit.swift in Sources */,
+				0380CC28252B740A0049DAAD /* Searchable.swift in Sources */,
 				036854A925289F2800782265 /* TransferFlow.swift in Sources */,
 				03A40D4225275F2B009279F8 /* IdealType.swift in Sources */,
 				03A40D662527604F009279F8 /* TextSize.swift in Sources */,
 				03D87C972526F367006C9A73 /* System.swift in Sources */,
 				03A40DEA2527624E009279F8 /* RTableBlock.swift in Sources */,
+				0380CBD3252B479F0049DAAD /* SearchQuery.swift in Sources */,
 				036854472528882200782265 /* ConditionStorage.swift in Sources */,
 				03D87CD22526FD5A006C9A73 /* RStock.swift in Sources */,
 				036854232528864D00782265 /* EventStorage.swift in Sources */,
 				0368544F2528885D00782265 /* UnitStorage.swift in Sources */,
+				0380CBF2252B48BE0049DAAD /* Search.swift in Sources */,
 				03A40D0B25275B1E009279F8 /* RSystem.swift in Sources */,
 				03A40D6C25276061009279F8 /* TextStyle.swift in Sources */,
 				03D87C502526ED95006C9A73 /* Ideal.swift in Sources */,
 				03A40D4E25275F45009279F8 /* RState.swift in Sources */,
 				03D87C622526EFF2006C9A73 /* Flow.swift in Sources */,
 				036853BD252878F100782265 /* List+Extensions.swift in Sources */,
+				0380CC13252B499F0049DAAD /* UseCase.swift in Sources */,
 				036854DC252999F400782265 /* RBlock.swift in Sources */,
 				03D87C5C2526EF09006C9A73 /* Dimension.swift in Sources */,
 				03A40D1125275B25009279F8 /* RUnit.swift in Sources */,
@@ -1619,6 +1659,7 @@
 				03A40D7225276076009279F8 /* ImageBlock.swift in Sources */,
 				03A40CD725275AD9009279F8 /* RCondition.swift in Sources */,
 				0380CB9A252B3D1C0049DAAD /* Model.xcdatamodeld in Sources */,
+				0380CC0C252B49820049DAAD /* SearchUseCase.swift in Sources */,
 				0380CBB1252B43F20049DAAD /* Pinnable.swift in Sources */,
 				03A40D3625275EFC009279F8 /* Priority.swift in Sources */,
 				03A40CE725275AE8009279F8 /* RDimension.swift in Sources */,
@@ -1656,7 +1697,6 @@
 				0368534A2528425C00782265 /* View.swift in Sources */,
 				036853462528425C00782265 /* NavigationController.swift in Sources */,
 				036853482528425C00782265 /* CollectionViewCell.swift in Sources */,
-				0380CBA3252B40D90049DAAD /* UseCase.swift in Sources */,
 				036853762528471C00782265 /* ObserverForViewController.swift in Sources */,
 				036853472528425C00782265 /* Color.swift in Sources */,
 			);

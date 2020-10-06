@@ -53,3 +53,18 @@ public extension RSymbol
         }
     }
 }
+
+// MARK: - Searchable
+
+extension RSymbol
+{
+    public static func predicate(for queryString: String) -> NSPredicate
+    {
+        return makeNamePredicate(queryString)
+    }
+    
+    private static func makeNamePredicate(_ queryString: String) -> NSPredicate
+    {
+        return NSPredicate(format: "name CONTAINS[cd] %@", queryString)
+    }
+}

@@ -7,8 +7,9 @@
 
 import Foundation
 
-@objc public protocol TextBlock: Block
+@objc public protocol TextBlock: Block, Searchable
 {
     var textSize: TextSize { get set }
     var textStyle: TextStyle { get set }
+    var content: String? { get set }
 }
