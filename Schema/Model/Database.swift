@@ -18,7 +18,7 @@ open class DataManager: DataManagerProtocol
     public static let shared = DataManager()
     
     public lazy var container: Container = {
-        let container = Container(name: "Model")
+        let container = Container(name: "Model.xcdatamodeld")
         container.loadPersistentStores { (description, error) in
             if let error = error {
                 fatalError(error.localizedDescription)

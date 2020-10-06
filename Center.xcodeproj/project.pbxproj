@@ -447,6 +447,7 @@
 		03122F50252C1CF000ECBEBF /* Schema */ = {
 			isa = PBXGroup;
 			children = (
+				03122F5D252C1CF000ECBEBF /* SchemaTests */,
 				0360B366252C770B00B3197E /* DataManagerProtocol.swift */,
 				0360B301252C761000B3197E /* Protocols */,
 				03122FA8252C2BE200ECBEBF /* Types */,
@@ -602,6 +603,7 @@
 		036853232528425200782265 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				036853302528425200782265 /* ArchitectureTests */,
 				0368537E2528487700782265 /* Notification.Name+Extensions.swift */,
 				0303E42E251DC4230060BCB5 /* CollectionView.swift */,
 				0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */,
@@ -656,9 +658,7 @@
 				038157A6251CCA2500D60752 /* Center */,
 				031D981725260360004BD2FD /* Core */,
 				036853232528425200782265 /* Architecture */,
-				036853302528425200782265 /* ArchitectureTests */,
 				03122F50252C1CF000ECBEBF /* Schema */,
-				03122F5D252C1CF000ECBEBF /* SchemaTests */,
 				46E896D369CD47D83EFCFEEF /* Frameworks */,
 				EEE177D713562F7128CA7775 /* Pods */,
 				038157A5251CCA2500D60752 /* Products */,
@@ -1794,7 +1794,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
-				INFOPLIST_FILE = SchemaTests/Info.plist;
+				INFOPLIST_FILE = Schema/SchemaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1814,7 +1814,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
-				INFOPLIST_FILE = SchemaTests/Info.plist;
+				INFOPLIST_FILE = Schema/SchemaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1894,7 +1894,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
-				INFOPLIST_FILE = CoreTests/Info.plist;
+				INFOPLIST_FILE = Core/CoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1915,7 +1915,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
-				INFOPLIST_FILE = CoreTests/Info.plist;
+				INFOPLIST_FILE = Core/CoreTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1989,7 +1989,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
-				INFOPLIST_FILE = ArchitectureTests/Info.plist;
+				INFOPLIST_FILE = Architecture/ArchitectureTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2009,7 +2009,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 685257RUQP;
-				INFOPLIST_FILE = ArchitectureTests/Info.plist;
+				INFOPLIST_FILE = Architecture/ArchitectureTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

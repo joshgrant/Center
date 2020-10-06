@@ -26,7 +26,8 @@ class SchemaTests: XCTestCase
     func testExample() throws
     {
         let context = schema.context
-        let symbol = Symbol(context: context)
+//        let symbol = Symbol(context: context)
+        
         
         symbol.name = "Hello"
         
