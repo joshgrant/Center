@@ -59,6 +59,14 @@ class SchemaTests: XCTestCase
         
         XCTAssertEqual(event?.unwrappedConditions.first?.isSatisfied, true)
     }
+    
+    func testLibraryObjects() throws
+    {
+        let objects = try libraryListCellModels(context: schema.context)
+        
+        XCTAssertEqual(objects.first?.count, 0)
+        XCTAssertEqual(objects[3].count, 1)
+    }
 
     func testPerformanceExample() throws
     {

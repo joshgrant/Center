@@ -10,11 +10,12 @@ import Foundation
 public enum CompletionType: Int16
 {
     // TODO: Not sure which completion type suits them all
-    case children
-    case boolean
+//    case children
+//    case boolean
+    case all
 }
 
 extension CompletionType: FallbackProtocol
 {
-    static let fallback: CompletionType = .boolean
+    static let fallback: CompletionType = .all 
 }

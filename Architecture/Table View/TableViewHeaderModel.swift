@@ -7,6 +7,7 @@
 
 import UIKit
 import Architecture
+import Core
 
 public struct TableViewHeaderModel
 {

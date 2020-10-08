@@ -17,4 +17,22 @@ public extension Event
         
         return unwrapped
     }
+    
+    var unwrappedName: String? {
+        get {
+            name?.name
+        }
+        set {
+            if let name = name {
+                name.name = newValue
+            } else {
+                guard let context = self.managedObjectContext else {
+                    assertionFailure("Failed to add the name to the event because the event has no context")
+                    return
+                }
+                
+                name = Symbol(context: context, name: newValue)
+            }
+        }
+    }
 }

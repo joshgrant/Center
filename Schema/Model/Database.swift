@@ -83,13 +83,7 @@ open class DataManager: DataManagerProtocol
     
     public func populate()
     {
-        let currentDate = makeDateSource(context: context)
-        let futureDate = makeFutureDateValueSource(context: context)
-        let dateCondition = makeDateCondition(
-            context: context,
-            currentDate: currentDate,
-            futureDate: futureDate)
-        makeDateEvent(context: context, condition: dateCondition)
+        populateDatabaseWithBirthdayPartyEvent(context: context)
         
         save()
     }

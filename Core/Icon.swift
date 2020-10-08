@@ -17,7 +17,7 @@ public enum Icon: String
     case system = "network"
     case stock = "shippingbox"
     case event = "sparkles"
-    case leftRightArrows = "arrow.left.arrow.right"
+    case conversion = "arrow.left.arrow.right"
     case rightArrow = "arrow.right"
     case leftArrow = "arrow.left"
     case condition = "switch.2"

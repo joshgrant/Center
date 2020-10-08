@@ -20,3 +20,12 @@ extension Symbol: Searchable
         NSPredicate(format: "name CONTAINS[cd] %@", queryString)
     }
 }
+
+extension Symbol
+{
+    convenience init(context: Context, name: String?)
+    {
+        self.init(context: context)
+        self.name = name
+    }
+}
