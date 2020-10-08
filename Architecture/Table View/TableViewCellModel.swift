@@ -9,13 +9,13 @@ import Foundation
 
 public protocol TableViewCellModel
 {
-    var cellClass: AnyClass { get }
-    var cellReuseIdentifier: String { get }
+    static var cellClass: AnyClass { get }
+    static var cellReuseIdentifier: String { get }
 }
 
 public extension TableViewCellModel
 {
-    var cellReuseIdentifier: String
+    static var cellReuseIdentifier: String
     {
         String(describing: cellClass)
     }

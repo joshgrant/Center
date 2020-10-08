@@ -20,11 +20,11 @@ class DashboardTableViewCoreDataSource: NSObject, TableViewDataSource
         self.cellModelFactory = cellModelFactory
     }
     
-    func cellClassAndReuseIdentifiers() -> [TableViewCellModel]
+    func cellClassAndReuseIdentifiers() -> [TableViewCellModel.Type]
     {
         return [
             // Hmm, any cell? Maybe "BaseObject" cell for pinned...
-            EventTableViewCellModel()
+            EventListCellModel.self
         ]
     }
     
@@ -43,7 +43,7 @@ class DashboardTableViewCoreDataSource: NSObject, TableViewDataSource
     {
         // TODO: Cache this value
         let model = cellModelFactory.makeCellModels()[indexPath.section][indexPath.row]
-        let identifier = model.cellReuseIdentifier
+        let identifier = type(of: model).cellReuseIdentifier
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         
         if let cell = cell as? TableViewCell

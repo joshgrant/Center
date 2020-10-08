@@ -16,7 +16,7 @@ struct EventListCellModel
 
 extension EventListCellModel: TableViewCellModel
 {
-    var cellClass: AnyClass {
+    static var cellClass: AnyClass {
         EventListCell.self
     }
 }

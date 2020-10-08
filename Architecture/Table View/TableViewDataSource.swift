@@ -14,7 +14,7 @@ public typealias TableViewDataSourceType =
 public protocol TableViewDataSource: TableViewDataSourceType
 {
     func configure(tableView: TableView)
-    func cellClassAndReuseIdentifiers() -> [TableViewCellModel]
+    func cellClassAndReuseIdentifiers() -> [TableViewCellModel.Type]
 }
 
 public extension TableViewDataSource
