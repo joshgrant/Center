@@ -136,6 +136,7 @@
         <relationship name="targetOfCondition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Condition" inverseName="rightHand" inverseEntity="Condition"/>
         <relationship name="valueOfCondition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Condition" inverseName="leftHand" inverseEntity="Condition"/>
     </entity>
+    <entity name="State" representedClassName="State" syncable="YES" codeGenerationType="class"/>
     <entity name="Stock" representedClassName="Stock" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="amountTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="amount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Source" inverseName="amountOfStock" inverseEntity="Source"/>
@@ -154,6 +155,7 @@
         <relationship name="transferFlowsFrom" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransferFlow" inverseName="from" inverseEntity="TransferFlow"/>
         <relationship name="transferFlowsTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransferFlow" inverseName="to" inverseEntity="TransferFlow"/>
         <relationship name="unit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Unit" inverseName="linkedStocks" inverseEntity="Unit"/>
+        <relationship name="validStates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="State"/>
     </entity>
     <entity name="StockSource" representedClassName="StockSource" parentEntity="Source" syncable="YES" codeGenerationType="class">
         <relationship name="stock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="idealOf" inverseEntity="Stock"/>
@@ -231,7 +233,7 @@
         <element name="RangeSource" positionX="9" positionY="54" width="128" height="73"/>
         <element name="Ratio" positionX="0" positionY="45" width="128" height="103"/>
         <element name="Source" positionX="0" positionY="135" width="128" height="118"/>
-        <element name="Stock" positionX="18" positionY="63" width="128" height="298"/>
+        <element name="Stock" positionX="18" positionY="63" width="128" height="313"/>
         <element name="StockSource" positionX="36" positionY="171" width="128" height="58"/>
         <element name="Symbol" positionX="27" positionY="72" width="128" height="178"/>
         <element name="System" positionX="36" positionY="81" width="128" height="163"/>
@@ -241,5 +243,6 @@
         <element name="TransferFlow" positionX="-9" positionY="36" width="128" height="133"/>
         <element name="Unit" positionX="0" positionY="45" width="128" height="178"/>
         <element name="ValueSource" positionX="9" positionY="135" width="128" height="73"/>
+        <element name="State" positionX="0" positionY="135" width="128" height="43"/>
     </elements>
 </model>

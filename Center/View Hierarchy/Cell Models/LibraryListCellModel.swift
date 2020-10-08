@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Schema
 
 struct LibraryListCellModel
 {
@@ -20,4 +21,12 @@ func libraryListCellModels(context: Context) throws -> [LibraryListCellModel]
     try EntityType.allCases.map {
         try libraryListCellModel(for: $0, context: context)
     }
+}
+
+func libraryListCellModel(for entityType: EntityType, context: Context) throws -> LibraryListCellModel
+{
+    LibraryListCellModel(
+        image: imageForEntityType(entityType),
+        title: titleForEntityType(entityType),
+        count: try countForEntityType(entityType, context: context))
 }

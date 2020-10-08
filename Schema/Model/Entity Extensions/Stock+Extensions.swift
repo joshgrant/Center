@@ -18,3 +18,11 @@ extension Stock
         }
     }
 }
+
+extension Stock
+{
+    var currentState: State {
+        // TODO: Does every stock have a state machine?
+        fatalError()
+    }
+}

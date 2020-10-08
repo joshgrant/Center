@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-enum EntityType
+public enum EntityType
 {
     case system
     case stock
@@ -123,12 +123,4 @@ func countForEntityType(_ entityType: EntityType, context: Context) throws -> In
     request.includesPropertyValues = false
     request.includesSubentities = false
     return try context.fetch(request).count
-}
-
-func libraryListCellModel(for entityType: EntityType, context: Context) throws -> LibraryListCellModel
-{
-    LibraryListCellModel(
-        image: imageForEntityType(entityType),
-        title: titleForEntityType(entityType),
-        count: try countForEntityType(entityType, context: context))
 }

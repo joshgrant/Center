@@ -10,21 +10,4 @@ import CoreData
 import UIKit
 import Core
 
-/**
  
- Structs contain state
- Classes contain variables
- Functions contain functions
- 
- */
-
-/**
- 
- SYSTEMS LIST
- 
- */
-
-/**
- FLOWS LIST
- */
-

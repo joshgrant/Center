@@ -108,17 +108,26 @@
 		03AF21D5252F2A0F00468AB4 /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF21D4252F2A0F00468AB4 /* EntityType.swift */; };
 		03AF21DE252F2A8900468AB4 /* Database+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF21DD252F2A8900468AB4 /* Database+Extensions.swift */; };
 		03AF21E7252F2AA300468AB4 /* UpcomingEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF21E6252F2AA300468AB4 /* UpcomingEvents.swift */; };
-		03AF21F0252F2AB400468AB4 /* LibraryListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF21EF252F2AB400468AB4 /* LibraryListCellModel.swift */; };
-		03AF21F9252F2AC700468AB4 /* SystemListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF21F8252F2AC700468AB4 /* SystemListCellModel.swift */; };
-		03AF2202252F2ADA00468AB4 /* FlowListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2201252F2ADA00468AB4 /* FlowListCellModel.swift */; };
-		03AF2213252F2B6800468AB4 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2212252F2B6800468AB4 /* EventDetailViewModel.swift */; };
-		03AF2223252F2F7300468AB4 /* ConditionListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2222252F2F7300468AB4 /* ConditionListCellModel.swift */; };
-		03AF2234252F2FE100468AB4 /* ConditionDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2233252F2FE100468AB4 /* ConditionDetailViewModel.swift */; };
-		03AF223D252F306800468AB4 /* HistoryListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF223C252F306800468AB4 /* HistoryListCellModel.swift */; };
-		03AF2246252F30AE00468AB4 /* FilterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2245252F30AE00468AB4 /* FilterDetailViewModel.swift */; };
-		03AF224F252F310100468AB4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF224E252F310100468AB4 /* SearchViewModel.swift */; };
 		03AF2259252F313800468AB4 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2258252F313800468AB4 /* Filter.swift */; };
-		03AF2269252F316500468AB4 /* SearchResultListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2268252F316500468AB4 /* SearchResultListCellModel.swift */; };
+		03AF228C252F32BC00468AB4 /* FlowDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF228B252F32BC00468AB4 /* FlowDetailInteractor.swift */; };
+		03AF229C252F337000468AB4 /* LibraryDetailListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF229B252F337000468AB4 /* LibraryDetailListInteractor.swift */; };
+		03AF22A5252F33EA00468AB4 /* SystemDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF22A4252F33EA00468AB4 /* SystemDetailInteractor.swift */; };
+		03AF22AE252F356600468AB4 /* StockDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF22AD252F356600468AB4 /* StockDetailViewModel.swift */; };
+		03AF22B7252F35A800468AB4 /* StateListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF22B6252F35A800468AB4 /* StateListCellModel.swift */; };
+		03AF22BF252F35C900468AB4 /* LibraryListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF21EF252F2AB400468AB4 /* LibraryListCellModel.swift */; };
+		03AF22D5252F35CD00468AB4 /* FlowListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2201252F2ADA00468AB4 /* FlowListCellModel.swift */; };
+		03AF22E4252F35D000468AB4 /* SystemListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF21F8252F2AC700468AB4 /* SystemListCellModel.swift */; };
+		03AF22EC252F35D300468AB4 /* ConditionListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2222252F2F7300468AB4 /* ConditionListCellModel.swift */; };
+		03AF22F4252F35D600468AB4 /* HistoryListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF223C252F306800468AB4 /* HistoryListCellModel.swift */; };
+		03AF2303252F35D900468AB4 /* SearchResultListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2268252F316500468AB4 /* SearchResultListCellModel.swift */; };
+		03AF230B252F35DC00468AB4 /* EventListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF227A252F31F700468AB4 /* EventListCellModel.swift */; };
+		03AF2313252F35DF00468AB4 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2212252F2B6800468AB4 /* EventDetailViewModel.swift */; };
+		03AF231B252F35E200468AB4 /* ConditionDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2233252F2FE100468AB4 /* ConditionDetailViewModel.swift */; };
+		03AF232A252F35E600468AB4 /* FilterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2245252F30AE00468AB4 /* FilterDetailViewModel.swift */; };
+		03AF2339252F35E800468AB4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF224E252F310100468AB4 /* SearchViewModel.swift */; };
+		03AF2341252F35EB00468AB4 /* FlowDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2271252F31C600468AB4 /* FlowDetailViewModel.swift */; };
+		03AF2351252F362D00468AB4 /* NoteListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2350252F362D00468AB4 /* NoteListCellModel.swift */; };
+		03AF235A252F365D00468AB4 /* StockDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2359252F365D00468AB4 /* StockDetailInteractor.swift */; };
 		03CE2415251F3C7F00CE699A /* DashboardViewHeaderModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2414251F3C7F00CE699A /* DashboardViewHeaderModelFactory.swift */; };
 		03CE2423251F3D7400CE699A /* InboxViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2422251F3D7400CE699A /* InboxViewFactory.swift */; };
 		03CE2433251F3F4C00CE699A /* SettingsViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */; };
@@ -372,6 +381,15 @@
 		03AF224E252F310100468AB4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		03AF2258252F313800468AB4 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		03AF2268252F316500468AB4 /* SearchResultListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListCellModel.swift; sourceTree = "<group>"; };
+		03AF2271252F31C600468AB4 /* FlowDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDetailViewModel.swift; sourceTree = "<group>"; };
+		03AF227A252F31F700468AB4 /* EventListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListCellModel.swift; sourceTree = "<group>"; };
+		03AF228B252F32BC00468AB4 /* FlowDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDetailInteractor.swift; sourceTree = "<group>"; };
+		03AF229B252F337000468AB4 /* LibraryDetailListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDetailListInteractor.swift; sourceTree = "<group>"; };
+		03AF22A4252F33EA00468AB4 /* SystemDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDetailInteractor.swift; sourceTree = "<group>"; };
+		03AF22AD252F356600468AB4 /* StockDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewModel.swift; sourceTree = "<group>"; };
+		03AF22B6252F35A800468AB4 /* StateListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateListCellModel.swift; sourceTree = "<group>"; };
+		03AF2350252F362D00468AB4 /* NoteListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCellModel.swift; sourceTree = "<group>"; };
+		03AF2359252F365D00468AB4 /* StockDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailInteractor.swift; sourceTree = "<group>"; };
 		03CE2414251F3C7F00CE699A /* DashboardViewHeaderModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewHeaderModelFactory.swift; sourceTree = "<group>"; };
 		03CE2422251F3D7400CE699A /* InboxViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewFactory.swift; sourceTree = "<group>"; };
 		03CE242A251F3EBE00CE699A /* TabBarItemFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemFactoryProtocol.swift; sourceTree = "<group>"; };
@@ -498,6 +516,9 @@
 		0303E446251DC7070060BCB5 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
+				03AF228A252F32A500468AB4 /* Interactors */,
+				03AF220A252F2AE000468AB4 /* Cell Models */,
+				03AF222B252F2FCC00468AB4 /* View Models */,
 				03866528251F274000418C54 /* Info */,
 				0386657F251F295E00418C54 /* Search */,
 				03866530251F278100418C54 /* Stock */,
@@ -519,9 +540,7 @@
 				03122FA8252C2BE200ECBEBF /* Types */,
 				03EFF4C4252C927F00D27F53 /* Main.swift */,
 				03AF21E6252F2AA300468AB4 /* UpcomingEvents.swift */,
-				03AF220A252F2AE000468AB4 /* Cell Models */,
 				037E0CB3252CAC5E008B2CB5 /* DashboardSuggestedFlows.swift */,
-				03AF222B252F2FCC00468AB4 /* View Models */,
 				037E0C9F252CAA36008B2CB5 /* DateStock.swift */,
 				03AF2257252F312C00468AB4 /* Data Models */,
 				037E0CA9252CAC4C008B2CB5 /* PinnedObjects.swift */,
@@ -973,6 +992,9 @@
 				03AF2222252F2F7300468AB4 /* ConditionListCellModel.swift */,
 				03AF223C252F306800468AB4 /* HistoryListCellModel.swift */,
 				03AF2268252F316500468AB4 /* SearchResultListCellModel.swift */,
+				03AF227A252F31F700468AB4 /* EventListCellModel.swift */,
+				03AF22B6252F35A800468AB4 /* StateListCellModel.swift */,
+				03AF2350252F362D00468AB4 /* NoteListCellModel.swift */,
 			);
 			path = "Cell Models";
 			sourceTree = "<group>";
@@ -984,6 +1006,8 @@
 				03AF2233252F2FE100468AB4 /* ConditionDetailViewModel.swift */,
 				03AF2245252F30AE00468AB4 /* FilterDetailViewModel.swift */,
 				03AF224E252F310100468AB4 /* SearchViewModel.swift */,
+				03AF2271252F31C600468AB4 /* FlowDetailViewModel.swift */,
+				03AF22AD252F356600468AB4 /* StockDetailViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -994,6 +1018,17 @@
 				03AF2258252F313800468AB4 /* Filter.swift */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		03AF228A252F32A500468AB4 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				03AF228B252F32BC00468AB4 /* FlowDetailInteractor.swift */,
+				03AF229B252F337000468AB4 /* LibraryDetailListInteractor.swift */,
+				03AF22A4252F33EA00468AB4 /* SystemDetailInteractor.swift */,
+				03AF2359252F365D00468AB4 /* StockDetailInteractor.swift */,
+			);
+			path = Interactors;
 			sourceTree = "<group>";
 		};
 		03CE245A251F4EE100CE699A /* Table View */ = {
@@ -1597,7 +1632,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03AF223D252F306800468AB4 /* HistoryListCellModel.swift in Sources */,
 				037E0C68252C9FC4008B2CB5 /* History+Extensions.swift in Sources */,
 				03EFF4C5252C927F00D27F53 /* Main.swift in Sources */,
 				03122F8C252C200A00ECBEBF /* TextStyle.swift in Sources */,
@@ -1614,10 +1648,8 @@
 				037E0C96252CA0B3008B2CB5 /* Stock+Extensions.swift in Sources */,
 				03122F8F252C200A00ECBEBF /* Priority.swift in Sources */,
 				03122F92252C200A00ECBEBF /* TextSize.swift in Sources */,
-				03AF2234252F2FE100468AB4 /* ConditionDetailViewModel.swift in Sources */,
 				036B6C50252EE31600A8C1D1 /* Source+Extensions.swift in Sources */,
 				03122F90252C200A00ECBEBF /* CompletionType.swift in Sources */,
-				03AF2269252F316500468AB4 /* SearchResultListCellModel.swift in Sources */,
 				03122F93252C200A00ECBEBF /* Comparison.swift in Sources */,
 				0360B367252C770B00B3197E /* DataManagerProtocol.swift in Sources */,
 				037E0CA0252CAA36008B2CB5 /* DateStock.swift in Sources */,
@@ -1627,25 +1659,18 @@
 				037E0CB4252CAC5E008B2CB5 /* DashboardSuggestedFlows.swift in Sources */,
 				036B6C78252EE91A00A8C1D1 /* RangeSource+Extensions.swift in Sources */,
 				03123033252C669600ECBEBF /* ImageBlock+Searchable.swift in Sources */,
-				03AF224F252F310100468AB4 /* SearchViewModel.swift in Sources */,
-				03AF21F9252F2AC700468AB4 /* SystemListCellModel.swift in Sources */,
 				037E0C4B252C9D45008B2CB5 /* Condition+Extensions.swift in Sources */,
-				03AF2202252F2ADA00468AB4 /* FlowListCellModel.swift in Sources */,
 				036B6C82252EE9FA00A8C1D1 /* ValueSource.swift in Sources */,
 				03122FFC252C65B700ECBEBF /* Contact+Extensions.swift in Sources */,
 				03122F89252C200A00ECBEBF /* IdealType.swift in Sources */,
-				03AF2223252F2F7300468AB4 /* ConditionListCellModel.swift in Sources */,
 				0312303D252C673800ECBEBF /* Database.swift in Sources */,
 				036B6C64252EE49900A8C1D1 /* Event+Extensions.swift in Sources */,
-				03AF2213252F2B6800468AB4 /* EventDetailViewModel.swift in Sources */,
 				03122F9E252C23C500ECBEBF /* Model.xcdatamodeld in Sources */,
 				037E0C8C252CA065008B2CB5 /* ProcessFlow+Extensions.swift in Sources */,
 				037E0C55252C9E32008B2CB5 /* FallbackProtocol.swift in Sources */,
 				036B6C5A252EE3E600A8C1D1 /* SourceType.swift in Sources */,
 				03AF21DE252F2A8900468AB4 /* Database+Extensions.swift in Sources */,
 				03122F8D252C200A00ECBEBF /* TimePeriod.swift in Sources */,
-				03AF21F0252F2AB400468AB4 /* LibraryListCellModel.swift in Sources */,
-				03AF2246252F30AE00468AB4 /* FilterDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1707,8 +1732,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03AF22A5252F33EA00468AB4 /* SystemDetailInteractor.swift in Sources */,
 				03185024251E33D4002DE065 /* InboxViewController.swift in Sources */,
 				03185019251E30D6002DE065 /* DashboardViewFactory.swift in Sources */,
+				03AF2341252F35EB00468AB4 /* FlowDetailViewModel.swift in Sources */,
 				03CE2443251F4E7E00CE699A /* DashboardTableViewDelegate.swift in Sources */,
 				0318502C251E33F5002DE065 /* LibraryViewController.swift in Sources */,
 				03866452251E358D00418C54 /* DashboardViewModel.swift in Sources */,
@@ -1721,27 +1748,43 @@
 				03CE24B5251F5F2500CE699A /* DashboardViewCellModelFactory.swift in Sources */,
 				03CE249C251F597E00CE699A /* TableViewSectionHeaderViewFactory.swift in Sources */,
 				03866564251F289800418C54 /* NavigationBarAppearanceModel.swift in Sources */,
+				03AF229C252F337000468AB4 /* LibraryDetailListInteractor.swift in Sources */,
 				03CE243B251F40DE00CE699A /* RootViewFactory.swift in Sources */,
+				03AF2351252F362D00468AB4 /* NoteListCellModel.swift in Sources */,
+				03AF231B252F35E200468AB4 /* ConditionDetailViewModel.swift in Sources */,
+				03AF235A252F365D00468AB4 /* StockDetailInteractor.swift in Sources */,
+				03AF228C252F32BC00468AB4 /* FlowDetailInteractor.swift in Sources */,
 				03CE24A5251F59B800CE699A /* SectionHeaderDisclosureButton.swift in Sources */,
+				03AF22AE252F356600468AB4 /* StockDetailViewModel.swift in Sources */,
 				0386658B251F299700418C54 /* SearchViewController.swift in Sources */,
 				03E94B182521B09400DE2340 /* SpacerView.swift in Sources */,
 				03F949F72520644A000E84AC /* EventTableViewCellModel.swift in Sources */,
+				03AF22E4252F35D000468AB4 /* SystemListCellModel.swift in Sources */,
+				03AF22BF252F35C900468AB4 /* LibraryListCellModel.swift in Sources */,
 				03866533251F27A400418C54 /* SystemListingViewController.swift in Sources */,
 				03CE2423251F3D7400CE699A /* InboxViewFactory.swift in Sources */,
 				03F949D42520448E000E84AC /* DashboardTableViewCoreDataSource.swift in Sources */,
 				03CE2698251FA19900CE699A /* RootEnvironment.swift in Sources */,
 				0373AF082526009200B92093 /* TableViewDataSource.swift in Sources */,
 				0373AEFF2526008C00B92093 /* TableViewCellModel.swift in Sources */,
+				03AF22EC252F35D300468AB4 /* ConditionListCellModel.swift in Sources */,
 				03CE2415251F3C7F00CE699A /* DashboardViewHeaderModelFactory.swift in Sources */,
 				03866504251F23E600418C54 /* LibraryViewModelProtocol.swift in Sources */,
 				0318500A251E302A002DE065 /* DashboardViewController.swift in Sources */,
+				03AF22D5252F35CD00468AB4 /* FlowListCellModel.swift in Sources */,
 				0373AF1A252600A400B92093 /* SearchBarDelegate.swift in Sources */,
+				03AF22B7252F35A800468AB4 /* StateListCellModel.swift in Sources */,
+				03AF230B252F35DC00468AB4 /* EventListCellModel.swift in Sources */,
 				0373AF0B2526009400B92093 /* TableViewCell.swift in Sources */,
+				03AF232A252F35E600468AB4 /* FilterDetailViewModel.swift in Sources */,
 				03CE2690251F9FB600CE699A /* DashboardEnvironment.swift in Sources */,
 				0303E375251DBDD00060BCB5 /* RootViewController.swift in Sources */,
 				0373AF172526009F00B92093 /* TabBarItemFactoryProtocol.swift in Sources */,
 				0303E38B251DBEDF0060BCB5 /* SceneDelegate.swift in Sources */,
 				03866583251F298D00418C54 /* FilterViewController.swift in Sources */,
+				03AF2303252F35D900468AB4 /* SearchResultListCellModel.swift in Sources */,
+				03AF2313252F35DF00468AB4 /* EventDetailViewModel.swift in Sources */,
+				03AF22F4252F35D600468AB4 /* HistoryListCellModel.swift in Sources */,
 				03CE2453251F4ED900CE699A /* DashboardSearchBarDelegate.swift in Sources */,
 				0373AF0E2526009700B92093 /* TableView.swift in Sources */,
 				03866572251F28BA00418C54 /* DashboardInteractionController.swift in Sources */,
@@ -1750,6 +1793,7 @@
 				0373AF112526009A00B92093 /* TabBarController.swift in Sources */,
 				03CE24AD251F5E6C00CE699A /* EventTableViewCell.swift in Sources */,
 				0318503F251E34B4002DE065 /* LibraryViewFactory.swift in Sources */,
+				03AF2339252F35E800468AB4 /* SearchViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
