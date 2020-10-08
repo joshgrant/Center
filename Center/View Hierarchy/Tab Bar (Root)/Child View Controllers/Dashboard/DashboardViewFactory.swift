@@ -10,12 +10,7 @@ import CoreData
 import Architecture
 import Core
 
-protocol DashboardViewFactoryProtocol: TabBarItemFactoryProtocol
-{
-    func makeTableView() -> TableView
-}
-
-struct DashboardViewFactory: DashboardViewFactoryProtocol
+struct DashboardViewFactory: TabBarItemFactoryProtocol
 {
     var environment: DashboardEnvironment
     
@@ -32,6 +27,9 @@ struct DashboardViewFactory: DashboardViewFactoryProtocol
             selectedImage: Icon.dashboard.getImage())
     }
     
+    // Search for "JUMP"
+    // We can probably create a "table view factory" that makes this...
+    // in fact, each part of the interface should be modular, right?
     func makeTableView() -> TableView
     {
         let tableView = TableView(frame: .zero, style: .grouped)

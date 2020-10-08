@@ -11,19 +11,22 @@ import UIKit
 // enters the foreground, as well as `viewDidBackground` and the `will` parts if applicable
 // Use an observer
 
-open class ViewController: UIViewController {
-    
-    public init() {
+open class ViewController: UIViewController
+{
+    public init()
+    {
         super.init(nibName: nil, bundle: nil)
     }
     
     @available(*, unavailable)
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     @available(*, unavailable)
-    public required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder)
+    {
         fatalError("Load this view programmatically")
     }
 }

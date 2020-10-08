@@ -7,14 +7,16 @@
 
 import UIKit
 
-open class View: UIView {
-    
-    public override init(frame: CGRect) {
+open class View: UIView
+{
+    public override init(frame: CGRect)
+    {
         super.init(frame: frame)
     }
     
     @available(*, unavailable)
-    public required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder)
+    {
         fatalError("Load this view programmatically")
     }
 }

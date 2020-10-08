@@ -7,14 +7,16 @@
 
 import UIKit
 
-open class CollectionView: UICollectionView {
-    
-    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+open class CollectionView: UICollectionView
+{
+    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout)
+    {
         super.init(frame: frame, collectionViewLayout: layout)
     }
     
     @available(*, unavailable)
-    public required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder)
+    {
         fatalError("Load this view programmatically")
     }
 }

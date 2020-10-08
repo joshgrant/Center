@@ -9,7 +9,7 @@ import UIKit
 import Architecture
 import Core
 
-struct LibraryListViewFactory
+struct LibraryListViewFactory: TabBarItemFactoryProtocol
 {
     var environment: LibraryListEnvironment
     
@@ -26,6 +26,7 @@ struct LibraryListViewFactory
             selectedImage: Icon.library.getImage())
     }
     
+    // Search for "JUMP"
     func makeTableView() -> TableView
     {
         let tableView = TableView(frame: .zero, style: .grouped)

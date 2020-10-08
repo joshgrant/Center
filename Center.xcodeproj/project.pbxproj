@@ -528,14 +528,13 @@
 		0303E446251DC7070060BCB5 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
-				03AF220A252F2AE000468AB4 /* Cell Models */,
+				03866531251F279500418C54 /* Library List Detail */,
 				03866528251F274000418C54 /* Info */,
 				03AF228A252F32A500468AB4 /* Interactors */,
 				0386657F251F295E00418C54 /* Search */,
 				03866530251F278100418C54 /* Stock */,
 				0386652F251F277400418C54 /* System */,
 				03866520251F272C00418C54 /* Tab Bar (Root) */,
-				03AF239B252F57E800468AB4 /* Table View Cells */,
 				03AF222B252F2FCC00468AB4 /* View Models */,
 			);
 			path = "View Hierarchy";
@@ -644,7 +643,6 @@
 				035B9A37252F7A980080785C /* LibraryListEnvironment.swift */,
 				0318502B251E33F5002DE065 /* LibraryListViewController.swift */,
 				0318503E251E34B4002DE065 /* LibraryListViewFactory.swift */,
-				03866531251F279500418C54 /* Child View Controllers */,
 				035B9A14252F74E60080785C /* Table View */,
 			);
 			path = Library;
@@ -727,6 +725,62 @@
 				035B9A25252F75300080785C /* LibraryListTableViewDelegate.swift */,
 			);
 			path = "Table View";
+			sourceTree = "<group>";
+		};
+		035B9A5C252F7E3F0080785C /* Condition List */ = {
+			isa = PBXGroup;
+			children = (
+				03AF2222252F2F7300468AB4 /* ConditionListCellModel.swift */,
+			);
+			path = "Condition List";
+			sourceTree = "<group>";
+		};
+		035B9A5D252F7E4C0080785C /* Flow List */ = {
+			isa = PBXGroup;
+			children = (
+				03AF2201252F2ADA00468AB4 /* FlowListCellModel.swift */,
+			);
+			path = "Flow List";
+			sourceTree = "<group>";
+		};
+		035B9A71252F7E510080785C /* History List */ = {
+			isa = PBXGroup;
+			children = (
+				03AF223C252F306800468AB4 /* HistoryListCellModel.swift */,
+			);
+			path = "History List";
+			sourceTree = "<group>";
+		};
+		035B9A80252F7E570080785C /* Note List */ = {
+			isa = PBXGroup;
+			children = (
+				03AF2350252F362D00468AB4 /* NoteListCellModel.swift */,
+			);
+			path = "Note List";
+			sourceTree = "<group>";
+		};
+		035B9A88252F7E5C0080785C /* Search Result List */ = {
+			isa = PBXGroup;
+			children = (
+				03AF2268252F316500468AB4 /* SearchResultListCellModel.swift */,
+			);
+			path = "Search Result List";
+			sourceTree = "<group>";
+		};
+		035B9A90252F7E620080785C /* State List */ = {
+			isa = PBXGroup;
+			children = (
+				03AF22B6252F35A800468AB4 /* StateListCellModel.swift */,
+			);
+			path = "State List";
+			sourceTree = "<group>";
+		};
+		035B9A9F252F7E670080785C /* System List */ = {
+			isa = PBXGroup;
+			children = (
+				03AF21F8252F2AC700468AB4 /* SystemListCellModel.swift */,
+			);
+			path = "System List";
 			sourceTree = "<group>";
 		};
 		0360B301252C761000B3197E /* Protocols */ = {
@@ -907,7 +961,7 @@
 			path = Stock;
 			sourceTree = "<group>";
 		};
-		03866531251F279500418C54 /* Child View Controllers */ = {
+		03866531251F279500418C54 /* Library List Detail */ = {
 			isa = PBXGroup;
 			children = (
 				0386654A251F27C800418C54 /* Conversion Listing */,
@@ -920,7 +974,7 @@
 				0386654C251F27D300418C54 /* Symbol Listing */,
 				03866540251F27A900418C54 /* System Listing */,
 			);
-			path = "Child View Controllers";
+			path = "Library List Detail";
 			sourceTree = "<group>";
 		};
 		03866540251F27A900418C54 /* System Listing */ = {
@@ -990,6 +1044,7 @@
 		03866561251F288500418C54 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				03AF239B252F57E800468AB4 /* Table View Cells */,
 				03CE24A3251F599C00CE699A /* Disclosure Button */,
 				03866562251F288900418C54 /* Navigation Bar */,
 				03E94B162521B08400DE2340 /* Spacer */,
@@ -1031,20 +1086,6 @@
 			path = Filter;
 			sourceTree = "<group>";
 		};
-		03AF220A252F2AE000468AB4 /* Cell Models */ = {
-			isa = PBXGroup;
-			children = (
-				03AF2222252F2F7300468AB4 /* ConditionListCellModel.swift */,
-				03AF2201252F2ADA00468AB4 /* FlowListCellModel.swift */,
-				03AF223C252F306800468AB4 /* HistoryListCellModel.swift */,
-				03AF2350252F362D00468AB4 /* NoteListCellModel.swift */,
-				03AF2268252F316500468AB4 /* SearchResultListCellModel.swift */,
-				03AF22B6252F35A800468AB4 /* StateListCellModel.swift */,
-				03AF21F8252F2AC700468AB4 /* SystemListCellModel.swift */,
-			);
-			path = "Cell Models";
-			sourceTree = "<group>";
-		};
 		03AF222B252F2FCC00468AB4 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1081,9 +1122,16 @@
 		03AF239B252F57E800468AB4 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				035B9A5C252F7E3F0080785C /* Condition List */,
 				03AF23AA252F5A2B00468AB4 /* Event List */,
+				035B9A5D252F7E4C0080785C /* Flow List */,
+				035B9A71252F7E510080785C /* History List */,
 				035B9A03252F74370080785C /* Library List */,
+				035B9A80252F7E570080785C /* Note List */,
 				035B99B3252F6E5D0080785C /* Pinned List */,
+				035B9A88252F7E5C0080785C /* Search Result List */,
+				035B9A90252F7E620080785C /* State List */,
+				035B9A9F252F7E670080785C /* System List */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
