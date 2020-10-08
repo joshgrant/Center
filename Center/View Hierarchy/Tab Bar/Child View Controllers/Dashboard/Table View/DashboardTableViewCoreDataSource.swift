@@ -36,8 +36,7 @@ class DashboardTableViewCoreDataSource: NSObject, TableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         // TODO: Cache this value
-        return 0
-//        return cellModelFactory.makeCellModels()[section].count
+        return cellModelFactory.makeCellModels()[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

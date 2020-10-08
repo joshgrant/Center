@@ -11,7 +11,7 @@ import CoreData
 
 class SchemaTests: XCTestCase
 {
-    let schema = DataManager()
+    let schema = Database()
     
     override func setUpWithError() throws
     {
@@ -60,12 +60,16 @@ class SchemaTests: XCTestCase
         XCTAssertEqual(event?.unwrappedConditions.first?.isSatisfied, true)
     }
     
-    func testLibraryObjects() throws
+    func testUnwrapping() throws
     {
-        let objects = try libraryListCellModels(context: schema.context)
+        let fetchRequest = makeDateSourcesFetchRequest()
         
-        XCTAssertEqual(objects.first?.count, 0)
-        XCTAssertEqual(objects[3].count, 1)
+        let result = try schema.context.fetch(fetchRequest)
+        let event = eventsFromSources(result).first!
+        
+        let conditions: [Condition] = event.unwrapped(\Event.conditions)
+        
+        XCTAssertGreaterThan(conditions.count, 0)
     }
 
     func testPerformanceExample() throws
@@ -75,5 +79,4 @@ class SchemaTests: XCTestCase
             // Put the code you want to measure the time of here.
         }
     }
-
 }

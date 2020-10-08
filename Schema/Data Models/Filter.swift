@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Filter
+public struct Filter
 {
     var name: String
     var removable: Bool

@@ -28,7 +28,7 @@ struct RootViewFactory: RootViewFactoryProtocol
     {
         self.environment = environment
         
-        dashboardEnvironment = DashboardEnvironment(dataManager: self.environment.dataManager)
+        dashboardEnvironment = DashboardEnvironment(database: self.environment.dataManager)
     }
     
     func makeAllViewControllers() -> [UIViewController]

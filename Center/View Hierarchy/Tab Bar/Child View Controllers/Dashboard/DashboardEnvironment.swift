@@ -10,9 +10,9 @@ import Schema
 
 protocol DashboardEnvironmentProtocol
 {
-    var dataManager: DataManagerProtocol { get }
+    var database: Database { get }
     
-    init(dataManager: DataManagerProtocol)
+    init(database: Database)
     
     var headerModelFactory: DashboardViewHeaderModelFactory { get }
     var cellModelFactory: DashboardViewCellModelFactory { get }
@@ -23,11 +23,11 @@ protocol DashboardEnvironmentProtocol
 
 class DashboardEnvironment: DashboardEnvironmentProtocol
 {
-    var dataManager: DataManagerProtocol
+    var database: Database
     
-    required init(dataManager: DataManagerProtocol)
+    required init(database: Database)
     {
-        self.dataManager = dataManager
+        self.database = database
     }
     
     lazy var headerModelFactory: DashboardViewHeaderModelFactory = {
@@ -35,8 +35,8 @@ class DashboardEnvironment: DashboardEnvironmentProtocol
     }()
     
     lazy var cellModelFactory: DashboardViewCellModelFactory = {
-        DashboardViewCellModelFactory(
-            dataManager: dataManager)
+        try! DashboardViewCellModelFactory(
+            database: database)
     }()
     
     lazy var tableViewDataSource: DashboardTableViewCoreDataSource = {

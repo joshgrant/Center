@@ -10,16 +10,16 @@ import Schema
 
 protocol RootEnvironmentProtocol
 {
-    var dataManager: DataManagerProtocol { get set }
+    var dataManager: Database { get set }
     
-    init(dataManager: DataManagerProtocol)
+    init(dataManager: Database)
 }
 
 struct RootEnvironment: RootEnvironmentProtocol
 {
-    var dataManager: DataManagerProtocol
+    var dataManager: Database
     
-    init(dataManager: DataManagerProtocol)
+    init(dataManager: Database)
     {
         self.dataManager = dataManager
     }

@@ -6,16 +6,27 @@
 //
 
 import XCTest
+@testable import Schema
 @testable import Center
 
-class CenterTests: XCTestCase {
+// TODO: Duplication with SchemaTests
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class CenterTests: XCTestCase
+{
+    let schema = Database()
+    
+    override func setUpWithError() throws
+    {
+        schema.populate()
+        
+        print("Schema: \(schema)")
+        print("Context: \(schema.context)")
+        print("Container: \(schema.container)")
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDownWithError() throws
+    {
+        try schema.erase()
     }
 
     func testExample() throws {
@@ -30,4 +41,12 @@ class CenterTests: XCTestCase {
         }
     }
 
+    func testLibraryObjects() throws
+    {
+        let objects = try libraryListCellModels(context: schema.context)
+        
+        XCTAssertEqual(objects.first?.count, 0)
+        XCTAssertEqual(objects[3].count, 1)
+    }
+    
 }

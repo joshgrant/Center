@@ -53,6 +53,7 @@
         <relationship name="linkedSymbols" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Symbol" inverseName="links" inverseEntity="Symbol"/>
     </entity>
     <entity name="Event" representedClassName="Event" parentEntity="Entity" syncable="YES" codeGenerationType="class">
+        <attribute name="conditionTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="conditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Condition" inverseName="events" inverseEntity="Condition"/>
         <relationship name="flows" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flow" inverseName="events" inverseEntity="Flow"/>
@@ -136,7 +137,9 @@
         <relationship name="targetOfCondition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Condition" inverseName="rightHand" inverseEntity="Condition"/>
         <relationship name="valueOfCondition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Condition" inverseName="leftHand" inverseEntity="Condition"/>
     </entity>
-    <entity name="State" representedClassName="State" syncable="YES" codeGenerationType="class"/>
+    <entity name="State" representedClassName="State" syncable="YES" codeGenerationType="class">
+        <relationship name="stocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stock" inverseName="validStates" inverseEntity="Stock"/>
+    </entity>
     <entity name="Stock" representedClassName="Stock" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="amountTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="amount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Source" inverseName="amountOfStock" inverseEntity="Source"/>
@@ -155,7 +158,7 @@
         <relationship name="transferFlowsFrom" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransferFlow" inverseName="from" inverseEntity="TransferFlow"/>
         <relationship name="transferFlowsTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransferFlow" inverseName="to" inverseEntity="TransferFlow"/>
         <relationship name="unit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Unit" inverseName="linkedStocks" inverseEntity="Unit"/>
-        <relationship name="validStates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="State"/>
+        <relationship name="validStates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="State" inverseName="stocks" inverseEntity="State"/>
     </entity>
     <entity name="StockSource" representedClassName="StockSource" parentEntity="Source" syncable="YES" codeGenerationType="class">
         <relationship name="stock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="idealOf" inverseEntity="Stock"/>
@@ -222,7 +225,7 @@
         <element name="Dimension" positionX="18" positionY="63" width="128" height="88"/>
         <element name="DynamicSource" positionX="18" positionY="153" width="128" height="73"/>
         <element name="Entity" positionX="9" positionY="54" width="128" height="118"/>
-        <element name="Event" positionX="36" positionY="81" width="128" height="163"/>
+        <element name="Event" positionX="36" positionY="81" width="128" height="178"/>
         <element name="Flow" positionX="-9" positionY="36" width="128" height="178"/>
         <element name="History" positionX="9" positionY="54" width="128" height="133"/>
         <element name="Image" positionX="18" positionY="90" width="128" height="88"/>
@@ -243,6 +246,6 @@
         <element name="TransferFlow" positionX="-9" positionY="36" width="128" height="133"/>
         <element name="Unit" positionX="0" positionY="45" width="128" height="178"/>
         <element name="ValueSource" positionX="9" positionY="135" width="128" height="73"/>
-        <element name="State" positionX="0" positionY="135" width="128" height="43"/>
+        <element name="State" positionX="0" positionY="135" width="128" height="58"/>
     </elements>
 </model>

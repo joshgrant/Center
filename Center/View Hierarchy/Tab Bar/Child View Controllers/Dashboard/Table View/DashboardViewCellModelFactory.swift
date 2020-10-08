@@ -13,30 +13,26 @@ import Schema
 
 class DashboardViewCellModelFactory: NSObject
 {
-//    var dataManager: CoreDataManager
-//    
-//    // TODO: Why can't we use the generic <Event> here?
-//    lazy var eventFetchController: NSFetchedResultsController<Event> = {
-//        let controller = NSFetchedResultsController<Event>(
-//            fetchRequest: makeEventFetchRequest(),
-//            managedObjectContext: dataManager.context,
-//            sectionNameKeyPath: nil,
-//            cacheName: nil)
-//        return controller
-//    }()
+    // TODO: Why can't we use the generic <Event> here?
+    lazy var eventFetchController: NSFetchedResultsController<DynamicSource> = {
+        let controller = NSFetchedResultsController<DynamicSource>(
+            fetchRequest: makeDateSourcesFetchRequest(),
+            managedObjectContext: database.context,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        return controller
+    }()
     
-    init(dataManager: DataManagerProtocol)
+    var database: Database
+    
+    init(database: Database) throws
     {
-//        guard let dataManager = dataManager as? CoreDataManager else {
-//            fatalError("The data managers aren't flexible enough")
-//        }
+        self.database = database
         
-//        self.dataManager = dataManager
-//
-//        super.init()
-//
-//        eventFetchController.delegate = self
-//        try! eventFetchController.performFetch()
+        super.init()
+
+        eventFetchController.delegate = self
+        try eventFetchController.performFetch()
     }
     
     func makeCellModels() -> [[TableViewCellModel]]
@@ -44,7 +40,7 @@ class DashboardViewCellModelFactory: NSObject
         return [
             [],
             [],
-//            events(),
+            events(),
             []
         ]
     }
@@ -54,21 +50,18 @@ class DashboardViewCellModelFactory: NSObject
 
 extension DashboardViewCellModelFactory
 {
-//    func makeEventFetchRequest() -> NSFetchRequest<Event>
-//    {
-//        let request = Event.request()
-//        // TODO: Fix the sort descriptors
-//        request.sortDescriptors = [NSSortDescriptor(keyPath: \Event.isActive, ascending: true)]
-//        request.fetchLimit = 9
-//        // TODO: Add conditions for only events with date condition within two weeks
-//        return request
-//    }
-//    
-//    func events() -> [TableViewCellModel]
-//    {
-//        // They don't map to the proper type...
-//        return eventFetchController.fetchedObjects ?? []
-//    }
+    func events() -> [TableViewCellModel]
+    {
+        guard let sources = eventFetchController.fetchedObjects else {
+            assertionFailure("Failed to get the fetched objects from: \(eventFetchController)")
+            return []
+        }
+        
+        let events = Event.eventsFromSources(sources)
+        let cells = EventListCellModel.eventCellModelsFrom(events: events)
+
+        return cells
+    }
 }
 
 // MARK: - Fetch controller delegate

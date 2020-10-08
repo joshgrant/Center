@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-func performFetchRequest<T>(fetchRequest: NSFetchRequest<T>, dataManager: DataManager) -> [T]
+func performFetchRequest<T>(fetchRequest: NSFetchRequest<T>, dataManager: Database) -> [T]
 {
     do {
         let result = try dataManager.context.fetch(fetchRequest)

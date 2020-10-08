@@ -1,5 +1,5 @@
 //
-//  DataManager.swift
+//  Database.swift
 //  Schema
 //
 //  Created by Joshua Grant on 10/6/20.
@@ -13,9 +13,9 @@ public typealias Coordinator = NSPersistentStoreCoordinator
 public typealias Context = NSManagedObjectContext
 public typealias Model = NSManagedObjectModel
 
-open class DataManager: DataManagerProtocol
+open class Database
 {
-    public static let shared = DataManager()
+    public static let shared = Database()
     
     public lazy var container: Container = {
         

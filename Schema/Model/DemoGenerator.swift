@@ -48,7 +48,7 @@ import Foundation
     return event
 }
 
-func populateDatabaseWithBirthdayPartyEvent(context: Context)
+public func populateDatabaseWithBirthdayPartyEvent(context: Context)
 {
     let currentDate = makeDynamicDateSource(context: context)
     let futureDate = makeValueDateSource(

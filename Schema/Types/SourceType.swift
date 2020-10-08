@@ -28,5 +28,5 @@ public enum SourceType: Int16
 
 extension SourceType: FallbackProtocol
 {
-    static var fallback: SourceType = .date
+    static let fallback: SourceType = .date
 }

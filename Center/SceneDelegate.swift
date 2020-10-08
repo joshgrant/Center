@@ -23,9 +23,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     {
         guard let scene = scene as? UIWindowScene else { return }
         
-        let dataManager = DataManager.shared
+        let database = Database.shared
+        populateDatabaseWithBirthdayPartyEvent(context: database.context)
         
-        let environment = RootEnvironment(dataManager: dataManager)
+        let environment = RootEnvironment(dataManager: database)
         let viewFactory = RootViewFactory(environment: environment)
         let root = RootViewController(viewFactory: viewFactory)
         

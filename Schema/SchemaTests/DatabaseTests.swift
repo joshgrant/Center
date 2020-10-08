@@ -12,7 +12,7 @@ import CoreData
 
 class DatabaseTests: XCTestCase
 {
-    let schema = DataManager()
+    let schema = Database()
     
     override func setUpWithError() throws
     {

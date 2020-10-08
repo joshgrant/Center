@@ -26,7 +26,7 @@ extension EntityType: CaseIterable
     
 }
 
-func titleForEntityType(_ entityType: EntityType) -> String {
+public func titleForEntityType(_ entityType: EntityType) -> String {
     switch entityType
     {
     case .system:
@@ -48,7 +48,7 @@ func titleForEntityType(_ entityType: EntityType) -> String {
     }
 }
 
-func imageForEntityType(_ entityType: EntityType) -> UIImage? {
+public func imageForEntityType(_ entityType: EntityType) -> UIImage? {
     switch entityType
     {
     case .system:
@@ -70,7 +70,7 @@ func imageForEntityType(_ entityType: EntityType) -> UIImage? {
     }
 }
 
-func managedObjectType(for entityType: EntityType) -> NSManagedObject.Type
+public func managedObjectType(for entityType: EntityType) -> NSManagedObject.Type
 {
     switch entityType
     {
@@ -93,7 +93,7 @@ func managedObjectType(for entityType: EntityType) -> NSManagedObject.Type
     }
 }
 
-func addObject(of entityType: EntityType, into context: Context) -> Entity
+public func addObject(of entityType: EntityType, into context: Context) -> Entity
 {
     switch entityType
     {
@@ -116,7 +116,7 @@ func addObject(of entityType: EntityType, into context: Context) -> Entity
     }
 }
 
-func countForEntityType(_ entityType: EntityType, context: Context) throws -> Int
+public func countForEntityType(_ entityType: EntityType, context: Context) throws -> Int
 {
     let objectType = managedObjectType(for: entityType)
     let request = objectType.fetchRequest()

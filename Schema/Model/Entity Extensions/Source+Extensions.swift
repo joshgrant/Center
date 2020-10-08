@@ -14,18 +14,3 @@ public extension Source
         return -1
     }
 }
-
-func eventsFromSources(_ sources: [Source]) -> [Event]
-{
-    var targetEvents: [Event] = sources.flatMap {
-        $0.targetOfCondition?.unwrappedEvents ?? []
-    }
-    
-    let valueEvents = sources.flatMap {
-        $0.valueOfCondition?.unwrappedEvents ?? []
-    }
-    
-    targetEvents.append(contentsOf: valueEvents)
-    
-    return targetEvents
-}

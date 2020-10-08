@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Schema
 
 struct FlowDetailViewModel
 {
@@ -16,5 +17,5 @@ struct FlowDetailViewModel
     var duration: String
     var requireUserCompletion: Bool
     
-    var events: [Event]
+    var events: [EventListCellModel]
 }

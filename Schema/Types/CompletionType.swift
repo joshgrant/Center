@@ -7,15 +7,15 @@
 
 import Foundation
 
+/// The completion type for a flow?
 public enum CompletionType: Int16
 {
     // TODO: Not sure which completion type suits them all
-//    case children
-//    case boolean
-    case all
+    case boolean
+    case children
 }
 
 extension CompletionType: FallbackProtocol
 {
-    static let fallback: CompletionType = .all 
+    static let fallback: CompletionType = .boolean
 }

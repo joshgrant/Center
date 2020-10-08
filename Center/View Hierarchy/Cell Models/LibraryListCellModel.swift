@@ -9,21 +9,21 @@ import Foundation
 import UIKit
 import Schema
 
-struct LibraryListCellModel
+public struct LibraryListCellModel
 {
     var image: UIImage?
     var title: String
     var count: Int
 }
 
-func libraryListCellModels(context: Context) throws -> [LibraryListCellModel]
+public func libraryListCellModels(context: Context) throws -> [LibraryListCellModel]
 {
     try EntityType.allCases.map {
         try libraryListCellModel(for: $0, context: context)
     }
 }
 
-func libraryListCellModel(for entityType: EntityType, context: Context) throws -> LibraryListCellModel
+public func libraryListCellModel(for entityType: EntityType, context: Context) throws -> LibraryListCellModel
 {
     LibraryListCellModel(
         image: imageForEntityType(entityType),

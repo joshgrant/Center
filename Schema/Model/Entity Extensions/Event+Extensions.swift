@@ -6,18 +6,10 @@
 //
 
 import Foundation
+import CoreData
 
 public extension Event
 {
-    var unwrappedConditions: Set<Condition> {
-        guard let unwrapped = conditions as? Set<Condition> else {
-            assertionFailure("Failed to unwrap the conditions NSSet to an [Condition]")
-            return []
-        }
-        
-        return unwrapped
-    }
-    
     var unwrappedName: String? {
         get {
             name?.name
@@ -34,5 +26,50 @@ public extension Event
                 name = Symbol(context: context, name: newValue)
             }
         }
+    }
+}
+
+public extension Event
+{
+    var conditionType: ConditionType {
+        get {
+            ConditionType(rawValue: conditionTypeRaw) ?? .fallback
+        }
+        set {
+            conditionTypeRaw = newValue.rawValue
+        }
+    }
+}
+
+public extension Event
+{
+    static func makeUpcomingEventsPredicate() -> NSPredicate
+    {
+        NSPredicate(value: false)
+    }
+    
+    static func makeUpcomingEventsFetchRequest() -> NSFetchRequest<Event>
+    {
+        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+        fetchRequest.predicate = makeUpcomingEventsPredicate()
+        return fetchRequest
+    }
+}
+
+public extension Event
+{
+    static func eventsFromSources(_ sources: [Source]) -> [Event]
+    {
+        var targetEvents: [Event] = sources.flatMap {
+            $0.targetOfCondition?.unwrappedEvents ?? []
+        }
+        
+        let valueEvents = sources.flatMap {
+            $0.valueOfCondition?.unwrappedEvents ?? []
+        }
+        
+        targetEvents.append(contentsOf: valueEvents)
+        
+        return targetEvents
     }
 }
