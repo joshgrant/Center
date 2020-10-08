@@ -11,6 +11,13 @@ import Core
 
 struct LibraryListViewFactory
 {
+    var environment: LibraryListEnvironment
+    
+    init(environment: LibraryListEnvironment)
+    {
+        self.environment = environment
+    }
+    
     func makeTabBarItem() -> UITabBarItem
     {
         return UITabBarItem(
@@ -22,6 +29,9 @@ struct LibraryListViewFactory
     func makeTableView() -> TableView
     {
         let tableView = TableView(frame: .zero, style: .grouped)
+        
+        environment.tableViewDataSource.configure(tableView: tableView)
+        environment.tableViewDelegate.configure(tableView: tableView)
         
         return tableView
     }

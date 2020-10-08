@@ -20,15 +20,17 @@ protocol RootViewFactoryProtocol
 
 struct RootViewFactory: RootViewFactoryProtocol
 {
-    var environment: RootEnvironmentProtocol
+    var environment: RootEnvironment
     
     var dashboardEnvironment: DashboardEnvironment
+    var libraryListEnvironment: LibraryListEnvironment
     
-    init(environment: RootEnvironmentProtocol)
+    init(environment: RootEnvironment)
     {
         self.environment = environment
         
-        dashboardEnvironment = DashboardEnvironment(database: self.environment.dataManager)
+        dashboardEnvironment = DashboardEnvironment(database: self.environment.database)
+        libraryListEnvironment = LibraryListEnvironment(database: self.environment.database)
     }
     
     func makeAllViewControllers() -> [UIViewController]
@@ -51,8 +53,8 @@ struct RootViewFactory: RootViewFactoryProtocol
     
     func makeLibraryRootViewController() -> UIViewController
     {
-        let viewFactory = LibraryViewFactory()
-        let viewController = LibraryViewController(viewFactory: viewFactory)
+        let viewFactory = LibraryListViewFactory(environment: libraryListEnvironment)
+        let viewController = LibraryListViewController(viewFactory: viewFactory)
         let navigationController = NavigationController(rootViewController: viewController)
         return navigationController
     }

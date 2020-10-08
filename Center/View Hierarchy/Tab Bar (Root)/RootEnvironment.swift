@@ -8,19 +8,12 @@
 import Foundation
 import Schema
 
-protocol RootEnvironmentProtocol
+struct RootEnvironment
 {
-    var dataManager: Database { get set }
+    var database: Database
     
-    init(dataManager: Database)
-}
-
-struct RootEnvironment: RootEnvironmentProtocol
-{
-    var dataManager: Database
-    
-    init(dataManager: Database)
+    init(database: Database)
     {
-        self.dataManager = dataManager
+        self.database = database
     }
 }

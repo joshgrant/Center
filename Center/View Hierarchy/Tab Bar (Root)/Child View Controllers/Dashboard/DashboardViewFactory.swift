@@ -17,9 +17,9 @@ protocol DashboardViewFactoryProtocol: TabBarItemFactoryProtocol
 
 struct DashboardViewFactory: DashboardViewFactoryProtocol
 {
-    var environment: DashboardEnvironmentProtocol
+    var environment: DashboardEnvironment
     
-    init(environment: DashboardEnvironmentProtocol)
+    init(environment: DashboardEnvironment)
     {
         self.environment = environment
     }

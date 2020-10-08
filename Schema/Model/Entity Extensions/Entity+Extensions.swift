@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import CoreData
 
-extension Entity
+public extension Entity
 {
     func unwrapped<E, T: Hashable, K: Hashable>(_ keypath: KeyPath<E, T>) -> [K]
     {
@@ -27,5 +28,35 @@ extension Entity
         }
         
         return Array(unwrapped)
+    }
+}
+
+public extension Entity
+{
+    static func makePinnedObjectsPredicate() -> NSPredicate
+    {
+        NSPredicate(format: "isPinned == %i", true)
+    }
+    
+    static func makePinnedObjectsSortDescriptors() -> [NSSortDescriptor]
+    {
+        // TODO: Better keypath for sorting..
+        [NSSortDescriptor(keyPath: \Entity.id, ascending: false)]
+    }
+    
+    static func makePinnedObjectsFetchRequest() -> NSFetchRequest<Entity>
+    {
+        let fetchRequest: NSFetchRequest<Entity> = Entity.fetchRequest()
+        fetchRequest.predicate = makePinnedObjectsPredicate()
+        fetchRequest.sortDescriptors = makePinnedObjectsSortDescriptors()
+        fetchRequest.shouldRefreshRefetchedObjects = true
+        return fetchRequest
+    }
+}
+
+public extension Entity
+{
+    @objc var title: String {
+        return "Abstract Entity - No Title"
     }
 }

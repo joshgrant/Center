@@ -27,9 +27,9 @@ import Foundation
 }
 
 @discardableResult private func makeDateCondition(context: Context,
-                                          currentDate: DynamicSource,
-                                          comparison: Comparison,
-                                          futureDate: ValueSource) -> Condition
+                                                  currentDate: DynamicSource,
+                                                  comparison: Comparison,
+                                                  futureDate: ValueSource) -> Condition
 {
     let condition = Condition(context: context)
     condition.leftHand = futureDate
@@ -39,8 +39,8 @@ import Foundation
 }
 
 @discardableResult private func makeDateEvent(context: Context,
-                                      name: String,
-                                      condition: Condition) -> Event
+                                              name: String,
+                                              condition: Condition) -> Event
 {
     let event = Event(context: context)
     event.unwrappedName = name
@@ -62,4 +62,17 @@ public func populateDatabaseWithBirthdayPartyEvent(context: Context)
         comparison: .greaterThan,
         futureDate: futureDate)
     makeDateEvent(context: context, name: "Birthday Party", condition: dateCondition)
+}
+
+@discardableResult private func makeWaterSystem(context: Context) -> System
+{
+    let system = System(context: context)
+    system.unwrappedName = "Water"
+    system.isPinned = true
+    return system
+}
+
+public func populateDatabaseWithWaterSystem(context: Context)
+{
+    makeWaterSystem(context: context)
 }

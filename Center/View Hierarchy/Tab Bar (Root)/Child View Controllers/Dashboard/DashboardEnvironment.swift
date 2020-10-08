@@ -8,24 +8,11 @@
 import Foundation
 import Schema
 
-protocol DashboardEnvironmentProtocol
-{
-    var database: Database { get }
-    
-    init(database: Database)
-    
-    var headerModelFactory: DashboardViewHeaderModelFactory { get }
-    var cellModelFactory: DashboardViewCellModelFactory { get }
-    var tableViewDataSource: DashboardTableViewCoreDataSource { get }
-    var tableViewDelegate: DashboardTableViewDelegate { get }
-    var searchBarDelegate: DashboardSearchBarDelegate { get }
-}
-
-class DashboardEnvironment: DashboardEnvironmentProtocol
+class DashboardEnvironment
 {
     var database: Database
     
-    required init(database: Database)
+    init(database: Database)
     {
         self.database = database
     }
@@ -35,8 +22,7 @@ class DashboardEnvironment: DashboardEnvironmentProtocol
     }()
     
     lazy var cellModelFactory: DashboardViewCellModelFactory = {
-        try! DashboardViewCellModelFactory(
-            database: database)
+        try! DashboardViewCellModelFactory(database: database)
     }()
     
     lazy var tableViewDataSource: DashboardTableViewCoreDataSource = {

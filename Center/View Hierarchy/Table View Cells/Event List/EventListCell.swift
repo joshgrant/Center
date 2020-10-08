@@ -12,7 +12,7 @@ class EventListCell: TableViewCell
 {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
     {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     }
     
     override func configureWithViewModel(_ viewModel: TableViewCellModel)
@@ -22,7 +22,15 @@ class EventListCell: TableViewCell
             return
         }
         
+        self.separatorInset = .zero
+        self.accessoryType = .disclosureIndicator
+        
+        self.textLabel?.font = .systemFont(ofSize: 17)
+        self.textLabel?.textColor = .black
         self.textLabel?.text = model.title
+        
+        self.detailTextLabel?.font = .systemFont(ofSize: 15)
+        self.detailTextLabel?.textColor = .systemGray
         self.detailTextLabel?.text = model.detail
     }
 }

@@ -13,7 +13,7 @@ class DashboardViewController: ViewController
     var viewFactory: DashboardViewFactoryProtocol
     let searchBarDelegate = DashboardSearchBarDelegate()
     
-    var tableView: UITableView
+    var tableView: TableView
     
     init(viewFactory: DashboardViewFactoryProtocol)
     {
@@ -38,12 +38,12 @@ class DashboardViewController: ViewController
     
     // MARK: - Configuration
     
-    func configureTabBarItem()
+    private func configureTabBarItem()
     {
         tabBarItem = viewFactory.makeTabBarItem()
     }
     
-    func configureNavigationItem()
+    private func configureNavigationItem()
     {
         let searchResultsController = SearchViewController()
         let searchController = UISearchController(searchResultsController: searchResultsController)

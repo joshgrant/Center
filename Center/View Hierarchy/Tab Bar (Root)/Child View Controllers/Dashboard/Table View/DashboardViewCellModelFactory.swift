@@ -23,6 +23,15 @@ class DashboardViewCellModelFactory: NSObject
         return controller
     }()
     
+    lazy var pinnedFetchController: NSFetchedResultsController<Entity> = {
+        let controller = NSFetchedResultsController<Entity>(
+            fetchRequest: Entity.makePinnedObjectsFetchRequest(),
+            managedObjectContext: database.context,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        return controller
+    }()
+    
     var database: Database
     
     init(database: Database) throws
@@ -30,17 +39,20 @@ class DashboardViewCellModelFactory: NSObject
         self.database = database
         
         super.init()
-
+        
         eventFetchController.delegate = self
         try eventFetchController.performFetch()
+        
+        pinnedFetchController.delegate = self
+        try pinnedFetchController.performFetch()
     }
     
     func makeCellModels() -> [[TableViewCellModel]]
     {
         return [
+            pinnedModels(),
             [],
-            [],
-            events(),
+            forecastModels(),
             []
         ]
     }
@@ -50,7 +62,7 @@ class DashboardViewCellModelFactory: NSObject
 
 extension DashboardViewCellModelFactory
 {
-    func events() -> [TableViewCellModel]
+    func forecastModels() -> [TableViewCellModel]
     {
         guard let sources = eventFetchController.fetchedObjects else {
             assertionFailure("Failed to get the fetched objects from: \(eventFetchController)")
@@ -59,7 +71,18 @@ extension DashboardViewCellModelFactory
         
         let events = Event.eventsFromSources(sources)
         let cells = EventListCellModel.eventCellModelsFrom(events: events)
-
+        
+        return cells
+    }
+    
+    func pinnedModels() -> [TableViewCellModel]
+    {
+        guard let objects = pinnedFetchController.fetchedObjects else {
+            assertionFailure("Failed to get the fetched objects from: \(pinnedFetchController)")
+            return []
+        }
+        
+        let cells = PinnedListCellModel.pinnedCellModels(from: objects)
         return cells
     }
 }

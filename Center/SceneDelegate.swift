@@ -25,8 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let database = Database.shared
         populateDatabaseWithBirthdayPartyEvent(context: database.context)
+        populateDatabaseWithWaterSystem(context: database.context)
         
-        let environment = RootEnvironment(dataManager: database)
+        let environment = RootEnvironment(database: database)
         let viewFactory = RootViewFactory(environment: environment)
         let root = RootViewController(viewFactory: viewFactory)
         

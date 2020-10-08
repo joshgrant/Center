@@ -1,47 +1,41 @@
 //
-//  DashboardTableViewCoreDataSource.swift
+//  LibraryListTableViewDataSource.swift
 //  Center
 //
-//  Created by Joshua Grant on 9/27/20.
+//  Created by Joshua Grant on 10/8/20.
 //
 
 import UIKit
-import CoreData
+import Schema
 
-class DashboardTableViewCoreDataSource: NSObject, TableViewDataSource
+class LibraryListTableViewDataSource: NSObject, TableViewDataSource
 {
-    var headerModelFactory: DashboardViewHeaderModelFactory
-    var cellModelFactory: DashboardViewCellModelFactory
+    var cellModelFactory: LibraryListCellModelFactory
     
-    init(headerModelFactory: DashboardViewHeaderModelFactory,
-         cellModelFactory: DashboardViewCellModelFactory)
+    init(cellModelFactory: LibraryListCellModelFactory)
     {
-        self.headerModelFactory = headerModelFactory
         self.cellModelFactory = cellModelFactory
     }
     
     func cellClassAndReuseIdentifiers() -> [TableViewCellModel.Type]
     {
         [
-            EventListCellModel.self,
-            PinnedListCellModel.self
+            LibraryListCellModel.self
         ]
     }
     
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return headerModelFactory.headerModels.count
+        1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        // TODO: Cache this value
-        return cellModelFactory.makeCellModels()[section].count
+        EntityType.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        // TODO: Cache this value
         let model = cellModelFactory.makeCellModels()[indexPath.section][indexPath.row]
         let identifier = type(of: model).cellReuseIdentifier
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)

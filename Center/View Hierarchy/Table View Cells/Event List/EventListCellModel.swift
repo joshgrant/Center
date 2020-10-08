@@ -27,7 +27,7 @@ extension EventListCellModel
     {
         events.map {
             let title = $0.unwrappedName ?? ""
-            return EventListCellModel(title: title, detail: "")
+            return EventListCellModel(title: title, detail: "Mon, Apr 3")
         }
     }
 }
