@@ -528,15 +528,15 @@
 		0303E446251DC7070060BCB5 /* View Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
-				03AF239B252F57E800468AB4 /* Table View Cells */,
-				03AF228A252F32A500468AB4 /* Interactors */,
 				03AF220A252F2AE000468AB4 /* Cell Models */,
-				03AF222B252F2FCC00468AB4 /* View Models */,
 				03866528251F274000418C54 /* Info */,
+				03AF228A252F32A500468AB4 /* Interactors */,
 				0386657F251F295E00418C54 /* Search */,
 				03866530251F278100418C54 /* Stock */,
 				0386652F251F277400418C54 /* System */,
 				03866520251F272C00418C54 /* Tab Bar (Root) */,
+				03AF239B252F57E800468AB4 /* Table View Cells */,
+				03AF222B252F2FCC00468AB4 /* View Models */,
 			);
 			path = "View Hierarchy";
 			sourceTree = "<group>";
@@ -546,14 +546,14 @@
 			children = (
 				03122F51252C1CF000ECBEBF /* Schema.h */,
 				03122F52252C1CF000ECBEBF /* Info.plist */,
+				037E0CB3252CAC5E008B2CB5 /* DashboardSuggestedFlows.swift */,
+				037E0C9F252CAA36008B2CB5 /* DateStock.swift */,
+				03EFF4C4252C927F00D27F53 /* Main.swift */,
+				03AF2257252F312C00468AB4 /* Data Models */,
 				03122FA7252C2BD900ECBEBF /* Model */,
 				0360B301252C761000B3197E /* Protocols */,
 				03122F5D252C1CF000ECBEBF /* SchemaTests */,
 				03122FA8252C2BE200ECBEBF /* Types */,
-				03AF2257252F312C00468AB4 /* Data Models */,
-				03EFF4C4252C927F00D27F53 /* Main.swift */,
-				037E0CB3252CAC5E008B2CB5 /* DashboardSuggestedFlows.swift */,
-				037E0C9F252CAA36008B2CB5 /* DateStock.swift */,
 			);
 			path = Schema;
 			sourceTree = "<group>";
@@ -561,9 +561,9 @@
 		03122F5D252C1CF000ECBEBF /* SchemaTests */ = {
 			isa = PBXGroup;
 			children = (
-				03122F5E252C1CF000ECBEBF /* SchemaTests.swift */,
 				03122F60252C1CF000ECBEBF /* Info.plist */,
 				03EFF49F252C809100D27F53 /* DatabaseTests.swift */,
+				03122F5E252C1CF000ECBEBF /* SchemaTests.swift */,
 			);
 			path = SchemaTests;
 			sourceTree = "<group>";
@@ -573,10 +573,10 @@
 			children = (
 				0312303C252C673800ECBEBF /* Database.swift */,
 				03AF21DD252F2A8900468AB4 /* Database+Extensions.swift */,
-				03122FFA252C65AA00ECBEBF /* Entity Extensions */,
-				03122F9C252C23C500ECBEBF /* Model.xcdatamodeld */,
 				03EFF4BA252C834700D27F53 /* DemoGenerator.swift */,
+				03122FFA252C65AA00ECBEBF /* Entity Extensions */,
 				035B99DD252F71F10080785C /* Entity Protocols */,
+				03122F9C252C23C500ECBEBF /* Model.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -585,18 +585,18 @@
 			isa = PBXGroup;
 			children = (
 				03122F80252C200900ECBEBF /* AmountType.swift */,
+				03122F81252C200900ECBEBF /* Comparison.swift */,
 				03122F85252C200900ECBEBF /* CompletionType.swift */,
+				03AF236B252F485100468AB4 /* ConditionType.swift */,
+				03AF21D4252F2A0F00468AB4 /* EntityType.swift */,
 				03122F7F252C200900ECBEBF /* HistoryEvent.swift */,
 				03122F84252C200900ECBEBF /* IdealType.swift */,
 				03122F7E252C200900ECBEBF /* Order.swift */,
-				03122F81252C200900ECBEBF /* Comparison.swift */,
 				03122F86252C200900ECBEBF /* Priority.swift */,
+				036B6C59252EE3E600A8C1D1 /* SourceType.swift */,
 				03122F88252C200A00ECBEBF /* TextSize.swift */,
 				03122F87252C200A00ECBEBF /* TextStyle.swift */,
 				03122F83252C200900ECBEBF /* TimePeriod.swift */,
-				036B6C59252EE3E600A8C1D1 /* SourceType.swift */,
-				03AF21D4252F2A0F00468AB4 /* EntityType.swift */,
-				03AF236B252F485100468AB4 /* ConditionType.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -641,11 +641,11 @@
 		03185020251E33B4002DE065 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				035B9A37252F7A980080785C /* LibraryListEnvironment.swift */,
 				0318502B251E33F5002DE065 /* LibraryListViewController.swift */,
 				0318503E251E34B4002DE065 /* LibraryListViewFactory.swift */,
 				03866531251F279500418C54 /* Child View Controllers */,
 				035B9A14252F74E60080785C /* Table View */,
-				035B9A37252F7A980080785C /* LibraryListEnvironment.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -671,14 +671,14 @@
 		031D981725260360004BD2FD /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				03E94B2D2521B6D600DE2340 /* Color.swift */,
-				03866599251F2B9C00418C54 /* Icon.swift */,
-				03CE24DC251F60E000CE699A /* Array+Extensions.swift */,
-				03E94B252521B1D900DE2340 /* UIView+Extensions.swift */,
-				038665A7251F2E2800418C54 /* UIImage+Extensions.swift */,
-				0380CC1A252B49A10049DAAD /* Architecture */,
 				031D981825260360004BD2FD /* Core.h */,
 				031D981925260360004BD2FD /* Info.plist */,
+				03CE24DC251F60E000CE699A /* Array+Extensions.swift */,
+				03E94B2D2521B6D600DE2340 /* Color.swift */,
+				03866599251F2B9C00418C54 /* Icon.swift */,
+				038665A7251F2E2800418C54 /* UIImage+Extensions.swift */,
+				03E94B252521B1D900DE2340 /* UIView+Extensions.swift */,
+				0380CC1A252B49A10049DAAD /* Architecture */,
 				031D982425260360004BD2FD /* CoreTests */,
 			);
 			path = Core;
@@ -687,8 +687,8 @@
 		031D982425260360004BD2FD /* CoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				031D982525260360004BD2FD /* CoreTests.swift */,
 				031D982725260360004BD2FD /* Info.plist */,
+				031D982525260360004BD2FD /* CoreTests.swift */,
 			);
 			path = CoreTests;
 			sourceTree = "<group>";
@@ -696,8 +696,8 @@
 		035B99B3252F6E5D0080785C /* Pinned List */ = {
 			isa = PBXGroup;
 			children = (
-				035B99B4252F6E8B0080785C /* PinnedListCellModel.swift */,
 				035B99BD252F6E9D0080785C /* PinnedListCell.swift */,
+				035B99B4252F6E8B0080785C /* PinnedListCellModel.swift */,
 			);
 			path = "Pinned List";
 			sourceTree = "<group>";
@@ -713,8 +713,8 @@
 		035B9A03252F74370080785C /* Library List */ = {
 			isa = PBXGroup;
 			children = (
-				03AF21EF252F2AB400468AB4 /* LibraryListCellModel.swift */,
 				035B9A04252F74590080785C /* LibraryListCell.swift */,
+				03AF21EF252F2AB400468AB4 /* LibraryListCellModel.swift */,
 			);
 			path = "Library List";
 			sourceTree = "<group>";
@@ -722,9 +722,9 @@
 		035B9A14252F74E60080785C /* Table View */ = {
 			isa = PBXGroup;
 			children = (
+				035B9A2E252F75500080785C /* LibraryListCellModelFactory.swift */,
 				035B9A15252F751F0080785C /* LibraryListTableViewDataSource.swift */,
 				035B9A25252F75300080785C /* LibraryListTableViewDelegate.swift */,
-				035B9A2E252F75500080785C /* LibraryListCellModelFactory.swift */,
 			);
 			path = "Table View";
 			sourceTree = "<group>";
@@ -754,19 +754,19 @@
 		036853232528425200782265 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				036853302528425200782265 /* ArchitectureTests */,
-				0368537E2528487700782265 /* Notification.Name+Extensions.swift */,
+				036853242528425200782265 /* Architecture.h */,
+				036853252528425200782265 /* Info.plist */,
 				0303E42E251DC4230060BCB5 /* CollectionView.swift */,
 				0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */,
 				0303E410251DC2110060BCB5 /* NavigationController.swift */,
+				0368537E2528487700782265 /* Notification.Name+Extensions.swift */,
+				036853582528426800782265 /* Observer.swift */,
 				0303E400251DC2010060BCB5 /* View.swift */,
-				03685360252845C000782265 /* View Controller */,
+				036853302528425200782265 /* ArchitectureTests */,
 				03CE2482251F554B00CE699A /* Search Bar */,
 				03CE2467251F4FB700CE699A /* Tab Bar */,
 				03632760251F306E0088681D /* Table View */,
-				036853242528425200782265 /* Architecture.h */,
-				036853252528425200782265 /* Info.plist */,
-				036853582528426800782265 /* Observer.swift */,
+				03685360252845C000782265 /* View Controller */,
 			);
 			path = Architecture;
 			sourceTree = "<group>";
@@ -774,8 +774,8 @@
 		036853302528425200782265 /* ArchitectureTests */ = {
 			isa = PBXGroup;
 			children = (
-				036853312528425200782265 /* ArchitectureTests.swift */,
 				036853332528425200782265 /* Info.plist */,
+				036853312528425200782265 /* ArchitectureTests.swift */,
 			);
 			path = ArchitectureTests;
 			sourceTree = "<group>";
@@ -783,9 +783,9 @@
 		03685360252845C000782265 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0303E3F8251DC1F80060BCB5 /* ViewController.swift */,
 				03685367252845E300782265 /* ObserverForSceneUpdatesEventResponder.swift */,
 				036853752528471C00782265 /* ObserverForViewController.swift */,
+				0303E3F8251DC1F80060BCB5 /* ViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -804,13 +804,13 @@
 				038157EC251D0A1F00D60752 /* ArchitectureNotes.md */,
 				038664E5251F1FE100418C54 /* StyleGuide.md */,
 				03E94B082521AEDB00DE2340 /* Preview.playground */,
+				036853232528425200782265 /* Architecture */,
 				038157A6251CCA2500D60752 /* Center */,
 				031D981725260360004BD2FD /* Core */,
-				036853232528425200782265 /* Architecture */,
-				03122F50252C1CF000ECBEBF /* Schema */,
 				46E896D369CD47D83EFCFEEF /* Frameworks */,
 				EEE177D713562F7128CA7775 /* Pods */,
 				038157A5251CCA2500D60752 /* Products */,
+				03122F50252C1CF000ECBEBF /* Schema */,
 			);
 			sourceTree = "<group>";
 		};
@@ -840,8 +840,8 @@
 				038157AB251CCA2600D60752 /* Assets.xcassets */,
 				038157BD251CCA2600D60752 /* CenterTests */,
 				038157C8251CCA2600D60752 /* CenterUITests */,
-				0303E446251DC7070060BCB5 /* View Hierarchy */,
 				03866561251F288500418C54 /* Components */,
+				0303E446251DC7070060BCB5 /* View Hierarchy */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -990,10 +990,10 @@
 		03866561251F288500418C54 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				03E94B162521B08400DE2340 /* Spacer */,
 				03CE24A3251F599C00CE699A /* Disclosure Button */,
-				03CE2492251F58FB00CE699A /* Table View Section Header */,
 				03866562251F288900418C54 /* Navigation Bar */,
+				03E94B162521B08400DE2340 /* Spacer */,
+				03CE2492251F58FB00CE699A /* Table View Section Header */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -1009,8 +1009,8 @@
 		0386657F251F295E00418C54 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				03866580251F297600418C54 /* Child View Controllers */,
 				0386658A251F299700418C54 /* SearchViewController.swift */,
+				03866580251F297600418C54 /* Child View Controllers */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1034,13 +1034,13 @@
 		03AF220A252F2AE000468AB4 /* Cell Models */ = {
 			isa = PBXGroup;
 			children = (
-				03AF2201252F2ADA00468AB4 /* FlowListCellModel.swift */,
-				03AF21F8252F2AC700468AB4 /* SystemListCellModel.swift */,
 				03AF2222252F2F7300468AB4 /* ConditionListCellModel.swift */,
+				03AF2201252F2ADA00468AB4 /* FlowListCellModel.swift */,
 				03AF223C252F306800468AB4 /* HistoryListCellModel.swift */,
+				03AF2350252F362D00468AB4 /* NoteListCellModel.swift */,
 				03AF2268252F316500468AB4 /* SearchResultListCellModel.swift */,
 				03AF22B6252F35A800468AB4 /* StateListCellModel.swift */,
-				03AF2350252F362D00468AB4 /* NoteListCellModel.swift */,
+				03AF21F8252F2AC700468AB4 /* SystemListCellModel.swift */,
 			);
 			path = "Cell Models";
 			sourceTree = "<group>";
@@ -1048,11 +1048,11 @@
 		03AF222B252F2FCC00468AB4 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				03AF2212252F2B6800468AB4 /* EventDetailViewModel.swift */,
 				03AF2233252F2FE100468AB4 /* ConditionDetailViewModel.swift */,
+				03AF2212252F2B6800468AB4 /* EventDetailViewModel.swift */,
 				03AF2245252F30AE00468AB4 /* FilterDetailViewModel.swift */,
-				03AF224E252F310100468AB4 /* SearchViewModel.swift */,
 				03AF2271252F31C600468AB4 /* FlowDetailViewModel.swift */,
+				03AF224E252F310100468AB4 /* SearchViewModel.swift */,
 				03AF22AD252F356600468AB4 /* StockDetailViewModel.swift */,
 			);
 			path = "View Models";
@@ -1069,11 +1069,11 @@
 		03AF228A252F32A500468AB4 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				03AF2362252F43BC00468AB4 /* AmountDetailInteractor.swift */,
 				03AF228B252F32BC00468AB4 /* FlowDetailInteractor.swift */,
 				03AF229B252F337000468AB4 /* LibraryDetailListInteractor.swift */,
-				03AF22A4252F33EA00468AB4 /* SystemDetailInteractor.swift */,
 				03AF2359252F365D00468AB4 /* StockDetailInteractor.swift */,
-				03AF2362252F43BC00468AB4 /* AmountDetailInteractor.swift */,
+				03AF22A4252F33EA00468AB4 /* SystemDetailInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -1081,9 +1081,9 @@
 		03AF239B252F57E800468AB4 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				03AF23AA252F5A2B00468AB4 /* Event List */,
 				035B9A03252F74370080785C /* Library List */,
 				035B99B3252F6E5D0080785C /* Pinned List */,
-				03AF23AA252F5A2B00468AB4 /* Event List */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
@@ -1091,8 +1091,8 @@
 		03AF23AA252F5A2B00468AB4 /* Event List */ = {
 			isa = PBXGroup;
 			children = (
-				03AF227A252F31F700468AB4 /* EventListCellModel.swift */,
 				03AF2392252F57E300468AB4 /* EventListCell.swift */,
+				03AF227A252F31F700468AB4 /* EventListCellModel.swift */,
 			);
 			path = "Event List";
 			sourceTree = "<group>";
