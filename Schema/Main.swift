@@ -16,25 +16,6 @@ import CoreData
  
  */
 
-enum SourceType: Int16
-{
-    case date
-    case uptime
-    case timeSinceLaunch
-    case timeSinceDownload
-    case timeSinceForeground
-    
-    var name: String {
-        switch self {
-        case .date: return "date"
-        case .uptime: return "uptime"
-        case .timeSinceLaunch: return "timeSinceLaunch"
-        case .timeSinceDownload: return "timeSinceDownload"
-        case .timeSinceForeground: return "timeSinceForeground"
-        }
-    }
-}
-
 struct SymbolConstructor
 {
     var context: Context
@@ -55,63 +36,7 @@ func makeSymbol(with constructor: SymbolConstructor)
 
 func makeUpcomingEventsPredicate() -> NSPredicate
 {
-    // All events
-    // Not hidden
-    // With at least 1 condition
-    // Where the condition
-    // has a leftHand of the current date
-    // and a rightHand in the future
-    // And a comparison type of <, or <=
-    
-    // Or the condition
-    // has a leftHand of the future
-    // and a rightHand of the current date
-    // And a comparison type of >, or >=
-    
-//    let nonHiddenEventsPredicate = NSPredicate(format: "isHidden == %@", false)
-//    let
-    
-    let event = Event()
-    let conditions = event.conditions as? Set<Condition>
-    let results = conditions?.filter { condition -> Bool in
-//        switch condition.leftHand {
-//        case is DynamicSource:
-//
-//        case is RangeSource:
-//        case is StockSource:
-//        case is SystemSource:
-//        case is ValueSource:
-//        }
-        
-        let leftIsDate: Bool
-        let leftValue: Double
-        
-        if let leftHand = condition.leftHand as? DynamicSource {
-            leftIsDate = leftHand.sourceTypeRaw == SourceType.date.rawValue
-            leftValue = Date().timeIntervalSince1970
-        } else if let leftHand = condition.leftHand as? RangeSource {
-            leftIsDate = false
-//            leftValue = leftHand.max
-        } else if let leftHand = condition.leftHand as? StockSource {
-            leftIsDate = false
-            leftValue = (leftHand.stock?.amount as? ValueSource)?.value ?? 0
-        } else if let leftHand = condition.leftHand as? SystemSource {
-            leftIsDate = false
-//            leftValue = leftHand.system?.ideal.
-        } else if let leftHand = condition.leftHand as? ValueSource {
-            leftIsDate = false
-            leftValue = leftHand.value
-        }
-        
-        let rightIsDate: Bool
-        let rightValue: Double
-        
-        if let rightHand = condition.rightHand as? DynamicSource {
-            
-        } else if let rightHand = condition.rightHand as? ValueSource {
-            
-        } else
-    }
+    NSPredicate(value: false)
 }
 
 func makeUpcomingEventsFetchRequest() -> NSFetchRequest<Event>
@@ -130,4 +55,76 @@ func performFetchRequest<T>(fetchRequest: NSFetchRequest<T>, dataManager: DataMa
         assertionFailure(error.localizedDescription)
         return []
     }
+}
+
+func makeDateSourcesPredicate() -> NSPredicate
+{
+    NSPredicate(format: "sourceTypeRaw == %i", SourceType.date.rawValue)
+}
+
+func makeDateSourcesFetchRequest() -> NSFetchRequest<DynamicSource>
+{
+    let fetchRequest: NSFetchRequest<DynamicSource> = DynamicSource.fetchRequest()
+    fetchRequest.predicate = makeDateSourcesPredicate()
+    return fetchRequest
+}
+
+func eventsFromSources(_ sources: [Source]) -> [Event]
+{
+    var targetEvents: [Event] = sources.flatMap {
+        $0.targetOfCondition?.unwrappedEvents ?? []
+    }
+
+    let valueEvents = sources.flatMap {
+        $0.valueOfCondition?.unwrappedEvents ?? []
+    }
+    
+    targetEvents.append(contentsOf: valueEvents)
+    
+    return targetEvents
+}
+
+@discardableResult func makeDateSource(context: Context) -> DynamicSource
+{
+    let dateSource = DynamicSource(context: context)
+    dateSource.sourceTypeRaw = SourceType.date.rawValue
+    return dateSource
+}
+
+@discardableResult func makeFutureDateValueSource(context: Context) -> ValueSource
+{
+    let components = DateComponents(
+        calendar: .autoupdatingCurrent,
+        year: 2020,
+        month: 12,
+        day: 2,
+        hour: 8,
+        minute: 0,
+        second: 0)
+    let valueSource = ValueSource(context: context)
+    valueSource.value = components.date?.timeIntervalSince1970 ?? -1
+    return valueSource
+}
+
+@discardableResult func makeDateCondition(context: Context,
+                                          currentDate: DynamicSource,
+                                          futureDate: ValueSource) -> Condition
+{
+    let condition = Condition(context: context)
+    condition.leftHand = futureDate
+    condition.rightHand = currentDate
+    condition.comparisonType = .greaterThan // The future date is greater than the current date
+    return condition
+}
+
+@discardableResult func makeDateEvent(context: Context, condition: Condition) -> Event
+{
+    let event = Event(context: context)
+    
+    let name = Symbol(context: context)
+    name.name = "Birthday Party"
+    event.name = name
+        
+    event.addToConditions(condition)
+    return event
 }

@@ -48,6 +48,8 @@ open class DataManager: DataManagerProtocol
     
     public func save()
     {
+        // TODO: Consider doing this on the context's thread, if not already?
+        
         guard context.hasChanges else { return }
         
         do {
@@ -81,6 +83,14 @@ open class DataManager: DataManagerProtocol
     
     public func populate()
     {
-        // TODO: Populate the database with default data
+        let currentDate = makeDateSource(context: context)
+        let futureDate = makeFutureDateValueSource(context: context)
+        let dateCondition = makeDateCondition(
+            context: context,
+            currentDate: currentDate,
+            futureDate: futureDate)
+        makeDateEvent(context: context, condition: dateCondition)
+        
+        save()
     }
 }

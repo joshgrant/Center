@@ -15,6 +15,8 @@ class SchemaTests: XCTestCase
     
     override func setUpWithError() throws
     {
+        schema.populate()
+        
         print("Schema: \(schema)")
         print("Context: \(schema.context)")
         print("Container: \(schema.container)")
@@ -45,6 +47,17 @@ class SchemaTests: XCTestCase
         print(result)
         
         XCTAssertEqual(result.first?.name, "Hello")
+    }
+    
+    func testFindingEventsFromSource() throws
+    {
+        let fetchRequest = makeDateSourcesFetchRequest()
+        
+        let result = try schema.context.fetch(fetchRequest)
+        let events = eventsFromSources(result)
+        let event = events.first
+        
+        XCTAssertEqual(event?.unwrappedConditions.first?.isSatisfied, true)
     }
 
     func testPerformanceExample() throws

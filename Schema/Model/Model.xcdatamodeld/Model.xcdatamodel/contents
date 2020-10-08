@@ -19,7 +19,7 @@
     <entity name="Condition" representedClassName="Condition" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="comparisonTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="priorityTypeRaw" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="conditions" inverseEntity="Event"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="conditions" inverseEntity="Event"/>
         <relationship name="leftHand" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Source" inverseName="valueOfCondition" inverseEntity="Source"/>
         <relationship name="rightHand" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Source" inverseName="targetOfCondition" inverseEntity="Source"/>
     </entity>
