@@ -9,18 +9,6 @@ import UIKit
 import Architecture
 import Core
 
-protocol SettingsViewFactoryProtocol: TabBarItemFactoryProtocol
+struct SettingsViewFactory
 {
-    
-}
-
-struct SettingsViewFactory: SettingsViewFactoryProtocol
-{
-    func makeTabBarItem() -> UITabBarItem
-    {
-        return UITabBarItem(
-            title: "Settings",
-            image: Icon.settings.getImage(),
-            selectedImage: Icon.settings.getImage())
-    }
 }

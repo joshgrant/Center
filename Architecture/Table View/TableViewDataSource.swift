@@ -7,24 +7,28 @@
 
 import UIKit
 
-public typealias TableViewDataSourceType =
-    NSObject
-    & UITableViewDataSource
-
-public protocol TableViewDataSource: TableViewDataSourceType
+public class TableViewDataSource: NSObject, UITableViewDataSource
 {
-    func configure(tableView: TableView)
-    func cellClassAndReuseIdentifiers() -> [TableViewCellModel.Type]
-}
-
-public extension TableViewDataSource
-{
-    func configure(tableView: TableView)
+    var model: TableViewDataSourceModel
+    
+    init(model: TableViewDataSourceModel)
     {
-        tableView.dataSource = self
-        
-        cellClassAndReuseIdentifiers().forEach { pair in
-            tableView.register(pair.cellClass, forCellReuseIdentifier: pair.cellReuseIdentifier)
-        }
+        self.model = model
+    }
+    
+    public func numberOfSections(in tableView: UITableView) -> Int
+    {
+        model.numberOfRows.count
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        model.numberOfRows[section]
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cellModel = model.cellModels[indexPath.section][indexPath.row]
+        return makeCell(in: tableView, at: indexPath, with: cellModel)
     }
 }

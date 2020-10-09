@@ -10,15 +10,17 @@ import Architecture
 
 class DashboardViewController: ViewController
 {
-    var viewFactory: DashboardViewFactoryProtocol
+    var viewFactory: DashboardViewFactory
     let searchBarDelegate = DashboardSearchBarDelegate()
     
     var tableView: TableView
     
-    init(viewFactory: DashboardViewFactoryProtocol)
+    init(viewFactory: DashboardViewFactory)
     {
         self.viewFactory = viewFactory
-        self.tableView = viewFactory.makeTableView()
+
+        let model = makeDashboardTableViewModel()
+        self.tableView = makeTableView(from: model)
         
         super.init()
 
@@ -31,16 +33,11 @@ class DashboardViewController: ViewController
         self.view = tableView
     }
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-    }
-    
     // MARK: - Configuration
     
     private func configureTabBarItem()
     {
-        tabBarItem = viewFactory.makeTabBarItem()
+        tabBarItem = TabBarItem.dashboard.makeUITabBarItem()
     }
     
     private func configureNavigationItem()

@@ -53,10 +53,11 @@ struct RootViewFactory: RootViewFactoryProtocol
     
     func makeLibraryRootViewController() -> UIViewController
     {
-        let viewFactory = LibraryListViewFactory(environment: libraryListEnvironment)
-        let viewController = LibraryListViewController(viewFactory: viewFactory)
-        let navigationController = NavigationController(rootViewController: viewController)
-        return navigationController
+//        let viewFactory = LibraryListViewFactory(environment: libraryListEnvironment)
+//        let viewController = LibraryListViewController(viewFactory: viewFactory)
+//        let navigationController = NavigationController(rootViewController: viewController)
+//        return navigationController
+        return UIViewController() // TODO: FIX
     }
     
     func makeInboxRootViewController() -> UIViewController

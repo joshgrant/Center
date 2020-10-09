@@ -10,17 +10,30 @@ import Architecture
 
 class LibraryListViewController: ViewController
 {
-    var viewFactory: LibraryListViewFactory
+//    var viewFactory: LibraryListViewFactory
     
     var tableView: TableView
     
-    init(viewFactory: LibraryListViewFactory)
+    init(environment: LibraryListEnvironment) throws
     {
-        self.viewFactory = viewFactory
-        self.tableView = viewFactory.makeTableView()
+        let dataModel = try makeLibraryListTableDataModel(context: environment.database.context)
+        self.tableView = makeTableView(from: dataModel)
         
         super.init()
-        
+//    }
+    
+//    init(viewFactory: LibraryListViewFactory)
+//    {
+//        self.viewFactory = viewFactory
+//
+//        self.tableView = makeTableView(
+//            delegate: viewFactory.environment.tableViewDelegate,
+//            dataSource: viewFactory.environment.tableViewDataSource)
+//        registerCellModelTypes$(LibraryListTableViewDataSource.cellClassAndReuseIdentifiers(),
+//                                in: tableView)
+//
+//        super.init()
+//
         configureTabBarItem()
         configureNavigationItem()
     }
@@ -32,7 +45,7 @@ class LibraryListViewController: ViewController
     
     private func configureTabBarItem()
     {
-        tabBarItem = viewFactory.makeTabBarItem()
+        tabBarItem = TabBarItem.library.makeUITabBarItem()
     }
     
     private func configureNavigationItem()

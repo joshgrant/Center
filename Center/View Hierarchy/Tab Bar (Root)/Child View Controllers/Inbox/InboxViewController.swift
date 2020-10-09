@@ -10,9 +10,9 @@ import Architecture
 
 class InboxViewController: ViewController
 {
-    init(viewFactory: InboxViewFactoryProtocol)
+    init(viewFactory: InboxViewFactory)
     {
         super.init()
-        self.tabBarItem = viewFactory.makeTabBarItem()
+        self.tabBarItem = TabBarItem.inbox.makeUITabBarItem()
     }
 }

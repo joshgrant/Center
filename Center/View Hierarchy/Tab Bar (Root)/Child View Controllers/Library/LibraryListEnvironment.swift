@@ -17,15 +17,15 @@ class LibraryListEnvironment
         self.database = database
     }
     
-    lazy var cellModelFactory: LibraryListCellModelFactory = {
-        try! LibraryListCellModelFactory(database: database)
-    }()
-    
-    lazy var tableViewDataSource: LibraryListTableViewDataSource = {
-        LibraryListTableViewDataSource(cellModelFactory: cellModelFactory)
-    }()
-    
-    lazy var tableViewDelegate: LibraryListTableViewDelegate = {
-        LibraryListTableViewDelegate()
-    }()
+//    lazy var cellModelFactory: LibraryListCellModelFactory = {
+//        try! LibraryListCellModelFactory(database: database)
+//    }()
+//    
+//    lazy var tableViewDataSource: LibraryListTableViewDataSource = {
+//        LibraryListTableViewDataSource(cellModelFactory: cellModelFactory)
+//    }()
+//    
+//    lazy var tableViewDelegate: LibraryListTableViewDelegate = {
+//        LibraryListTableViewDelegate()
+//    }()
 }

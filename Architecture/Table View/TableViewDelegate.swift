@@ -7,19 +7,27 @@
 
 import UIKit
 
-public typealias TableViewDelegateType =
-    NSObject
-    & UITableViewDelegate
-
-public protocol TableViewDelegate: TableViewDelegateType
+public class TableViewDelegate: NSObject, UITableViewDelegate
 {
-    func configure(tableView: TableView)
-}
-
-public extension TableViewDelegate
-{
-    func configure(tableView: TableView)
+    var model: TableViewDelegateModel
+    
+    init(model: TableViewDelegateModel)
     {
-        tableView.delegate = self
+        self.model = model
+    }
+    
+    public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat
+    {
+        model.estimatedSectionHeaderHeights?[section] ?? 0
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        model.sectionHeaderHeights?[section] ?? 0
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    {
+        model.headerViews?[section]
     }
 }

@@ -10,10 +10,10 @@ import Architecture
 
 class SettingsViewController: ViewController
 {
-    init(viewFactory: SettingsViewFactoryProtocol)
+    init(viewFactory: SettingsViewFactory)
     {
         super.init()
-        self.tabBarItem = viewFactory.makeTabBarItem()
+        self.tabBarItem = TabBarItem.settings.makeUITabBarItem()
     }
     
     override func viewDidLoad() {
