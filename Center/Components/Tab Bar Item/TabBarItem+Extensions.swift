@@ -8,14 +8,6 @@
 import UIKit
 import Core
 
-public enum TabBarItem
-{
-    case dashboard
-    case library
-    case inbox
-    case settings
-}
-
 public extension TabBarItem
 {
     var title: String

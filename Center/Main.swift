@@ -10,238 +10,102 @@ import Core
 import Schema
 import Architecture
 
-public struct TableViewModel
-{
-    var style: UITableView.Style = .grouped
-    
-    var delegate: TableViewDelegate
-    var dataSource: TableViewDataSource
-    
-    var cellModelTypes: [TableViewCellModel.Type]
-}
 
-public struct TableViewDataSourceModel // TODO: Rename to TableViewDataSource
+//struct TabBarControllerModel
+//{
+//
+//}
+
+func makeTabBarControllers() -> [UIViewController]
 {
-    var cellModels: [[TableViewCellModel]]
-    
-    var numberOfRows: [Int] {
-        cellModels.map {
-            $0.count
-        }
+    TabBarItem.allCases.map {
+        makeViewController(tabBarItem: $0)
     }
 }
 
-public func makeTableView(from tableViewModel: TableViewModel) -> TableView
+func makeViewController(tabBarItem: TabBarItem) -> UIViewController
 {
-    let tableView = TableView(frame: .zero, style: tableViewModel.style)
-    
-    tableView.delegate = tableViewModel.delegate
-    tableView.dataSource = tableViewModel.dataSource
-    
-    tableViewModel.cellModelTypes.forEach {
-        tableView.register($0.cellClass, forCellReuseIdentifier: $0.cellReuseIdentifier)
-    }
-    
-    return tableView
-}
-
-// LIBRARY LIST
-
-func makeLibraryListTableDelegate(context: Context) throws -> TableViewDelegate
-{
-    let model = TableViewDelegateModel(
-        headerViews: nil,
-        sectionHeaderHeights: nil,
-        estimatedSectionHeaderHeights: nil)
-    return TableViewDelegate(model: model)
-}
-
-func makeLibraryListTableDataSource(context: Context) throws -> TableViewDataSource
-{
-    let data = try makeLibraryListTableData(context: context)
-    return makeTableViewDataSource(with: data)
-}
-
-func makeLibraryListTableViewCellModelTypes() -> [TableViewCellModel.Type]
-{
-    [LibraryListCellModel.self]
-}
-
-func makeLibraryListTableData(context: Context) throws -> TableViewDataSourceModel
-{
-    let models = try makeLibraryListCellModels(context: context)
-    return TableViewDataSourceModel(cellModels: models)
-}
-
-func makeLibraryListTableDataModel(context: Context) throws -> TableViewModel
-{
-    TableViewModel(
-        style: .grouped,
-        delegate: try makeLibraryListTableDelegate(context: context),
-        dataSource: try makeLibraryListTableDataSource(context: context),
-        cellModelTypes: makeLibraryListTableViewCellModelTypes())
-}
-
-func makeLibraryListCellModels(context: Context) throws -> [[TableViewCellModel]]
-{
-    let cellModels = try EntityType.allCases.map {
-        try makeLibraryListCellModel(for: $0, context: context)
-    }
-    
-    return [cellModels]
-}
-
-func makeLibraryListCellModel(for entityType: EntityType, context: Context) throws -> LibraryListCellModel
-{
-    LibraryListCellModel(
-        image: imageForEntityType(entityType),
-        title: titleForEntityType(entityType),
-        count: try countForEntityType(entityType, context: context))
-}
-
-// DASHBOARD
-
-func makeDashboardTableViewCellModelTypes() -> [TableViewCellModel.Type]
-{
-    [PinnedListCellModel.self, EventListCellModel.self]
-}
-
-func makeDashboardTableViewHeaderModels() -> [TableViewHeaderModel]
-{
-    DashboardSectionHeader.allCases.map {
-        $0.makeHeaderModel()
-    }
-}
-
-func makeTableViewSectionHeader(model: TableViewHeaderModel) -> View
-{
-    let view = View(frame: CGRect(origin: .zero, size: .init(width: 30, height: 30)))
-    view.backgroundColor = .systemGroupedBackground
-    
-    let stackViewFactory = TableViewSectionHeaderViewFactory(sectionHeaderModel: model)
-    
-    let stackView = stackViewFactory.makeMainStackView()
-    view.embed(stackView)
-    
-    return view
-}
-
-func makeDashboardTableViewHeaderViews() -> [UIView?]
-{
-    let models = makeDashboardTableViewHeaderModels()
-    return models.map {
-        makeTableViewSectionHeader(model: $0)
-    }
-}
-
-func makeDashboardTableViewDelegateModel() -> TableViewDelegateModel
-{
-    let headerHeights: [CGFloat] = DashboardSectionHeader.allCases.count.map { 44 }
-    
-    return TableViewDelegateModel(
-        headerViews: makeDashboardTableViewHeaderViews(),
-        sectionHeaderHeights: headerHeights,
-        estimatedSectionHeaderHeights: headerHeights)
-}
-
-func makeDashboardTableViewDelegate() -> TableViewDelegate
-{
-    TableViewDelegate(model: makeDashboardTableViewDelegateModel())
-}
-
-func makeDashboardTableViewCellModels() -> [[TableViewCellModel]]
-{
-    // TODO:
-    return [[]]
-}
-
-func makeDashboardTableViewDataSourceModel() -> TableViewDataSourceModel
-{
-    TableViewDataSourceModel(cellModels: makeDashboardTableViewCellModels())
-}
-
-func makeDashboardTableViewDataSource() -> TableViewDataSource
-{
-    TableViewDataSource(model: makeDashboardTableViewDataSourceModel())
-}
-
-func makeDashboardTableViewModel() -> TableViewModel
-{
-    TableViewModel(
-        style: .grouped,
-        delegate: makeDashboardTableViewDelegate(),
-        dataSource: makeDashboardTableViewDataSource(),
-        cellModelTypes: makeDashboardTableViewCellModelTypes())
-}
-
-/**
- init(headerModelFactory: DashboardViewHeaderModelFactory,
- cellModelFactory: DashboardViewCellModelFactory)
- {
- self.headerModelFactory = headerModelFactory
- self.cellModelFactory = cellModelFactory
- }
- 
- static func cellClassAndReuseIdentifiers() -> [TableViewCellModel.Type]
- {
- [EventListCellModel.self, PinnedListCellModel.self]
- }
- 
- func numberOfSections(in tableView: UITableView) -> Int
- {
- return headerModelFactory.headerModels.count
- }
- 
- func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
- {
- // TODO: Cache this value
- return cellModelFactory.makeCellModels()[section].count
- }
- 
- func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
- {
- // TODO: Cache this value
- let model = cellModelFactory.makeCellModels()[indexPath.section][indexPath.row]
- let identifier = type(of: model).cellReuseIdentifier
- let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
- 
- if let cell = cell as? TableViewCell
- {
- cell.configureWithViewModel(model)
- }
- 
- return cell
- }
- */
-
-// GENERIC
-
-func makeTableViewDataSource(with model: TableViewDataSourceModel) -> TableViewDataSource
-{
-    TableViewDataSource(model: model)
-}
-
-func makeCell(
-    in tableView: UITableView,
-    at indexPath: IndexPath,
-    with model: TableViewCellModel) -> UITableViewCell
-{
-    let identifier = type(of: model).cellReuseIdentifier
-    let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-    
-    if let cell = cell as? TableViewCell
+    switch tabBarItem
     {
-        cell.configureWithViewModel(model)
+    case .dashboard:
+        return makeDashboardRootViewController()
+    case .library:
+        return makeLibraryRootViewController()
+    case .inbox:
+        return makeInboxRootViewController()
+    case .settings:
+        return makeSettingsRootViewController()
     }
-    
-    return cell
 }
 
-/// TABLE VIEW DELEGATE
+// Dashboard
 
-public struct TableViewDelegateModel
+func makeDashboardRootViewController() -> UIViewController
 {
-    var headerViews: [UIView?]?
-    var sectionHeaderHeights: [CGFloat]?
-    var estimatedSectionHeaderHeights: [CGFloat]?
+    let tableViewModel = makeDashboardTableViewModel()
+    let tableView = makeTableView(from: tableViewModel)
+    
+    let tabBarItem = TabBarItem.dashboard.makeUITabBarItem()
+    let delegate = DashboardSearchBarDelegate()
+    
+    var controller = DashboardViewController(
+        tableView: tableView,
+        tabBarItem: tabBarItem)
+    
+    // TODO: not in love with this mechanism...
+    controller = configureDashboardRootViewControllerNavigationItem(
+        on: controller,
+        searchBarDelegate: delegate)
+    
+    return controller
+}
+
+func configureDashboardRootViewControllerNavigationItem(
+    on controller: DashboardViewController,
+    searchBarDelegate: UISearchBarDelegate) -> DashboardViewController
+{
+    let searchController = makeDashboardSearchController(searchBarDelegate: searchBarDelegate)
+    controller.navigationItem.searchController = searchController
+    controller.navigationItem.hidesSearchBarWhenScrolling = true
+    return controller
+}
+
+func makeDashboardSearchViewController() -> SearchViewController
+{
+    SearchViewController()
+}
+
+func makeDashboardSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchController
+{
+    let searchResultsController = makeDashboardSearchViewController()
+    let searchController = UISearchController(searchResultsController: searchResultsController)
+    searchController.searchBar.delegate = searchBarDelegate
+    return searchController
+}
+
+// Library
+
+func makeLibraryRootViewController() -> UIViewController
+{
+    //        let viewFactory = LibraryListViewFactory(environment: libraryListEnvironment)
+    //        let viewController = LibraryListViewController(viewFactory: viewFactory)
+    //        let navigationController = NavigationController(rootViewController: viewController)
+    //        return navigationController
+    return UIViewController() // TODO: FIX
+}
+
+func makeInboxRootViewController() -> UIViewController
+{
+    let viewFactory = InboxViewFactory()
+    let viewController = InboxViewController(viewFactory: viewFactory)
+    let navigationController = NavigationController(rootViewController: viewController)
+    return navigationController
+}
+
+func makeSettingsRootViewController() -> UIViewController
+{
+    let viewFactory = SettingsViewFactory()
+    let viewController = SettingsViewController(viewFactory: viewFactory)
+    let navigationController = NavigationController(rootViewController: viewController)
+    return navigationController
 }

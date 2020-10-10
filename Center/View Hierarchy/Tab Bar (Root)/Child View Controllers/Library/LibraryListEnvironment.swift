@@ -10,12 +10,12 @@ import Schema
 
 class LibraryListEnvironment
 {
-    var database: Database
-    
-    init(database: Database)
-    {
-        self.database = database
-    }
+//    var database: Database
+//    
+//    init(database: Database)
+//    {
+//        self.database = database
+//    }
     
 //    lazy var cellModelFactory: LibraryListCellModelFactory = {
 //        try! LibraryListCellModelFactory(database: database)

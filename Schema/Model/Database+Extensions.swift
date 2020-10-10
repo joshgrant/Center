@@ -8,10 +8,10 @@
 import Foundation
 import CoreData
 
-func performFetchRequest<T>(fetchRequest: NSFetchRequest<T>, dataManager: Database) -> [T]
+func performFetchRequest<T>(fetchRequest: NSFetchRequest<T>, context: Context) -> [T]
 {
     do {
-        let result = try dataManager.context.fetch(fetchRequest)
+        let result = try context.fetch(fetchRequest)
         return result
     } catch {
         assertionFailure(error.localizedDescription)

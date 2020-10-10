@@ -10,13 +10,13 @@ import Schema
 
 class DashboardEnvironment
 {
-    var database: Database
-    
-    init(database: Database)
-    {
-        self.database = database
-    }
-    
+//    var database: Database
+//    
+//    init(database: Database)
+//    {
+//        self.database = database
+//    }
+//    
 //    lazy var headerModelFactory: DashboardViewHeaderModelFactory = {
 //       DashboardViewHeaderModelFactory()
 //    }()

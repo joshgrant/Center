@@ -14,77 +14,77 @@ import Schema
 class DashboardViewCellModelFactory: NSObject
 {
     // TODO: Why can't we use the generic <Event> here?
-    lazy var eventFetchController: NSFetchedResultsController<DynamicSource> = {
-        let controller = NSFetchedResultsController<DynamicSource>(
-            fetchRequest: makeDateSourcesFetchRequest(),
-            managedObjectContext: database.context,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-        return controller
-    }()
+//    lazy var eventFetchController: NSFetchedResultsController<DynamicSource> = {
+//        let controller = NSFetchedResultsController<DynamicSource>(
+//            fetchRequest: makeDateSourcesFetchRequest(),
+//            managedObjectContext: database.context,
+//            sectionNameKeyPath: nil,
+//            cacheName: nil)
+//        return controller
+//    }()
+//
+//    lazy var pinnedFetchController: NSFetchedResultsController<Entity> = {
+//        let controller = NSFetchedResultsController<Entity>(
+//            fetchRequest: Entity.makePinnedObjectsFetchRequest(),
+//            managedObjectContext: database.context,
+//            sectionNameKeyPath: nil,
+//            cacheName: nil)
+//        return controller
+//    }()
     
-    lazy var pinnedFetchController: NSFetchedResultsController<Entity> = {
-        let controller = NSFetchedResultsController<Entity>(
-            fetchRequest: Entity.makePinnedObjectsFetchRequest(),
-            managedObjectContext: database.context,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-        return controller
-    }()
+//    var database: Database
     
-    var database: Database
+//    init() throws
+//    {
+////        self.database = database
+//
+//        super.init()
+//
+////        eventFetchController.delegate = self
+////        try eventFetchController.performFetch()
+////
+////        pinnedFetchController.delegate = self
+////        try pinnedFetchController.performFetch()
+//    }
     
-    init(database: Database) throws
-    {
-        self.database = database
-        
-        super.init()
-        
-        eventFetchController.delegate = self
-        try eventFetchController.performFetch()
-        
-        pinnedFetchController.delegate = self
-        try pinnedFetchController.performFetch()
-    }
-    
-    func makeCellModels() -> [[TableViewCellModel]]
-    {
-        return [
-            pinnedModels(),
-            [],
-            forecastModels(),
-            []
-        ]
-    }
+//    func makeCellModels() -> [[TableViewCellModel]]
+//    {
+//        return [
+//            pinnedModels(),
+//            [],
+//            forecastModels(),
+//            []
+//        ]
+//    }
 }
 
 // MARK: - Events
 
 extension DashboardViewCellModelFactory
 {
-    func forecastModels() -> [TableViewCellModel]
-    {
-        guard let sources = eventFetchController.fetchedObjects else {
-            assertionFailure("Failed to get the fetched objects from: \(eventFetchController)")
-            return []
-        }
-        
-        let events = Event.eventsFromSources(sources)
-        let cells = EventListCellModel.eventCellModelsFrom(events: events)
-        
-        return cells
-    }
-    
-    func pinnedModels() -> [TableViewCellModel]
-    {
-        guard let objects = pinnedFetchController.fetchedObjects else {
-            assertionFailure("Failed to get the fetched objects from: \(pinnedFetchController)")
-            return []
-        }
-        
-        let cells = PinnedListCellModel.pinnedCellModels(from: objects)
-        return cells
-    }
+//    func forecastModels() -> [TableViewCellModel]
+//    {
+//        guard let sources = eventFetchController.fetchedObjects else {
+//            assertionFailure("Failed to get the fetched objects from: \(eventFetchController)")
+//            return []
+//        }
+//
+//        let events = Event.eventsFromSources(sources)
+//        let cells = EventListCellModel.eventCellModelsFrom(events: events)
+//
+//        return cells
+//    }
+//
+//    func pinnedModels() -> [TableViewCellModel]
+//    {
+//        guard let objects = pinnedFetchController.fetchedObjects else {
+//            assertionFailure("Failed to get the fetched objects from: \(pinnedFetchController)")
+//            return []
+//        }
+//
+//        let cells = PinnedListCellModel.pinnedCellModels(from: objects)
+//        return cells
+//    }
 }
 
 // MARK: - Fetch controller delegate

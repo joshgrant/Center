@@ -12,12 +12,12 @@ class LibraryListViewController: ViewController
 {
 //    var viewFactory: LibraryListViewFactory
     
-    var tableView: TableView
+    var tableView: TableView?
     
     init(environment: LibraryListEnvironment) throws
     {
-        let dataModel = try makeLibraryListTableDataModel(context: environment.database.context)
-        self.tableView = makeTableView(from: dataModel)
+//        let dataModel = try makeLibraryListTableDataModel(context: environment.database.context)
+//        self.tableView = makeTableView(from: dataModel)
         
         super.init()
 //    }

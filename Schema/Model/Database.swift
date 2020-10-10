@@ -13,78 +13,93 @@ public typealias Coordinator = NSPersistentStoreCoordinator
 public typealias Context = NSManagedObjectContext
 public typealias Model = NSManagedObjectModel
 
-open class Database
+public enum DatabaseError: Error
 {
-    public static let shared = Database()
+    case nilModelURL
+    case nilModel
+    case failedToLoadPersistentStores
+}
+
+func makeContainer(modelName: String) throws -> Container
+{
+    guard let modelURL = getModelURL(modelName: modelName) else {
+        throw DatabaseError.nilModelURL
+    }
     
-    public lazy var container: Container = {
-        
-        let modelName = "Model"
-        
-        guard let url = Bundle(for: type(of: self)).url(forResource: modelName, withExtension: "momd") else {
-            fatalError("Failed to load model from bundle")
+    guard let model = makeModel(from: modelURL) else {
+        throw DatabaseError.nilModel
+    }
+    
+    let container = Container(name: modelName, managedObjectModel: model)
+    return container
+}
+
+var modelExtension: String { "momd" }
+    
+func getModelURL(modelName: String) -> URL?
+{
+    Bundle.main.url(forResource: modelName, withExtension: modelExtension)
+}
+
+func makeModel(from url: URL) -> Model?
+{
+    Model(contentsOf: url)
+}
+
+func loadPersistentStores(on container: Container) throws -> Container
+{
+    container.loadPersistentStores { (description, error) in
+        if let error = error as NSError? {
+            fatalError("\(error.userInfo)")
         }
-        
-        guard let model = Model(contentsOf: url) else {
-            fatalError("Failed to initialized model from: \(url)")
-        }
-        
-        let container = Container(name: modelName, managedObjectModel: model)
-        
-        container.loadPersistentStores { (description, error) in
-            if let error = error {
-                fatalError(error.localizedDescription)
-            }
-        }
-        
-        return container
-    }()
+    }
     
-    public var context: Context { container.viewContext }
+    return container
+}
+
+func populate(context: Context)
+{
+    populateDatabaseWithBirthdayPartyEvent(context: context)
     
-    public var model: Model { container.managedObjectModel }
-    
-    public var coordinator: Coordinator { container.persistentStoreCoordinator }
-    
-    public func save()
+//    context.save()
+}
+
+public func erase(coordinator: Coordinator) throws
+{
+    for store in coordinator.persistentStores
     {
-        // TODO: Consider doing this on the context's thread, if not already?
+        if let path = store.url?.path
+        {
+            try FileManager.default.removeItem(atPath: path)
+        }
         
-        guard context.hasChanges else { return }
-        
+        try coordinator.remove(store)
+    }
+}
+
+public func redo(context: Context)
+{
+    context.redo()
+}
+
+public func undo(context: Context)
+{
+    context.undo()
+}
+
+public func save(context: Context)
+{
+    guard context.hasChanges else { return }
+    
+    context.perform {
         do {
             try context.save()
         } catch {
             fatalError(error.localizedDescription)
         }
     }
-    
-    public func undo()
-    {
-        context.undo()
-    }
-    
-    public func redo()
-    {
-        context.redo()
-    }
-    
-    public func erase() throws
-    {
-        for store in coordinator.persistentStores
-        {
-            if let path = store.url?.path {
-                try FileManager.default.removeItem(atPath: path)
-            }
-            
-            try coordinator.remove(store)
-        }
-    }
-    
-    public func populate()
-    {
-        populateDatabaseWithBirthdayPartyEvent(context: context)
-        
-        save()
-    }
 }
+
+func context(from container: Container) -> Context { container.viewContext }
+func model(from container: Container) -> Model { container.managedObjectModel }
+func coordinator(from container: Container) -> Coordinator { container.persistentStoreCoordinator }

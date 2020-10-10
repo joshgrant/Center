@@ -18,12 +18,12 @@ public class TableViewDataSource: NSObject, UITableViewDataSource
     
     public func numberOfSections(in tableView: UITableView) -> Int
     {
-        model.numberOfRows.count
+        model.cellModels.count
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        model.numberOfRows[section]
+        numberOfRows(tableViewDataSourceModel: model)[section]
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

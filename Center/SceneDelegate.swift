@@ -23,13 +23,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     {
         guard let scene = scene as? UIWindowScene else { return }
         
-        let database = Database.shared
-        populateDatabaseWithBirthdayPartyEvent(context: database.context)
-        populateDatabaseWithWaterSystem(context: database.context)
+//        let database = Database.shared
+//        populateDatabaseWithBirthdayPartyEvent(context: database.context)
+//        populateDatabaseWithWaterSystem(context: database.context)
         
-        let environment = RootEnvironment(database: database)
-        let viewFactory = RootViewFactory(environment: environment)
-        let root = RootViewController(viewFactory: viewFactory)
+//        let environment = RootEnvironment(database: database)
+//        let viewFactory = RootViewFactory(environment: environment)
+        let root = RootViewController()
         
         let window = UIWindow(windowScene: scene)
         window.rootViewController = root

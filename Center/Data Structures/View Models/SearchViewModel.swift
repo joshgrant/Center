@@ -8,12 +8,6 @@
 import Foundation
 import Schema
 
-enum SearchViewType
-{
-    case search
-    case link
-}
-
 struct SearchViewModel
 {
     var searchText: String

@@ -9,23 +9,7 @@ import UIKit
 import Architecture
 import Core
 
-protocol TableViewSectionHeaderViewFactoryProtocol
-{
-    var sectionHeaderModel: TableViewHeaderModel { get }
-    
-    init(sectionHeaderModel: TableViewHeaderModel)
-    
-    func makeMainStackView() -> UIStackView
-    
-    func makeDisclosureButton() -> SectionHeaderDisclosureButton
-    func makeImageView(image: UIImage) -> UIImageView
-    func makeTitleView() -> UILabel
-    func makeSearchButton() -> UIButton
-    func makeLinkButton() -> UIButton
-    func makeAddButton() -> UIButton
-}
-
-public struct TableViewSectionHeaderViewFactory: TableViewSectionHeaderViewFactoryProtocol
+public struct TableViewSectionHeaderViewFactory
 {
     public var sectionHeaderModel: TableViewHeaderModel
     
@@ -81,9 +65,9 @@ public struct TableViewSectionHeaderViewFactory: TableViewSectionHeaderViewFacto
         return mainStackView
     }
     
-    public func makeDisclosureButton() -> SectionHeaderDisclosureButton
+    public func makeDisclosureButton() -> UIButton
     {
-        let button = SectionHeaderDisclosureButton()
+        let button = UIButton()
         button.setImage(UIImage(icon: .arrowDown), for: .normal)
         return button
     }

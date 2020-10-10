@@ -8,13 +8,8 @@
 import Foundation
 import Core
 
-enum DashboardSectionHeader: CaseIterable
+extension DashboardSectionHeader
 {
-    case pinned
-    case flows
-    case forecast
-    case priority
-    
     var title: String
     {
         switch self

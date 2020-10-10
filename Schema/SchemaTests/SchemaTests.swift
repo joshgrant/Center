@@ -54,10 +54,11 @@ class SchemaTests: XCTestCase
         let fetchRequest = makeDateSourcesFetchRequest()
         
         let result = try schema.context.fetch(fetchRequest)
-        let events = eventsFromSources(result)
+        let events = Event.eventsFromSources(result)
         let event = events.first
+        let conditions: [Condition]? = event?.unwrapped(\Event.conditions)
         
-        XCTAssertEqual(event?.unwrappedConditions.first?.isSatisfied, true)
+        XCTAssertEqual(conditions?.first?.isSatisfied, true)
     }
     
     func testUnwrapping() throws
@@ -65,7 +66,7 @@ class SchemaTests: XCTestCase
         let fetchRequest = makeDateSourcesFetchRequest()
         
         let result = try schema.context.fetch(fetchRequest)
-        let event = eventsFromSources(result).first!
+        let event = Event.eventsFromSources(result).first!
         
         let conditions: [Condition] = event.unwrapped(\Event.conditions)
         

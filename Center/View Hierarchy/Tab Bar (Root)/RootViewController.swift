@@ -9,15 +9,10 @@ import UIKit
 
 class RootViewController: TabBarController
 {
-    var viewFactory: RootViewFactoryProtocol
-    
-    init(viewFactory: RootViewFactoryProtocol)
+    override init()
     {
-        self.viewFactory = viewFactory
-        
         super.init()
-        
-        viewControllers = viewFactory.makeAllViewControllers()
+        viewControllers = makeTabBarControllers()
     }
     
     override func viewDidLoad()
