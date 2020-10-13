@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Schema
 
 // TODO: have this protocol inherit from "EventStorage" and "HistoryStorage" protocol
 protocol FlowDetailInteractorProtocol

@@ -6,63 +6,50 @@
 //
 
 import UIKit
-import Core
 
-public extension TabBarItem
+public func title(tabBarItem: TabBarItem) -> String
 {
-    var title: String
+    switch tabBarItem
     {
-        switch self
-        {
-        case .dashboard:
-            return "Dashboard"
-        case .library:
-            return "Library"
-        case .inbox:
-            return "Inbox"
-        case .settings:
-            return "Settings"
-        }
-    }
-    
-    var image: UIImage?
-    {
-        switch self
-        {
-        case .dashboard:
-            return Icon.dashboard.getImage()
-        case .library:
-            return Icon.library.getImage()
-        case .inbox:
-            return Icon.inbox.getImage()
-        case .settings:
-            return Icon.settings.getImage()
-        }
-    }
-    
-    var selectedImage: UIImage?
-    {
-        switch self
-        {
-        case .dashboard:
-            return Icon.dashboard.getImage()
-        case .library:
-            return Icon.dashboard.getImage()
-        case .inbox:
-            return Icon.dashboard.getImage()
-        case .settings:
-            return Icon.dashboard.getImage()
-        }
+    case .dashboard:
+        return "Dashboard"
+    case .library:
+        return "Library"
+    case .inbox:
+        return "Inbox"
+    case .settings:
+        return "Settings"
     }
 }
 
-public extension TabBarItem
+public func image(tabBarItem: TabBarItem) -> UIImage?
 {
-    func makeUITabBarItem() -> UITabBarItem
+    switch tabBarItem
     {
-        UITabBarItem(
-            title: title,
-            image: image,
-            selectedImage: selectedImage)
+    case .dashboard:
+        return Icon.dashboard.getImage()
+    case .library:
+        return Icon.library.getImage()
+    case .inbox:
+        return Icon.inbox.getImage()
+    case .settings:
+        return Icon.settings.getImage()
     }
+}
+
+public func selectedImage(tabBarItem: TabBarItem) -> UIImage?
+{
+    return image(tabBarItem: tabBarItem)
+}
+
+func makeUITabBarItem(tabBarItem: TabBarItem) -> UITabBarItem
+{
+    let _title = title(tabBarItem: tabBarItem)
+    let _image = image(tabBarItem: tabBarItem)
+    let _selectedImage = selectedImage(tabBarItem: tabBarItem)
+    
+    return UITabBarItem(
+        title: _title,
+        image: _image,
+        selectedImage: _selectedImage)
 }

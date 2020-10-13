@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import Architecture
 
 class InboxViewController: ViewController
 {
     init(viewFactory: InboxViewFactory)
     {
         super.init()
-        self.tabBarItem = TabBarItem.inbox.makeUITabBarItem()
+//        self.tabBarItem = TabBarItem.inbox.makeUITabBarItem()
     }
 }

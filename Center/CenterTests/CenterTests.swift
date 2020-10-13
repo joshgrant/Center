@@ -6,7 +6,6 @@
 //
 
 import XCTest
-@testable import Schema
 @testable import Center
 
 // TODO: Duplication with SchemaTests

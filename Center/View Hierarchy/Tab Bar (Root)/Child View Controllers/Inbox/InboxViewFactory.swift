@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Architecture
-import Core
 
 struct InboxViewFactory
 {

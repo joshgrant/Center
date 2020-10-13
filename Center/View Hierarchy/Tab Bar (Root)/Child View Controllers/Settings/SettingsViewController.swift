@@ -6,14 +6,13 @@
 //
 
 import UIKit
-import Architecture
 
 class SettingsViewController: ViewController
 {
     init(viewFactory: SettingsViewFactory)
     {
         super.init()
-        self.tabBarItem = TabBarItem.settings.makeUITabBarItem()
+//        self.tabBarItem = TabBarItem.settings.makeUITabBarItem()
     }
     
     override func viewDidLoad() {

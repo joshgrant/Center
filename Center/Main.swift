@@ -6,29 +6,20 @@
 //
 
 import UIKit
-import Core
-import Schema
-import Architecture
 
-
-//struct TabBarControllerModel
-//{
-//
-//}
-
-func makeTabBarControllers() -> [UIViewController]
+func makeTabBarControllers(context: Context) -> [UIViewController]
 {
     TabBarItem.allCases.map {
-        makeViewController(tabBarItem: $0)
+        makeViewController(tabBarItem: $0, context: context)
     }
 }
 
-func makeViewController(tabBarItem: TabBarItem) -> UIViewController
+func makeViewController(tabBarItem: TabBarItem, context: Context) -> UIViewController
 {
     switch tabBarItem
     {
     case .dashboard:
-        return makeDashboardRootViewController()
+        return makeDashboardRootViewController(context: context)
     case .library:
         return makeLibraryRootViewController()
     case .inbox:
@@ -40,44 +31,97 @@ func makeViewController(tabBarItem: TabBarItem) -> UIViewController
 
 // Dashboard
 
-func makeDashboardRootViewController() -> UIViewController
+func makeDashboardRootViewController(context: Context) -> UIViewController
 {
-    let tableViewModel = makeDashboardTableViewModel()
+    let tableViewModel = makeDashboardTableViewModel(context: context)
     let tableView = makeTableView(from: tableViewModel)
-    
-    let tabBarItem = TabBarItem.dashboard.makeUITabBarItem()
     let delegate = DashboardSearchBarDelegate()
     
-    var controller = DashboardViewController(
-        tableView: tableView,
-        tabBarItem: tabBarItem)
+    let cellModels = try! makeDashboardCellModels(context: context)
+    let dataSourceModel = TableViewDataSourceModel(cellModels: cellModels)
+    let dataSource = TableViewDataSource(model: dataSourceModel)
+    tableView.dataSource = dataSource
     
-    // TODO: not in love with this mechanism...
-    controller = configureDashboardRootViewControllerNavigationItem(
-        on: controller,
-        searchBarDelegate: delegate)
+    let controller = ViewController()
+    controller.view = tableView
+    controller.tabBarItem = makeUITabBarItem(tabBarItem: .dashboard)
     
-    return controller
-}
-
-func configureDashboardRootViewControllerNavigationItem(
-    on controller: DashboardViewController,
-    searchBarDelegate: UISearchBarDelegate) -> DashboardViewController
-{
-    let searchController = makeDashboardSearchController(searchBarDelegate: searchBarDelegate)
+    let searchController = makeDashboardSearchController(searchBarDelegate: delegate)
     controller.navigationItem.searchController = searchController
     controller.navigationItem.hidesSearchBarWhenScrolling = true
+    
     return controller
 }
 
-func makeDashboardSearchViewController() -> SearchViewController
+func makeDashboardCellModels(context: Context) throws -> [[TableViewCellModel]]
 {
-    SearchViewController()
+    [
+        try makePinnedModels(context: context),
+        [],
+        try makeForecastModels(context: context),
+        []
+    ]
+}
+
+func title(dashboardSectionHeader: DashboardSectionHeader) -> String
+{
+    switch dashboardSectionHeader
+    {
+    case .pinned:
+        return "Pinned"
+    case .flows:
+        return "Flows"
+    case .forecast:
+        return "Forecast"
+    case .priority:
+        return "Priority"
+    }
+}
+
+func icon(dashboardSectionHeader: DashboardSectionHeader) -> Icon
+{
+    switch dashboardSectionHeader
+    {
+    case .pinned:
+        return .pinFill
+    case .flows:
+        return .flow
+    case .forecast:
+        return .forecast
+    case .priority:
+        return .priority
+    }
+}
+
+func makeTableViewHeaderModel(dashboardSectionHeader: DashboardSectionHeader) -> TableViewHeaderModel
+{
+    let _title = title(dashboardSectionHeader: dashboardSectionHeader)
+    let _icon = icon(dashboardSectionHeader: dashboardSectionHeader)
+    return TableViewHeaderModel(
+        title: _title,
+        icon: _icon)
+}
+
+func makeForecastModels(context: Context) throws -> [TableViewCellModel]
+{
+    let fetchRequest = makeDateSourcesFetchRequest()
+    let sources = try context.fetch(fetchRequest)
+    let events = Event.eventsFromSources(sources)
+    let cells = EventListCellModel.eventCellModelsFrom(events: events)
+    return cells
+}
+
+func makePinnedModels(context: Context) throws -> [TableViewCellModel]
+{
+    let fetchRequest = Entity.makePinnedObjectsFetchRequest()
+    let objects = try context.fetch(fetchRequest)
+    let cells = PinnedListCellModel.pinnedCellModels(from: objects)
+    return cells
 }
 
 func makeDashboardSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchController
 {
-    let searchResultsController = makeDashboardSearchViewController()
+    let searchResultsController = SearchViewController()
     let searchController = UISearchController(searchResultsController: searchResultsController)
     searchController.searchBar.delegate = searchBarDelegate
     return searchController
@@ -87,25 +131,21 @@ func makeDashboardSearchController(searchBarDelegate: UISearchBarDelegate) -> UI
 
 func makeLibraryRootViewController() -> UIViewController
 {
-    //        let viewFactory = LibraryListViewFactory(environment: libraryListEnvironment)
-    //        let viewController = LibraryListViewController(viewFactory: viewFactory)
-    //        let navigationController = NavigationController(rootViewController: viewController)
-    //        return navigationController
-    return UIViewController() // TODO: FIX
+    let controller = ViewController()
+    controller.tabBarItem = makeUITabBarItem(tabBarItem: .library)
+    return controller
 }
 
 func makeInboxRootViewController() -> UIViewController
 {
-    let viewFactory = InboxViewFactory()
-    let viewController = InboxViewController(viewFactory: viewFactory)
-    let navigationController = NavigationController(rootViewController: viewController)
-    return navigationController
+    let controller = ViewController()
+    controller.tabBarItem = makeUITabBarItem(tabBarItem: .inbox)
+    return controller
 }
 
 func makeSettingsRootViewController() -> UIViewController
 {
-    let viewFactory = SettingsViewFactory()
-    let viewController = SettingsViewController(viewFactory: viewFactory)
-    let navigationController = NavigationController(rootViewController: viewController)
-    return navigationController
+    let controller = ViewController()
+    controller.tabBarItem = makeUITabBarItem(tabBarItem: .settings)
+    return controller
 }

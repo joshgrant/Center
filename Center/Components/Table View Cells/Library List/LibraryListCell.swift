@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Architecture
 
 class LibraryListCell: TableViewCell
 {

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Architecture
 
 class LibraryListViewController: ViewController
 {
@@ -45,7 +44,7 @@ class LibraryListViewController: ViewController
     
     private func configureTabBarItem()
     {
-        tabBarItem = TabBarItem.library.makeUITabBarItem()
+        tabBarItem = makeUITabBarItem(tabBarItem: .library)
     }
     
     private func configureNavigationItem()

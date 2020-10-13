@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Architecture
-import Schema
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -29,7 +27,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 //        let environment = RootEnvironment(database: database)
 //        let viewFactory = RootViewFactory(environment: environment)
-        let root = RootViewController()
+        var container = try! makeContainer(modelName: "Model")
+        container = try! loadPersistentStores(on: container)
+        let _context = context(from: container)
+        let root = TabBarController()
+        root.viewControllers = makeTabBarControllers(context: _context)
         
         let window = UIWindow(windowScene: scene)
         window.rootViewController = root

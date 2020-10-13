@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Architecture
-import Core
 
 public struct TableViewSectionHeaderViewFactory
 {
@@ -75,7 +73,7 @@ public struct TableViewSectionHeaderViewFactory
     public func makeImageView(image: UIImage) -> UIImageView
     {
         let imageView = UIImageView(image: image)
-        imageView.tintColor = Color.tableViewHeaderIcon
+        imageView.tintColor = UIColor.tableViewHeaderIcon
         return imageView
     }
     
@@ -84,7 +82,7 @@ public struct TableViewSectionHeaderViewFactory
         let label = UILabel()
         
         label.font = .systemFont(ofSize: 13)
-        label.textColor = Color.tableViewHeaderFont
+        label.textColor = UIColor.tableViewHeaderFont
         
         label.text = sectionHeaderModel.title
         label.text = sectionHeaderModel.title.localizedUppercase

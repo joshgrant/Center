@@ -5,8 +5,6 @@
 //  Created by Joshua Grant on 10/10/20.
 //
 
-import Foundation
-import Architecture
 import UIKit
 
 func makeDashboardTableViewCellModelTypes() -> [TableViewCellModel.Type]
@@ -14,10 +12,10 @@ func makeDashboardTableViewCellModelTypes() -> [TableViewCellModel.Type]
     [PinnedListCellModel.self, EventListCellModel.self]
 }
 
-func makeDashboardTableViewHeaderModels() -> [TableViewHeaderModel]
+func makeDashboardTableViewHeaderModels(context: Context) -> [TableViewHeaderModel]
 {
     DashboardSectionHeader.allCases.map {
-        $0.makeHeaderModel()
+        makeTableViewHeaderModel(dashboardSectionHeader: $0)
     }
 }
 
@@ -34,27 +32,27 @@ func makeTableViewSectionHeader(model: TableViewHeaderModel) -> View
     return view
 }
 
-func makeDashboardTableViewHeaderViews() -> [UIView?]
+func makeDashboardTableViewHeaderViews(context: Context) -> [UIView?]
 {
-    let models = makeDashboardTableViewHeaderModels()
+    let models = makeDashboardTableViewHeaderModels(context: context)
     return models.map {
         makeTableViewSectionHeader(model: $0)
     }
 }
 
-func makeDashboardTableViewDelegateModel() -> TableViewDelegateModel
+func makeDashboardTableViewDelegateModel(context: Context) -> TableViewDelegateModel
 {
     let headerHeights: [CGFloat] = DashboardSectionHeader.allCases.count.map { 44 }
     
     return TableViewDelegateModel(
-        headerViews: makeDashboardTableViewHeaderViews(),
+        headerViews: makeDashboardTableViewHeaderViews(context: context),
         sectionHeaderHeights: headerHeights,
         estimatedSectionHeaderHeights: headerHeights)
 }
 
-func makeDashboardTableViewDelegate() -> TableViewDelegate
+func makeDashboardTableViewDelegate(context: Context) -> TableViewDelegate
 {
-    TableViewDelegate(model: makeDashboardTableViewDelegateModel())
+    TableViewDelegate(model: makeDashboardTableViewDelegateModel(context: context))
 }
 
 func makeDashboardTableViewCellModels() -> [[TableViewCellModel]]
@@ -73,11 +71,11 @@ func makeDashboardTableViewDataSource() -> TableViewDataSource
     TableViewDataSource(model: makeDashboardTableViewDataSourceModel())
 }
 
-func makeDashboardTableViewModel() -> TableViewModel
+func makeDashboardTableViewModel(context: Context) -> TableViewModel
 {
     TableViewModel(
         style: .grouped,
-        delegate: makeDashboardTableViewDelegate(),
+        delegate: makeDashboardTableViewDelegate(context: context),
         dataSource: makeDashboardTableViewDataSource(),
         cellModelTypes: makeDashboardTableViewCellModelTypes())
 }

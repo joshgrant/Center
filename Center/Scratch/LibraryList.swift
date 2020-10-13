@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Schema
 
 func makeLibraryListTableDelegate(context: Context) throws -> TableViewDelegate
 {

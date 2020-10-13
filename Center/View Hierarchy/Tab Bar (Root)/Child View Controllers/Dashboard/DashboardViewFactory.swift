@@ -7,8 +7,6 @@
 
 import UIKit
 import CoreData
-import Architecture
-import Core
 
 struct DashboardViewFactory
 {

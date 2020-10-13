@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Schema
 // Each of these should activate a useCase
 
 protocol DashboardInteractionControllerProtocol

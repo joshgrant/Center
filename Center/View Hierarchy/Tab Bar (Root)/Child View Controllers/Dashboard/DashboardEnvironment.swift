@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Schema
 
 class DashboardEnvironment
 {

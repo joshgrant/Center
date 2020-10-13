@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Schema
 
 // TODO: Extend the "back button" interactor
 // TODO: Extend the "add" interactor
