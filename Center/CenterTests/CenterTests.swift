@@ -42,7 +42,7 @@ class CenterTests: XCTestCase
 
     func testLibraryObjects() throws
     {
-        let objects = try makeLibraryListCellModels(context: schema.context)
+        let objects = try makeLibraryCellModels(context: schema.context)
         
         XCTAssertEqual(objects.first?.count, 0)
         XCTAssertEqual(objects[3].count, 1)

@@ -85,7 +85,7 @@ func makeDashboardRootViewController(context: Context) -> UIViewController
     controller.tabBarItem = makeUITabBarItem(tabBarItem: .dashboard)
     
     let delegate = DashboardSearchBarDelegate()
-    let searchController = makeDashboardSearchController(searchBarDelegate: delegate)
+    let searchController = makeSearchController(searchBarDelegate: delegate)
     controller.navigationItem.searchController = searchController
     controller.navigationItem.hidesSearchBarWhenScrolling = true
     
@@ -170,7 +170,7 @@ func makePinnedModels(context: Context) -> [TableViewCellModel]
     }
 }
 
-func makeDashboardSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchController
+func makeSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchController
 {
     let searchResultsController = SearchViewController()
     let searchController = UISearchController(searchResultsController: searchResultsController)

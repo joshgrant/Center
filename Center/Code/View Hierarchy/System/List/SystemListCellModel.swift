@@ -22,6 +22,8 @@ extension SystemListCellModel: TableViewCellModel
 
 func subtitleForSystemListCellModel(_ cellModel: SystemListCellModel) -> String
 {
-    // TODO: Check the formatting for this...
-    "\(cellModel.percentIdeal)% ideal"
+    let numberFormatter = NumberFormatter()
+    numberFormatter.allowsFloats = false
+    numberFormatter.numberStyle = .percent
+    return numberFormatter.string(from: NSNumber(value: cellModel.percentIdeal)) ?? ""
 }

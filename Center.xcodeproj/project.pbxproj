@@ -79,7 +79,7 @@
 		034AE16025322E560052E223 /* TableViewCell+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034AE15F25322E560052E223 /* TableViewCell+Functions.swift */; };
 		034AE18525322EEA0052E223 /* TableViewDataSourceModel+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034AE18425322EEA0052E223 /* TableViewDataSourceModel+Functions.swift */; };
 		034B7B132535CF9A00EB84D1 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034B7B122535CF9A00EB84D1 /* Dashboard.swift */; };
-		034B7B172535CFFC00EB84D1 /* DashboardSearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034B7B162535CFFC00EB84D1 /* DashboardSearchBarDelegate.swift */; };
+		034B7B172535CFFC00EB84D1 /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034B7B162535CFFC00EB84D1 /* SearchBarDelegate.swift */; };
 		034B7B232535DCEB00EB84D1 /* SystemListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034B7B222535DCEB00EB84D1 /* SystemListCell.swift */; };
 		035B99B5252F6E8B0080785C /* PinnedListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035B99B4252F6E8B0080785C /* PinnedListCellModel.swift */; };
 		035B99BE252F6E9D0080785C /* PinnedListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035B99BD252F6E9D0080785C /* PinnedListCell.swift */; };
@@ -92,7 +92,7 @@
 		0373AF0E2526009700B92093 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E408251DC2080060BCB5 /* TableView.swift */; };
 		0373AF112526009A00B92093 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DA0F9251DC9C100ABDC6E /* TabBarController.swift */; };
 		0373AF142526009C00B92093 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E426251DC3F60060BCB5 /* TabBar.swift */; };
-		0373AF1A252600A400B92093 /* SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2483251F555A00CE699A /* SearchBarDelegate.swift */; };
+		0373AF1A252600A400B92093 /* SearchBarDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2483251F555A00CE699A /* SearchBarDelegateProtocol.swift */; };
 		038157AC251CCA2600D60752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038157AB251CCA2600D60752 /* Assets.xcassets */; };
 		038157BF251CCA2600D60752 /* CenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157BE251CCA2600D60752 /* CenterTests.swift */; };
 		038157CA251CCA2600D60752 /* CenterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157C9251CCA2600D60752 /* CenterUITests.swift */; };
@@ -122,6 +122,8 @@
 		03AF2393252F57E300468AB4 /* EventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2392252F57E300468AB4 /* EventListCell.swift */; };
 		03C015A025301E860006F67E /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C0159F25301E860006F67E /* Main.swift */; };
 		03C015AA25301FB30006F67E /* TabBarItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C015A925301FB30006F67E /* TabBarItem+Extensions.swift */; };
+		03C591672535E21C00020FD2 /* SystemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C591662535E21C00020FD2 /* SystemList.swift */; };
+		03C591752535E79A00020FD2 /* SystemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C591742535E79A00020FD2 /* SystemDetail.swift */; };
 		03CE2423251F3D7400CE699A /* InboxViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2422251F3D7400CE699A /* InboxViewFactory.swift */; };
 		03CE2433251F3F4C00CE699A /* SettingsViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */; };
 		03CE249C251F597E00CE699A /* TableViewSectionHeaderViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE249B251F597E00CE699A /* TableViewSectionHeaderViewFactory.swift */; };
@@ -201,7 +203,7 @@
 		034AE15F25322E560052E223 /* TableViewCell+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+Functions.swift"; sourceTree = "<group>"; };
 		034AE18425322EEA0052E223 /* TableViewDataSourceModel+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewDataSourceModel+Functions.swift"; sourceTree = "<group>"; };
 		034B7B122535CF9A00EB84D1 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
-		034B7B162535CFFC00EB84D1 /* DashboardSearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSearchBarDelegate.swift; sourceTree = "<group>"; };
+		034B7B162535CFFC00EB84D1 /* SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchBarDelegate.swift; path = "View Hierarchy/Tab Bar (Root)/Child View Controllers/Dashboard/SearchBarDelegate.swift"; sourceTree = "<group>"; };
 		034B7B222535DCEB00EB84D1 /* SystemListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemListCell.swift; sourceTree = "<group>"; };
 		034DA0F9251DC9C100ABDC6E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		035B99B4252F6E8B0080785C /* PinnedListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedListCellModel.swift; sourceTree = "<group>"; };
@@ -275,10 +277,12 @@
 		03AF2392252F57E300468AB4 /* EventListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListCell.swift; sourceTree = "<group>"; };
 		03C0159F25301E860006F67E /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		03C015A925301FB30006F67E /* TabBarItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBarItem+Extensions.swift"; sourceTree = "<group>"; };
+		03C591662535E21C00020FD2 /* SystemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemList.swift; sourceTree = "<group>"; };
+		03C591742535E79A00020FD2 /* SystemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDetail.swift; sourceTree = "<group>"; };
 		03CE2422251F3D7400CE699A /* InboxViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewFactory.swift; sourceTree = "<group>"; };
 		03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewFactory.swift; sourceTree = "<group>"; };
 		03CE247A251F4FCD00CE699A /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
-		03CE2483251F555A00CE699A /* SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegate.swift; sourceTree = "<group>"; };
+		03CE2483251F555A00CE699A /* SearchBarDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegateProtocol.swift; sourceTree = "<group>"; };
 		03CE249B251F597E00CE699A /* TableViewSectionHeaderViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSectionHeaderViewFactory.swift; sourceTree = "<group>"; };
 		03CE24C8251F5FB400CE699A /* TableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModel.swift; sourceTree = "<group>"; };
 		03CE24DC251F60E000CE699A /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -387,7 +391,6 @@
 			isa = PBXGroup;
 			children = (
 				034B7B122535CF9A00EB84D1 /* Dashboard.swift */,
-				034B7B162535CFFC00EB84D1 /* DashboardSearchBarDelegate.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -589,8 +592,8 @@
 		0386652F251F277400418C54 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				03AF21F8252F2AC700468AB4 /* SystemListCellModel.swift */,
-				034B7B222535DCEB00EB84D1 /* SystemListCell.swift */,
+				03C591732535E79000020FD2 /* Detail */,
+				03C591702535E78C00020FD2 /* List */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -658,7 +661,7 @@
 				036853582528426800782265 /* Observer.swift */,
 				03685367252845E300782265 /* ObserverForSceneUpdatesEventResponder.swift */,
 				036853752528471C00782265 /* ObserverForViewController.swift */,
-				03CE2483251F555A00CE699A /* SearchBarDelegate.swift */,
+				03CE2483251F555A00CE699A /* SearchBarDelegateProtocol.swift */,
 				03AF224E252F310100468AB4 /* SearchViewModel.swift */,
 				0303E426251DC3F60060BCB5 /* TabBar.swift */,
 				034DA0F9251DC9C100ABDC6E /* TabBarController.swift */,
@@ -679,6 +682,7 @@
 				038665A7251F2E2800418C54 /* UIImage+Extensions.swift */,
 				03E94B252521B1D900DE2340 /* UIView+Extensions.swift */,
 				0380CBA2252B40D90049DAAD /* UseCase.swift */,
+				034B7B162535CFFC00EB84D1 /* SearchBarDelegate.swift */,
 				0303E400251DC2010060BCB5 /* View.swift */,
 				0303E3F8251DC1F80060BCB5 /* ViewController.swift */,
 				03866561251F288500418C54 /* Components */,
@@ -742,6 +746,24 @@
 				03C015A925301FB30006F67E /* TabBarItem+Extensions.swift */,
 			);
 			path = "Tab Bar Item";
+			sourceTree = "<group>";
+		};
+		03C591702535E78C00020FD2 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				03AF21F8252F2AC700468AB4 /* SystemListCellModel.swift */,
+				034B7B222535DCEB00EB84D1 /* SystemListCell.swift */,
+				03C591662535E21C00020FD2 /* SystemList.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		03C591732535E79000020FD2 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				03C591742535E79A00020FD2 /* SystemDetail.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		03CE2492251F58FB00CE699A /* Table View Section Header */ = {
@@ -959,6 +981,7 @@
 				034AE0E4253228690052E223 /* TableViewDelegateModel.swift in Sources */,
 				034AE15725322E470052E223 /* TableViewDataSource+Functions.swift in Sources */,
 				033436792535ABE10028F9A9 /* UIView+Extensions.swift in Sources */,
+				03C591672535E21C00020FD2 /* SystemList.swift in Sources */,
 				03AF231B252F35E200468AB4 /* ConditionDetailViewModel.swift in Sources */,
 				03AF235A252F365D00468AB4 /* StockDetailInteractor.swift in Sources */,
 				03C015A025301E860006F67E /* Main.swift in Sources */,
@@ -968,7 +991,7 @@
 				034AE10C253228D30052E223 /* DashboardSectionHeader.swift in Sources */,
 				03AF22AE252F356600468AB4 /* StockDetailViewModel.swift in Sources */,
 				035B99B5252F6E8B0080785C /* PinnedListCellModel.swift in Sources */,
-				034B7B172535CFFC00EB84D1 /* DashboardSearchBarDelegate.swift in Sources */,
+				034B7B172535CFFC00EB84D1 /* SearchBarDelegate.swift in Sources */,
 				033436902535AC3B0028F9A9 /* CollectionViewCell.swift in Sources */,
 				033436772535ABE10028F9A9 /* Array+Extensions.swift in Sources */,
 				0334368E2535AC3B0028F9A9 /* ObserverForViewController.swift in Sources */,
@@ -987,7 +1010,7 @@
 				035B99BE252F6E9D0080785C /* PinnedListCell.swift in Sources */,
 				034B7B132535CF9A00EB84D1 /* Dashboard.swift in Sources */,
 				03AF22D5252F35CD00468AB4 /* FlowListCellModel.swift in Sources */,
-				0373AF1A252600A400B92093 /* SearchBarDelegate.swift in Sources */,
+				0373AF1A252600A400B92093 /* SearchBarDelegateProtocol.swift in Sources */,
 				033436782535ABE10028F9A9 /* UIColor+Extensions.swift in Sources */,
 				03AF22B7252F35A800468AB4 /* StateListCellModel.swift in Sources */,
 				03AF230B252F35DC00468AB4 /* EventListCellModel.swift in Sources */,
@@ -999,6 +1022,7 @@
 				034AE0EE253228860052E223 /* TabBarItem.swift in Sources */,
 				034AE0DB2532282A0052E223 /* TableViewDataSourceModel.swift in Sources */,
 				0303E38B251DBEDF0060BCB5 /* SceneDelegate.swift in Sources */,
+				03C591752535E79A00020FD2 /* SystemDetail.swift in Sources */,
 				03866583251F298D00418C54 /* FilterViewController.swift in Sources */,
 				03AF2303252F35D900468AB4 /* SearchResultListCellModel.swift in Sources */,
 				03AF2313252F35DF00468AB4 /* EventDetailViewModel.swift in Sources */,
