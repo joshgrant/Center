@@ -26,3 +26,14 @@ public extension TableViewHeaderModel
         self.image = UIImage(systemName: icon.rawValue)
     }
 }
+
+func makeTableViewSectionHeader(model: TableViewHeaderModel) -> View
+{
+    let view = View(frame: CGRect(origin: .zero, size: .init(width: 30, height: 30)))
+    view.backgroundColor = .systemGroupedBackground
+    
+    let stackView = makeMainStackView(headerModel: model)
+    view.embed(stackView)
+    
+    return view
+}

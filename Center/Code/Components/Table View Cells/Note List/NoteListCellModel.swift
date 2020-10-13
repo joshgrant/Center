@@ -12,3 +12,10 @@ struct NoteListCellModel
     var title: String
     var subtitle: String
 }
+
+extension NoteListCellModel: TableViewCellModel
+{
+    static var cellClass: AnyClass {
+        NoteListCell.self
+    }
+}

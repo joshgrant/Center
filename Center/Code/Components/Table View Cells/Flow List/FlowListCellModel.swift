@@ -29,3 +29,10 @@ func detailLabelForFlowListCellModel(_ cellModel: FlowListCellModel) -> String?
     
     return "\(flowAmount) \(cellModel.fromName)"
 }
+
+extension FlowListCellModel: TableViewCellModel
+{
+    static var cellClass: AnyClass {
+        FlowListCell.self
+    }
+}

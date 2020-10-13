@@ -16,7 +16,7 @@ enum SystemDetailSectionHeader: Int, CaseIterable
     case notes
 }
 
-func makeSystemDetailViewController() -> ViewController
+func makeSystemDetailViewController(system: System) -> ViewController
 {
     let viewController = ViewController()
     
@@ -85,7 +85,11 @@ func makeSystemDetailCellModelTypes() -> [TableViewCellModel.Type]
     // Flow list
     // Event list
     // Note list
-    return []
+    [
+        FlowListCellModel.self,
+        EventListCellModel.self,
+        NoteListCellModel.self
+    ]
 }
 
 // TODO: Make header views

@@ -19,19 +19,6 @@ func makeDashboardTableViewHeaderModels(context: Context) -> [TableViewHeaderMod
     }
 }
 
-func makeTableViewSectionHeader(model: TableViewHeaderModel) -> View
-{
-    let view = View(frame: CGRect(origin: .zero, size: .init(width: 30, height: 30)))
-    view.backgroundColor = .systemGroupedBackground
-    
-    let stackViewFactory = TableViewSectionHeaderViewFactory(sectionHeaderModel: model)
-    
-    let stackView = stackViewFactory.makeMainStackView()
-    view.embed(stackView)
-    
-    return view
-}
-
 func makeDashboardTableViewHeaderViews(context: Context) -> [UIView?]
 {
     let models = makeDashboardTableViewHeaderModels(context: context)
