@@ -15,19 +15,33 @@ public class TableViewDelegate: NSObject, UITableViewDelegate
     {
         self.model = model
     }
-    
-    public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat
+}
+
+public extension TableViewDelegate
+{
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat
     {
         model.estimatedSectionHeaderHeights?[section] ?? 0
     }
     
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
     {
         model.sectionHeaderHeights?[section] ?? 0
     }
     
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         model.headerViews?[section]
+    }
+}
+
+public extension TableViewDelegate
+{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let tableViewSelection = TableViewSelection(
+            tableView: tableView,
+            indexPath: indexPath)
+        model.didSelect?(tableViewSelection)
     }
 }

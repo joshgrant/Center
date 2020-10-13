@@ -89,7 +89,9 @@ func makeDashboardRootViewController(context: Context) -> UIViewController
     controller.navigationItem.searchController = searchController
     controller.navigationItem.hidesSearchBarWhenScrolling = true
     
-    return controller
+    let navigationController = NavigationController(rootViewController: controller)
+    
+    return navigationController
 }
 
 func makeDashboardCellModels(context: Context) -> [[TableViewCellModel]]

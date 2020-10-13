@@ -7,10 +7,17 @@
 
 import Foundation
 
-struct SystemListCellModel
+public struct SystemListCellModel
 {
     var title: String
     var percentIdeal: Double
+}
+
+extension SystemListCellModel: TableViewCellModel
+{
+    public static var cellClass: AnyClass {
+        SystemListCell.self
+    }
 }
 
 func subtitleForSystemListCellModel(_ cellModel: SystemListCellModel) -> String

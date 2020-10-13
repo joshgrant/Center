@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-public enum EntityType
+public enum EntityType: Int
 {
     case system
     case stock
@@ -126,5 +126,16 @@ public func countForEntityType(_ entityType: EntityType, context: Context) -> In
     } catch {
         assertionFailure(error.localizedDescription)
         return 0
+    }
+}
+
+public func makeViewController(entityType: EntityType, context: Context) -> UIViewController?
+{
+    switch entityType
+    {
+    case .system:
+        return makeSystemsListPage(context: context)
+    default:
+        return nil
     }
 }
