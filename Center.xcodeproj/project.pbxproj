@@ -460,59 +460,6 @@
 			path = Enumerations;
 			sourceTree = "<group>";
 		};
-		034AE13325322E000052E223 /* Scratch */ = {
-			isa = PBXGroup;
-			children = (
-				0303E42E251DC4230060BCB5 /* CollectionView.swift */,
-				0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */,
-				0303E410251DC2110060BCB5 /* NavigationController.swift */,
-				0368537E2528487700782265 /* Notification.Name+Extensions.swift */,
-				036853582528426800782265 /* Observer.swift */,
-				0303E400251DC2010060BCB5 /* View.swift */,
-				03CE2483251F555A00CE699A /* SearchBarDelegate.swift */,
-				0303E426251DC3F60060BCB5 /* TabBar.swift */,
-				034DA0F9251DC9C100ABDC6E /* TabBarController.swift */,
-				0303E408251DC2080060BCB5 /* TableView.swift */,
-				0303E436251DC4610060BCB5 /* TableViewCell.swift */,
-				03CE24C8251F5FB400CE699A /* TableViewCellModel.swift */,
-				0386646D251E36DA00418C54 /* TableViewDataSource.swift */,
-				03CE247A251F4FCD00CE699A /* TableViewDelegate.swift */,
-				03632738251F2FD80088681D /* TableViewHeaderModel.swift */,
-				03685367252845E300782265 /* ObserverForSceneUpdatesEventResponder.swift */,
-				036853752528471C00782265 /* ObserverForViewController.swift */,
-				0303E3F8251DC1F80060BCB5 /* ViewController.swift */,
-				03CE24DC251F60E000CE699A /* Array+Extensions.swift */,
-				03E94B2D2521B6D600DE2340 /* UIColor+Extensions.swift */,
-				03866599251F2B9C00418C54 /* Icon.swift */,
-				038665A7251F2E2800418C54 /* UIImage+Extensions.swift */,
-				03E94B252521B1D900DE2340 /* UIView+Extensions.swift */,
-				0380CBA2252B40D90049DAAD /* UseCase.swift */,
-				03742E132530338F00FD3932 /* Int+Extensions.swift */,
-				03AF2233252F2FE100468AB4 /* ConditionDetailViewModel.swift */,
-				03AF2212252F2B6800468AB4 /* EventDetailViewModel.swift */,
-				03AF2245252F30AE00468AB4 /* FilterDetailViewModel.swift */,
-				03AF2271252F31C600468AB4 /* FlowDetailViewModel.swift */,
-				03AF224E252F310100468AB4 /* SearchViewModel.swift */,
-				03AF22AD252F356600468AB4 /* StockDetailViewModel.swift */,
-				034AE0CA2532280C0052E223 /* TableViewModel.swift */,
-				034AE15625322E470052E223 /* TableViewDataSource+Functions.swift */,
-				034AE0DA2532282A0052E223 /* TableViewDataSourceModel.swift */,
-				034AE18425322EEA0052E223 /* TableViewDataSourceModel+Functions.swift */,
-				034AE0E3253228690052E223 /* TableViewDelegateModel.swift */,
-				034AE13425322E100052E223 /* TableView+Functions.swift */,
-				034AE14425322E200052E223 /* LibraryList.swift */,
-				034AE14D25322E370052E223 /* Dashboard.swift */,
-				034AE15F25322E560052E223 /* TableViewCell+Functions.swift */,
-				037E0CB3252CAC5E008B2CB5 /* DashboardSuggestedFlows.swift */,
-				037E0C9F252CAA36008B2CB5 /* DateStock.swift */,
-				03AF2257252F312C00468AB4 /* Data Models */,
-				03122FA7252C2BD900ECBEBF /* Model */,
-				0360B301252C761000B3197E /* Protocols */,
-				03122FA8252C2BE200ECBEBF /* Types */,
-			);
-			path = Scratch;
-			sourceTree = "<group>";
-		};
 		035B99B3252F6E5D0080785C /* Pinned List */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,18 +585,15 @@
 		038157A6251CCA2500D60752 /* Center */ = {
 			isa = PBXGroup;
 			children = (
-				034AE13325322E000052E223 /* Scratch */,
-				034AE0EC2532287A0052E223 /* Enumerations */,
 				038157B5251CCA2600D60752 /* Info.plist */,
 				0303E44E251DC7CD0060BCB5 /* LaunchScreen.storyboard */,
 				0303E37F251DBE360060BCB5 /* AppDelegate.swift */,
-				03C0159F25301E860006F67E /* Main.swift */,
 				0303E38A251DBEDF0060BCB5 /* SceneDelegate.swift */,
+				03C0159F25301E860006F67E /* Main.swift */,
 				038157AB251CCA2600D60752 /* Assets.xcassets */,
 				038157BD251CCA2600D60752 /* CenterTests */,
 				038157C8251CCA2600D60752 /* CenterUITests */,
-				03866561251F288500418C54 /* Components */,
-				0303E446251DC7070060BCB5 /* View Hierarchy */,
+				039033ED2535BC8200C478B1 /* Code */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -826,6 +770,62 @@
 				03866582251F298D00418C54 /* FilterViewController.swift */,
 			);
 			path = Filter;
+			sourceTree = "<group>";
+		};
+		039033ED2535BC8200C478B1 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				03CE24DC251F60E000CE699A /* Array+Extensions.swift */,
+				0303E42E251DC4230060BCB5 /* CollectionView.swift */,
+				0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */,
+				03AF2233252F2FE100468AB4 /* ConditionDetailViewModel.swift */,
+				034AE14D25322E370052E223 /* Dashboard.swift */,
+				037E0CB3252CAC5E008B2CB5 /* DashboardSuggestedFlows.swift */,
+				037E0C9F252CAA36008B2CB5 /* DateStock.swift */,
+				03AF2212252F2B6800468AB4 /* EventDetailViewModel.swift */,
+				03AF2245252F30AE00468AB4 /* FilterDetailViewModel.swift */,
+				03AF2271252F31C600468AB4 /* FlowDetailViewModel.swift */,
+				03866599251F2B9C00418C54 /* Icon.swift */,
+				03742E132530338F00FD3932 /* Int+Extensions.swift */,
+				034AE14425322E200052E223 /* LibraryList.swift */,
+				0303E410251DC2110060BCB5 /* NavigationController.swift */,
+				0368537E2528487700782265 /* Notification.Name+Extensions.swift */,
+				036853582528426800782265 /* Observer.swift */,
+				03685367252845E300782265 /* ObserverForSceneUpdatesEventResponder.swift */,
+				036853752528471C00782265 /* ObserverForViewController.swift */,
+				03CE2483251F555A00CE699A /* SearchBarDelegate.swift */,
+				03AF224E252F310100468AB4 /* SearchViewModel.swift */,
+				03AF22AD252F356600468AB4 /* StockDetailViewModel.swift */,
+				0303E426251DC3F60060BCB5 /* TabBar.swift */,
+				034DA0F9251DC9C100ABDC6E /* TabBarController.swift */,
+				0303E408251DC2080060BCB5 /* TableView.swift */,
+				034AE13425322E100052E223 /* TableView+Functions.swift */,
+				0303E436251DC4610060BCB5 /* TableViewCell.swift */,
+				034AE15F25322E560052E223 /* TableViewCell+Functions.swift */,
+				03CE24C8251F5FB400CE699A /* TableViewCellModel.swift */,
+				0386646D251E36DA00418C54 /* TableViewDataSource.swift */,
+				034AE15625322E470052E223 /* TableViewDataSource+Functions.swift */,
+				034AE0DA2532282A0052E223 /* TableViewDataSourceModel.swift */,
+				034AE18425322EEA0052E223 /* TableViewDataSourceModel+Functions.swift */,
+				03CE247A251F4FCD00CE699A /* TableViewDelegate.swift */,
+				034AE0E3253228690052E223 /* TableViewDelegateModel.swift */,
+				03632738251F2FD80088681D /* TableViewHeaderModel.swift */,
+				034AE0CA2532280C0052E223 /* TableViewModel.swift */,
+				03E94B2D2521B6D600DE2340 /* UIColor+Extensions.swift */,
+				038665A7251F2E2800418C54 /* UIImage+Extensions.swift */,
+				03E94B252521B1D900DE2340 /* UIView+Extensions.swift */,
+				0380CBA2252B40D90049DAAD /* UseCase.swift */,
+				0303E400251DC2010060BCB5 /* View.swift */,
+				0303E3F8251DC1F80060BCB5 /* ViewController.swift */,
+				03866561251F288500418C54 /* Components */,
+				03AF2257252F312C00468AB4 /* Data Models */,
+				034AE0EC2532287A0052E223 /* Enumerations */,
+				03122FA7252C2BD900ECBEBF /* Model */,
+				0360B301252C761000B3197E /* Protocols */,
+				03122FA8252C2BE200ECBEBF /* Types */,
+				0303E446251DC7070060BCB5 /* View Hierarchy */,
+			);
+			path = Code;
 			sourceTree = "<group>";
 		};
 		03AF222B252F2FCC00468AB4 /* View Models */ = {

@@ -31,6 +31,74 @@ func makeViewController(tabBarItem: TabBarItem, context: Context) -> UIViewContr
 
 // Dashboard
 
+func makeDashboardTableViewCellModelTypes() -> [TableViewCellModel.Type]
+{
+    [PinnedListCellModel.self, EventListCellModel.self]
+}
+
+func makeDashboardTableViewHeaderModels(context: Context) -> [TableViewHeaderModel]
+{
+    DashboardSectionHeader.allCases.map {
+        makeTableViewHeaderModel(dashboardSectionHeader: $0)
+    }
+}
+
+func makeTableViewSectionHeader(model: TableViewHeaderModel) -> View
+{
+    let view = View(frame: CGRect(origin: .zero, size: .init(width: 30, height: 30)))
+    view.backgroundColor = .systemGroupedBackground
+    
+    let stackViewFactory = TableViewSectionHeaderViewFactory(sectionHeaderModel: model)
+    
+    let stackView = stackViewFactory.makeMainStackView()
+    view.embed(stackView)
+    
+    return view
+}
+
+func makeDashboardTableViewHeaderViews(context: Context) -> [UIView?]
+{
+    let models = makeDashboardTableViewHeaderModels(context: context)
+    return models.map {
+        makeTableViewSectionHeader(model: $0)
+    }
+}
+
+func makeDashboardTableViewDelegateModel(context: Context) -> TableViewDelegateModel
+{
+    let headerHeights: [CGFloat] = DashboardSectionHeader.allCases.count.map { 44 }
+    
+    return TableViewDelegateModel(
+        headerViews: makeDashboardTableViewHeaderViews(context: context),
+        sectionHeaderHeights: headerHeights,
+        estimatedSectionHeaderHeights: headerHeights)
+}
+
+func makeDashboardTableViewDelegate(context: Context) -> TableViewDelegate
+{
+    TableViewDelegate(model: makeDashboardTableViewDelegateModel(context: context))
+}
+
+func makeDashboardTableViewDataSourceModel(context: Context) -> TableViewDataSourceModel
+{
+    TableViewDataSourceModel(cellModels: makeDashboardCellModels(context: context))
+}
+
+func makeDashboardTableViewDataSource(context: Context) -> TableViewDataSource
+{
+    TableViewDataSource(model: makeDashboardTableViewDataSourceModel(context: context))
+}
+
+func makeDashboardTableViewModel(context: Context) -> TableViewModel
+{
+    TableViewModel(
+        style: .grouped,
+        delegate: makeDashboardTableViewDelegate(context: context),
+        dataSource: makeDashboardTableViewDataSource(),
+        cellModelTypes: makeDashboardTableViewCellModelTypes())
+}
+
+
 func makeDashboardRootViewController(context: Context) -> UIViewController
 {
     let tableViewModel = makeDashboardTableViewModel(context: context)

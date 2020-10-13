@@ -36,10 +36,7 @@ public func makeContainer(modelName: String) throws -> Container
 
 func getModelURL(modelName: String) -> URL?
 {
-    Bundle.main.resourceURL?
-//        .appendingPathComponent("Frameworks")
-//        .appendingPathComponent("Schema.framework")
-        .appendingPathComponent("Model.momd")
+    Bundle.main.url(forResource: "Model", withExtension: "momd")
 }
 
 func makeModel(from url: URL) -> Model?

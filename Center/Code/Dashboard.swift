@@ -55,20 +55,14 @@ func makeDashboardTableViewDelegate(context: Context) -> TableViewDelegate
     TableViewDelegate(model: makeDashboardTableViewDelegateModel(context: context))
 }
 
-func makeDashboardTableViewCellModels() -> [[TableViewCellModel]]
+func makeDashboardTableViewDataSourceModel(context: Context) -> TableViewDataSourceModel
 {
-    // TODO:
-    return [[]]
+    TableViewDataSourceModel(cellModels: makeDashboardCellModels(context: context))
 }
 
-func makeDashboardTableViewDataSourceModel() -> TableViewDataSourceModel
+func makeDashboardTableViewDataSource(context: Context) -> TableViewDataSource
 {
-    TableViewDataSourceModel(cellModels: makeDashboardTableViewCellModels())
-}
-
-func makeDashboardTableViewDataSource() -> TableViewDataSource
-{
-    TableViewDataSource(model: makeDashboardTableViewDataSourceModel())
+    TableViewDataSource(model: makeDashboardTableViewDataSourceModel(context: Context))
 }
 
 func makeDashboardTableViewModel(context: Context) -> TableViewModel
