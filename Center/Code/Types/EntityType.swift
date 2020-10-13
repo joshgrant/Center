@@ -115,11 +115,16 @@ public func addObject(of entityType: EntityType, into context: Context) -> Entit
     }
 }
 
-public func countForEntityType(_ entityType: EntityType, context: Context) throws -> Int
+public func countForEntityType(_ entityType: EntityType, context: Context) -> Int
 {
     let objectType = managedObjectType(for: entityType)
     let request = objectType.fetchRequest()
     request.includesPropertyValues = false
     request.includesSubentities = false
-    return try context.fetch(request).count
+    do {
+        return try context.fetch(request).count
+    } catch {
+        assertionFailure(error.localizedDescription)
+        return 0
+    }
 }

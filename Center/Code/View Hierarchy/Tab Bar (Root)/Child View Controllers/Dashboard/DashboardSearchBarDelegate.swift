@@ -2,11 +2,12 @@
 //  DashboardSearchBarDelegate.swift
 //  Center
 //
-//  Created by Joshua Grant on 9/26/20.
+//  Created by Joshua Grant on 10/13/20.
 //
 
-import UIKit
+import Foundation
 
-class DashboardSearchBarDelegate: NSObject, SearchBarDelegate
+public class DashboardSearchBarDelegate: NSObject, SearchBarDelegate
 {
+    
 }

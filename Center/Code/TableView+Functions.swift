@@ -11,12 +11,15 @@ public func makeTableView(from tableViewModel: TableViewModel) -> TableView
 {
     let tableView = TableView(frame: .zero, style: tableViewModel.style)
     
-    tableView.delegate = tableViewModel.delegate
-    tableView.dataSource = tableViewModel.dataSource
-    
     tableViewModel.cellModelTypes.forEach {
         tableView.register($0.cellClass, forCellReuseIdentifier: $0.cellReuseIdentifier)
     }
+    
+    tableView.delegate = tableViewModel.delegate
+    tableView.dataSource = tableViewModel.dataSource
+    
+    // This is to keep the delegate and dataSource in memory, because they are weak references.
+    tableView.model = tableViewModel
     
     return tableView
 }

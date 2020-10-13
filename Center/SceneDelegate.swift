@@ -21,15 +21,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     {
         guard let scene = scene as? UIWindowScene else { return }
         
-//        let database = Database.shared
-//        populateDatabaseWithBirthdayPartyEvent(context: database.context)
-//        populateDatabaseWithWaterSystem(context: database.context)
-        
-//        let environment = RootEnvironment(database: database)
-//        let viewFactory = RootViewFactory(environment: environment)
         var container = try! makeContainer(modelName: "Model")
         container = try! loadPersistentStores(on: container)
         let _context = context(from: container)
+        populateDatabaseWithWaterSystem(context: _context)
+        populateDatabaseWithBirthdayPartyEvent(context: _context)
+        
         let root = TabBarController()
         root.viewControllers = makeTabBarControllers(context: _context)
         

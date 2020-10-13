@@ -7,7 +7,7 @@
 
 import Foundation
 
-func makeLibraryListTableDelegate(context: Context) throws -> TableViewDelegate
+func makeLibraryListTableDelegate(context: Context) -> TableViewDelegate
 {
     let model = TableViewDelegateModel(
         headerViews: nil,
@@ -16,9 +16,9 @@ func makeLibraryListTableDelegate(context: Context) throws -> TableViewDelegate
     return TableViewDelegate(model: model)
 }
 
-func makeLibraryListTableDataSource(context: Context) throws -> TableViewDataSource
+func makeLibraryListTableDataSource(context: Context) -> TableViewDataSource
 {
-    let data = try makeLibraryListTableData(context: context)
+    let data = makeLibraryListTableData(context: context)
     return makeTableViewDataSource(with: data)
 }
 
@@ -27,34 +27,34 @@ func makeLibraryListTableViewCellModelTypes() -> [TableViewCellModel.Type]
     [LibraryListCellModel.self]
 }
 
-func makeLibraryListTableData(context: Context) throws -> TableViewDataSourceModel
+func makeLibraryListTableData(context: Context) -> TableViewDataSourceModel
 {
-    let models = try makeLibraryListCellModels(context: context)
+    let models = makeLibraryListCellModels(context: context)
     return TableViewDataSourceModel(cellModels: models)
 }
 
-func makeLibraryListTableDataModel(context: Context) throws -> TableViewModel
+func makeLibraryListTableViewModel(context: Context) -> TableViewModel
 {
     TableViewModel(
         style: .grouped,
-        delegate: try makeLibraryListTableDelegate(context: context),
-        dataSource: try makeLibraryListTableDataSource(context: context),
+        delegate: makeLibraryListTableDelegate(context: context),
+        dataSource: makeLibraryListTableDataSource(context: context),
         cellModelTypes: makeLibraryListTableViewCellModelTypes())
 }
 
-public func makeLibraryListCellModels(context: Context) throws -> [[TableViewCellModel]]
+public func makeLibraryListCellModels(context: Context) -> [[TableViewCellModel]]
 {
-    let cellModels = try EntityType.allCases.map {
-        try makeLibraryListCellModel(for: $0, context: context)
+    let cellModels = EntityType.allCases.map {
+        makeLibraryListCellModel(for: $0, context: context)
     }
     
     return [cellModels]
 }
 
-func makeLibraryListCellModel(for entityType: EntityType, context: Context) throws -> LibraryListCellModel
+func makeLibraryListCellModel(for entityType: EntityType, context: Context) -> LibraryListCellModel
 {
     LibraryListCellModel(
         image: imageForEntityType(entityType),
         title: titleForEntityType(entityType),
-        count: try countForEntityType(entityType, context: context))
+        count: countForEntityType(entityType, context: context))
 }
