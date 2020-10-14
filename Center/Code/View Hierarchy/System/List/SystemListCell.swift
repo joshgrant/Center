@@ -30,7 +30,6 @@ class SystemListCell: TableViewCell
         
         self.detailTextLabel?.font = .systemFont(ofSize: 15)
         self.detailTextLabel?.textColor = .systemGray
-        self.detailTextLabel?.text = subtitleForSystemListCellModel(model)
-        
+        self.detailTextLabel?.text = model.percentIdeal.percentFormatted
     }
 }

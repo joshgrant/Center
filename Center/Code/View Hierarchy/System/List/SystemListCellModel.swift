@@ -20,10 +20,13 @@ extension SystemListCellModel: TableViewCellModel
     }
 }
 
-func subtitleForSystemListCellModel(_ cellModel: SystemListCellModel) -> String
+extension Numeric
 {
-    let numberFormatter = NumberFormatter()
-    numberFormatter.allowsFloats = false
-    numberFormatter.numberStyle = .percent
-    return numberFormatter.string(from: NSNumber(value: cellModel.percentIdeal)) ?? ""
+    var percentFormatted: String
+    {
+        let formatter = NumberFormatter()
+        formatter.allowsFloats = false
+        formatter.numberStyle = .percent
+        return formatter.string(for: self) ?? ""
+    }
 }

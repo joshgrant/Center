@@ -103,6 +103,7 @@ func makeSystemsListPage(context: Context) -> ViewController
     let actionClosure = makeSystemListAddActionClosure(context: context, controller: controller)
     // TODO: The action closure is probably getting released because there are no
     // references to it...
+    controller.actionClosures.insert(actionClosure)
     controller.navigationItem.rightBarButtonItem = makeSystemListAddButton(actionClosure: actionClosure)
     
     return controller
@@ -133,24 +134,8 @@ func makeSystemListAddActionClosure(context: Context, controller: ViewController
 func makeSystemListAddButton(actionClosure: ActionClosure) -> UIBarButtonItem
 {
     let button = UIBarButtonItem(systemItem: .add)
-    button.target = actionClosure
+    button.target = actionClosure // This is weak, so action closure will be released
     button.action = #selector(actionClosure.perform(sender:))
     return button
 }
 
-typealias ActionPerformClosure = ((_ sender: Any) -> Void)
-
-class ActionClosure
-{
-    var performClosure: ActionPerformClosure
-    
-    init(performClosure: @escaping ActionPerformClosure)
-    {
-        self.performClosure = performClosure
-    }
-    
-    @objc func perform(sender: Any)
-    {
-        performClosure(sender)
-    }
-}

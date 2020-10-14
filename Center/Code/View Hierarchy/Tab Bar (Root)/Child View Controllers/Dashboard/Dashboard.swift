@@ -27,19 +27,20 @@ func makeDashboardTableViewHeaderViews(context: Context) -> [UIView?]
     }
 }
 
-func makeDashboardTableViewDelegateModel(context: Context) -> TableViewDelegateModel
+func makeDashboardTableViewDelegateModel(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewDelegateModel
 {
     let headerHeights: [CGFloat] = DashboardSectionHeader.allCases.count.map { 44 }
     
     return TableViewDelegateModel(
         headerViews: makeDashboardTableViewHeaderViews(context: context),
         sectionHeaderHeights: headerHeights,
-        estimatedSectionHeaderHeights: headerHeights)
+        estimatedSectionHeaderHeights: headerHeights,
+        didSelect: didSelect)
 }
 
-func makeDashboardTableViewDelegate(context: Context) -> TableViewDelegate
+func makeDashboardTableViewDelegate(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewDelegate
 {
-    let delegateModel = makeDashboardTableViewDelegateModel(context: context)
+    let delegateModel = makeDashboardTableViewDelegateModel(context: context, didSelect: didSelect)
     return TableViewDelegate(model: delegateModel)
 }
 
@@ -50,11 +51,11 @@ func makeDashboardTableViewDataSource(context: Context) -> TableViewDataSource
     return TableViewDataSource(model: dataSourceModel)
 }
 
-func makeDashboardTableViewModel(context: Context) -> TableViewModel
+func makeDashboardTableViewModel(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewModel
 {
     TableViewModel(
         style: .grouped,
-        delegate: makeDashboardTableViewDelegate(context: context),
+        delegate: makeDashboardTableViewDelegate(context: context, didSelect: didSelect),
         dataSource: makeDashboardTableViewDataSource(context: context),
         cellModelTypes: makeDashboardTableViewCellModelTypes())
 }
@@ -62,12 +63,13 @@ func makeDashboardTableViewModel(context: Context) -> TableViewModel
 
 func makeDashboardRootViewController(context: Context) -> UIViewController
 {
+    let controller = ViewController()
     // TODO: Datasource and delegate are weak references...
     // We need to keep them in memory...
-    let tableViewModel = makeDashboardTableViewModel(context: context)
+    let didSelect = makeDashboardRootViewDidSelectAction()
+    let tableViewModel = makeDashboardTableViewModel(context: context, didSelect: didSelect)
     let tableView = makeTableView(from: tableViewModel)
     
-    let controller = ViewController()
     controller.view = tableView
     controller.tabBarItem = makeUITabBarItem(tabBarItem: .dashboard)
     
@@ -75,10 +77,35 @@ func makeDashboardRootViewController(context: Context) -> UIViewController
     let searchController = makeSearchController(searchBarDelegate: delegate)
     controller.navigationItem.searchController = searchController
     controller.navigationItem.hidesSearchBarWhenScrolling = true
+    controller.navigationItem.title = "45% Balanced"
     
     let navigationController = NavigationController(rootViewController: controller)
     
     return navigationController
+}
+
+func makeDashboardRootViewDidSelectAction() -> TableViewSelectionClosure
+{
+    return { selection in
+        guard let section = DashboardSectionHeader(rawValue: selection.indexPath.row) else {
+            assertionFailure("Selected a row that doesn't exist: \(selection)")
+            return
+        }
+        
+        let row = selection.indexPath.row
+        
+        switch section
+        {
+        case .pinned:
+            handleTappedDashboardPinnedItem(row: row)
+        case .flows:
+            handleTappedDashboardFlow(row: row)
+        case .forecast:
+            handleTappedDashboardForecastFlow(row: row)
+        case .priority:
+            handleTappedDashboardPriority(row: row)
+        }
+    }
 }
 
 func makeDashboardCellModels(context: Context) -> [[TableViewCellModel]]
@@ -163,4 +190,37 @@ func makeSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchCon
     let searchController = UISearchController(searchResultsController: searchResultsController)
     searchController.searchBar.delegate = searchBarDelegate
     return searchController
+}
+
+// MARK: - ACTION HANDLING
+
+// The problem with these is that they implicitly modify state...
+// I don't want side effects, i.e I need to pass the system state to these
+// How can I represent state? Well, I can create an object that holds all of the state
+// and return it from each function. Therefore, it must be a struct.
+// How can we contain all state? Nested structs? maybe a singleton class? 
+
+func handleTappedDashboardPinnedItem(row: Int)
+{
+    // Find the appropriate object
+    // Find the relevant view controller
+    // Push the view controller on the stack
+}
+
+func handleTappedDashboardFlow(row: Int)
+{
+    // Find the selected flow
+    // Open up the flow detail page for that flow
+}
+
+func handleTappedDashboardForecastFlow(row: Int)
+{
+    // Find the relevant event
+    // Open up the event detail page
+}
+
+func handleTappedDashboardPriority(row: Int)
+{
+    // Find the relevant system
+    // Open up the system detail page
 }

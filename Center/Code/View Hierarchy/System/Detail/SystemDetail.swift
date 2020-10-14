@@ -10,6 +10,7 @@ import UIKit
 enum SystemDetailSectionHeader: Int, CaseIterable
 {
     case info
+    case suggestedFlows
     case stocks
     case flows
     case events
@@ -21,20 +22,21 @@ func makeSystemDetailViewController(system: System) -> ViewController
     let viewController = ViewController()
     
     let didSelect = makeSystemDetailDidSelectClosure(controller: viewController)
-    let tableViewModel = makeSystemDetailTableViewModel(didSelect: didSelect)
+    let tableViewModel = makeSystemDetailTableViewModel(system: system, didSelect: didSelect)
     let tableView = makeTableView(from: tableViewModel)
     
+    viewController.title = system.title // TODO: Update when the title changes...
     viewController.view = tableView
     
     return viewController
 }
 
-func makeSystemDetailTableViewModel(didSelect: @escaping TableViewSelectionClosure) -> TableViewModel
+func makeSystemDetailTableViewModel(system: System, didSelect: @escaping TableViewSelectionClosure) -> TableViewModel
 {
     TableViewModel(
         style: .grouped,
         delegate: makeSystemDetailTableViewDelegate(didSelect: didSelect),
-        dataSource: makeSystemDetailTableViewDataSource(),
+        dataSource: makeSystemDetailTableViewDataSource(system: system),
         cellModelTypes: makeSystemDetailCellModelTypes())
 }
 
@@ -62,9 +64,9 @@ func makeSystemDetailTableViewDelegate(didSelect: @escaping TableViewSelectionCl
     return TableViewDelegate(model: delegateModel)
 }
 
-func makeSystemDetailTableViewDataSource() -> TableViewDataSource
+func makeSystemDetailTableViewDataSource(system: System) -> TableViewDataSource
 {
-    let cellModels = makeSystemDetailTableViewDataSourceModels()
+    let cellModels = makeSystemDetailTableViewDataSourceModels(system: system)
     let dataSourceModel = TableViewDataSourceModel(cellModels: cellModels)
     return TableViewDataSource(model: dataSourceModel)
 }
@@ -86,14 +88,13 @@ func makeSystemDetailCellModelTypes() -> [TableViewCellModel.Type]
     // Event list
     // Note list
     [
+        IdealCellModel.self,
+        TitleEditCellModel.self,
         FlowListCellModel.self,
         EventListCellModel.self,
         NoteListCellModel.self
     ]
 }
-
-// TODO: Make header views
-
 
 func makeSystemDetailTableViewHeaderModels() -> [TableViewHeaderModel]
 {
@@ -118,8 +119,10 @@ func hasDisclosureTriangle(systemDetailSectionHeader: SystemDetailSectionHeader)
 {
     switch systemDetailSectionHeader
     {
-    case .info: return false
-    default: return true
+    case .info, .suggestedFlows:
+        return false
+    default:
+        return true
     }
 }
 
@@ -127,7 +130,7 @@ func image(systemDetailSectionHeader: SystemDetailSectionHeader) -> UIImage?
 {
     switch systemDetailSectionHeader
     {
-    case .info:
+    case .info, .suggestedFlows:
         return nil
     case .stocks:
         return UIImage(icon: .stock)
@@ -146,6 +149,8 @@ func title(systemDetailSectionHeader: SystemDetailSectionHeader) -> String
     {
     case .info:
         return "Info"
+    case .suggestedFlows:
+        return "Suggested Flows"
     case .stocks:
         return "Stocks"
     case .flows:
@@ -166,8 +171,10 @@ func hasLinkButton(systemDetailSectionHeader: SystemDetailSectionHeader) -> Bool
 {
     switch systemDetailSectionHeader
     {
-    case .info: return false
-    default: return true
+    case .info, .suggestedFlows:
+        return false
+    default:
+        return true
     }
 }
 
@@ -175,8 +182,10 @@ func hasAddButton(systemDetailSectionHeader: SystemDetailSectionHeader) -> Bool
 {
     switch systemDetailSectionHeader
     {
-    case .info: return false
-    default: return true
+    case .info, .suggestedFlows:
+        return false
+    default:
+        return true
     }
 }
 
@@ -185,7 +194,18 @@ func hasEditButton(systemDetailSectionHeader: SystemDetailSectionHeader) -> Bool
     return false
 }
 
-func makeSystemDetailTableViewDataSourceModels() -> [[TableViewCellModel]]
+func makeSystemDetailTitleEditCellModel(system: System) -> TitleEditCellModel
+{
+    return TitleEditCellModel(text: system.unwrappedName, placeholder: "Name")
+}
+
+func makeSystemDetailIdealCellModel(system: System) -> IdealCellModel
+{
+    let ideal = system.ideal?.computedValue as? Double ?? 0
+    return IdealCellModel(value: ideal)
+}
+
+func makeSystemDetailTableViewDataSourceModels(system: System) -> [[TableViewCellModel]]
 {
     // Section 1
     // Text cell
@@ -197,7 +217,13 @@ func makeSystemDetailTableViewDataSourceModels() -> [[TableViewCellModel]]
     // Events
     // Notes
     
+    // Todo, could break this up into functions...
+    
     return [
+        [
+            makeSystemDetailTitleEditCellModel(system: system),
+            makeSystemDetailIdealCellModel(system: system)
+        ],
         [],
         [],
         [],

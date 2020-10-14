@@ -121,24 +121,27 @@ func makeEditButton() -> UIButton
 }
 
 // TODO: Gross, I don't like side effects
-func set(width: CGFloat, height: CGFloat, on view: UIView)
+func set(width: CGFloat? = nil, height: CGFloat? = nil, on view: UIView)
+{
+    if let width = width {
+        setAttribute(attribute: .width, value: width, on: view)
+    }
+    
+    if let height = height {
+        setAttribute(attribute: .height, value: height, on: view)
+    }
+}
+
+func setAttribute(attribute: NSLayoutConstraint.Attribute, value: CGFloat, on view: UIView)
 {
     NSLayoutConstraint.activate([
         NSLayoutConstraint(
             item: view,
-            attribute: .width,
+            attribute: attribute,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1,
-            constant: width),
-        NSLayoutConstraint(
-            item: view,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1,
-            constant: height)
+            constant: value)
     ])
 }

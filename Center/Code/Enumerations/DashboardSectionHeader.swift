@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum DashboardSectionHeader: CaseIterable
+enum DashboardSectionHeader: Int, CaseIterable
 {
     case pinned
     case flows

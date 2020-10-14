@@ -13,6 +13,8 @@ import UIKit
 
 open class ViewController: UIViewController
 {
+    var actionClosures: Set<ActionClosure> = []
+    
     public init()
     {
         super.init(nibName: nil, bundle: nil)
