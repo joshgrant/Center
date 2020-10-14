@@ -61,12 +61,12 @@ func makeDashboardTableViewModel(context: Context, didSelect: @escaping TableVie
 }
 
 
-func makeDashboardRootViewController(context: Context) -> UIViewController
+func makeDashboardRootViewController(appState: AppState, context: Context) -> UIViewController
 {
     let controller = ViewController()
     // TODO: Datasource and delegate are weak references...
     // We need to keep them in memory...
-    let didSelect = makeDashboardRootViewDidSelectAction()
+    let didSelect = makeDashboardRootViewDidSelectAction(appState: appState, context: context)
     let tableViewModel = makeDashboardTableViewModel(context: context, didSelect: didSelect)
     let tableView = makeTableView(from: tableViewModel)
     
@@ -84,7 +84,7 @@ func makeDashboardRootViewController(context: Context) -> UIViewController
     return navigationController
 }
 
-func makeDashboardRootViewDidSelectAction() -> TableViewSelectionClosure
+func makeDashboardRootViewDidSelectAction(appState: AppState, context: Context) -> TableViewSelectionClosure
 {
     return { selection in
         guard let section = DashboardSectionHeader(rawValue: selection.indexPath.row) else {
@@ -97,7 +97,10 @@ func makeDashboardRootViewDidSelectAction() -> TableViewSelectionClosure
         switch section
         {
         case .pinned:
-            handleTappedDashboardPinnedItem(row: row)
+            handleTappedDashboardPinnedItem(
+                appState: appState,
+                context: context,
+                row: row)
         case .flows:
             handleTappedDashboardFlow(row: row)
         case .forecast:
@@ -173,11 +176,17 @@ func makeForecastModels(context: Context) -> [TableViewCellModel]
 
 func makePinnedModels(context: Context) -> [TableViewCellModel]
 {
-    let fetchRequest = Entity.makePinnedObjectsFetchRequest()
+    let pins = getPinnedObjects(context: context)
+    let cells = PinnedListCellModel.pinnedCellModels(from: pins)
+    return cells
+}
+
+func getPinnedObjects(context: Context) -> [Entity]
+{
+    let request = Entity.makePinnedObjectsFetchRequest()
     do {
-        let objects = try context.fetch(fetchRequest)
-        let cells = PinnedListCellModel.pinnedCellModels(from: objects)
-        return cells
+        let results = try context.fetch(request)
+        return results
     } catch {
         assertionFailure(error.localizedDescription)
         return []
@@ -200,11 +209,31 @@ func makeSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchCon
 // and return it from each function. Therefore, it must be a struct.
 // How can we contain all state? Nested structs? maybe a singleton class? 
 
-func handleTappedDashboardPinnedItem(row: Int)
+func handleTappedDashboardPinnedItem(appState: AppState, context: Context, row: Int)
 {
     // Find the appropriate object
     // Find the relevant view controller
     // Push the view controller on the stack
+    
+    let pins = getPinnedObjects(context: context)
+    let selectedPin = pins[row]
+    let controller = viewController(for: selectedPin)
+    
+    appState
+        .activeViewController?
+        .navigationController?
+        .pushViewController(controller, animated: true)
+}
+
+func viewController(for pin: Entity) -> ViewController
+{
+    switch pin
+    {
+    case let pin as System:
+        return makeSystemDetailViewController(system: pin)
+    default:
+        return ViewController()
+    }
 }
 
 func handleTappedDashboardFlow(row: Int)

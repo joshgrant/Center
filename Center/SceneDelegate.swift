@@ -27,8 +27,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         populateDatabaseWithWaterSystem(context: _context)
         populateDatabaseWithBirthdayPartyEvent(context: _context)
         
+        let appState = AppState()
+        
         let root = TabBarController()
-        root.viewControllers = makeTabBarControllers(context: _context)
+        root.viewControllers = makeTabBarControllers(appState: appState, context: _context)
+        
+        appState.activeViewController = root.viewControllers?.first
         
         let window = UIWindow(windowScene: scene)
         window.rootViewController = root

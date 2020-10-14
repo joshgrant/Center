@@ -8,19 +8,19 @@
 import UIKit
 import CoreData
 
-func makeTabBarControllers(context: Context) -> [UIViewController]
+func makeTabBarControllers(appState: AppState, context: Context) -> [UIViewController]
 {
     TabBarItem.allCases.map {
-        makeViewController(tabBarItem: $0, context: context)
+        makeViewController(tabBarItem: $0, appState: appState, context: context)
     }
 }
 
-func makeViewController(tabBarItem: TabBarItem, context: Context) -> UIViewController
+func makeViewController(tabBarItem: TabBarItem, appState: AppState, context: Context) -> UIViewController
 {
     switch tabBarItem
     {
     case .dashboard:
-        return makeDashboardRootViewController(context: context)
+        return makeDashboardRootViewController(appState: appState, context: context)
     case .library:
         return makeLibraryRootViewController(context: context)
     case .inbox:
