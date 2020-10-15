@@ -10,14 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    var appState = AppState() // TODO: Serialize and Deserialize this...
-    lazy var tabControllerDelegate = TabBarControllerDelegate(appState: appState)
-    
-    /// We need to get out of the "context" thing...
-    /// and abstract it to the an environment or something like that...
-    /// Also, it should be agnostic - core data v. disk should be the same, just
-    /// a one line switch...
-    //    let coreDataManager = CoreDataManager()
+    var appState = AppState(state: LaunchScreenState(), controller: nil) // TODO: Serialize and Deserialize this...
+    lazy var tabControllerDelegate = TabBarControllerDelegate()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
     {
@@ -30,9 +24,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         populateDatabaseWithBirthdayPartyEvent(context: _context)
         
         let root = TabBarController(delegate: tabControllerDelegate)
-        root.viewControllers = makeTabBarControllers(appState: appState, context: _context)
+        let tabControllers = makeTabBarControllers(appState: appState, context: _context)
+        root.viewControllers = tabControllers
+        let dashboardController = root.viewControllers?.first
         
-        appState.activeViewController = root.viewControllers?.first
+        appState = AppState(state: DashboardState(), controller: dashboardController)
         
         let window = UIWindow(windowScene: scene)
         window.rootViewController = root
@@ -81,3 +77,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             userInfo: ["scene" : scene])
     }
 }
+
+func makeShouldSelectTab(appState: AppState) -> ShouldSelectTab
+{
+    return { _, viewController in
+        guard let tab = tabFor(viewController: viewController) else {
+            return false
+        }
+        
+        let newState = state(forTabBarItem: tab)
+        return canTransition(to: newState, appState: appState)
+    }
+}
+
+func makeDidSelectTab(appState: AppState) -> DidSelectTab
+{
+    return { _, viewController in
+        guard let tab = tabFor(viewController: viewController) else {
+            return
+        }
+        
+        // TODO: This should modify the app state
+        
+//        let newState = state(forTabBarItem: tab)
+//        return transition(to: newState, appState: appState)
+    }
+}
+
+// I think I'm figuring out that I need to play ball with the run loop. The run loop
+// should contain the app state and each change should modify the app state... I need
+// to investigate if this is a valid approach. Ideally, each event takes the current
+// app state 

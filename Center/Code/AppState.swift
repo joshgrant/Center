@@ -7,112 +7,22 @@
 
 import UIKit
 
-public enum ViewState
+
+public struct AppState
 {
-    case dashboard
-    case library
-    case inbox
-    case settings
-    
-    case systemDetail
-    
-//    case dashboard
-//
-//    case libraryList
-//
-//    case systemList
-//    case stockList
-//    case flowList
-//    case eventList
-//    case conversionList
-//    case dimensionList
-//    case symbolList
-//    case noteList
-//    case processList
-//
-//    case systemDetail
-//    case stockDetail
-//    case amountDetail
-//    case flowDetail
-//    case eventDetail
-//    case conversionDetail
-//    case dimensionDetail
-//    case symbolDetail
-//    case noteDetail
-//    case blockDetail
-//    case processDetail
-//
-//    case systemInfo
-//    case stockInfo
-//    case amountInfo
-//    case flowInfo
-//    case eventInfo
-//    case conversionInfo
-//    case dimensionInfo
-//    case symbolInfo
-//    case noteInfo
-//    case blockInfo
-//    case processInfo
-//
-//    case idealInfo
-//    case netInfo
-//
-//    case conditionInfo
-//    case conditionDetail
-//
-//    case stockSelector
-//    case targetSelector
-//
-//    case priorityInfo
-//    case relationshipInfo
-//
-//    case link(type: Any)
-//    case add(type: Any)
-//
-//    case completionTypeInfo
-//    case completionInfo
+    var state: Any
+    // TODO: Is the controller supposed to be part of this? OR should we
+    // consider using a coordinator pattern?
+    var controller: UIViewController?
 }
 
-/// This object gets created at app launch, serialized on app background/quit, and deserialized on app resume/second launch
-/// It contains the entire state of the application: User interface states mostly
-/// I think the CoreData model holds the entities states...
-@objc public class AppState: NSObject
+struct LaunchScreenState
 {
-//    var selectedTab: TabBarItem = .dashboard
-    var viewState: ViewState = .dashboard
     
-    var dashboardState = DashboardState()
-    var libraryState = LibraryState()
-    var inboxState = InboxState()
-    var settingsState = SettingsState()
-    
-    var activeViewController: UIViewController?
-    
-    func canTransition(to newState: ViewState) -> Bool
-    {
-        switch (viewState, newState)
-        {
-        case (.dashboard, .library):
-            return true
-        case (.library, .dashboard):
-            return true
-        case (.dashboard, .systemDetail),
-             (.library, .systemDetail):
-            return true
-        default:
-            return false
-        }
-    }
-    
-    func transition(to newState: ViewState)
-    {
-        viewState = newState
-    }
 }
 
 struct DashboardState
 {
-    /// If the search is active
     var searching: Bool = false
     var searchText: String = ""
 }
@@ -130,4 +40,49 @@ struct InboxState
 struct SettingsState
 {
     
+}
+
+struct SystemDetailState
+{
+    var system: System
+}
+
+func canTransition(to: Any, appState: AppState) -> Bool
+{
+    let from = appState.state
+    switch (from, to)
+    {
+    case (is DashboardState, is LibraryState):
+        return true
+    case (is LibraryState, is DashboardState):
+        return true
+    case (is DashboardState, is SystemDetailState),
+         (is LibraryState, is SystemDetailState):
+        return true
+    default:
+        return false
+    }
+}
+
+func transition(to: Any, appState: AppState) -> AppState
+{
+    let from = appState.state
+    guard canTransition(to: to, appState: appState) else {
+        print("Could not transition from: \(from) to: \(to) with \(appState)")
+        return appState
+    }
+    
+    switch (from, to)
+    {
+    case (_, let x as SystemDetailState):
+        let detailController = makeSystemDetailViewController(system: x.system, appState: appState)
+        // Can we assume there is always a navigation controller?
+        appState
+            .controller?
+            .navigationController?
+            .pushViewController(detailController, animated: true)
+        return AppState(state: to, controller: detailController)
+    default:
+        return appState
+    }
 }

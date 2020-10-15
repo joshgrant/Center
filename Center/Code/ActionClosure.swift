@@ -19,9 +19,13 @@ class ActionClosure
         self.performClosure = performClosure
     }
     
-    @objc func perform(sender: Any) -> AppState
+    @objc func perform(sender: Any)
     {
-        return performClosure(sender)
+        // HMM, how to get the app state here?
+        // Right now, when the bar button is selected, the action's return value will
+        // be consumed by the action... but we need the resulting appState to be modified...
+        // being passed to the main run loop...
+        _ = performClosure(sender)
     }
     
     deinit {

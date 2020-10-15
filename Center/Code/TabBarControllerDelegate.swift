@@ -7,35 +7,32 @@
 
 import UIKit
 
+typealias ShouldSelectTab = ((_ tabBarController: UITabBarController,
+                           _ viewController: UIViewController) -> Bool)
+typealias DidSelectTab = ((_ tabBarController: UITabBarController,
+                           _ viewController: UIViewController) -> Void)
+
 open class TabBarControllerDelegate: NSObject, UITabBarControllerDelegate
 {
-    weak var appState: AppState?
+    var shouldSelect: ShouldSelectTab?
+    var didSelect: DidSelectTab?
     
-    init(appState: AppState)
+    init(shouldSelect: ShouldSelectTab?, didSelect: DidSelectTab?)
     {
-        self.appState = appState
-    }
-    
-    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController)
-    {
-        //        Make the valid state transition if necessary
-        guard let tab = tabFor(viewController: viewController) else {
-            return
-        }
-        let state = viewState(forTabBarItem: tab)
-        appState?.viewState = state // TODO: Not the ideal transition type...
+        self.shouldSelect = shouldSelect
+        self.didSelect = didSelect
     }
     
     public func tabBarController(
         _ tabBarController: UITabBarController,
         shouldSelect viewController: UIViewController) -> Bool
     {
-        // Check the app state to see if we can make a valid transition
-        guard let tab = tabFor(viewController: viewController) else {
-            return false
-        }
-        let state = viewState(forTabBarItem: tab)
-        return appState?.canTransition(to: state) ?? false
+        return shouldSelect?(tabBarController, viewController) ?? false
+    }
+    
+    public func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController)
+    {
+        didSelect?(tabBarController, viewController)
     }
 }
 
@@ -65,17 +62,17 @@ public func tabFor(viewController: UIViewController) -> TabBarItem?
     }
 }
 
-public func viewState(forTabBarItem item: TabBarItem) -> ViewState
+public func state(forTabBarItem item: TabBarItem) -> Any
 {
     switch item
     {
     case .dashboard:
-        return ViewState.dashboard
+        return DashboardState()
     case .library:
-        return ViewState.library
+        return LibraryState()
     case .inbox:
-        return ViewState.inbox
+        return InboxState()
     case .settings:
-        return ViewState.settings
+        return SettingsState()
     }
 }

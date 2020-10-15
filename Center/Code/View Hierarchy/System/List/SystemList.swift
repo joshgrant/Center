@@ -71,13 +71,9 @@ func makeSystemListSelectionClosure(controller: ViewController, context: Context
             return appState
         }
         
-        let detailController = makeSystemDetailViewController(system: system, appState: appState)
-        controller
-            .navigationController?
-            .pushViewController(detailController, animated: true)
-        // TODO: Return a new app state and handle it separately...
-        
-        return appState
+        let newState = transition(to: SystemDetailState(system: system), appState: appState)
+
+        return newState
     }
 }
 
