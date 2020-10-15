@@ -60,7 +60,7 @@ func makeSystemsListTableViewModel(context: Context, didSelect: @escaping TableV
         cellModelTypes: makeSystemsListCellModelTypes())
 }
 
-func makeSystemListSelectionClosure(controller: ViewController, context: Context) -> TableViewSelectionClosure
+func makeSystemListSelectionClosure(controller: ViewController, context: Context, appState: AppState) -> TableViewSelectionClosure
 {
     return { selection in
         
@@ -68,13 +68,16 @@ func makeSystemListSelectionClosure(controller: ViewController, context: Context
         // Can we include the model in the call back?
         guard let system = systemInSystemList(at: selection.indexPath, context: context) else {
             assertionFailure("Failed to find the proper system at: \(selection.indexPath)")
-            return
+            return appState
         }
         
-        let detailController = makeSystemDetailViewController(system: system)
+        let detailController = makeSystemDetailViewController(system: system, appState: appState)
         controller
             .navigationController?
             .pushViewController(detailController, animated: true)
+        // TODO: Return a new app state and handle it separately...
+        
+        return appState
     }
 }
 
@@ -84,11 +87,11 @@ func systemInSystemList(at indexPath: IndexPath, context: Context) -> System?
     return systems[indexPath.row]
 }
 
-func makeSystemsListPage(context: Context) -> ViewController
+func makeSystemsListPage(context: Context, appState: AppState) -> ViewController
 {
     let controller = ViewController()
     
-    let didSelect = makeSystemListSelectionClosure(controller: controller, context: context)
+    let didSelect = makeSystemListSelectionClosure(controller: controller, context: context, appState: appState)
     let model = makeSystemsListTableViewModel(context: context, didSelect: didSelect)
     let tableView = makeTableView(from: model)
     
@@ -100,7 +103,7 @@ func makeSystemsListPage(context: Context) -> ViewController
     controller.navigationItem.searchController = searchController
     controller.navigationItem.hidesSearchBarWhenScrolling = true
     
-    let actionClosure = makeSystemListAddActionClosure(context: context, controller: controller)
+    let actionClosure = makeSystemListAddActionClosure(context: context, controller: controller, appState: appState)
     // TODO: The action closure is probably getting released because there are no
     // references to it...
     controller.actionClosures.insert(actionClosure)
@@ -109,7 +112,7 @@ func makeSystemsListPage(context: Context) -> ViewController
     return controller
 }
 
-func makeSystemListAddActionClosure(context: Context, controller: ViewController) -> ActionClosure
+func makeSystemListAddActionClosure(context: Context, controller: ViewController, appState: AppState) -> ActionClosure
 {
     return ActionClosure { sender in
         // Add a new system!
@@ -119,7 +122,7 @@ func makeSystemListAddActionClosure(context: Context, controller: ViewController
         let system = System(context: context)
         // Open up the new system page
         
-        let systemDetailController = makeSystemDetailViewController(system: system)
+        let systemDetailController = makeSystemDetailViewController(system: system, appState: appState)
         // TODO: Should it present, or should it just push? If it pushes, we need to add
         // the cell to the table view first. But if they decide not to create the system,
         // then they should hit "cancel" and it won't insert a cell..
@@ -128,6 +131,9 @@ func makeSystemListAddActionClosure(context: Context, controller: ViewController
         // it'll get complicated. Should there be another view for just the basic information,
         // i.e name?
         controller.navigationController?.present(systemDetailController, animated: true, completion: nil)
+        
+        // Should modify the app state rather than presenting a new detail controller
+        return appState
     }
 }
 

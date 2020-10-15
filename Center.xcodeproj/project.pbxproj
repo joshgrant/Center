@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0301CE3E2538399E00B9CBF9 /* TabBarControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0301CE3D2538399E00B9CBF9 /* TabBarControllerDelegate.swift */; };
 		0303E380251DBE360060BCB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E37F251DBE360060BCB5 /* AppDelegate.swift */; };
 		0303E38B251DBEDF0060BCB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E38A251DBEDF0060BCB5 /* SceneDelegate.swift */; };
 		0303E44F251DC7CD0060BCB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0303E44E251DC7CD0060BCB5 /* LaunchScreen.storyboard */; };
-		03185024251E33D4002DE065 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03185023251E33D4002DE065 /* InboxViewController.swift */; };
-		03185034251E3401002DE065 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03185033251E3401002DE065 /* SettingsViewController.swift */; };
 		033436732535ABE10028F9A9 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866599251F2B9C00418C54 /* Icon.swift */; };
 		033436742535ABE10028F9A9 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038665A7251F2E2800418C54 /* UIImage+Extensions.swift */; };
 		033436752535ABE10028F9A9 /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0380CBA2252B40D90049DAAD /* UseCase.swift */; };
@@ -133,8 +132,6 @@
 		03C5919825360B4800020FD2 /* IdealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5919725360B4800020FD2 /* IdealCell.swift */; };
 		03C5919C25360B5000020FD2 /* IdealCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5919B25360B5000020FD2 /* IdealCellModel.swift */; };
 		03C591A02536D4DD00020FD2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5919F2536D4DD00020FD2 /* AppState.swift */; };
-		03CE2423251F3D7400CE699A /* InboxViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2422251F3D7400CE699A /* InboxViewFactory.swift */; };
-		03CE2433251F3F4C00CE699A /* SettingsViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */; };
 		03E94B182521B09400DE2340 /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E94B172521B09400DE2340 /* SpacerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -169,6 +166,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0301CE3D2538399E00B9CBF9 /* TabBarControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerDelegate.swift; sourceTree = "<group>"; };
 		0303E37F251DBE360060BCB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0303E38A251DBEDF0060BCB5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0303E3F8251DC1F80060BCB5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -196,8 +194,6 @@
 		03123028252C668C00ECBEBF /* TextBlock+Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextBlock+Searchable.swift"; sourceTree = "<group>"; };
 		03123032252C669600ECBEBF /* ImageBlock+Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageBlock+Searchable.swift"; sourceTree = "<group>"; };
 		0312303C252C673800ECBEBF /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
-		03185023251E33D4002DE065 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
-		03185033251E3401002DE065 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		031D983B25260375004BD2FD /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		034AE0CA2532280C0052E223 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		034AE0DA2532282A0052E223 /* TableViewDataSourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceModel.swift; sourceTree = "<group>"; };
@@ -296,8 +292,6 @@
 		03C5919725360B4800020FD2 /* IdealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdealCell.swift; sourceTree = "<group>"; };
 		03C5919B25360B5000020FD2 /* IdealCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdealCellModel.swift; sourceTree = "<group>"; };
 		03C5919F2536D4DD00020FD2 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		03CE2422251F3D7400CE699A /* InboxViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewFactory.swift; sourceTree = "<group>"; };
-		03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewFactory.swift; sourceTree = "<group>"; };
 		03CE247A251F4FCD00CE699A /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		03CE2483251F555A00CE699A /* SearchBarDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegateProtocol.swift; sourceTree = "<group>"; };
 		03CE24C8251F5FB400CE699A /* TableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModel.swift; sourceTree = "<group>"; };
@@ -424,8 +418,6 @@
 		03185021251E33BA002DE065 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
-				03185023251E33D4002DE065 /* InboxViewController.swift */,
-				03CE2422251F3D7400CE699A /* InboxViewFactory.swift */,
 			);
 			path = Inbox;
 			sourceTree = "<group>";
@@ -433,8 +425,6 @@
 		03185022251E33BE002DE065 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				03185033251E3401002DE065 /* SettingsViewController.swift */,
-				03CE2432251F3F4C00CE699A /* SettingsViewFactory.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -685,6 +675,7 @@
 				03AF224E252F310100468AB4 /* SearchViewModel.swift */,
 				0303E426251DC3F60060BCB5 /* TabBar.swift */,
 				034DA0F9251DC9C100ABDC6E /* TabBarController.swift */,
+				0301CE3D2538399E00B9CBF9 /* TabBarControllerDelegate.swift */,
 				0303E408251DC2080060BCB5 /* TableView.swift */,
 				034AE13425322E100052E223 /* TableView+Functions.swift */,
 				0303E436251DC4610060BCB5 /* TableViewCell.swift */,
@@ -1001,7 +992,6 @@
 				033436DE2535ACB70028F9A9 /* TextBlock+Searchable.swift in Sources */,
 				033436DF2535ACB70028F9A9 /* ValueSource+Extensions.swift in Sources */,
 				03AF22A5252F33EA00468AB4 /* SystemDetailInteractor.swift in Sources */,
-				03185024251E33D4002DE065 /* InboxViewController.swift in Sources */,
 				03AF2341252F35EB00468AB4 /* FlowDetailViewModel.swift in Sources */,
 				0334368F2535AC3B0028F9A9 /* Observer.swift in Sources */,
 				0334368A2535AC3B0028F9A9 /* CollectionView.swift in Sources */,
@@ -1013,7 +1003,6 @@
 				0303E380251DBE360060BCB5 /* AppDelegate.swift in Sources */,
 				033436C32535AC7D0028F9A9 /* DashboardSuggestedFlows.swift in Sources */,
 				03AF2393252F57E300468AB4 /* EventListCell.swift in Sources */,
-				03CE2433251F3F4C00CE699A /* SettingsViewFactory.swift in Sources */,
 				033436732535ABE10028F9A9 /* Icon.swift in Sources */,
 				03AF229C252F337000468AB4 /* LibraryDetailListInteractor.swift in Sources */,
 				033436742535ABE10028F9A9 /* UIImage+Extensions.swift in Sources */,
@@ -1040,12 +1029,12 @@
 				0334368E2535AC3B0028F9A9 /* ObserverForViewController.swift in Sources */,
 				0386658B251F299700418C54 /* SearchViewController.swift in Sources */,
 				034AE16025322E560052E223 /* TableViewCell+Functions.swift in Sources */,
+				0301CE3E2538399E00B9CBF9 /* TabBarControllerDelegate.swift in Sources */,
 				03C59194253608A600020FD2 /* ActionClosure.swift in Sources */,
 				03E94B182521B09400DE2340 /* SpacerView.swift in Sources */,
 				03AF22E4252F35D000468AB4 /* SystemListCellModel.swift in Sources */,
 				03AF22BF252F35C900468AB4 /* LibraryListCellModel.swift in Sources */,
 				0334368B2535AC3B0028F9A9 /* View.swift in Sources */,
-				03CE2423251F3D7400CE699A /* InboxViewFactory.swift in Sources */,
 				035B9A05252F74590080785C /* LibraryListCell.swift in Sources */,
 				0373AF082526009200B92093 /* TableViewDataSource.swift in Sources */,
 				0373AEFF2526008C00B92093 /* TableViewCellModel.swift in Sources */,
@@ -1076,7 +1065,6 @@
 				03AF22F4252F35D600468AB4 /* HistoryListCellModel.swift in Sources */,
 				034AE0CB2532280C0052E223 /* TableViewModel.swift in Sources */,
 				0373AF0E2526009700B92093 /* TableView.swift in Sources */,
-				03185034251E3401002DE065 /* SettingsViewController.swift in Sources */,
 				03C5919C25360B5000020FD2 /* IdealCellModel.swift in Sources */,
 				034AE18525322EEA0052E223 /* TableViewDataSourceModel+Functions.swift in Sources */,
 				0334368D2535AC3B0028F9A9 /* Notification.Name+Extensions.swift in Sources */,

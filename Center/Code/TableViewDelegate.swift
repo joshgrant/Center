@@ -42,6 +42,7 @@ public extension TableViewDelegate
         let tableViewSelection = TableViewSelection(
             tableView: tableView,
             indexPath: indexPath)
-        model.didSelect?(tableViewSelection)
+        let newAppState = model.didSelect?(tableViewSelection)
+        print(newAppState!)
     }
 }

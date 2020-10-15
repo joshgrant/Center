@@ -129,12 +129,12 @@ public func countForEntityType(_ entityType: EntityType, context: Context) -> In
     }
 }
 
-public func makeViewController(entityType: EntityType, context: Context) -> UIViewController?
+public func makeViewController(entityType: EntityType, context: Context, appState: AppState) -> UIViewController?
 {
     switch entityType
     {
     case .system:
-        return makeSystemsListPage(context: context)
+        return makeSystemsListPage(context: context, appState: appState)
     default:
         return nil
     }

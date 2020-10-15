@@ -89,7 +89,7 @@ func makeDashboardRootViewDidSelectAction(appState: AppState, context: Context) 
     return { selection in
         guard let section = DashboardSectionHeader(rawValue: selection.indexPath.row) else {
             assertionFailure("Selected a row that doesn't exist: \(selection)")
-            return
+            return appState
         }
         
         let row = selection.indexPath.row
@@ -97,16 +97,16 @@ func makeDashboardRootViewDidSelectAction(appState: AppState, context: Context) 
         switch section
         {
         case .pinned:
-            handleTappedDashboardPinnedItem(
+            return handleTappedDashboardPinnedItem(
                 appState: appState,
                 context: context,
                 row: row)
         case .flows:
-            handleTappedDashboardFlow(row: row)
+            return handleTappedDashboardFlow(at: row, appState: appState)
         case .forecast:
-            handleTappedDashboardForecastFlow(row: row)
+            return handleTappedDashboardForecastFlow(at: row, appState: appState)
         case .priority:
-            handleTappedDashboardPriority(row: row)
+            return handleTappedDashboardPriority(at: row, appState: appState)
         }
     }
 }
@@ -209,7 +209,7 @@ func makeSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchCon
 // and return it from each function. Therefore, it must be a struct.
 // How can we contain all state? Nested structs? maybe a singleton class? 
 
-func handleTappedDashboardPinnedItem(appState: AppState, context: Context, row: Int)
+func handleTappedDashboardPinnedItem(appState: AppState, context: Context, row: Int) -> AppState
 {
     // Find the appropriate object
     // Find the relevant view controller
@@ -217,39 +217,50 @@ func handleTappedDashboardPinnedItem(appState: AppState, context: Context, row: 
     
     let pins = getPinnedObjects(context: context)
     let selectedPin = pins[row]
-    let controller = viewController(for: selectedPin)
+    let controller = viewController(for: selectedPin, appState: appState)
     
+    // I feel like these are "side effects" that modify the state indirectly, instead of returning a new state
+    // How can we return a new state and have it properly push the new controller onto the stack?
     appState
         .activeViewController?
         .navigationController?
         .pushViewController(controller, animated: true)
+    
+    appState.activeViewController = controller
+    ///
+    
+    return appState
 }
 
-func viewController(for pin: Entity) -> ViewController
+func viewController(for pin: Entity, appState: AppState) -> ViewController
 {
     switch pin
     {
     case let pin as System:
-        return makeSystemDetailViewController(system: pin)
+        return makeSystemDetailViewController(system: pin, appState: appState)
     default:
         return ViewController()
     }
 }
 
-func handleTappedDashboardFlow(row: Int)
+func handleTappedDashboardFlow(at row: Int, appState: AppState) -> AppState
 {
     // Find the selected flow
     // Open up the flow detail page for that flow
+    // Takes in an app state, and returns a new app state
+    return appState
 }
 
-func handleTappedDashboardForecastFlow(row: Int)
+func handleTappedDashboardForecastFlow(at row: Int, appState: AppState) -> AppState
 {
     // Find the relevant event
     // Open up the event detail page
+    return appState
 }
 
-func handleTappedDashboardPriority(row: Int)
+func handleTappedDashboardPriority(at row: Int, appState: AppState) -> AppState
 {
     // Find the relevant system
     // Open up the system detail page
+    return appState
 }

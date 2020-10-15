@@ -17,11 +17,11 @@ enum SystemDetailSectionHeader: Int, CaseIterable
     case notes
 }
 
-func makeSystemDetailViewController(system: System) -> ViewController
+func makeSystemDetailViewController(system: System, appState: AppState) -> ViewController
 {
     let viewController = ViewController()
     
-    let didSelect = makeSystemDetailDidSelectClosure(controller: viewController)
+    let didSelect = makeSystemDetailDidSelectClosure(controller: viewController, appState: appState)
     let tableViewModel = makeSystemDetailTableViewModel(system: system, didSelect: didSelect)
     let tableView = makeTableView(from: tableViewModel)
     
@@ -71,10 +71,11 @@ func makeSystemDetailTableViewDataSource(system: System) -> TableViewDataSource
     return TableViewDataSource(model: dataSourceModel)
 }
 
-func makeSystemDetailDidSelectClosure(controller: ViewController) -> TableViewSelectionClosure
+func makeSystemDetailDidSelectClosure(controller: ViewController, appState: AppState) -> TableViewSelectionClosure
 {
     return { selection in
         print(selection)
+        return appState
     }
 }
 

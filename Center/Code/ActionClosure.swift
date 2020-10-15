@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias ActionPerformClosure = ((_ sender: Any) -> Void)
+typealias ActionPerformClosure = ((_ sender: Any) -> AppState)
 
 class ActionClosure
 {
@@ -19,9 +19,9 @@ class ActionClosure
         self.performClosure = performClosure
     }
     
-    @objc func perform(sender: Any)
+    @objc func perform(sender: Any) -> AppState
     {
-        performClosure(sender)
+        return performClosure(sender)
     }
     
     deinit {

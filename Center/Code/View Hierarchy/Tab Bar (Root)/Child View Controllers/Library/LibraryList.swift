@@ -7,16 +7,16 @@
 
 import UIKit
 
-func makeLibraryRootViewControllerSelectionClosure(context: Context, controller: ViewController) -> TableViewSelectionClosure
+func makeLibraryRootViewControllerSelectionClosure(context: Context, controller: ViewController, appState: AppState) -> TableViewSelectionClosure
 {
     return { selection in
         
         guard let entityType = EntityType(rawValue: selection.indexPath.row) else {
             assertionFailure("Failed to create an `EntityType` from a selection's indexPath.row")
-            return
+            return appState
         }
         
-        if let detailViewController = makeViewController(entityType: entityType, context: context)
+        if let detailViewController = makeViewController(entityType: entityType, context: context, appState: appState)
         {
             controller
                 .navigationController?
@@ -24,16 +24,20 @@ func makeLibraryRootViewControllerSelectionClosure(context: Context, controller:
         }
         
         selection.tableView.deselectRow(at: selection.indexPath, animated: true)
+        
+        // TODO: Use a state change to the app state, rather than the above statements
+        return appState
     }
 }
 
-func makeLibraryRootViewController(context: Context) -> UIViewController
+func makeLibraryRootViewController(context: Context, appState: AppState) -> UIViewController
 {
     let controller = ViewController()
     
     let didSelect = makeLibraryRootViewControllerSelectionClosure(
         context: context,
-        controller: controller)
+        controller: controller,
+        appState: appState)
     let tableViewModel = makeLibraryTableViewModel(
         context: context,
         didSelect: didSelect)
@@ -46,6 +50,7 @@ func makeLibraryRootViewController(context: Context) -> UIViewController
     let searchController = makeSearchController(searchBarDelegate: delegate)
     controller.navigationItem.searchController = searchController
     controller.navigationItem.hidesSearchBarWhenScrolling = true
+    controller.title = title(tabBarItem: .library)
     
     let navigationController = NavigationController(rootViewController: controller)
     return navigationController

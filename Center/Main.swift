@@ -22,7 +22,7 @@ func makeViewController(tabBarItem: TabBarItem, appState: AppState, context: Con
     case .dashboard:
         return makeDashboardRootViewController(appState: appState, context: context)
     case .library:
-        return makeLibraryRootViewController(context: context)
+        return makeLibraryRootViewController(context: context, appState: appState)
     case .inbox:
         return makeInboxRootViewController()
     case .settings:
@@ -36,6 +36,7 @@ func makeInboxRootViewController() -> UIViewController
 {
     let controller = ViewController()
     controller.tabBarItem = makeUITabBarItem(tabBarItem: .inbox)
+    controller.title = title(tabBarItem: .inbox)
     return controller
 }
 
@@ -45,6 +46,7 @@ func makeSettingsRootViewController() -> UIViewController
 {
     let controller = ViewController()
     controller.tabBarItem = makeUITabBarItem(tabBarItem: .settings)
+    controller.title = title(tabBarItem: .settings)
     return controller
 }
 

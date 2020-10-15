@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var appState = AppState() // TODO: Serialize and Deserialize this...
+    lazy var tabControllerDelegate = TabBarControllerDelegate(appState: appState)
     
     /// We need to get out of the "context" thing...
     /// and abstract it to the an environment or something like that...
@@ -27,9 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         populateDatabaseWithWaterSystem(context: _context)
         populateDatabaseWithBirthdayPartyEvent(context: _context)
         
-        let appState = AppState()
-        
-        let root = TabBarController()
+        let root = TabBarController(delegate: tabControllerDelegate)
         root.viewControllers = makeTabBarControllers(appState: appState, context: _context)
         
         appState.activeViewController = root.viewControllers?.first
