@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 public struct AppState
 {
     var state: Any
@@ -64,7 +63,7 @@ func canTransition(to: Any, appState: AppState) -> Bool
     }
 }
 
-func transition(to: Any, appState: AppState) -> AppState
+private func transition(to: Any, appState: AppState) -> AppState
 {
     let from = appState.state
     guard canTransition(to: to, appState: appState) else {
@@ -85,4 +84,18 @@ func transition(to: Any, appState: AppState) -> AppState
     default:
         return appState
     }
+}
+
+func attemptToTransition(to: Any)
+{
+    NotificationCenter
+        .default
+        .post(name: .attemptedStateChange,
+              object: nil,
+              userInfo: ["to": to])
+}
+
+extension Notification.Name
+{
+    static let attemptedStateChange = Notification.Name("com.joshgrant.Center.notification.attemptedStateChange")
 }

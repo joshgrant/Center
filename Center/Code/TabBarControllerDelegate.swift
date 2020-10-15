@@ -57,7 +57,14 @@ public func tabFor(viewController: UIViewController) -> TabBarItem?
     case title(tabBarItem: .settings):
         return .settings
     default:
-        assertionFailure("Failed to get the tab for the view controller: \(viewController)")
+        if let viewController = viewController
+        {
+            assertionFailure("The view controller was nil: \(viewController)")
+        }
+        else
+        {
+            assertionFailure("The view controller was nil")
+        }
         return nil
     }
 }

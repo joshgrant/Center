@@ -75,7 +75,6 @@ func makeSystemDetailDidSelectClosure(controller: ViewController, appState: AppS
 {
     return { selection in
         print(selection)
-        return appState
     }
 }
 

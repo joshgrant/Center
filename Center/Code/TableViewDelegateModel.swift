@@ -10,7 +10,7 @@ import UIKit
 // TODO: Maybe make this more generic, i.e table view update closure
 // and have all of the delegate methods call the closure, with different
 // parameters. Maybe represent the update type with a struct...
-typealias TableViewSelectionClosure = ((TableViewSelection) -> AppState)
+typealias TableViewSelectionClosure = ((TableViewSelection) -> Void)
 
 public struct TableViewSelection
 {

@@ -11,20 +11,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     var appState = AppState(state: LaunchScreenState(), controller: nil) // TODO: Serialize and Deserialize this...
-    lazy var tabControllerDelegate = TabBarControllerDelegate()
+    lazy var tabControllerDelegate = TabBarControllerDelegate(
+        shouldSelect: makeShouldSelectTab(appState: appState),
+        didSelect: makeDidSelectTab(appState: appState))
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
     {
         guard let scene = scene as? UIWindowScene else { return }
         
-        var container = try! makeContainer(modelName: "Model")
-        container = try! loadPersistentStores(on: container)
-        let _context = context(from: container)
-        populateDatabaseWithWaterSystem(context: _context)
-        populateDatabaseWithBirthdayPartyEvent(context: _context)
+        let context = createContext()
         
         let root = TabBarController(delegate: tabControllerDelegate)
-        let tabControllers = makeTabBarControllers(appState: appState, context: _context)
+        let tabControllers = makeTabBarControllers(appState: appState, context: context)
         root.viewControllers = tabControllers
         let dashboardController = root.viewControllers?.first
         
@@ -78,6 +76,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+func createContext() -> Context
+{
+    var container = try! makeContainer(modelName: "Model")
+    container = try! loadPersistentStores(on: container)
+    let _context = context(from: container)
+    populateDatabaseWithWaterSystem(context: _context)
+    populateDatabaseWithBirthdayPartyEvent(context: _context)
+    return _context
+}
+
 func makeShouldSelectTab(appState: AppState) -> ShouldSelectTab
 {
     return { _, viewController in
@@ -97,7 +105,12 @@ func makeDidSelectTab(appState: AppState) -> DidSelectTab
             return
         }
         
+        let newState = state(forTabBarItem: tab)
+        
+        attemptToTransition(to: newState)
+        
         // TODO: This should modify the app state
+        // What if we used notifications?
         
 //        let newState = state(forTabBarItem: tab)
 //        return transition(to: newState, appState: appState)

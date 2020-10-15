@@ -13,7 +13,7 @@ func makeLibraryRootViewControllerSelectionClosure(context: Context, controller:
         
         guard let entityType = EntityType(rawValue: selection.indexPath.row) else {
             assertionFailure("Failed to create an `EntityType` from a selection's indexPath.row")
-            return appState
+            return
         }
         
         if let detailViewController = makeViewController(entityType: entityType, context: context, appState: appState)
@@ -26,7 +26,7 @@ func makeLibraryRootViewControllerSelectionClosure(context: Context, controller:
         selection.tableView.deselectRow(at: selection.indexPath, animated: true)
         
         // TODO: Use a state change to the app state, rather than the above statements
-        return appState
+        return
     }
 }
 

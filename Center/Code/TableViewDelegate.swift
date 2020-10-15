@@ -42,7 +42,10 @@ public extension TableViewDelegate
         let tableViewSelection = TableViewSelection(
             tableView: tableView,
             indexPath: indexPath)
-        let newAppState = model.didSelect?(tableViewSelection)
-        print(newAppState!)
+        if let newAppState = model.didSelect?(tableViewSelection) {
+            print(newAppState)
+        } else {
+            print("Selected row, but no new state")
+        }
     }
 }

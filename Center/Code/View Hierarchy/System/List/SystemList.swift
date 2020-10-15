@@ -68,12 +68,10 @@ func makeSystemListSelectionClosure(controller: ViewController, context: Context
         // Can we include the model in the call back?
         guard let system = systemInSystemList(at: selection.indexPath, context: context) else {
             assertionFailure("Failed to find the proper system at: \(selection.indexPath)")
-            return appState
+            return
         }
         
-        let newState = transition(to: SystemDetailState(system: system), appState: appState)
-
-        return newState
+        attemptToTransition(to: SystemDetailState(system: system))
     }
 }
 
