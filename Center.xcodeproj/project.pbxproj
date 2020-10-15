@@ -32,8 +32,6 @@
 		0334368A2535AC3B0028F9A9 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E42E251DC4230060BCB5 /* CollectionView.swift */; };
 		0334368B2535AC3B0028F9A9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E400251DC2010060BCB5 /* View.swift */; };
 		0334368C2535AC3B0028F9A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E3F8251DC1F80060BCB5 /* ViewController.swift */; };
-		0334368D2535AC3B0028F9A9 /* Notification.Name+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0368537E2528487700782265 /* Notification.Name+Extensions.swift */; };
-		0334368E2535AC3B0028F9A9 /* ObserverForViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036853752528471C00782265 /* ObserverForViewController.swift */; };
 		0334368F2535AC3B0028F9A9 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036853582528426800782265 /* Observer.swift */; };
 		033436902535AC3B0028F9A9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */; };
 		033436C22535AC7D0028F9A9 /* DateStock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037E0C9F252CAA36008B2CB5 /* DateStock.swift */; };
@@ -107,6 +105,7 @@
 		038157ED251D0A1F00D60752 /* ArchitectureNotes.md in Resources */ = {isa = PBXBuildFile; fileRef = 038157EC251D0A1F00D60752 /* ArchitectureNotes.md */; };
 		03866583251F298D00418C54 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866582251F298D00418C54 /* FilterViewController.swift */; };
 		0386658B251F299700418C54 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386658A251F299700418C54 /* SearchViewController.swift */; };
+		03ABED4B2538D69300FC7246 /* ApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABED4A2538D69300FC7246 /* ApplicationState.swift */; };
 		03AF228C252F32BC00468AB4 /* FlowDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF228B252F32BC00468AB4 /* FlowDetailInteractor.swift */; };
 		03AF229C252F337000468AB4 /* LibraryDetailListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF229B252F337000468AB4 /* LibraryDetailListInteractor.swift */; };
 		03AF22A5252F33EA00468AB4 /* SystemDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF22A4252F33EA00468AB4 /* SystemDetailInteractor.swift */; };
@@ -237,8 +236,6 @@
 		03632738251F2FD80088681D /* TableViewHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderModel.swift; sourceTree = "<group>"; };
 		036853582528426800782265 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		03685367252845E300782265 /* ObserverForSceneUpdatesEventResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverForSceneUpdatesEventResponder.swift; sourceTree = "<group>"; };
-		036853752528471C00782265 /* ObserverForViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverForViewController.swift; sourceTree = "<group>"; };
-		0368537E2528487700782265 /* Notification.Name+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Extensions.swift"; sourceTree = "<group>"; };
 		036B6C4F252EE31600A8C1D1 /* Source+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source+Extensions.swift"; sourceTree = "<group>"; };
 		036B6C59252EE3E600A8C1D1 /* SourceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceType.swift; sourceTree = "<group>"; };
 		036B6C63252EE49900A8C1D1 /* Event+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Extensions.swift"; sourceTree = "<group>"; };
@@ -272,6 +269,7 @@
 		0386658A251F299700418C54 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		03866599251F2B9C00418C54 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		038665A7251F2E2800418C54 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		03ABED4A2538D69300FC7246 /* ApplicationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationState.swift; sourceTree = "<group>"; };
 		03AF21D4252F2A0F00468AB4 /* EntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
 		03AF21DD252F2A8900468AB4 /* Database+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Database+Extensions.swift"; sourceTree = "<group>"; };
 		03AF21EF252F2AB400468AB4 /* LibraryListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryListCellModel.swift; sourceTree = "<group>"; };
@@ -585,6 +583,7 @@
 				038157B5251CCA2600D60752 /* Info.plist */,
 				0303E44E251DC7CD0060BCB5 /* LaunchScreen.storyboard */,
 				03C5919F2536D4DD00020FD2 /* AppState.swift */,
+				03ABED4A2538D69300FC7246 /* ApplicationState.swift */,
 				0303E37F251DBE360060BCB5 /* AppDelegate.swift */,
 				0301CE6C2538533E00B9CBF9 /* Application.swift */,
 				03C0159F25301E860006F67E /* scratch.swift */,
@@ -710,10 +709,8 @@
 				03866599251F2B9C00418C54 /* Icon.swift */,
 				03742E132530338F00FD3932 /* Int+Extensions.swift */,
 				0303E410251DC2110060BCB5 /* NavigationController.swift */,
-				0368537E2528487700782265 /* Notification.Name+Extensions.swift */,
 				036853582528426800782265 /* Observer.swift */,
 				03685367252845E300782265 /* ObserverForSceneUpdatesEventResponder.swift */,
-				036853752528471C00782265 /* ObserverForViewController.swift */,
 				034B7B162535CFFC00EB84D1 /* SearchBarDelegate.swift */,
 				03CE2483251F555A00CE699A /* SearchBarDelegateProtocol.swift */,
 				03AF224E252F310100468AB4 /* SearchViewModel.swift */,
@@ -1106,7 +1103,7 @@
 				033436902535AC3B0028F9A9 /* CollectionViewCell.swift in Sources */,
 				033436772535ABE10028F9A9 /* Array+Extensions.swift in Sources */,
 				03C591A02536D4DD00020FD2 /* AppState.swift in Sources */,
-				0334368E2535AC3B0028F9A9 /* ObserverForViewController.swift in Sources */,
+				03ABED4B2538D69300FC7246 /* ApplicationState.swift in Sources */,
 				0386658B251F299700418C54 /* SearchViewController.swift in Sources */,
 				034AE16025322E560052E223 /* TableViewCell+Functions.swift in Sources */,
 				0301CE3E2538399E00B9CBF9 /* TabBarControllerDelegate.swift in Sources */,
@@ -1147,7 +1144,6 @@
 				0373AF0E2526009700B92093 /* TableView.swift in Sources */,
 				03C5919C25360B5000020FD2 /* IdealCellModel.swift in Sources */,
 				034AE18525322EEA0052E223 /* TableViewDataSourceModel+Functions.swift in Sources */,
-				0334368D2535AC3B0028F9A9 /* Notification.Name+Extensions.swift in Sources */,
 				03C5919825360B4800020FD2 /* IdealCell.swift in Sources */,
 				033436882535AC3B0028F9A9 /* NavigationController.swift in Sources */,
 				0373AF112526009A00B92093 /* TabBarController.swift in Sources */,

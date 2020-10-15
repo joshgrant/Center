@@ -24,6 +24,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         self.window = window
+        
+        if let activity = session.stateRestorationActivity
+        {
+            appState.restore(from: activity)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -54,6 +59,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        let activity = NSUserActivity(activityType: Bundle.main.activityType)
+        appState.store(in: activity) // TODO: Side effects!
+        return activity
+    }
 }
 

@@ -7,33 +7,30 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    
+class SceneDelegate: UIResponder, UIWindowSceneDelegate
+{
     var window: UIWindow?
-    var appState = AppState(state: LaunchScreenState(), controller: nil) // TODO: Serialize and Deserialize this...
-    lazy var tabControllerDelegate = TabBarControllerDelegate(
-        shouldSelect: makeShouldSelectTab(appState: appState),
-        didSelect: makeDidSelectTab(appState: appState))
+    var sceneState: SceneState = .disconnected
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
     {
-        guard let scene = scene as? UIWindowScene else { return }
+        guard let scene = scene as? UIWindowScene else {
+            assertionFailure("Failed to get the scene")
+            return
+        }
         
-        let context = createContext()
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            assertionFailure("Failed to get the app delegate")
+            return
+        }
         
-        let root = TabBarController(delegate: tabControllerDelegate)
-        let tabControllers = makeTabBarControllers(appState: appState, context: context)
-        root.viewControllers = tabControllers
-        let dashboardController = root.viewControllers?.first
+//        showWindow(scene: scene, context: delegate.context)
+        window = createAndShowWindow(scene: scene, context: delegate.context)
         
-        appState = AppState(state: DashboardState(), controller: dashboardController)
-        registerForStateNotifications()
-        
-        let window = UIWindow(windowScene: scene)
-        window.rootViewController = root
-        window.makeKeyAndVisible()
-        
-        self.window = window
+        if let activity = session.stateRestorationActivity
+        {
+            sceneState = restore(from: activity) ?? .disconnected
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene)
@@ -42,47 +39,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
+        
+        print("Scene did disconnect")
+        // UIKit also posts a didDisconnectNotification notification in addition to calling this method.
+        
     }
     
     func sceneDidBecomeActive(_ scene: UIScene)
     {
-        NotificationCenter.default.post(
-            name: .sceneDidBecomeActive,
-            object: nil,
-            userInfo: ["scene" : scene])
+        print("Scene did become active")
+        // In addition to calling this method, UIKit posts a didActivateNotification and a didBecomeActiveNotification.
     }
     
     func sceneWillResignActive(_ scene: UIScene)
     {
-        NotificationCenter.default.post(
-            name: .sceneWillResignActive,
-            object: nil,
-            userInfo: ["scene" : scene])
+        print("Scene will resign active")
+        // In addition to calling this method, UIKit posts a willDeactivateNotification and a willResignActiveNotification.
     }
     
     func sceneWillEnterForeground(_ scene: UIScene)
     {
-        NotificationCenter.default.post(
-            name: .sceneWillEnterForeground,
-            object: nil,
-            userInfo: ["scene" : scene])
+        print("Scene will enter foreground")
+        // In addition to calling this method, UIKit posts a didActivateNotification and a willEnterForegroundNotification.
     }
     
     func sceneDidEnterBackground(_ scene: UIScene)
     {
-        NotificationCenter.default.post(
-            name: .sceneDidEnterBackground,
-            object: nil,
-            userInfo: ["scene" : scene])
+        print("Scene did enter background")
+        // In addition to calling this method, UIKit posts a didEnterBackgroundNotification notification from UIApplication and UIScene.
     }
-}
-
-func createContext() -> Context
-{
-    var container = try! makeContainer(modelName: "Model")
-    container = try! loadPersistentStores(on: container)
-    let _context = context(from: container)
-    populateDatabaseWithWaterSystem(context: _context)
-    populateDatabaseWithBirthdayPartyEvent(context: _context)
-    return _context
+    
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity?
+    {
+        let activity = NSUserActivity(activityType: Bundle.main.activityType)
+        __store(sceneState: sceneState, in: activity)
+        return activity
+    }
 }

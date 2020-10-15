@@ -69,17 +69,17 @@ public func tabFor(viewController: UIViewController) -> TabBarItem?
     }
 }
 
-public func state(forTabBarItem item: TabBarItem) -> Any
-{
-    switch item
-    {
-    case .dashboard:
-        return DashboardState()
-    case .library:
-        return LibraryState()
-    case .inbox:
-        return InboxState()
-    case .settings:
-        return SettingsState()
-    }
-}
+//public func state(forTabBarItem item: TabBarItem) -> TabBarState
+//{
+//    switch item
+//    {
+//    case .dashboard:
+//        return .das
+//    case .library:
+//        return LibraryState(searching: false, child: nil)
+//    case .inbox:
+//        return InboxState()
+//    case .settings:
+//        return SettingsState()
+//    }
+//}

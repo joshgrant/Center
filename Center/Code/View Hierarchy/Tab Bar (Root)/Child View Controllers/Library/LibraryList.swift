@@ -7,7 +7,7 @@
 
 import UIKit
 
-func makeLibraryRootViewControllerSelectionClosure(context: Context, controller: ViewController, appState: AppState) -> TableViewSelectionClosure
+func makeLibraryRootViewControllerSelectionClosure(controller: ViewController, context: Context) -> TableViewSelectionClosure
 {
     return { selection in
         
@@ -16,7 +16,7 @@ func makeLibraryRootViewControllerSelectionClosure(context: Context, controller:
             return
         }
         
-        if let detailViewController = makeViewController(entityType: entityType, context: context, appState: appState)
+        if let detailViewController = makeViewController(entityType: entityType, context: context)
         {
             controller
                 .navigationController?
@@ -30,14 +30,13 @@ func makeLibraryRootViewControllerSelectionClosure(context: Context, controller:
     }
 }
 
-func makeLibraryRootViewController(context: Context, appState: AppState) -> UIViewController
+func makeLibraryRootViewController(context: Context) -> UIViewController
 {
     let controller = ViewController()
     
     let didSelect = makeLibraryRootViewControllerSelectionClosure(
-        context: context,
         controller: controller,
-        appState: appState)
+        context: context)
     let tableViewModel = makeLibraryTableViewModel(
         context: context,
         didSelect: didSelect)

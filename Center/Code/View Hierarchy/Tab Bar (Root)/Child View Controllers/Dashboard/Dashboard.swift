@@ -61,12 +61,12 @@ func makeDashboardTableViewModel(context: Context, didSelect: @escaping TableVie
 }
 
 
-func makeDashboardRootViewController(appState: AppState, context: Context) -> UIViewController
+func makeDashboardRootViewController(context: Context) -> UIViewController
 {
     let controller = ViewController()
     // TODO: Datasource and delegate are weak references...
     // We need to keep them in memory...
-    let didSelect = makeDashboardRootViewDidSelectAction(appState: appState, context: context)
+    let didSelect = makeDashboardRootViewDidSelectAction(context: context)
     let tableViewModel = makeDashboardTableViewModel(context: context, didSelect: didSelect)
     let tableView = makeTableView(from: tableViewModel)
     
@@ -84,7 +84,7 @@ func makeDashboardRootViewController(appState: AppState, context: Context) -> UI
     return navigationController
 }
 
-func makeDashboardRootViewDidSelectAction(appState: AppState, context: Context) -> TableViewSelectionClosure
+func makeDashboardRootViewDidSelectAction(context: Context) -> TableViewSelectionClosure
 {
     return { selection in
         guard let section = DashboardSectionHeader(rawValue: selection.indexPath.row) else {
@@ -98,15 +98,14 @@ func makeDashboardRootViewDidSelectAction(appState: AppState, context: Context) 
         {
         case .pinned:
             handleTappedDashboardPinnedItem(
-                appState: appState,
                 context: context,
                 row: row)
         case .flows:
-            handleTappedDashboardFlow(at: row, appState: appState)
+            handleTappedDashboardFlow(at: row)
         case .forecast:
-            handleTappedDashboardForecastFlow(at: row, appState: appState)
+            handleTappedDashboardForecastFlow(at: row)
         case .priority:
-            handleTappedDashboardPriority(at: row, appState: appState)
+            handleTappedDashboardPriority(at: row)
         }
     }
 }
@@ -209,7 +208,7 @@ func makeSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchCon
 // and return it from each function. Therefore, it must be a struct.
 // How can we contain all state? Nested structs? maybe a singleton class? 
 
-func handleTappedDashboardPinnedItem(appState: AppState, context: Context, row: Int) -> AppState
+func handleTappedDashboardPinnedItem(context: Context, row: Int)
 {
     // Find the appropriate object
     // Find the relevant view controller
@@ -217,46 +216,49 @@ func handleTappedDashboardPinnedItem(appState: AppState, context: Context, row: 
     
     let pins = getPinnedObjects(context: context)
     let selectedPin = pins[row]
-    let controller = viewController(for: selectedPin, appState: appState)
+    let controller = viewController(for: selectedPin)
     
     // I feel like these are "side effects" that modify the state indirectly, instead of returning a new state
     // How can we return a new state and have it properly push the new controller onto the stack?
-    appState
-        .controller?
-        .navigationController?
-        .pushViewController(controller, animated: true)
-    
-    AppState.transition(to: selectedPin)
+//    appState
+//        .controller?
+//        .navigationController?
+//        .pushViewController(controller, animated: true)
+//
+//    AppState.transition(to: selectedPin)
     
 //    appState.controller = controller
     ///
+//    return appState
+    
+    // TODO: Shoud notify about changes for the app state
 }
 
-func viewController(for pin: Entity, appState: AppState) -> ViewController
+func viewController(for pin: Entity) -> ViewController
 {
     switch pin
     {
     case let pin as System:
-        return makeSystemDetailViewController(system: pin, appState: appState)
+        return makeSystemDetailViewController(system: pin)
     default:
         return ViewController()
     }
 }
 
-func handleTappedDashboardFlow(at row: Int, appState: AppState)
+func handleTappedDashboardFlow(at row: Int)
 {
     // Find the selected flow
     // Open up the flow detail page for that flow
     // Takes in an app state, and returns a new app state
 }
 
-func handleTappedDashboardForecastFlow(at row: Int, appState: AppState)
+func handleTappedDashboardForecastFlow(at row: Int)
 {
     // Find the relevant event
     // Open up the event detail page
 }
 
-func handleTappedDashboardPriority(at row: Int, appState: AppState)
+func handleTappedDashboardPriority(at row: Int)
 {
     // Find the relevant system
     // Open up the system detail page

@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias ActionPerformClosure = ((_ sender: Any) -> AppState)
+typealias ActionPerformClosure = ((_ sender: Any) -> Void)
 
 class ActionClosure
 {

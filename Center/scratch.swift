@@ -8,21 +8,21 @@
 import UIKit
 import CoreData
 
-func makeTabBarControllers(appState: AppState, context: Context) -> [UIViewController]
+func makeTabBarControllers(context: Context) -> [UIViewController]
 {
     TabBarItem.allCases.map {
-        makeViewController(tabBarItem: $0, appState: appState, context: context)
+        makeViewController(tabBarItem: $0, context: context)
     }
 }
 
-func makeViewController(tabBarItem: TabBarItem, appState: AppState, context: Context) -> UIViewController
+func makeViewController(tabBarItem: TabBarItem, context: Context) -> UIViewController
 {
     switch tabBarItem
     {
     case .dashboard:
-        return makeDashboardRootViewController(appState: appState, context: context)
+        return makeDashboardRootViewController(context: context)
     case .library:
-        return makeLibraryRootViewController(context: context, appState: appState)
+        return makeLibraryRootViewController(context: context)
     case .inbox:
         return makeInboxRootViewController()
     case .settings:
@@ -51,3 +51,25 @@ func makeSettingsRootViewController() -> UIViewController
 }
 
 //////
+
+func createContext() -> Context
+{
+    var container = try! makeContainer(modelName: "Model")
+    container = try! loadPersistentStores(on: container)
+    let _context = context(from: container)
+    populateDatabaseWithWaterSystem(context: _context)
+    populateDatabaseWithBirthdayPartyEvent(context: _context)
+    return _context
+}
+
+extension Bundle
+{
+    var activityType: String
+    {
+        Bundle
+            .main
+            .infoDictionary?["NSUserActivityTypes"]
+            .flatMap { ($0 as? [String])?.first }
+            ?? ""
+    }
+}
