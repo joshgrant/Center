@@ -214,7 +214,6 @@
 		03123028252C668C00ECBEBF /* TextBlock+Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextBlock+Searchable.swift"; sourceTree = "<group>"; };
 		03123032252C669600ECBEBF /* ImageBlock+Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageBlock+Searchable.swift"; sourceTree = "<group>"; };
 		0312303C252C673800ECBEBF /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
-		031D983B25260375004BD2FD /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		034AE0CA2532280C0052E223 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		034AE0DA2532282A0052E223 /* TableViewDataSourceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSourceModel.swift; sourceTree = "<group>"; };
 		034AE0E3253228690052E223 /* TableViewDelegateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegateModel.swift; sourceTree = "<group>"; };
@@ -564,7 +563,6 @@
 				038664E5251F1FE100418C54 /* StyleGuide.md */,
 				03E94B082521AEDB00DE2340 /* Preview.playground */,
 				038157A6251CCA2500D60752 /* Center */,
-				EEE177D713562F7128CA7775 /* Pods */,
 				0301CE46253850DF00B9CBF9 /* RunLoopTest */,
 				038157A5251CCA2500D60752 /* Products */,
 			);
@@ -586,6 +584,7 @@
 			children = (
 				038157B5251CCA2600D60752 /* Info.plist */,
 				0303E44E251DC7CD0060BCB5 /* LaunchScreen.storyboard */,
+				03C5919F2536D4DD00020FD2 /* AppState.swift */,
 				0303E37F251DBE360060BCB5 /* AppDelegate.swift */,
 				0301CE6C2538533E00B9CBF9 /* Application.swift */,
 				03C0159F25301E860006F67E /* scratch.swift */,
@@ -699,7 +698,6 @@
 			isa = PBXGroup;
 			children = (
 				03C59193253608A600020FD2 /* ActionClosure.swift */,
-				03C5919F2536D4DD00020FD2 /* AppState.swift */,
 				03CE24DC251F60E000CE699A /* Array+Extensions.swift */,
 				0303E42E251DC4230060BCB5 /* CollectionView.swift */,
 				0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */,
@@ -857,14 +855,6 @@
 				03E94B172521B09400DE2340 /* SpacerView.swift */,
 			);
 			path = Spacer;
-			sourceTree = "<group>";
-		};
-		EEE177D713562F7128CA7775 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				031D983B25260375004BD2FD /* Podfile */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -11,11 +11,11 @@ class Application: UIApplication
 {
     override func sendEvent(_ event: UIEvent)
     {
-        print("SEND EVENT")
-        print("==========")
-        print(event)
+//        print("SEND EVENT")
+//        print("==========")
+//        print(event)
         super.sendEvent(event)
-        print("==========")
+//        print("==========")
     }
     
     override func sendAction(
@@ -24,25 +24,25 @@ class Application: UIApplication
         from sender: Any?,
         for event: UIEvent?) -> Bool
     {
-        print("SEND ACTION")
-        print("===========")
-        print(action)
-        
-        if let target = target
-        {
-            print(target)
-        }
-        
-        if let sender = sender
-        {
-            print(sender)
-        }
-        
-        if let event = event
-        {
-            print(event)
-        }
-        print("===========")
+//        print("SEND ACTION")
+//        print("===========")
+//        print(action)
+//        
+//        if let target = target
+//        {
+//            print(target)
+//        }
+//        
+//        if let sender = sender
+//        {
+//            print(sender)
+//        }
+//        
+//        if let event = event
+//        {
+//            print(event)
+//        }
+//        print("===========")
         return super.sendAction(action, to: target, from: sender, for: event)
     }
 }

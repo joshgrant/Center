@@ -209,7 +209,7 @@ func makeSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchCon
 // and return it from each function. Therefore, it must be a struct.
 // How can we contain all state? Nested structs? maybe a singleton class? 
 
-func handleTappedDashboardPinnedItem(appState: AppState, context: Context, row: Int)
+func handleTappedDashboardPinnedItem(appState: AppState, context: Context, row: Int) -> AppState
 {
     // Find the appropriate object
     // Find the relevant view controller
@@ -225,6 +225,8 @@ func handleTappedDashboardPinnedItem(appState: AppState, context: Context, row: 
         .controller?
         .navigationController?
         .pushViewController(controller, animated: true)
+    
+    AppState.transition(to: selectedPin)
     
 //    appState.controller = controller
     ///

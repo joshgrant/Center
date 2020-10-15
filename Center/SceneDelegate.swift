@@ -27,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let dashboardController = root.viewControllers?.first
         
         appState = AppState(state: DashboardState(), controller: dashboardController)
+        registerForStateNotifications()
         
         let window = UIWindow(windowScene: scene)
         window.rootViewController = root
@@ -85,39 +86,3 @@ func createContext() -> Context
     populateDatabaseWithBirthdayPartyEvent(context: _context)
     return _context
 }
-
-func makeShouldSelectTab(appState: AppState) -> ShouldSelectTab
-{
-    return { _, viewController in
-        guard let tab = tabFor(viewController: viewController) else {
-            return false
-        }
-        
-        let newState = state(forTabBarItem: tab)
-        return canTransition(to: newState, appState: appState)
-    }
-}
-
-func makeDidSelectTab(appState: AppState) -> DidSelectTab
-{
-    return { _, viewController in
-        guard let tab = tabFor(viewController: viewController) else {
-            return
-        }
-        
-        let newState = state(forTabBarItem: tab)
-        
-        attemptToTransition(to: newState)
-        
-        // TODO: This should modify the app state
-        // What if we used notifications?
-        
-//        let newState = state(forTabBarItem: tab)
-//        return transition(to: newState, appState: appState)
-    }
-}
-
-// I think I'm figuring out that I need to play ball with the run loop. The run loop
-// should contain the app state and each change should modify the app state... I need
-// to investigate if this is a valid approach. Ideally, each event takes the current
-// app state 
