@@ -106,6 +106,7 @@
 		03866583251F298D00418C54 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866582251F298D00418C54 /* FilterViewController.swift */; };
 		0386658B251F299700418C54 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0386658A251F299700418C54 /* SearchViewController.swift */; };
 		03ABED4B2538D69300FC7246 /* ApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABED4A2538D69300FC7246 /* ApplicationState.swift */; };
+		03ABED502539710700FC7246 /* AppStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ABED4F2539710700FC7246 /* AppStateMachine.swift */; };
 		03AF228C252F32BC00468AB4 /* FlowDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF228B252F32BC00468AB4 /* FlowDetailInteractor.swift */; };
 		03AF229C252F337000468AB4 /* LibraryDetailListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF229B252F337000468AB4 /* LibraryDetailListInteractor.swift */; };
 		03AF22A5252F33EA00468AB4 /* SystemDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF22A4252F33EA00468AB4 /* SystemDetailInteractor.swift */; };
@@ -270,6 +271,7 @@
 		03866599251F2B9C00418C54 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		038665A7251F2E2800418C54 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		03ABED4A2538D69300FC7246 /* ApplicationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationState.swift; sourceTree = "<group>"; };
+		03ABED4F2539710700FC7246 /* AppStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateMachine.swift; sourceTree = "<group>"; };
 		03AF21D4252F2A0F00468AB4 /* EntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
 		03AF21DD252F2A8900468AB4 /* Database+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Database+Extensions.swift"; sourceTree = "<group>"; };
 		03AF21EF252F2AB400468AB4 /* LibraryListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryListCellModel.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 				038157B5251CCA2600D60752 /* Info.plist */,
 				0303E44E251DC7CD0060BCB5 /* LaunchScreen.storyboard */,
 				03C5919F2536D4DD00020FD2 /* AppState.swift */,
+				03ABED4F2539710700FC7246 /* AppStateMachine.swift */,
 				03ABED4A2538D69300FC7246 /* ApplicationState.swift */,
 				0303E37F251DBE360060BCB5 /* AppDelegate.swift */,
 				0301CE6C2538533E00B9CBF9 /* Application.swift */,
@@ -1064,6 +1067,7 @@
 				033436DA2535ACB70028F9A9 /* Source+Extensions.swift in Sources */,
 				033436DB2535ACB70028F9A9 /* Stock+Extensions.swift in Sources */,
 				033436DC2535ACB70028F9A9 /* Symbol+Extensions.swift in Sources */,
+				03ABED502539710700FC7246 /* AppStateMachine.swift in Sources */,
 				033436DD2535ACB70028F9A9 /* System+Extensions.swift in Sources */,
 				033436DE2535ACB70028F9A9 /* TextBlock+Searchable.swift in Sources */,
 				033436DF2535ACB70028F9A9 /* ValueSource+Extensions.swift in Sources */,

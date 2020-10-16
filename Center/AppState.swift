@@ -8,11 +8,6 @@
 import UIKit
 import GameplayKit.GKState
 
-enum AppState
-{
-    case running
-}
-
 enum SceneState: String, Codable
 {
     case disconnected
@@ -20,17 +15,12 @@ enum SceneState: String, Codable
     case active
 }
 
-enum TabBarState
+enum TabBarState: String, Codable
 {
     case dashboard
     case library
     case inbox
     case settings
-}
-
-func canTransition(from: AppState, to: AppState) -> Bool
-{
-    return true
 }
 
 func canTransition(from: SceneState, to: SceneState) -> Bool
@@ -51,6 +41,117 @@ func canTransition(from: TabBarState, to: TabBarState) -> Bool
     }
 }
 
+class SceneStateMachine: Codable
+{
+    // MARK: - Defined types
+    
+    enum State
+    {
+        case disconnected
+        case inactive
+        case active
+    }
+    
+    // MARK: - Variables
+    
+    var currentState: State
+    var stateQueue: [State] {
+        didSet {
+            operationQueue.addOperation {
+                self.processStateQueue()
+            }
+        }
+    }
+    
+    var operationQueue: OperationQueue
+}
+
+extension SceneStateMachine
+{
+    func processStateQueue()
+    {
+        guard stateQueue.count > 0 else { return }
+        
+        let nextState = stateQueue.removeFirst()
+        
+        transition(to: nextState)
+        
+        if stateQueue.count > 0
+        {
+            operationQueue.addOperation {
+                self.processStateQueue()
+            }
+        }
+    }
+    
+    func canTransition(to: State) -> Bool
+    {
+        return true
+    }
+    
+    func transition(to nextState: State)
+    {
+        guard canTransition(to: nextState) else {
+            DispatchQueue.main.async {
+                self.postStateChangeFailedNotification(failedState: nextState)
+            }
+            return
+        }
+        
+        // Perform the transition here?
+        
+        DispatchQueue.main.async {
+            self.postStateChangeNotification(state: nextState)
+        }
+    }
+}
+
+// MARK: - Notifications
+
+extension SceneStateMachine
+{
+    func registerForNotifications()
+    {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(observeStateChangeRequest(_:)),
+            name: .stateChangeRequest,
+            object: nil)
+    }
+    
+    func postStateChangeNotification(state: State)
+    {
+        NotificationCenter.default.post(
+            name: .stateChange,
+            object: self,
+            userInfo: ["state" : state])
+    }
+    
+    func postStateChangeFailedNotification(failedState: State)
+    {
+        NotificationCenter.default.post(
+            name: .stateChangeFailed,
+            object: self,
+            userInfo: ["currentState" : currentState,
+                       "failedState" : failedState])
+    }
+    
+    @objc func observeStateChangeRequest(_ notification: Notification)
+    {
+        // TODO: Perhaps pass down other states here with a type switch...
+        if let state = notification.userInfo?["state"] as? State
+        {
+            stateQueue.append(state)
+        }
+    }
+}
+
+extension Notification.Name
+{
+    static let stateChangeRequest = Notification.Name("me.joshgrant.Center.notification.stateChangeRequest")
+    static let stateChangeFailed = Notification.Name("me.joshgrant.Center.notification.stateChangeFailed")
+    static let stateChange = Notification.Name("me.joshgrant.Center.notification.stateChange")
+}
 
 //
 //class LibraryStateMachine: GKStateMachine
@@ -168,24 +269,24 @@ public func createAndShowWindow(scene: UIWindowScene, context: Context) -> UIWin
     window.rootViewController = root
     window.makeKeyAndVisible()
     return window
-//
-//    let dashboardState = DashboardState(
-//        searching: false,
-//        updating: false,
-//        child: nil)
-//    let libraryState = LibraryState(
-//        searching: false,
-//        child: nil)
-//    let tabBarState = TabBarState(
-//        activeTab: .dashboard,
-//        dashboardState: dashboardState,
-//        libraryState: libraryState)
-//    let sceneState = SceneState(
-//        visible: true,
-//        tabBarState: tabBarState)
-//
-//    return AppState(context: appState.context,
-//                    sceneState: sceneState)
+    //
+    //    let dashboardState = DashboardState(
+    //        searching: false,
+    //        updating: false,
+    //        child: nil)
+    //    let libraryState = LibraryState(
+    //        searching: false,
+    //        child: nil)
+    //    let tabBarState = TabBarState(
+    //        activeTab: .dashboard,
+    //        dashboardState: dashboardState,
+    //        libraryState: libraryState)
+    //    let sceneState = SceneState(
+    //        visible: true,
+    //        tabBarState: tabBarState)
+    //
+    //    return AppState(context: appState.context,
+    //                    sceneState: sceneState)
 }
 //
 public func makeSceneRootViewController(context: Context) -> UIViewController
