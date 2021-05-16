@@ -1,69 +1,66 @@
 //
-//  AppStateMachine.swift
+//  StateMachine.swift
 //  Center
 //
-//  Created by Joshua Grant on 10/16/20.
+//  Created by Joshua Grant on 10/20/20.
 //
 
 import Foundation
 
-class AppStateMachine: Codable
+class StateMachine<State>: Codable where State: Hashable & Codable
 {
     // MARK: - Defined types
     
-    enum State: String, Codable
-    {
-        case background
-        case foreground
-    }
-    
     enum CodingKeys: CodingKey
     {
-        case currentState
+        case current
     }
     
     // MARK: - Variables
     
-    var currentState: State
-    var stateQueue: [State] {
-        didSet {
-            operationQueue.addOperation {
-                self.processStateQueue()
-            }
-        }
-    }
+    private(set) var current: State
+    private(set) var stateQueue: [State]
     
-    var operationQueue: OperationQueue
+    private(set) var operationQueue: OperationQueue
     
     // MARK: - Initialization
+    
+    init(current: State)
+    {
+        self.current = current
+        
+        stateQueue = [current]
+        operationQueue = OperationQueue()
+        registerForNotifications()
+        processStateQueue()
+    }
     
     required init(from decoder: Decoder) throws
     {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        currentState = try container.decode(State.self, forKey: .currentState)
+        current = try container.decode(State.self, forKey: .current)
+        stateQueue = [current]
         operationQueue = OperationQueue()
-        stateQueue = [currentState]
+        
+        registerForNotifications()
+        processStateQueue()
     }
-    
-    // MARK: - Functions
     
     func encode(to encoder: Encoder) throws
     {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(currentState, forKey: .currentState)
+        try container.encode(current, forKey: .current)
     }
-}
-
-// MARK: - State Machine
-
-extension AppStateMachine
-{
+    
+    // MARK: - Functions
+    
     func processStateQueue()
     {
         guard stateQueue.count > 0 else { return }
         
         let nextState = stateQueue.removeFirst()
         
+        print("\(String(describing: self)): transitioned to: \(nextState)")
         transition(to: nextState)
         
         // Does this need to be performed on a separate thread?
@@ -71,26 +68,29 @@ extension AppStateMachine
         if stateQueue.count > 0
         {
             operationQueue.addOperation {
+                print("\(String(describing: self)): processing the state queue 2")
                 self.processStateQueue()
             }
         }
     }
     
-    func canTransition(to: State) -> Bool
+    internal func canTransition(to: State) -> Bool
     {
-        return true
+        return current == to
     }
     
     func transition(to nextState: State)
     {
         guard canTransition(to: nextState) else {
             DispatchQueue.main.async {
+                print("\(String(describing: self)): failed state change to: \(nextState)")
                 self.postStateChangeFailedNotification(failedState: nextState)
             }
             return
         }
         
         DispatchQueue.main.async {
+            print("\(String(describing: self)): posting state change to: \(nextState)")
             self.postStateChangeNotification(state: nextState)
         }
         
@@ -99,12 +99,9 @@ extension AppStateMachine
         // If from foreground to background, we want to save the database
         // Where should these be handled?
     }
-}
-
-// MARK: - Notifications
-
-extension AppStateMachine
-{
+    
+    // MARK: - Notifications
+    
     func registerForNotifications()
     {
         NotificationCenter.default.addObserver(
@@ -112,6 +109,20 @@ extension AppStateMachine
             selector: #selector(observeStateChangeRequest(_:)),
             name: .stateChangeRequest,
             object: nil)
+    }
+    
+    @objc func observeStateChangeRequest(_ notification: Notification)
+    {
+        // TODO: Perhaps pass down other states here with a type switch...
+        if let state = notification.userInfo?["state"] as? State
+        {
+            stateQueue.append(state)
+            
+            operationQueue.addOperation {
+                print("\(String(describing: self)): processing the state queue 1")
+                self.processStateQueue()
+            }
+        }
     }
     
     func postStateChangeNotification(state: State)
@@ -127,16 +138,14 @@ extension AppStateMachine
         NotificationCenter.default.post(
             name: .stateChangeFailed,
             object: self,
-            userInfo: ["currentState" : currentState,
+            userInfo: ["currentState" : current,
                        "failedState" : failedState])
     }
-    
-    @objc func observeStateChangeRequest(_ notification: Notification)
-    {
-        // TODO: Perhaps pass down other states here with a type switch...
-        if let state = notification.userInfo?["state"] as? State
-        {
-            stateQueue.append(state)
-        }
-    }
+}
+
+extension Notification.Name
+{
+    static let stateChangeRequest = Notification.Name("me.joshgrant.Center.notification.stateChangeRequest")
+    static let stateChangeFailed = Notification.Name("me.joshgrant.Center.notification.stateChangeFailed")
+    static let stateChange = Notification.Name("me.joshgrant.Center.notification.stateChange")
 }

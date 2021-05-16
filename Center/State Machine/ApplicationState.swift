@@ -7,43 +7,6 @@
 //
 //import Foundation
 //
-//class AppModel: Codable
-//{
-//    enum State
-//    {
-//        case background
-//        case foreground
-//    }
-//}
-//
-//enum SceneState
-//{
-//    case disconnected
-//    case inactive
-//    case active
-//}
-//
-//enum TabBarState
-//{
-//    case dashboard
-//    case library
-//    case inbox
-//    case settings
-//}
-//
-//enum DashboardState
-//{
-//    case searching
-//    case transitioningToDetail
-//    case switchingTab
-//    case refreshingDashboard
-//}
-//
-//enum LibraryState
-//{
-//    case searching
-//    case transitioningToDetail
-//}
 //
 //enum EntityListState
 //{

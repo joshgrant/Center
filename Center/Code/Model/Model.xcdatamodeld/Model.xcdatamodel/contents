@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Block" representedClassName="Block" isAbstract="YES" parentEntity="Entity" syncable="YES" codeGenerationType="class">
         <attribute name="url" optional="YES" attributeType="URI"/>
         <relationship name="backgroundColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" inverseName="backgroundColorOf" inverseEntity="Color"/>
@@ -60,7 +60,7 @@
         <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="History" inverseName="historyOfEvent" inverseEntity="History"/>
         <relationship name="name" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Symbol" inverseName="nameOfEvent" inverseEntity="Symbol"/>
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="noteOfEvent" inverseEntity="Note"/>
-        <relationship name="stocks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stock" inverseName="events" inverseEntity="Stock"/>
+        <relationship name="stocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stock" inverseName="events" inverseEntity="Stock"/>
         <relationship name="systems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="System" inverseName="events" inverseEntity="System"/>
     </entity>
     <entity name="Flow" representedClassName="Flow" isAbstract="YES" parentEntity="Entity" syncable="YES" codeGenerationType="class">
@@ -225,7 +225,7 @@
         <element name="Dimension" positionX="18" positionY="63" width="128" height="88"/>
         <element name="DynamicSource" positionX="18" positionY="153" width="128" height="73"/>
         <element name="Entity" positionX="9" positionY="54" width="128" height="118"/>
-        <element name="Event" positionX="36" positionY="81" width="128" height="178"/>
+        <element name="Event" positionX="36" positionY="81" width="128" height="164"/>
         <element name="Flow" positionX="-9" positionY="36" width="128" height="178"/>
         <element name="History" positionX="9" positionY="54" width="128" height="133"/>
         <element name="Image" positionX="18" positionY="90" width="128" height="88"/>
@@ -236,6 +236,7 @@
         <element name="RangeSource" positionX="9" positionY="54" width="128" height="73"/>
         <element name="Ratio" positionX="0" positionY="45" width="128" height="103"/>
         <element name="Source" positionX="0" positionY="135" width="128" height="118"/>
+        <element name="State" positionX="0" positionY="135" width="128" height="58"/>
         <element name="Stock" positionX="18" positionY="63" width="128" height="313"/>
         <element name="StockSource" positionX="36" positionY="171" width="128" height="58"/>
         <element name="Symbol" positionX="27" positionY="72" width="128" height="178"/>
@@ -246,6 +247,5 @@
         <element name="TransferFlow" positionX="-9" positionY="36" width="128" height="133"/>
         <element name="Unit" positionX="0" positionY="45" width="128" height="178"/>
         <element name="ValueSource" positionX="9" positionY="135" width="128" height="73"/>
-        <element name="State" positionX="0" positionY="135" width="128" height="58"/>
     </elements>
 </model>

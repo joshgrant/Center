@@ -31,4 +31,4 @@ protocol Observer
     func stopObserving()
 }
 
-protocol EventResponder: class { }
+protocol EventResponder: AnyObject { }

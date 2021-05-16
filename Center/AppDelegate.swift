@@ -6,14 +6,20 @@
 //
 
 import UIKit
+import CloudKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
-    var appState: AppState = .running
+    static var shared: AppDelegate {
+        UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    var appMachine: AppStateMachine = .init(current: .background)
     var context: Context = createContext()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
     {
+        appMachine.transition(to: .foreground)
         return true
     }
     
@@ -30,20 +36,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    
-//    func applicationWillTerminate(_ application: UIApplication) {
-//
-//    }
-//
-//    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-//
-//    }
-//
-//    func applicationShouldRequestHealthAuthorization(_ application: UIApplication) {
-//
-//    }
-//
-//    func application(_ application: UIApplication, userDidAcceptCloudKitShareWith cloudKitShareMetadata: CKShare.Metadata) {
-//
-//    }
 }

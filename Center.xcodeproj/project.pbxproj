@@ -99,6 +99,11 @@
 		0373AF112526009A00B92093 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034DA0F9251DC9C100ABDC6E /* TabBarController.swift */; };
 		0373AF142526009C00B92093 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E426251DC3F60060BCB5 /* TabBar.swift */; };
 		0373AF1A252600A400B92093 /* SearchBarDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2483251F555A00CE699A /* SearchBarDelegateProtocol.swift */; };
+		037C6DC0253EBF2B005230A1 /* SceneStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DBF253EBF2B005230A1 /* SceneStateMachine.swift */; };
+		037C6DC9253EC0F2005230A1 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DC8253EC0F2005230A1 /* StateMachine.swift */; };
+		037C6DCE253EC440005230A1 /* TabBarMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DCD253EC440005230A1 /* TabBarMachine.swift */; };
+		037C6DD3253EC4B8005230A1 /* DashboardStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DD2253EC4B8005230A1 /* DashboardStateMachine.swift */; };
+		037C6DD8253EC568005230A1 /* LibraryStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DD7253EC568005230A1 /* LibraryStateMachine.swift */; };
 		038157AC251CCA2600D60752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038157AB251CCA2600D60752 /* Assets.xcassets */; };
 		038157BF251CCA2600D60752 /* CenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157BE251CCA2600D60752 /* CenterTests.swift */; };
 		038157CA251CCA2600D60752 /* CenterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038157C9251CCA2600D60752 /* CenterUITests.swift */; };
@@ -244,6 +249,11 @@
 		036B6C77252EE91A00A8C1D1 /* RangeSource+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RangeSource+Extensions.swift"; sourceTree = "<group>"; };
 		036B6C81252EE9FA00A8C1D1 /* ValueSource+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueSource+Extensions.swift"; sourceTree = "<group>"; };
 		03742E132530338F00FD3932 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		037C6DBF253EBF2B005230A1 /* SceneStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStateMachine.swift; sourceTree = "<group>"; };
+		037C6DC8253EC0F2005230A1 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
+		037C6DCD253EC440005230A1 /* TabBarMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMachine.swift; sourceTree = "<group>"; };
+		037C6DD2253EC4B8005230A1 /* DashboardStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStateMachine.swift; sourceTree = "<group>"; };
+		037C6DD7253EC568005230A1 /* LibraryStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryStateMachine.swift; sourceTree = "<group>"; };
 		037E0C4A252C9D45008B2CB5 /* Condition+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Condition+Extensions.swift"; sourceTree = "<group>"; };
 		037E0C54252C9E32008B2CB5 /* FallbackProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallbackProtocol.swift; sourceTree = "<group>"; };
 		037E0C67252C9FC4008B2CB5 /* History+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+Extensions.swift"; sourceTree = "<group>"; };
@@ -556,6 +566,21 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		037C6DC4253EBF32005230A1 /* State Machine */ = {
+			isa = PBXGroup;
+			children = (
+				03C5919F2536D4DD00020FD2 /* AppState.swift */,
+				03ABED4A2538D69300FC7246 /* ApplicationState.swift */,
+				03ABED4F2539710700FC7246 /* AppStateMachine.swift */,
+				037C6DBF253EBF2B005230A1 /* SceneStateMachine.swift */,
+				037C6DC8253EC0F2005230A1 /* StateMachine.swift */,
+				037C6DCD253EC440005230A1 /* TabBarMachine.swift */,
+				037C6DD2253EC4B8005230A1 /* DashboardStateMachine.swift */,
+				037C6DD7253EC568005230A1 /* LibraryStateMachine.swift */,
+			);
+			path = "State Machine";
+			sourceTree = "<group>";
+		};
 		0381579B251CCA2500D60752 = {
 			isa = PBXGroup;
 			children = (
@@ -584,9 +609,7 @@
 			children = (
 				038157B5251CCA2600D60752 /* Info.plist */,
 				0303E44E251DC7CD0060BCB5 /* LaunchScreen.storyboard */,
-				03C5919F2536D4DD00020FD2 /* AppState.swift */,
-				03ABED4F2539710700FC7246 /* AppStateMachine.swift */,
-				03ABED4A2538D69300FC7246 /* ApplicationState.swift */,
+				037C6DC4253EBF32005230A1 /* State Machine */,
 				0303E37F251DBE360060BCB5 /* AppDelegate.swift */,
 				0301CE6C2538533E00B9CBF9 /* Application.swift */,
 				03C0159F25301E860006F67E /* scratch.swift */,
@@ -1073,6 +1096,7 @@
 				033436DF2535ACB70028F9A9 /* ValueSource+Extensions.swift in Sources */,
 				03AF22A5252F33EA00468AB4 /* SystemDetailInteractor.swift in Sources */,
 				03AF2341252F35EB00468AB4 /* FlowDetailViewModel.swift in Sources */,
+				037C6DCE253EC440005230A1 /* TabBarMachine.swift in Sources */,
 				0334368F2535AC3B0028F9A9 /* Observer.swift in Sources */,
 				0334368A2535AC3B0028F9A9 /* CollectionView.swift in Sources */,
 				0373AF022526008F00B92093 /* TableViewHeaderModel.swift in Sources */,
@@ -1081,6 +1105,7 @@
 				033436752535ABE10028F9A9 /* UseCase.swift in Sources */,
 				0373AF142526009C00B92093 /* TabBar.swift in Sources */,
 				0303E380251DBE360060BCB5 /* AppDelegate.swift in Sources */,
+				037C6DD3253EC4B8005230A1 /* DashboardStateMachine.swift in Sources */,
 				033436C32535AC7D0028F9A9 /* DashboardSuggestedFlows.swift in Sources */,
 				03AF2393252F57E300468AB4 /* EventListCell.swift in Sources */,
 				033436732535ABE10028F9A9 /* Icon.swift in Sources */,
@@ -1152,7 +1177,10 @@
 				033436882535AC3B0028F9A9 /* NavigationController.swift in Sources */,
 				0373AF112526009A00B92093 /* TabBarController.swift in Sources */,
 				03AF2339252F35E800468AB4 /* SearchViewModel.swift in Sources */,
+				037C6DC0253EBF2B005230A1 /* SceneStateMachine.swift in Sources */,
+				037C6DC9253EC0F2005230A1 /* StateMachine.swift in Sources */,
 				033436C22535AC7D0028F9A9 /* DateStock.swift in Sources */,
+				037C6DD8253EC568005230A1 /* LibraryStateMachine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

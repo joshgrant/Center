@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol Named: class
+public protocol Named: AnyObject
 {
     var name: Symbol? { get set }
     var unwrappedName: String? { get set }
