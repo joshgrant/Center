@@ -383,23 +383,6 @@
 			path = RunLoopTest;
 			sourceTree = "<group>";
 		};
-		0303E446251DC7070060BCB5 /* View Hierarchy */ = {
-			isa = PBXGroup;
-			children = (
-				030F5D94265128540078177D /* Flow Detail */,
-				030F5D932651284F0078177D /* Filter Detail */,
-				030F5D922651284A0078177D /* Event Detail */,
-				030F5D91265128320078177D /* Condition Detail */,
-				03866528251F274000418C54 /* Info */,
-				03AF228A252F32A500468AB4 /* Interactors */,
-				0386657F251F295E00418C54 /* Search */,
-				03866530251F278100418C54 /* Stock */,
-				0386652F251F277400418C54 /* System */,
-				03866520251F272C00418C54 /* Tab Bar (Root) */,
-			);
-			path = "View Hierarchy";
-			sourceTree = "<group>";
-		};
 		030F5D87265127220078177D /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +474,7 @@
 		030F5D91265128320078177D /* Condition Detail */ = {
 			isa = PBXGroup;
 			children = (
+				03AF2222252F2F7300468AB4 /* ConditionListCellModel.swift */,
 				03AF2233252F2FE100468AB4 /* ConditionDetailViewModel.swift */,
 			);
 			path = "Condition Detail";
@@ -499,6 +483,8 @@
 		030F5D922651284A0078177D /* Event Detail */ = {
 			isa = PBXGroup;
 			children = (
+				03AF2392252F57E300468AB4 /* EventListCell.swift */,
+				03AF227A252F31F700468AB4 /* EventListCellModel.swift */,
 				03AF2212252F2B6800468AB4 /* EventDetailViewModel.swift */,
 			);
 			path = "Event Detail";
@@ -515,6 +501,8 @@
 		030F5D94265128540078177D /* Flow Detail */ = {
 			isa = PBXGroup;
 			children = (
+				03C5917C2535F44E00020FD2 /* FlowListCell.swift */,
+				03AF2201252F2ADA00468AB4 /* FlowListCellModel.swift */,
 				03AF2271252F31C600468AB4 /* FlowDetailViewModel.swift */,
 			);
 			path = "Flow Detail";
@@ -538,22 +526,114 @@
 			path = "Table View Header";
 			sourceTree = "<group>";
 		};
-		030F5D98265128B30078177D /* Tab Bar Controller */ = {
+		030F5D98265128B30078177D /* Tab Bar */ = {
 			isa = PBXGroup;
 			children = (
+				037C6DCD253EC440005230A1 /* TabBarStateMachine.swift */,
+				03C015A825301FA60006F67E /* Tab Bar Item */,
+				0303E426251DC3F60060BCB5 /* TabBar.swift */,
 				0301CE3D2538399E00B9CBF9 /* TabBarControllerDelegate.swift */,
 				034DA0F9251DC9C100ABDC6E /* TabBarController.swift */,
 			);
-			path = "Tab Bar Controller";
+			path = "Tab Bar";
 			sourceTree = "<group>";
 		};
 		030F5D99265128D20078177D /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				03866561251F288500418C54 /* Components */,
-				0303E446251DC7070060BCB5 /* View Hierarchy */,
+				0303E42E251DC4230060BCB5 /* CollectionView.swift */,
+				0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */,
+				0303E410251DC2110060BCB5 /* NavigationController.swift */,
+				0303E400251DC2010060BCB5 /* View.swift */,
+				0303E3F8251DC1F80060BCB5 /* ViewController.swift */,
+				030F5D8F265127DC0078177D /* Search Bar Delegate */,
+				03E94B162521B08400DE2340 /* Spacer */,
+				030F5D8B265127A00078177D /* Table View */,
+				030F5D8C265127AA0078177D /* Table View Cell */,
+				030F5D97265128A40078177D /* Table View Header */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		030F5D9A265129D80078177D /* Concrete */ = {
+			isa = PBXGroup;
+			children = (
+				030F5D91265128320078177D /* Condition Detail */,
+				030F5D9B265129ED0078177D /* Dashboard */,
+				030F5D922651284A0078177D /* Event Detail */,
+				030F5D932651284F0078177D /* Filter Detail */,
+				030F5D94265128540078177D /* Flow Detail */,
+				030F5D9D26512AF30078177D /* Inbox */,
+				03866528251F274000418C54 /* Info */,
+				03AF228A252F32A500468AB4 /* Interactors */,
+				030F5D9C26512A200078177D /* Library */,
+				0386657F251F295E00418C54 /* Search */,
+				030F5D9E26512AFF0078177D /* Settings */,
+				03866530251F278100418C54 /* Stock */,
+				0386652F251F277400418C54 /* System */,
+				030F5D9F26512B090078177D /* System List */,
+				030F5D98265128B30078177D /* Tab Bar */,
+				03AF239B252F57E800468AB4 /* Table View Cells */,
+			);
+			path = Concrete;
+			sourceTree = "<group>";
+		};
+		030F5D9B265129ED0078177D /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				034B7B122535CF9A00EB84D1 /* Dashboard.swift */,
+				037C6DD2253EC4B8005230A1 /* DashboardStateMachine.swift */,
+				034AE10B253228D30052E223 /* DashboardSectionHeader.swift */,
+				037E0CB3252CAC5E008B2CB5 /* DashboardSuggestedFlows.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		030F5D9C26512A200078177D /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				037C6DD7253EC568005230A1 /* LibraryStateMachine.swift */,
+				034AE14425322E200052E223 /* LibraryList.swift */,
+				035B9A04252F74590080785C /* LibraryListCell.swift */,
+				03AF21EF252F2AB400468AB4 /* LibraryListCellModel.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		030F5D9D26512AF30078177D /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				03F0FE052651208500F9F7F0 /* InboxStateMachine.swift */,
+			);
+			path = Inbox;
+			sourceTree = "<group>";
+		};
+		030F5D9E26512AFF0078177D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				03F0FE032651207300F9F7F0 /* SettingsStateMachine.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		030F5D9F26512B090078177D /* System List */ = {
+			isa = PBXGroup;
+			children = (
+				03F0FE012651205A00F9F7F0 /* SystemListStateMachine.swift */,
+			);
+			path = "System List";
+			sourceTree = "<group>";
+		};
+		030F5DA026512B260078177D /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				03AF2257252F312C00468AB4 /* Data Structures */,
+				030F5D88265127290078177D /* Extensions */,
+				03122FA7252C2BD900ECBEBF /* Model */,
+				030F5D99265128D20078177D /* UI */,
+				030F5D90265128220078177D /* Utility */,
+			);
+			path = Abstract;
 			sourceTree = "<group>";
 		};
 		03122FA7252C2BD900ECBEBF /* Model */ = {
@@ -612,44 +692,10 @@
 			path = "Entity Extensions";
 			sourceTree = "<group>";
 		};
-		03185011251E3058002DE065 /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				034B7B122535CF9A00EB84D1 /* Dashboard.swift */,
-			);
-			path = Dashboard;
-			sourceTree = "<group>";
-		};
-		03185020251E33B4002DE065 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				034AE14425322E200052E223 /* LibraryList.swift */,
-				035B9A04252F74590080785C /* LibraryListCell.swift */,
-				03AF21EF252F2AB400468AB4 /* LibraryListCellModel.swift */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
-		03185021251E33BA002DE065 /* Inbox */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Inbox;
-			sourceTree = "<group>";
-		};
-		03185022251E33BE002DE065 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		034AE0EC2532287A0052E223 /* Enumerations */ = {
 			isa = PBXGroup;
 			children = (
-				034AE10B253228D30052E223 /* DashboardSectionHeader.swift */,
 				034AE123253229070052E223 /* SearchViewType.swift */,
-				034AE0ED253228860052E223 /* TabBarItem.swift */,
 			);
 			path = Enumerations;
 			sourceTree = "<group>";
@@ -669,23 +715,6 @@
 				035B99D4252F71EE0080785C /* Named.swift */,
 			);
 			path = "Entity Protocols";
-			sourceTree = "<group>";
-		};
-		035B9A5C252F7E3F0080785C /* Condition List */ = {
-			isa = PBXGroup;
-			children = (
-				03AF2222252F2F7300468AB4 /* ConditionListCellModel.swift */,
-			);
-			path = "Condition List";
-			sourceTree = "<group>";
-		};
-		035B9A5D252F7E4C0080785C /* Flow List */ = {
-			isa = PBXGroup;
-			children = (
-				03C5917C2535F44E00020FD2 /* FlowListCell.swift */,
-				03AF2201252F2ADA00468AB4 /* FlowListCellModel.swift */,
-			);
-			path = "Flow List";
 			sourceTree = "<group>";
 		};
 		035B9A71252F7E510080785C /* History List */ = {
@@ -736,14 +765,8 @@
 				03ABED4A2538D69300FC7246 /* ApplicationState.swift */,
 				03C5919F2536D4DD00020FD2 /* AppState.swift */,
 				03ABED4F2539710700FC7246 /* AppStateMachine.swift */,
-				037C6DD2253EC4B8005230A1 /* DashboardStateMachine.swift */,
-				03F0FE052651208500F9F7F0 /* InboxStateMachine.swift */,
-				037C6DD7253EC568005230A1 /* LibraryStateMachine.swift */,
 				037C6DBF253EBF2B005230A1 /* SceneStateMachine.swift */,
-				03F0FE032651207300F9F7F0 /* SettingsStateMachine.swift */,
 				037C6DC8253EC0F2005230A1 /* StateMachine.swift */,
-				03F0FE012651205A00F9F7F0 /* SystemListStateMachine.swift */,
-				037C6DCD253EC440005230A1 /* TabBarStateMachine.swift */,
 			);
 			path = "State Machine";
 			sourceTree = "<group>";
@@ -807,25 +830,6 @@
 			path = CenterUITests;
 			sourceTree = "<group>";
 		};
-		03866520251F272C00418C54 /* Tab Bar (Root) */ = {
-			isa = PBXGroup;
-			children = (
-				03866521251F273700418C54 /* Child View Controllers */,
-			);
-			path = "Tab Bar (Root)";
-			sourceTree = "<group>";
-		};
-		03866521251F273700418C54 /* Child View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				03185011251E3058002DE065 /* Dashboard */,
-				03185021251E33BA002DE065 /* Inbox */,
-				03185020251E33B4002DE065 /* Library */,
-				03185022251E33BE002DE065 /* Settings */,
-			);
-			path = "Child View Controllers";
-			sourceTree = "<group>";
-		};
 		03866528251F274000418C54 /* Info */ = {
 			isa = PBXGroup;
 			children = (
@@ -848,27 +852,6 @@
 				03AF22AD252F356600468AB4 /* StockDetailViewModel.swift */,
 			);
 			path = Stock;
-			sourceTree = "<group>";
-		};
-		03866561251F288500418C54 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				0303E42E251DC4230060BCB5 /* CollectionView.swift */,
-				0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */,
-				0303E410251DC2110060BCB5 /* NavigationController.swift */,
-				0303E426251DC3F60060BCB5 /* TabBar.swift */,
-				0303E400251DC2010060BCB5 /* View.swift */,
-				0303E3F8251DC1F80060BCB5 /* ViewController.swift */,
-				030F5D8F265127DC0078177D /* Search Bar Delegate */,
-				03E94B162521B08400DE2340 /* Spacer */,
-				030F5D98265128B30078177D /* Tab Bar Controller */,
-				03C015A825301FA60006F67E /* Tab Bar Item */,
-				030F5D8B265127A00078177D /* Table View */,
-				030F5D8C265127AA0078177D /* Table View Cell */,
-				03AF239B252F57E800468AB4 /* Table View Cells */,
-				030F5D97265128A40078177D /* Table View Header */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		0386657F251F295E00418C54 /* Search */ = {
@@ -900,11 +883,8 @@
 		039033ED2535BC8200C478B1 /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				03AF2257252F312C00468AB4 /* Data Structures */,
-				030F5D88265127290078177D /* Extensions */,
-				03122FA7252C2BD900ECBEBF /* Model */,
-				030F5D99265128D20078177D /* UI */,
-				030F5D90265128220078177D /* Utility */,
+				030F5DA026512B260078177D /* Abstract */,
+				030F5D9A265129D80078177D /* Concrete */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -916,7 +896,6 @@
 				03122FA8252C2BE200ECBEBF /* Types */,
 				037C6DC4253EBF32005230A1 /* State Machine */,
 				034AE0EC2532287A0052E223 /* Enumerations */,
-				037E0CB3252CAC5E008B2CB5 /* DashboardSuggestedFlows.swift */,
 				03866599251F2B9C00418C54 /* Icon.swift */,
 				037E0C9F252CAA36008B2CB5 /* DateStock.swift */,
 				03AF2258252F313800468AB4 /* Filter.swift */,
@@ -939,33 +918,21 @@
 		03AF239B252F57E800468AB4 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
-				035B9A5C252F7E3F0080785C /* Condition List */,
-				03AF23AA252F5A2B00468AB4 /* Event List */,
-				035B9A5D252F7E4C0080785C /* Flow List */,
 				035B9A71252F7E510080785C /* History List */,
 				03C591872535FA4600020FD2 /* Ideal */,
 				035B9A80252F7E570080785C /* Note List */,
 				035B99B3252F6E5D0080785C /* Pinned List */,
 				035B9A88252F7E5C0080785C /* Search Result List */,
 				035B9A90252F7E620080785C /* State List */,
-				03C591882535FA4D00020FD2 /* Suggested Flow */,
 				03C591862535FA0400020FD2 /* Title Edit */,
 			);
 			path = "Table View Cells";
 			sourceTree = "<group>";
 		};
-		03AF23AA252F5A2B00468AB4 /* Event List */ = {
-			isa = PBXGroup;
-			children = (
-				03AF2392252F57E300468AB4 /* EventListCell.swift */,
-				03AF227A252F31F700468AB4 /* EventListCellModel.swift */,
-			);
-			path = "Event List";
-			sourceTree = "<group>";
-		};
 		03C015A825301FA60006F67E /* Tab Bar Item */ = {
 			isa = PBXGroup;
 			children = (
+				034AE0ED253228860052E223 /* TabBarItem.swift */,
 				03C015A925301FB30006F67E /* TabBarItem+Extensions.swift */,
 			);
 			path = "Tab Bar Item";
@@ -1005,13 +972,6 @@
 				03C5919B25360B5000020FD2 /* IdealCellModel.swift */,
 			);
 			path = Ideal;
-			sourceTree = "<group>";
-		};
-		03C591882535FA4D00020FD2 /* Suggested Flow */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Suggested Flow";
 			sourceTree = "<group>";
 		};
 		03E94B162521B08400DE2340 /* Spacer */ = {

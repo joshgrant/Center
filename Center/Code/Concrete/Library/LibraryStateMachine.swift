@@ -15,11 +15,6 @@ enum LibraryState: String, Codable
     case transitioningToDetail
 }
 
-//public struct LibraryState: Codable
-//{
-//    var searching: Bool
-//}
-
 class LibraryStateMachine: StateMachine<LibraryState>
 {
     
