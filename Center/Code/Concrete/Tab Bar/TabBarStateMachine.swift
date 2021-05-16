@@ -15,14 +15,6 @@ enum TabBarState: String, Codable
     case settings
 }
 
-//public struct TabBarState: Codable
-//{
-//    var activeTab: TabBarItem
-//
-//    var dashboardState: DashboardState
-//    var libraryState: LibraryState
-//}
-
 class TabBarStateMachine: StateMachine<TabBarState>
 {
     // MARK: - Variables

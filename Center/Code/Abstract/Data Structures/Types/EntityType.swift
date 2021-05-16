@@ -135,6 +135,8 @@ public func makeViewController(entityType: EntityType, context: Context) -> UIVi
     {
     case .system:
         return makeSystemsListPage(context: context)
+    case .flow:
+        return makeFlowListViewController(context: context)
     default:
         return nil
     }

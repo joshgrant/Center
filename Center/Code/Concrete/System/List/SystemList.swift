@@ -71,7 +71,9 @@ func makeSystemListSelectionClosure(controller: ViewController, context: Context
             return
         }
         
-//        attemptToTransition(to: SystemDetailState(system: system))
+        // Hmm.. not really updating the app state, are we?
+        let detail = makeSystemDetailViewController(system: system)
+        controller.navigationController?.pushViewController(detail, animated: true)
     }
 }
 
@@ -110,7 +112,7 @@ func makeSystemsListPage(context: Context) -> ViewController
 
 func makeSystemListAddActionClosure(controller: ViewController, context: Context) -> ActionClosure
 {
-    return ActionClosure { sender in
+    ActionClosure { sender in
         // Add a new system!
         // Insert the new table view cell!
         // Open the new system page!

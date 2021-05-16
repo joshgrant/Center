@@ -19,14 +19,20 @@ class TitleEditCell: TableViewCell
     {
         textField = UITextField()
         
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(
+            style: style,
+            reuseIdentifier: reuseIdentifier)
         
         let contentStackView = UIStackView(arrangedSubviews: [textField])
         set(height: 44, on: contentStackView)
         
         contentView.embed(
             contentStackView,
-            padding: .init(top: 0, left: 16, bottom: 0, right: 5),
+            padding: .init(
+                top: 0,
+                left: 16,
+                bottom: 0,
+                right: 5),
             bottomPriority: .defaultLow)
     }
     

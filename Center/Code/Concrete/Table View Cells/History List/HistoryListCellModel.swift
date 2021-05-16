@@ -7,8 +7,18 @@
 
 import Foundation
 
-struct HistoryListCellModel
-{
-    var title: String
-    var value: Double?
-}
+// Made obsolete by the detail cell
+
+//struct HistoryListCellModel
+//{
+//    var title: String
+//    var value: Double?
+//}
+//
+//extension HistoryListCellModel: TableViewCellModel
+//{
+//    static var cellClass: AnyClass
+//    {
+//        return HistoryListCell.self
+//    }
+//}

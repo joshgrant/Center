@@ -1,11 +1,24 @@
 //
-//  AppState.swift
+//  AppStateMachine.swift
 //  Center
 //
-//  Created by Joshua Grant on 10/14/20.
+//  Created by Joshua Grant on 10/16/20.
 //
 
 import UIKit
+
+enum AppState: String, Codable
+{
+    case background
+    case foreground
+}
+
+class AppStateMachine: StateMachine<AppState>
+{
+    var sceneMachines: [UIScene: SceneStateMachine] = [:]
+}
+
+// ----
 
 func restore(from activity: NSUserActivity) -> SceneStateMachine?
 {
@@ -30,33 +43,79 @@ public func createAndShowWindow(scene: UIWindowScene, context: Context) -> UIWin
     window.rootViewController = root
     window.makeKeyAndVisible()
     return window
-
-//    let dashboardState = DashboardState.normal
-//    let libraryState = LibraryState.normal
-//    let tabBarState = TabBarState.dashboard
-//    let sceneState = SceneState.active
-//
-//        return AppState(context: appState.context,
-//                        sceneState: sceneState)
+    
+    //    let dashboardState = DashboardState.normal
+    //    let libraryState = LibraryState.normal
+    //    let tabBarState = TabBarState.dashboard
+    //    let sceneState = SceneState.active
+    //
+    //        return AppState(context: appState.context,
+    //                        sceneState: sceneState)
 }
 
 public func makeSceneRootViewController(context: Context) -> UIViewController
 {
     // TODO: Override these methods (not nil) to handle tab selection callbacks
     // TODO: Retain a reference to the delegate so it doesn't deallocate
-//    let delegate = TabBarControllerDelegate(shouldSelect: nil, didSelect: nil)
+    //    let delegate = TabBarControllerDelegate(shouldSelect: nil, didSelect: nil)
     let delegate = TabBarControllerDelegate { tabBarController, viewController in
         print("Tab should select")
         return true
     } didSelect: { tabBarController, viewController in
         print("Tab did select")
     }
-
+    
     let root = TabBarController(delegate: delegate)
     let tabControllers = makeTabBarControllers(context: context)
     root.viewControllers = tabControllers
     return root
 }
+
+// ---
+
+//enum EntityListState
+//{
+//    case searching
+//    case transitioningBack
+//    case transitioningToDetail
+//    case openingAddModal
+//    case displayingAddModal
+//}
+//
+//enum FlowDetailState
+//{
+//    case transitioningBack
+//    case addingPin
+//    case removingPin
+//    case activatingRun
+//    case running
+//    case editingTitle
+//    case transitioningToAmountDetail
+//    case transitioningToFromDetail
+//    case transitioningToToDetail
+//    case transitioningToDurationDetail
+//    case togglingUserCompletion
+//    case transitioningToEventDetail
+//    case transitoningToHistoryDetail
+//    case transitioningToFlowDetail
+//}
+//
+//enum SystemDetailState
+//{
+//    case openingDuplicateDialog
+//    case displayingDuplicateDialog
+//    case addingPin
+//    case removingPin
+//    case editingTitle
+//    case openingInfoDialog
+//    case displayingInfoDialog
+//    case completingIdealFlow
+//    case transitioningToIdealFlow
+//    case transitioningToStockDetail
+//    case transitioningToFlowDetail
+//    case transitioningToEventDetail
+//    case transitioningToNoteDetail
+//}
 
 //
 ////let stateNotificationCenter: NotificationCenter = {
@@ -255,3 +314,4 @@ public func makeSceneRootViewController(context: Context) -> UIViewController
 ////    static let attemptedStateChange = Notification.Name("com.joshgrant.Center.notification.attemptedStateChange")
 ////}
 ////
+
