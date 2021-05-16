@@ -103,6 +103,8 @@ func makeSystemsListPage(context: Context) -> ViewController
     controller.actionClosures.insert(actionClosure)
     controller.navigationItem.rightBarButtonItem = makeSystemListAddButton(actionClosure: actionClosure)
     
+    controller.title = "Systems"
+    
     return controller
 }
 
