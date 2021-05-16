@@ -30,98 +30,34 @@ public func createAndShowWindow(scene: UIWindowScene, context: Context) -> UIWin
     window.rootViewController = root
     window.makeKeyAndVisible()
     return window
-    //
-    //    let dashboardState = DashboardState(
-    //        searching: false,
-    //        updating: false,
-    //        child: nil)
-    //    let libraryState = LibraryState(
-    //        searching: false,
-    //        child: nil)
-    //    let tabBarState = TabBarState(
-    //        activeTab: .dashboard,
-    //        dashboardState: dashboardState,
-    //        libraryState: libraryState)
-    //    let sceneState = SceneState(
-    //        visible: true,
-    //        tabBarState: tabBarState)
-    //
-    //    return AppState(context: appState.context,
-    //                    sceneState: sceneState)
-}
+
+//    let dashboardState = DashboardState.normal
+//    let libraryState = LibraryState.normal
+//    let tabBarState = TabBarState.dashboard
+//    let sceneState = SceneState.active
 //
+//        return AppState(context: appState.context,
+//                        sceneState: sceneState)
+}
+
 public func makeSceneRootViewController(context: Context) -> UIViewController
 {
     // TODO: Override these methods (not nil) to handle tab selection callbacks
     // TODO: Retain a reference to the delegate so it doesn't deallocate
-    let delegate = TabBarControllerDelegate(shouldSelect: nil, didSelect: nil)
+//    let delegate = TabBarControllerDelegate(shouldSelect: nil, didSelect: nil)
+    let delegate = TabBarControllerDelegate { tabBarController, viewController in
+        print("Tab should select")
+        return true
+    } didSelect: { tabBarController, viewController in
+        print("Tab did select")
+    }
+
     let root = TabBarController(delegate: delegate)
     let tabControllers = makeTabBarControllers(context: context)
     root.viewControllers = tabControllers
     return root
 }
-//
-//public struct TabBarState: Codable
-//{
-//    var activeTab: TabBarItem
-//    
-//    var dashboardState: DashboardState
-//    var libraryState: LibraryState
-//}
-//
-//public struct DashboardState: Codable
-//{
-//    var searching: Bool
-//    var updating: Bool
-//}
-//
-//public struct LibraryState: Codable
-//{
-//    var searching: Bool
-//}
-//
-//public struct SystemListState: Codable
-//{
-//    var searching: Bool
-//}
-//
-//public struct SystemDetailState: Codable
-//{
-//    var presentingIdealInfo: Bool
-//    
-//    var searchingStock: Bool
-//    var addingStock: Bool
-//    
-//    var searchingFlow: Bool
-//    var addingFlow: Bool
-//    
-//    var searchingEvent: Bool
-//    var addingEvent: Bool
-//    
-//    var searchingNote: Bool
-//    var addingNote: Bool
-//}
-//
-//public struct InboxState: Codable
-//{
-//    
-//}
-//
-//public struct SettingsState: Codable
-//{
-//    
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 //
 ////let stateNotificationCenter: NotificationCenter = {
 ////    let center = NotificationCenter()

@@ -101,7 +101,7 @@
 		0373AF1A252600A400B92093 /* SearchBarDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE2483251F555A00CE699A /* SearchBarDelegateProtocol.swift */; };
 		037C6DC0253EBF2B005230A1 /* SceneStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DBF253EBF2B005230A1 /* SceneStateMachine.swift */; };
 		037C6DC9253EC0F2005230A1 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DC8253EC0F2005230A1 /* StateMachine.swift */; };
-		037C6DCE253EC440005230A1 /* TabBarMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DCD253EC440005230A1 /* TabBarMachine.swift */; };
+		037C6DCE253EC440005230A1 /* TabBarStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DCD253EC440005230A1 /* TabBarStateMachine.swift */; };
 		037C6DD3253EC4B8005230A1 /* DashboardStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DD2253EC4B8005230A1 /* DashboardStateMachine.swift */; };
 		037C6DD8253EC568005230A1 /* LibraryStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037C6DD7253EC568005230A1 /* LibraryStateMachine.swift */; };
 		038157AC251CCA2600D60752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038157AB251CCA2600D60752 /* Assets.xcassets */; };
@@ -147,6 +147,9 @@
 		03C5919C25360B5000020FD2 /* IdealCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5919B25360B5000020FD2 /* IdealCellModel.swift */; };
 		03C591A02536D4DD00020FD2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5919F2536D4DD00020FD2 /* AppState.swift */; };
 		03E94B182521B09400DE2340 /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E94B172521B09400DE2340 /* SpacerView.swift */; };
+		03F0FE022651205A00F9F7F0 /* SystemListStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F0FE012651205A00F9F7F0 /* SystemListStateMachine.swift */; };
+		03F0FE042651207300F9F7F0 /* SettingsStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F0FE032651207300F9F7F0 /* SettingsStateMachine.swift */; };
+		03F0FE062651208500F9F7F0 /* InboxStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F0FE052651208500F9F7F0 /* InboxStateMachine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,7 +254,7 @@
 		03742E132530338F00FD3932 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		037C6DBF253EBF2B005230A1 /* SceneStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStateMachine.swift; sourceTree = "<group>"; };
 		037C6DC8253EC0F2005230A1 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
-		037C6DCD253EC440005230A1 /* TabBarMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarMachine.swift; sourceTree = "<group>"; };
+		037C6DCD253EC440005230A1 /* TabBarStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarStateMachine.swift; sourceTree = "<group>"; };
 		037C6DD2253EC4B8005230A1 /* DashboardStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardStateMachine.swift; sourceTree = "<group>"; };
 		037C6DD7253EC568005230A1 /* LibraryStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryStateMachine.swift; sourceTree = "<group>"; };
 		037E0C4A252C9D45008B2CB5 /* Condition+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Condition+Extensions.swift"; sourceTree = "<group>"; };
@@ -330,6 +333,9 @@
 		03E94B252521B1D900DE2340 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		03E94B2D2521B6D600DE2340 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		03EFF4BA252C834700D27F53 /* DemoGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoGenerator.swift; sourceTree = "<group>"; };
+		03F0FE012651205A00F9F7F0 /* SystemListStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemListStateMachine.swift; sourceTree = "<group>"; };
+		03F0FE032651207300F9F7F0 /* SettingsStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStateMachine.swift; sourceTree = "<group>"; };
+		03F0FE052651208500F9F7F0 /* InboxStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxStateMachine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -574,9 +580,12 @@
 				03ABED4F2539710700FC7246 /* AppStateMachine.swift */,
 				037C6DBF253EBF2B005230A1 /* SceneStateMachine.swift */,
 				037C6DC8253EC0F2005230A1 /* StateMachine.swift */,
-				037C6DCD253EC440005230A1 /* TabBarMachine.swift */,
+				037C6DCD253EC440005230A1 /* TabBarStateMachine.swift */,
 				037C6DD2253EC4B8005230A1 /* DashboardStateMachine.swift */,
 				037C6DD7253EC568005230A1 /* LibraryStateMachine.swift */,
+				03F0FE012651205A00F9F7F0 /* SystemListStateMachine.swift */,
+				03F0FE032651207300F9F7F0 /* SettingsStateMachine.swift */,
+				03F0FE052651208500F9F7F0 /* InboxStateMachine.swift */,
 			);
 			path = "State Machine";
 			sourceTree = "<group>";
@@ -1096,7 +1105,7 @@
 				033436DF2535ACB70028F9A9 /* ValueSource+Extensions.swift in Sources */,
 				03AF22A5252F33EA00468AB4 /* SystemDetailInteractor.swift in Sources */,
 				03AF2341252F35EB00468AB4 /* FlowDetailViewModel.swift in Sources */,
-				037C6DCE253EC440005230A1 /* TabBarMachine.swift in Sources */,
+				037C6DCE253EC440005230A1 /* TabBarStateMachine.swift in Sources */,
 				0334368F2535AC3B0028F9A9 /* Observer.swift in Sources */,
 				0334368A2535AC3B0028F9A9 /* CollectionView.swift in Sources */,
 				0373AF022526008F00B92093 /* TableViewHeaderModel.swift in Sources */,
@@ -1141,6 +1150,7 @@
 				03AF22E4252F35D000468AB4 /* SystemListCellModel.swift in Sources */,
 				03AF22BF252F35C900468AB4 /* LibraryListCellModel.swift in Sources */,
 				0334368B2535AC3B0028F9A9 /* View.swift in Sources */,
+				03F0FE042651207300F9F7F0 /* SettingsStateMachine.swift in Sources */,
 				035B9A05252F74590080785C /* LibraryListCell.swift in Sources */,
 				0373AF082526009200B92093 /* TableViewDataSource.swift in Sources */,
 				0373AEFF2526008C00B92093 /* TableViewCellModel.swift in Sources */,
@@ -1151,6 +1161,7 @@
 				03AF22D5252F35CD00468AB4 /* FlowListCellModel.swift in Sources */,
 				0373AF1A252600A400B92093 /* SearchBarDelegateProtocol.swift in Sources */,
 				033436782535ABE10028F9A9 /* UIColor+Extensions.swift in Sources */,
+				03F0FE022651205A00F9F7F0 /* SystemListStateMachine.swift in Sources */,
 				03AF22B7252F35A800468AB4 /* StateListCellModel.swift in Sources */,
 				03AF230B252F35DC00468AB4 /* EventListCellModel.swift in Sources */,
 				033437062535AE5D0028F9A9 /* Model.xcdatamodeld in Sources */,
@@ -1165,6 +1176,7 @@
 				0303E38B251DBEDF0060BCB5 /* SceneDelegate.swift in Sources */,
 				03C591752535E79A00020FD2 /* SystemDetail.swift in Sources */,
 				03866583251F298D00418C54 /* FilterViewController.swift in Sources */,
+				03F0FE062651208500F9F7F0 /* InboxStateMachine.swift in Sources */,
 				03AF2303252F35D900468AB4 /* SearchResultListCellModel.swift in Sources */,
 				03AF2313252F35DF00468AB4 /* EventDetailViewModel.swift in Sources */,
 				034AE13525322E100052E223 /* TableView+Functions.swift in Sources */,
