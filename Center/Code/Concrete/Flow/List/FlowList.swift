@@ -20,7 +20,7 @@ func makeFlowListViewController(context: Context) -> ViewController
     
     let actionClosure = makeFlowListAddActionClosure(controller: controller, context: context)
     controller.actionClosures.insert(actionClosure)
-    controller.navigationItem.rightBarButtonItem = makeFlowListAddButton(actionClosure: actionClosure)
+    controller.navigationItem.rightBarButtonItem = makeListAddButton(actionClosure: actionClosure)
     
     controller.title = "Flows"
 
@@ -69,22 +69,11 @@ func makeFlowListTableViewDataSourceModel(context: Context) -> TableViewDataSour
 
 func makeFlowListTableViewCellModels(context: Context) -> [[TableViewCellModel]]
 {
-    let flows = getFlowsInFlowsList(context: context)
+    let flows = getItemsForList(context: context, type: TransferFlow.self)
     let cellModels: [FlowListCellModel] = flows.map {
         return FlowListCellModel(title: $0.title, fromName: $0.inflowForStock?.title ?? "None", toName: $0.outflowForStock?.title ?? "None", flowAmount: 0)
     }
     return [cellModels]
-}
-
-func getFlowsInFlowsList(context: Context) -> [Flow]
-{
-    let fetchRequest: NSFetchRequest<Flow> = Flow.fetchRequest()
-    do {
-        return try context.fetch(fetchRequest)
-    } catch {
-        assertionFailure(error.localizedDescription)
-        return []
-    }
 }
 
 func makeFlowListCellModelTypes() -> [TableViewCellModel.Type]
@@ -98,19 +87,11 @@ func makeFlowListCellModelTypes() -> [TableViewCellModel.Type]
 func makeFlowListAddActionClosure(controller: ViewController, context: Context) -> ActionClosure
 {
     ActionClosure { sender in
-        let flow = Flow(context: context)
+        let flow = TransferFlow(context: context)
         let flowDetail = makeFlowDetailViewController(flow: flow)
         controller.navigationController?.present(
             flowDetail,
             animated: true,
             completion: nil)
     }
-}
-
-func makeFlowListAddButton(actionClosure: ActionClosure) -> UIBarButtonItem
-{
-    let button = UIBarButtonItem(systemItem: .add)
-    button.target = actionClosure
-    button.action = #selector(actionClosure.perform(sender:))
-    return button
 }

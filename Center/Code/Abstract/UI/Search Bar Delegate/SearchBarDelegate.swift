@@ -7,17 +7,22 @@
 
 import Foundation
 
-public class DashboardSearchBarDelegate: NSObject, SearchBarDelegateProtocol
-{
-    
-}
+//public class DashboardSearchBarDelegate: NSObject, SearchBarDelegateProtocol
+//{
+//
+//}
+//
+//public class SystemsListSearchBarDelegate: NSObject, SearchBarDelegateProtocol
+//{
+//
+//}
+//
+//public class LibrarySearchBarDelegate: NSObject, SearchBarDelegateProtocol
+//{
+//
+//}
 
-public class SystemsListSearchBarDelegate: NSObject, SearchBarDelegateProtocol
-{
-    
-}
-
-public class LibrarySearchBarDelegate: NSObject, SearchBarDelegateProtocol
+public class SearchBarDelegate: NSObject, SearchBarDelegateProtocol
 {
     
 }

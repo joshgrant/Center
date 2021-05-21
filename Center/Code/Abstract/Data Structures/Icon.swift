@@ -22,6 +22,7 @@ public enum Icon: String
     case leftArrow = "arrow.left"
     case condition = "switch.2"
     case dimension = "move.3d"
+    case unit = "atom"
     case symbol = "asterisk.circle"
     case note = "note.text"
     case process = "flowchart"

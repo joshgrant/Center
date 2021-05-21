@@ -7,7 +7,7 @@
 
 import Foundation
 
-func makeTableViewDataSource(with model: TableViewDataSourceModel) -> TableViewDataSource
-{
-    TableViewDataSource(model: model)
-}
+//func makeTableViewDataSource(with model: TableViewDataSourceModel) -> TableViewDataSource
+//{
+//    TableViewDataSource(model: model)
+//}

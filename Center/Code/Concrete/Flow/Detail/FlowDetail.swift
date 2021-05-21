@@ -7,7 +7,7 @@
 
 import UIKit
 
-func makeFlowDetailViewController(flow: Flow) -> ViewController
+func makeFlowDetailViewController(flow: TransferFlow) -> ViewController
 {
     let viewController = ViewController()
     
@@ -19,7 +19,7 @@ func makeFlowDetailViewController(flow: Flow) -> ViewController
     return viewController
 }
 
-func makeFlowDetailTableViewModel(flow: Flow, didSelect: @escaping TableViewSelectionClosure) -> TableViewModel
+func makeFlowDetailTableViewModel(flow: TransferFlow, didSelect: @escaping TableViewSelectionClosure) -> TableViewModel
 {
     TableViewModel(
         style: .grouped,

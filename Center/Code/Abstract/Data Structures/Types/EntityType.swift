@@ -13,17 +13,17 @@ public enum EntityType: Int
     case system
     case stock
     case flow
+    case process
     case event
     case conversion
+    case condition
     case dimension
+    case unit
     case symbol
     case note
 }
 
-extension EntityType: CaseIterable
-{
-    
-}
+extension EntityType: CaseIterable {}
 
 public func titleForEntityType(_ entityType: EntityType) -> String {
     switch entityType
@@ -44,6 +44,12 @@ public func titleForEntityType(_ entityType: EntityType) -> String {
         return "Symbols"
     case .note:
         return "Notes"
+    case .process:
+        return "Process"
+    case .condition:
+        return "Condition"
+    case .unit:
+        return "Unit"
     }
 }
 
@@ -66,6 +72,12 @@ public func imageForEntityType(_ entityType: EntityType) -> UIImage? {
         return UIImage(icon: .symbol)
     case .note:
         return UIImage(icon: .note)
+    case .process:
+        return UIImage(icon: .process)
+    case .condition:
+        return UIImage(icon: .condition)
+    case .unit:
+        return UIImage(icon: .unit)
     }
 }
 
@@ -89,6 +101,12 @@ public func managedObjectType(for entityType: EntityType) -> NSManagedObject.Typ
         return Symbol.self
     case .note:
         return Note.self
+    case .process:
+        return ProcessFlow.self
+    case .condition:
+        return Condition.self
+    case .unit:
+        return Unit.self
     }
 }
 
@@ -112,6 +130,12 @@ public func addObject(of entityType: EntityType, into context: Context) -> Entit
         return Symbol(context: context)
     case .note:
         return Note(context: context)
+    case .process:
+        return ProcessFlow(context: context)
+    case .condition:
+        return Condition(context: context)
+    case .unit:
+        return Unit(context: context)
     }
 }
 

@@ -192,14 +192,6 @@ func getPinnedObjects(context: Context) -> [Entity]
     }
 }
 
-func makeSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchController
-{
-    let searchResultsController = SearchViewController()
-    let searchController = UISearchController(searchResultsController: searchResultsController)
-    searchController.searchBar.delegate = searchBarDelegate
-    return searchController
-}
-
 // MARK: - ACTION HANDLING
 
 // The problem with these is that they implicitly modify state...

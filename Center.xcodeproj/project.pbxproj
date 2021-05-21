@@ -27,6 +27,10 @@
 		030F5DB9265139990078177D /* SystemDetailSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DB8265139990078177D /* SystemDetailSectionHeader.swift */; };
 		030F5DBB265139AB0078177D /* FlowDetailSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DBA265139AB0078177D /* FlowDetailSectionHeader.swift */; };
 		030F5DBD26513BB40078177D /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DBC26513BB40078177D /* HistoryListCell.swift */; };
+		030F5DC026513D670078177D /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DBF26513D670078177D /* AddButton.swift */; };
+		030F5DC226513E0D0078177D /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DC126513E0D0078177D /* List.swift */; };
+		030F5DC426513EB60078177D /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DC326513EB60078177D /* Fetchable.swift */; };
+		030F5DC6265142770078177D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DC5265142770078177D /* Router.swift */; };
 		033436732535ABE10028F9A9 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866599251F2B9C00418C54 /* Icon.swift */; };
 		033436742535ABE10028F9A9 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038665A7251F2E2800418C54 /* UIImage+Extensions.swift */; };
 		033436762535ABE10028F9A9 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03742E132530338F00FD3932 /* Int+Extensions.swift */; };
@@ -85,7 +89,6 @@
 		034AE0EE253228860052E223 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034AE0ED253228860052E223 /* TabBarItem.swift */; };
 		034AE10C253228D30052E223 /* DashboardSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034AE10B253228D30052E223 /* DashboardSectionHeader.swift */; };
 		034AE124253229070052E223 /* SearchViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034AE123253229070052E223 /* SearchViewType.swift */; };
-		034AE13525322E100052E223 /* TableView+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034AE13425322E100052E223 /* TableView+Functions.swift */; };
 		034AE14525322E200052E223 /* LibraryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034AE14425322E200052E223 /* LibraryList.swift */; };
 		034AE15725322E470052E223 /* TableViewDataSource+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034AE15625322E470052E223 /* TableViewDataSource+Functions.swift */; };
 		034AE16025322E560052E223 /* TableViewCell+Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034AE15F25322E560052E223 /* TableViewCell+Functions.swift */; };
@@ -217,6 +220,10 @@
 		030F5DB8265139990078177D /* SystemDetailSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDetailSectionHeader.swift; sourceTree = "<group>"; };
 		030F5DBA265139AB0078177D /* FlowDetailSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDetailSectionHeader.swift; sourceTree = "<group>"; };
 		030F5DBC26513BB40078177D /* HistoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCell.swift; sourceTree = "<group>"; };
+		030F5DBF26513D670078177D /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		030F5DC126513E0D0078177D /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		030F5DC326513EB60078177D /* Fetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetchable.swift; sourceTree = "<group>"; };
+		030F5DC5265142770078177D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		03122F7E252C200900ECBEBF /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		03122F7F252C200900ECBEBF /* HistoryEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEvent.swift; sourceTree = "<group>"; };
 		03122F80252C200900ECBEBF /* AmountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountType.swift; sourceTree = "<group>"; };
@@ -239,7 +246,6 @@
 		034AE0ED253228860052E223 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		034AE10B253228D30052E223 /* DashboardSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSectionHeader.swift; sourceTree = "<group>"; };
 		034AE123253229070052E223 /* SearchViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewType.swift; sourceTree = "<group>"; };
-		034AE13425322E100052E223 /* TableView+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Functions.swift"; sourceTree = "<group>"; };
 		034AE14425322E200052E223 /* LibraryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryList.swift; sourceTree = "<group>"; };
 		034AE15625322E470052E223 /* TableViewDataSource+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewDataSource+Functions.swift"; sourceTree = "<group>"; };
 		034AE15F25322E560052E223 /* TableViewCell+Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+Functions.swift"; sourceTree = "<group>"; };
@@ -428,7 +434,6 @@
 				030F5D8D265127C00078177D /* Data Source */,
 				0303E408251DC2080060BCB5 /* TableView.swift */,
 				034AE0CA2532280C0052E223 /* TableViewModel.swift */,
-				034AE13425322E100052E223 /* TableView+Functions.swift */,
 			);
 			path = "Table View";
 			sourceTree = "<group>";
@@ -633,6 +638,7 @@
 		030F5DA026512B260078177D /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
+				030F5DBE26513D570078177D /* UI Abstractions */,
 				03AF2257252F312C00468AB4 /* Data Structures */,
 				030F5D88265127290078177D /* Extensions */,
 				03122FA7252C2BD900ECBEBF /* Model */,
@@ -740,6 +746,16 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		030F5DBE26513D570078177D /* UI Abstractions */ = {
+			isa = PBXGroup;
+			children = (
+				030F5DBF26513D670078177D /* AddButton.swift */,
+				030F5DC126513E0D0078177D /* List.swift */,
+				030F5DC5265142770078177D /* Router.swift */,
+			);
+			path = "UI Abstractions";
+			sourceTree = "<group>";
+		};
 		03122FA7252C2BD900ECBEBF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,6 +765,7 @@
 				03122FFA252C65AA00ECBEBF /* Entity Extensions */,
 				035B99DD252F71F10080785C /* Entity Protocols */,
 				03122F9C252C23C500ECBEBF /* Model.xcdatamodeld */,
+				030F5DC326513EB60078177D /* Fetchable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1281,7 +1298,9 @@
 				034AE124253229070052E223 /* SearchViewType.swift in Sources */,
 				03AF2351252F362D00468AB4 /* NoteListCellModel.swift in Sources */,
 				0301CE6D2538533E00B9CBF9 /* Application.swift in Sources */,
+				030F5DC026513D670078177D /* AddButton.swift in Sources */,
 				034AE0E4253228690052E223 /* TableViewDelegateModel.swift in Sources */,
+				030F5DC6265142770078177D /* Router.swift in Sources */,
 				034AE15725322E470052E223 /* TableViewDataSource+Functions.swift in Sources */,
 				033436792535ABE10028F9A9 /* UIView+Extensions.swift in Sources */,
 				03C591672535E21C00020FD2 /* SystemList.swift in Sources */,
@@ -1301,6 +1320,7 @@
 				0386658B251F299700418C54 /* SearchViewController.swift in Sources */,
 				034AE16025322E560052E223 /* TableViewCell+Functions.swift in Sources */,
 				0301CE3E2538399E00B9CBF9 /* TabBarControllerDelegate.swift in Sources */,
+				030F5DC426513EB60078177D /* Fetchable.swift in Sources */,
 				03C59194253608A600020FD2 /* ActionClosure.swift in Sources */,
 				03E94B182521B09400DE2340 /* SpacerView.swift in Sources */,
 				03AF22E4252F35D000468AB4 /* SystemListCellModel.swift in Sources */,
@@ -1312,6 +1332,7 @@
 				0373AF082526009200B92093 /* TableViewDataSource.swift in Sources */,
 				0373AEFF2526008C00B92093 /* TableViewCellModel.swift in Sources */,
 				03AF22EC252F35D300468AB4 /* ConditionListCellModel.swift in Sources */,
+				030F5DC226513E0D0078177D /* List.swift in Sources */,
 				033436762535ABE10028F9A9 /* Int+Extensions.swift in Sources */,
 				035B99BE252F6E9D0080785C /* PinnedListCell.swift in Sources */,
 				030F5DBD26513BB40078177D /* HistoryListCell.swift in Sources */,
@@ -1338,7 +1359,6 @@
 				03F0FE062651208500F9F7F0 /* InboxStateMachine.swift in Sources */,
 				03AF2303252F35D900468AB4 /* SearchResultListCellModel.swift in Sources */,
 				03AF2313252F35DF00468AB4 /* EventDetailViewModel.swift in Sources */,
-				034AE13525322E100052E223 /* TableView+Functions.swift in Sources */,
 				03AF22F4252F35D600468AB4 /* HistoryListCellModel.swift in Sources */,
 				034AE0CB2532280C0052E223 /* TableViewModel.swift in Sources */,
 				0373AF0E2526009700B92093 /* TableView.swift in Sources */,
