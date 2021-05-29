@@ -7,30 +7,10 @@
 
 import UIKit
 
-enum FlowDetailSectionHeader: Int, CaseIterable
+enum FlowDetailSectionHeader: Int, CaseIterable, SectionHeader
 {
     case info
     case events
     case notes
     case history
-}
-
-func title(flowDetailSectionHeader: FlowDetailSectionHeader) -> String
-{
-    switch flowDetailSectionHeader
-    {
-    case .info:
-        return "Info"
-    case .events:
-        return "Events"
-    case .notes:
-        return "Notes"
-    case .history:
-        return "History"
-    }
-}
-
-func image(flowDetailSectionHeader: FlowDetailSectionHeader) -> Icon?
-{
-    return nil
 }

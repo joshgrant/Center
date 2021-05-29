@@ -72,7 +72,25 @@ public func populateDatabaseWithBirthdayPartyEvent(context: Context)
     return system
 }
 
+@discardableResult private func makeDefaultFlow(context: Context) -> TransferFlow
+{
+    let transferFlow = TransferFlow(context: context)
+    transferFlow.amount = 7.0
+    transferFlow.delay = 4.3
+    transferFlow.duration = 6
+    transferFlow.from = nil
+    transferFlow.to = nil
+    transferFlow.isPinned = true
+    transferFlow.unwrappedName = "Apple Music Subscription"
+    return transferFlow
+}
+
 public func populateDatabaseWithWaterSystem(context: Context)
 {
     makeWaterSystem(context: context)
+}
+
+public func populateDatabaseWithFlow(context: Context)
+{
+    makeDefaultFlow(context: context)
 }

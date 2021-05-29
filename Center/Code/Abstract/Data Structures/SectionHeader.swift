@@ -31,6 +31,22 @@ func title(sectionHeader: SectionHeader) -> String
             return "Notes"
         }
     }
+    
+    if let header = sectionHeader as? FlowDetailSectionHeader
+    {
+        switch header
+        {
+        case .info:
+            return "Info"
+        case .events:
+            return "Events"
+        case .notes:
+            return "Notes"
+        case .history:
+            return "History"
+        }
+    }
+    
     return ""
 }
 
@@ -52,6 +68,7 @@ func image(sectionHeader: SectionHeader) -> UIImage?
             return UIImage(icon: .note)
         }
     }
+    
     return nil
 }
 

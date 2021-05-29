@@ -27,7 +27,7 @@ enum ViewControllerType
     case amountDetail
     
     case flowList
-    case flowDetail
+    case flowDetail(flow: TransferFlow?)
     
     case eventList
     case eventDetail
@@ -64,7 +64,7 @@ func viewControllerType(for entityType: EntityType, detail: Bool) -> ViewControl
     case (.system, false): return .systemList
     case (.stock, true): return .stockDetail
     case (.stock, false): return .stockList
-    case (.flow, true): return .flowDetail
+    case (.flow, true): return .flowDetail(flow: nil)
     case (.flow, false): return .flowList
     case (.event, true): return .eventDetail
     case (.event, false): return .eventList
@@ -138,7 +138,7 @@ func detailControllerType(for type: ViewControllerType, entity: NSManagedObject)
     switch type {
     case .systemList: return .systemDetail(system: entity as? System)
     case .stockList: return .stockDetail
-    case .flowList: return .flowDetail
+    case .flowList: return .flowDetail(flow: entity as? TransferFlow)
     case .eventList: return .eventDetail
     case .noteList: return .noteDetail
     case .processList: return .processDetail
@@ -148,7 +148,7 @@ func detailControllerType(for type: ViewControllerType, entity: NSManagedObject)
     case .symbolList: return .symbolDetail
     case .dashboard, .library, .inbox, .settings, .systemDetail, .stockDetail, .amountDetail, .flowDetail, .eventDetail, .conditionDetail, .noteDetail, .noteInfo, .processDetail, .conversionDetail, .dimensionList, .unitDetail, .search, .searchFilter, .symbolDetail, .nonType:
         return .nonType
-        // TODO: Dimension list?
+    // TODO: Dimension list?
     }
 }
 
@@ -250,6 +250,7 @@ func makeTableViewModel(
 -> TableViewModel
 {
     TableViewModel(
+        style: .grouped,
         delegate: makeTableViewDelegate(
             type: type,
             didSelect: didSelect),
@@ -287,6 +288,10 @@ func makeHeaderViewModels(type: ViewControllerType) -> [TableViewHeaderModel]
         return SystemDetailSectionHeader.allCases.map {
             makeHeaderViewModel(sectionHeader: $0)
         }
+    case .flowDetail:
+        return FlowDetailSectionHeader.allCases.map {
+            makeHeaderViewModel(sectionHeader: $0)
+        }
     default:
         return []
     }
@@ -314,6 +319,8 @@ func makeEstimatedSectionHeaderHeights(type: ViewControllerType) -> [CGFloat]
     switch type {
     case .systemDetail:
         return SystemDetailSectionHeader.allCases.count.map { 44 }
+    case .flowDetail:
+        return FlowDetailSectionHeader.allCases.count.map { 44 }
     default:
         return [0]
     }
@@ -332,7 +339,8 @@ func makeTableViewDataSource(
 func makeCellModelTypes(type: ViewControllerType) -> [TableViewCellModel.Type]
 {
     switch type {
-    case .systemList, .nonType: return [SystemListCellModel.self]
+    case .systemList, .nonType:
+        return [SystemListCellModel.self]
     case .dashboard:
         return []
     case .library:
@@ -356,9 +364,12 @@ func makeCellModelTypes(type: ViewControllerType) -> [TableViewCellModel.Type]
     case .amountDetail:
         return []
     case .flowList:
-        return []
+        return [FlowListCellModel.self]
     case .flowDetail:
-        return []
+        return [
+            TitleEditCellModel.self,
+            DetailCellModel.self
+        ]
     case .eventList:
         return []
     case .eventDetail:
@@ -424,9 +435,35 @@ func makeCellModels(type: ViewControllerType, context: Context) -> [[TableViewCe
     case .amountDetail:
         return []
     case .flowList:
-        return []
-    case .flowDetail:
-        return []
+        let flows = getItemsForList(context: context, type: TransferFlow.self)
+        let cellModels: [FlowListCellModel] = flows.map {
+            FlowListCellModel(
+                title: $0.title,
+                fromName: $0.inflowForStock?.title ?? "None",
+                toName: $0.outflowForStock?.title ?? "None", flowAmount: $0.amount)
+            
+        }
+        return [cellModels]
+    case .flowDetail(let flow):
+        guard let flow = flow else { return [] }
+        // TODO: The subscriptions and history cells are hard coded
+        return [
+            [
+                TitleEditCellModel(text: flow.title, placeholder: "Title"),
+                DetailCellModel(title: "Amount", detail: "\(flow.amount)"),
+                DetailCellModel(title: "From", detail: flow.from?.title ?? "None"),
+                DetailCellModel(title: "To", detail: flow.to?.title ?? "None"),
+                DetailCellModel(title: "Duration", detail:
+                                    "\(flow.duration)")
+            ],
+            [
+                DetailCellModel(title: "Subscriptions", detail: "2 flows")
+            ],
+            [
+                DetailCellModel(title: "April 1, 2020", detail: "-9.99"),
+                DetailCellModel(title: "March 1, 2020", detail: "-9.99")
+            ]
+        ] as! [[TableViewCellModel]]
     case .eventList:
         return []
     case .eventDetail:

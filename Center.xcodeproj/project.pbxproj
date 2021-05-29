@@ -103,6 +103,7 @@
 		036DF0D5265F7D4100F9727E /* InboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DF0D4265F7D4100F9727E /* InboxController.swift */; };
 		036DF0D7265F7D5600F9727E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DF0D6265F7D5600F9727E /* SettingsController.swift */; };
 		036DF0D926620B4600F9727E /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DF0D826620B4600F9727E /* SectionHeader.swift */; };
+		036DF0DB266214DD00F9727E /* TransferFlow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DF0DA266214DD00F9727E /* TransferFlow+Extensions.swift */; };
 		0373AEFF2526008C00B92093 /* TableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE24C8251F5FB400CE699A /* TableViewCellModel.swift */; };
 		0373AF022526008F00B92093 /* TableViewHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03632738251F2FD80088681D /* TableViewHeaderModel.swift */; };
 		0373AF052526009100B92093 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE247A251F4FCD00CE699A /* TableViewDelegate.swift */; };
@@ -276,6 +277,7 @@
 		036DF0D4265F7D4100F9727E /* InboxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxController.swift; sourceTree = "<group>"; };
 		036DF0D6265F7D5600F9727E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		036DF0D826620B4600F9727E /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		036DF0DA266214DD00F9727E /* TransferFlow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransferFlow+Extensions.swift"; sourceTree = "<group>"; };
 		03742E132530338F00FD3932 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		037C6DBF253EBF2B005230A1 /* SceneStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStateMachine.swift; sourceTree = "<group>"; };
 		037C6DC8253EC0F2005230A1 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
@@ -820,6 +822,7 @@
 				035B99F3252F72030080785C /* System+Extensions.swift */,
 				03123028252C668C00ECBEBF /* TextBlock+Searchable.swift */,
 				036B6C81252EE9FA00A8C1D1 /* ValueSource+Extensions.swift */,
+				036DF0DA266214DD00F9727E /* TransferFlow+Extensions.swift */,
 			);
 			path = "Entity Extensions";
 			sourceTree = "<group>";
@@ -1311,6 +1314,7 @@
 				034AE124253229070052E223 /* SearchViewType.swift in Sources */,
 				03AF2351252F362D00468AB4 /* NoteListCellModel.swift in Sources */,
 				0301CE6D2538533E00B9CBF9 /* Application.swift in Sources */,
+				036DF0DB266214DD00F9727E /* TransferFlow+Extensions.swift in Sources */,
 				030F5DC026513D670078177D /* AddButton.swift in Sources */,
 				034AE0E4253228690052E223 /* TableViewDelegateModel.swift in Sources */,
 				030F5DC6265142770078177D /* Router.swift in Sources */,
