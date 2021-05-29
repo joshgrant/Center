@@ -56,15 +56,15 @@ enum ViewControllerType
     case searchFilter
 }
 
-func viewControllerType(for entityType: EntityType, detail: Bool) -> ViewControllerType?
+func viewControllerType(for entityType: EntityType, detail: Bool, entity: Entity? = nil) -> ViewControllerType?
 {
     switch (entityType, detail)
     {
-    case (.system, true): return .systemDetail(system: nil)
+    case (.system, true): return .systemDetail(system: entity as? System)
     case (.system, false): return .systemList
     case (.stock, true): return .stockDetail
     case (.stock, false): return .stockList
-    case (.flow, true): return .flowDetail(flow: nil)
+    case (.flow, true): return .flowDetail(flow: entity as? TransferFlow)
     case (.flow, false): return .flowList
     case (.event, true): return .eventDetail
     case (.event, false): return .eventList

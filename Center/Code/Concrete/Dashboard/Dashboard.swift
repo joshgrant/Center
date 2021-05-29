@@ -66,8 +66,12 @@ func makeDashboardRootViewController(context: Context) -> UIViewController
     let controller = ViewController()
     // TODO: Datasource and delegate are weak references...
     // We need to keep them in memory...
-    let didSelect = makeDashboardRootViewDidSelectAction(context: context)
-    let tableViewModel = makeDashboardTableViewModel(context: context, didSelect: didSelect)
+    let didSelect = makeDashboardRootViewDidSelectAction(
+        controller: controller,
+        context: context)
+    let tableViewModel = makeDashboardTableViewModel(
+        context: context,
+        didSelect: didSelect)
     let tableView = makeTableView(from: tableViewModel)
     
     controller.view = tableView
@@ -84,10 +88,10 @@ func makeDashboardRootViewController(context: Context) -> UIViewController
     return navigationController
 }
 
-func makeDashboardRootViewDidSelectAction(context: Context) -> TableViewSelectionClosure
+func makeDashboardRootViewDidSelectAction(controller: ViewController, context: Context) -> TableViewSelectionClosure
 {
     return { selection in
-        guard let section = DashboardSectionHeader(rawValue: selection.indexPath.row) else {
+        guard let section = DashboardSectionHeader(rawValue: selection.indexPath.section) else {
             assertionFailure("Selected a row that doesn't exist: \(selection)")
             return
         }
@@ -98,6 +102,7 @@ func makeDashboardRootViewDidSelectAction(context: Context) -> TableViewSelectio
         {
         case .pinned:
             handleTappedDashboardPinnedItem(
+                controller: controller,
                 context: context,
                 row: row)
         case .flows:
@@ -200,16 +205,21 @@ func getPinnedObjects(context: Context) -> [Entity]
 // and return it from each function. Therefore, it must be a struct.
 // How can we contain all state? Nested structs? maybe a singleton class? 
 
-func handleTappedDashboardPinnedItem(context: Context, row: Int)
+func handleTappedDashboardPinnedItem(controller: ViewController, context: Context, row: Int)
 {
     // Find the appropriate object
     // Find the relevant view controller
     // Push the view controller on the stack
     
-//    let pins = getPinnedObjects(context: context)
-//    let selectedPin = pins[row]
-//    let controller = viewController(for: selectedPin)
+    let pins = getPinnedObjects(context: context)
+    let selectedPin = pins[row]
+    print(selectedPin)
+    guard let _controller = viewController(for: selectedPin, context: context)
+    else { return }
     
+    controller
+        .navigationController?
+        .pushViewController(_controller, animated: true)
     // I feel like these are "side effects" that modify the state indirectly, instead of returning a new state
     // How can we return a new state and have it properly push the new controller onto the stack?
 //    appState
@@ -233,21 +243,15 @@ func viewController(for pin: Entity, context: Context) -> ViewController?
         return nil
     }
     
-    guard let type = viewControllerType(for: entityType, detail: true) else {
+    guard let type = viewControllerType(for: entityType, detail: true, entity: pin) else {
         assertionFailure("The entity type doesn't correspond with a view controller type")
         return nil
     }
     
-    switch pin
-    {
-    case let pin as System:
-        return makeDetailController(
-            type: type,
-            entity: pin,
-            context: context)
-    default:
-        return ViewController()
-    }
+    return makeDetailController(
+        type: type,
+        entity: pin,
+        context: context)
 }
 
 func handleTappedDashboardFlow(at row: Int)
