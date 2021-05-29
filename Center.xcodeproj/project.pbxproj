@@ -99,6 +99,9 @@
 		035B99B5252F6E8B0080785C /* PinnedListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035B99B4252F6E8B0080785C /* PinnedListCellModel.swift */; };
 		035B99BE252F6E9D0080785C /* PinnedListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035B99BD252F6E9D0080785C /* PinnedListCell.swift */; };
 		035B9A05252F74590080785C /* LibraryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035B9A04252F74590080785C /* LibraryListCell.swift */; };
+		036DF0D3265F6CD000F9727E /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DF0D2265F6CD000F9727E /* Bundle+Extensions.swift */; };
+		036DF0D5265F7D4100F9727E /* InboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DF0D4265F7D4100F9727E /* InboxController.swift */; };
+		036DF0D7265F7D5600F9727E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DF0D6265F7D5600F9727E /* SettingsController.swift */; };
 		0373AEFF2526008C00B92093 /* TableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE24C8251F5FB400CE699A /* TableViewCellModel.swift */; };
 		0373AF022526008F00B92093 /* TableViewHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03632738251F2FD80088681D /* TableViewHeaderModel.swift */; };
 		0373AF052526009100B92093 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE247A251F4FCD00CE699A /* TableViewDelegate.swift */; };
@@ -268,6 +271,9 @@
 		036B6C6D252EE51900A8C1D1 /* DynamicSource+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DynamicSource+Extensions.swift"; sourceTree = "<group>"; };
 		036B6C77252EE91A00A8C1D1 /* RangeSource+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RangeSource+Extensions.swift"; sourceTree = "<group>"; };
 		036B6C81252EE9FA00A8C1D1 /* ValueSource+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValueSource+Extensions.swift"; sourceTree = "<group>"; };
+		036DF0D2265F6CD000F9727E /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		036DF0D4265F7D4100F9727E /* InboxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxController.swift; sourceTree = "<group>"; };
+		036DF0D6265F7D5600F9727E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		03742E132530338F00FD3932 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		037C6DBF253EBF2B005230A1 /* SceneStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneStateMachine.swift; sourceTree = "<group>"; };
 		037C6DC8253EC0F2005230A1 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
@@ -404,6 +410,7 @@
 			children = (
 				03CE24DC251F60E000CE699A /* Array+Extensions.swift */,
 				03742E132530338F00FD3932 /* Int+Extensions.swift */,
+				036DF0D2265F6CD000F9727E /* Bundle+Extensions.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -623,6 +630,7 @@
 			isa = PBXGroup;
 			children = (
 				03F0FE052651208500F9F7F0 /* InboxStateMachine.swift */,
+				036DF0D4265F7D4100F9727E /* InboxController.swift */,
 			);
 			path = Inbox;
 			sourceTree = "<group>";
@@ -631,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				03F0FE032651207300F9F7F0 /* SettingsStateMachine.swift */,
+				036DF0D6265F7D5600F9727E /* SettingsController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1239,6 +1248,7 @@
 				03C591792535F3B400020FD2 /* NoteListCell.swift in Sources */,
 				033436E82535ACC40028F9A9 /* Comparison.swift in Sources */,
 				03C5918C2536079000020FD2 /* TitleEditCell.swift in Sources */,
+				036DF0D3265F6CD000F9727E /* Bundle+Extensions.swift in Sources */,
 				033436E92535ACC40028F9A9 /* CompletionType.swift in Sources */,
 				033436EA2535ACC40028F9A9 /* ConditionType.swift in Sources */,
 				033436EB2535ACC40028F9A9 /* EntityType.swift in Sources */,
@@ -1326,6 +1336,7 @@
 				03AF22E4252F35D000468AB4 /* SystemListCellModel.swift in Sources */,
 				03AF22BF252F35C900468AB4 /* LibraryListCellModel.swift in Sources */,
 				0334368B2535AC3B0028F9A9 /* View.swift in Sources */,
+				036DF0D5265F7D4100F9727E /* InboxController.swift in Sources */,
 				03F0FE042651207300F9F7F0 /* SettingsStateMachine.swift in Sources */,
 				035B9A05252F74590080785C /* LibraryListCell.swift in Sources */,
 				030F5DB9265139990078177D /* SystemDetailSectionHeader.swift in Sources */,
@@ -1344,6 +1355,7 @@
 				03AF22B7252F35A800468AB4 /* StateListCellModel.swift in Sources */,
 				03AF230B252F35DC00468AB4 /* EventListCellModel.swift in Sources */,
 				033437062535AE5D0028F9A9 /* Model.xcdatamodeld in Sources */,
+				036DF0D7265F7D5600F9727E /* SettingsController.swift in Sources */,
 				03C5917D2535F44E00020FD2 /* FlowListCell.swift in Sources */,
 				0373AF0B2526009400B92093 /* TableViewCell.swift in Sources */,
 				03AF232A252F35E600468AB4 /* FilterDetailViewModel.swift in Sources */,

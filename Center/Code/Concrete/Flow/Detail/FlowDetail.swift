@@ -82,7 +82,7 @@ func makeFlowDetailTableViewCellModels(flow: Flow) -> [[TableViewCellModel]]
 
 func makeFlowDetailTableViewSelectionClosure() -> TableViewSelectionClosure
 {
-    { selection in
+    return { selection in
         print("Selected a row in the flow detail: \(selection)")
     }
 }

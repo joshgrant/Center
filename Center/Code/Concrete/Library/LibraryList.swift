@@ -16,12 +16,18 @@ func makeLibraryRootViewControllerSelectionClosure(controller: ViewController, c
             return
         }
         
-        if let detailViewController = makeViewController(entityType: entityType, context: context)
-        {
-            controller
-                .navigationController?
-                .pushViewController(detailViewController, animated: true)
+        guard let viewControllerType = viewControllerType(for: entityType, detail: false) else {
+            assertionFailure("Failed to get a valid view controller type from: \(entityType)")
+            return
         }
+        
+        let detailViewController = makeListController(
+            type: viewControllerType,
+            context: context)
+        
+        controller
+            .navigationController?
+            .pushViewController(detailViewController, animated: true)
         
         selection.tableView.deselectRow(at: selection.indexPath, animated: true)
         
@@ -45,7 +51,8 @@ func makeLibraryRootViewController(context: Context) -> UIViewController
     controller.view = tableView
     controller.tabBarItem = makeUITabBarItem(tabBarItem: .library)
     
-    let delegate = LibrarySearchBarDelegate()
+    //    let delegate = LibrarySearchBarDelegate()
+    let delegate = SearchBarDelegate()
     let searchController = makeSearchController(searchBarDelegate: delegate)
     controller.navigationItem.searchController = searchController
     controller.navigationItem.hidesSearchBarWhenScrolling = true
@@ -66,12 +73,6 @@ func makeLibraryTableDelegate(context: Context, didSelect: @escaping TableViewSe
     return TableViewDelegate(model: model)
 }
 
-func makeLibraryTableDataSource(context: Context) -> TableViewDataSource
-{
-    let data = makeLibraryTableData(context: context)
-    return makeTableViewDataSource(with: data)
-}
-
 func makeLibraryTableViewCellModelTypes() -> [TableViewCellModel.Type]
 {
     [LibraryCellModel.self]
@@ -88,7 +89,7 @@ func makeLibraryTableViewModel(context: Context, didSelect: @escaping TableViewS
     TableViewModel(
         style: .grouped,
         delegate: makeLibraryTableDelegate(context: context, didSelect: didSelect),
-        dataSource: makeLibraryTableDataSource(context: context),
+        dataSource: makeTableViewDataSource(type: .library, context: context),
         cellModelTypes: makeLibraryTableViewCellModelTypes())
 }
 

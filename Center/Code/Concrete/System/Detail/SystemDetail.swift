@@ -7,19 +7,19 @@
 
 import UIKit
 
-func makeSystemDetailViewController(system: System) -> ViewController
-{
-    let viewController = ViewController()
-    
-    let didSelect = makeSystemDetailDidSelectClosure(controller: viewController)
-    let tableViewModel = makeSystemDetailTableViewModel(system: system, didSelect: didSelect)
-    let tableView = makeTableView(from: tableViewModel)
-    
-    viewController.title = system.title // TODO: Update when the title changes...
-    viewController.view = tableView
-    
-    return viewController
-}
+//func makeSystemDetailViewController(system: System) -> ViewController
+//{
+//    let viewController = ViewController()
+//    
+//    let didSelect = makeSystemDetailDidSelectClosure(controller: viewController)
+//    let tableViewModel = makeSystemDetailTableViewModel(system: system, didSelect: didSelect)
+//    let tableView = makeTableView(from: tableViewModel)
+//    
+//    viewController.title = system.title // TODO: Update when the title changes...
+//    viewController.view = tableView
+//    
+//    return viewController
+//}
 
 func makeSystemDetailTableViewModel(system: System, didSelect: @escaping TableViewSelectionClosure) -> TableViewModel
 {

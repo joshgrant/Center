@@ -11,6 +11,8 @@ import CoreData
 
 enum ViewControllerType
 {
+    case nonType
+    
     case dashboard
     case library
     case inbox
@@ -18,6 +20,9 @@ enum ViewControllerType
     
     case systemList
     case systemDetail
+    
+    case stockList
+    case stockDetail
     
     case amountDetail
     
@@ -27,6 +32,7 @@ enum ViewControllerType
     case eventList
     case eventDetail
     
+    case conditionList
     case conditionDetail
     
     case noteList
@@ -50,38 +56,99 @@ enum ViewControllerType
     case searchFilter
 }
 
+func viewControllerType(for entityType: EntityType, detail: Bool) -> ViewControllerType?
+{
+    switch (entityType, detail)
+    {
+    case (.system, true): return .systemDetail
+    case (.system, false): return .systemList
+    case (.stock, true): return .stockDetail
+    case (.stock, false): return .stockList
+    case (.flow, true): return .flowDetail
+    case (.flow, false): return .flowList
+    case (.event, true): return .eventDetail
+    case (.event, false): return .eventList
+    case (.process, true): return .processDetail
+    case (.process, false): return .processList
+    case (.conversion, true): return .conversionDetail
+    case (.conversion, false): return .conversionList
+    case (.dimension, false): return .dimensionList
+    case (.dimension, true): return .unitList // TODO: Not ideal
+    case (.symbol, true): return .symbolDetail
+    case (.symbol, false): return .symbolList
+    case (.unit, true): return .unitDetail
+    case (.unit, false): return .unitList
+    case (.note, true): return .noteDetail
+    case (.note, false): return .noteList
+    case (.condition, true): return .conditionDetail
+    case (.condition, false): return .conditionList
+    case (.nonEntity, _): return .systemList
+    }
+}
+
+func entityType(for entity: Entity) -> EntityType?
+{
+    switch entity
+    {
+    case is System: return .system
+    case is Stock: return .stock
+    case is Flow: return .flow
+    case is ProcessFlow: return .process
+    case is Event: return .event
+    case is Conversion: return .conversion
+    case is Condition: return .condition
+    case is Dimension: return .dimension
+    case is Unit: return .unit
+    case is Symbol: return .symbol
+    case is Note: return .note
+    default:
+        return nil
+    }
+}
+
 func entityType(for viewControllerType: ViewControllerType) -> EntityType?
 {
     switch viewControllerType
     {
     case .systemList, .systemDetail: return .system
+    case .stockList, .stockDetail: return .stock
     case .flowList, .flowDetail: return .flow
     case .eventList, .eventDetail: return .event
-    case .conditionDetail: return .condition
+    case .conditionList, .conditionDetail: return .condition
     case .noteList, .noteDetail, .noteInfo: return .note
     case .processList, .processDetail: return .process
     case .conversionList, .conversionDetail: return .conversion
     case .dimensionList: return .dimension
     case .unitList, .unitDetail: return .unit
     case .symbolList, .symbolDetail: return .symbol
-    default:
-        // TODO: Condition, amount
-        return nil
+    case .dashboard,
+         .library,
+         .inbox,
+         .settings,
+         .amountDetail,
+         .search,
+         .searchFilter,
+         .nonType:
+        return .nonEntity
     }
 }
 
-func detailPage(for type: ViewControllerType) -> ViewControllerType?
+func detailControllerType(for type: ViewControllerType) -> ViewControllerType?
 {
     switch type {
     case .systemList: return .systemDetail
+    case .stockList: return .stockDetail
     case .flowList: return .flowDetail
     case .eventList: return .eventDetail
     case .noteList: return .noteDetail
     case .processList: return .processDetail
     case .conversionList: return .conversionDetail
+    case .conditionList: return .conditionDetail
     case .unitList: return .unitDetail
     case .symbolList: return .symbolDetail
-    default: return nil
+    case .dashboard, .library, .inbox, .settings, .systemDetail, .stockDetail, .amountDetail, .flowDetail, .eventDetail, .conditionDetail, .noteDetail, .noteInfo, .processDetail, .conversionDetail, .dimensionList, .unitDetail, .search, .searchFilter, .symbolDetail, .nonType:
+        return .nonType
+        // TODO: Dimension list?
     }
 }
 
@@ -116,9 +183,18 @@ public func makeSearchController(searchBarDelegate: UISearchBarDelegate) -> UISe
     return searchController
 }
 
-func makeDetailController(entity: NSManagedObject) -> ViewController
+func makeDetailController(type: ViewControllerType, entity: NSManagedObject, context: Context) -> ViewController
 {
+    let viewController = ViewController()
     
+    let didSelect = makeDidSelect(type: type, controller: viewController, context: context)
+    let tableViewModel = makeTableViewModel(type: type, context: context, didSelect: didSelect)
+    let tableView = makeTableView(from: tableViewModel)
+    
+    viewController.title = title(for: type)
+    viewController.view = tableView
+    
+    return viewController
 }
 
 func makeListController(
@@ -176,15 +252,22 @@ func makeDidSelect(
         
         let typeOfManagedObject = managedObjectType(for: typeOfEntity)
         
-         guard let entity = getItemInList(
+        guard let entity = getItemInList(
                 at: selection.indexPath,
                 context: context,
                 type: typeOfManagedObject) else {
             assertionFailure("Failed to find the proper entity at: \(selection.indexPath) for: \(typeOfManagedObject)")
             return
-         }
+        }
         
-        let detail = makeDetailController(entity: entity)
+        guard let detailType = detailControllerType(for: type) else {
+            return
+        }
+        
+        let detail = makeDetailController(
+            type: detailType,
+            entity: entity,
+            context: context)
         
         controller.navigationController?.pushViewController(
             detail,
@@ -269,8 +352,74 @@ func makeCellModelTypes(type: ViewControllerType) -> [TableViewCellModel.Type]
 
 func makeCellModels(type: ViewControllerType, context: Context) -> [[TableViewCellModel]]
 {
-    switch type {
-    case .systemList:
+    switch type
+    {
+    case .dashboard:
+        return makeDashboardCellModels(context: context)
+    case .library:
+        return makeLibraryCellModels(context: context)
+    default:
+        return []
+    }
+    
+    //    guard let typeOfEntity = entityType(for: type) else {
+    //        return []
+    //    }
+    //
+    //    let typeOfManagedObject = managedObjectType(for: typeOfEntity)
+    //
+    //    let entities = getItemsForList(
+    //        context: context,
+    //        type: typeOfManagedObject)
+    //    let cellModels: [TableViewCellModel] = entities.map { object in
+    //
+    //        switch type
+    //        {
+    //        case .library:
+    //            return makeLibraryCellModels(context: context)
+    //        default:
+    //            return nil
+    //        }
+    //    }
+    //
+    //    return [cellModels]
+}
+
+func cellModelType(for entityType: EntityType) -> AnyClass
+{
+    switch entityType
+    {
+    case .system:
+        return SystemListCellModel.cellClass
+    case .flow:
+        return FlowListCellModel.cellClass
+    case .event:
+        return EventListCellModel.cellClass
+    case .note:
+        return NoteListCellModel.cellClass
+    default:
+        return SystemListCellModel.cellClass // TODO: Add other cell types
+    }
+}
+
+func makeCellModel(for type: AnyClass, object: NSManagedObject) -> TableViewCellModel?
+{
+    switch type
+    {
+    case is SystemListCell.Type:
+        guard let system = object as? System else {
+            assertionFailure("Failed to convert the object: \(object) to a system")
+            return nil
+        }
+        
+        let ideal = system.ideal?.computedValue as? Double ?? 0
+        
+        return SystemListCellModel(
+            title: system.title,
+            percentIdeal: ideal)
+    default:
+        assertionFailure("Cell model could not be created for: \(type)")
+        return nil
     }
 }
 
@@ -299,12 +448,15 @@ func makeAddActionClosure(
         
         let entity = addObject(of: typeOfEntity, into: context)
         
-        guard let detailPageType = detailPage(for: type) else {
+        guard let detailPageType = detailControllerType(for: type) else {
             return
         }
         
-        let detailController = makeDetailController(entity: entity)
-
+        let detailController = makeDetailController(
+            type: detailPageType,
+            entity: entity,
+            context: context)
+        
         // TODO: Use the completion with the action closure
         controller.navigationController?.present(
             detailController,

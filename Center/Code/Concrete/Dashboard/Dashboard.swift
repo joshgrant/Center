@@ -73,7 +73,7 @@ func makeDashboardRootViewController(context: Context) -> UIViewController
     controller.view = tableView
     controller.tabBarItem = makeUITabBarItem(tabBarItem: .dashboard)
     
-    let delegate = DashboardSearchBarDelegate()
+    let delegate = SearchBarDelegate()
     let searchController = makeSearchController(searchBarDelegate: delegate)
     controller.navigationItem.searchController = searchController
     controller.navigationItem.hidesSearchBarWhenScrolling = true
@@ -206,9 +206,9 @@ func handleTappedDashboardPinnedItem(context: Context, row: Int)
     // Find the relevant view controller
     // Push the view controller on the stack
     
-    let pins = getPinnedObjects(context: context)
-    let selectedPin = pins[row]
-    let controller = viewController(for: selectedPin)
+//    let pins = getPinnedObjects(context: context)
+//    let selectedPin = pins[row]
+//    let controller = viewController(for: selectedPin)
     
     // I feel like these are "side effects" that modify the state indirectly, instead of returning a new state
     // How can we return a new state and have it properly push the new controller onto the stack?
@@ -226,12 +226,25 @@ func handleTappedDashboardPinnedItem(context: Context, row: Int)
     // TODO: Shoud notify about changes for the app state
 }
 
-func viewController(for pin: Entity) -> ViewController
+func viewController(for pin: Entity, context: Context) -> ViewController?
 {
+    guard let entityType = entityType(for: pin) else {
+        assertionFailure("The pinned entity didn't have a valid entity type")
+        return nil
+    }
+    
+    guard let type = viewControllerType(for: entityType, detail: true) else {
+        assertionFailure("The entity type doesn't correspond with a view controller type")
+        return nil
+    }
+    
     switch pin
     {
     case let pin as System:
-        return makeSystemDetailViewController(system: pin)
+        return makeDetailController(
+            type: type,
+            entity: pin,
+            context: context)
     default:
         return ViewController()
     }

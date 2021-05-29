@@ -10,6 +10,7 @@ import CoreData
 
 public enum EntityType: Int
 {
+    case nonEntity
     case system
     case stock
     case flow
@@ -50,6 +51,7 @@ public func titleForEntityType(_ entityType: EntityType) -> String {
         return "Condition"
     case .unit:
         return "Unit"
+    case .nonEntity: return "Non Entity"
     }
 }
 
@@ -78,6 +80,8 @@ public func imageForEntityType(_ entityType: EntityType) -> UIImage? {
         return UIImage(icon: .condition)
     case .unit:
         return UIImage(icon: .unit)
+    case .nonEntity:
+        return UIImage(icon: .question)
     }
 }
 
@@ -107,6 +111,8 @@ public func managedObjectType(for entityType: EntityType) -> NSManagedObject.Typ
         return Condition.self
     case .unit:
         return Unit.self
+    case .nonEntity:
+        return Entity.self
     }
 }
 
@@ -136,6 +142,8 @@ public func addObject(of entityType: EntityType, into context: Context) -> Entit
         return Condition(context: context)
     case .unit:
         return Unit(context: context)
+    case .nonEntity:
+        return System(context: context) // TODO: Maybe not good?
     }
 }
 
@@ -150,18 +158,5 @@ public func countForEntityType(_ entityType: EntityType, context: Context) -> In
     } catch {
         assertionFailure(error.localizedDescription)
         return 0
-    }
-}
-
-public func makeViewController(entityType: EntityType, context: Context) -> UIViewController?
-{
-    switch entityType
-    {
-    case .system:
-        return makeSystemsListPage(context: context)
-    case .flow:
-        return makeFlowListViewController(context: context)
-    default:
-        return nil
     }
 }

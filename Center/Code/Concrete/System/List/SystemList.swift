@@ -22,9 +22,9 @@ import UIKit
 func makeSystemsListTableViewCellModels(context: Context) -> [[TableViewCellModel]]
 {
     let systems = getItemsForList(context: context, type: System.self)
-    let cellModels: [SystemListCellModel] = systems.map {
-        let ideal = $0.ideal?.computedValue as? Double ?? 0
-        return SystemListCellModel(title: $0.title, percentIdeal: ideal)
+    let cellModels: [SystemListCellModel] = systems.map { system in
+        let ideal = system.ideal?.computedValue as? Double ?? 0
+        return SystemListCellModel(title: system.title, percentIdeal: ideal)
     }
     return [cellModels]
 }

@@ -34,6 +34,7 @@ public enum Icon: String
     case copy = "doc.on.doc"
     case activateFlow = "play.circle"
     case link = "link"
+    case question = "questionmark"
     case filter = "line.horizontal.3.decrease.circle"
     case checkBoxEmpty = "circle"
     case checkBoxFilled = "checkmark.circle"

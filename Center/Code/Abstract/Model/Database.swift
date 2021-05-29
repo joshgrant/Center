@@ -100,3 +100,13 @@ public func save(context: Context)
 public func context(from container: Container) -> Context { container.viewContext }
 public func model(from container: Container) -> Model { container.managedObjectModel }
 public func coordinator(from container: Container) -> Coordinator { container.persistentStoreCoordinator }
+
+public func createContext() -> Context
+{
+    var container = try! makeContainer(modelName: "Model")
+    container = try! loadPersistentStores(on: container)
+    let _context = context(from: container)
+    populateDatabaseWithWaterSystem(context: _context)
+    populateDatabaseWithBirthdayPartyEvent(context: _context)
+    return _context
+}
