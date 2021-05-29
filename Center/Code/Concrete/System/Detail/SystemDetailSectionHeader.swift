@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum SystemDetailSectionHeader: Int, CaseIterable
+enum SystemDetailSectionHeader: Int, CaseIterable, SectionHeader
 {
     case info
     case suggestedFlows
@@ -15,40 +15,4 @@ enum SystemDetailSectionHeader: Int, CaseIterable
     case flows
     case events
     case notes
-}
-
-func title(systemDetailSectionHeader: SystemDetailSectionHeader) -> String
-{
-    switch systemDetailSectionHeader
-    {
-    case .info:
-        return "Info"
-    case .suggestedFlows:
-        return "Suggested Flows"
-    case .stocks:
-        return "Stocks"
-    case .flows:
-        return "Flows"
-    case .events:
-        return "Events"
-    case .notes:
-        return "Notes"
-    }
-}
-
-func image(systemDetailSectionHeader: SystemDetailSectionHeader) -> UIImage?
-{
-    switch systemDetailSectionHeader
-    {
-    case .info, .suggestedFlows:
-        return nil
-    case .stocks:
-        return UIImage(icon: .stock)
-    case .flows:
-        return UIImage(icon: .flow)
-    case .events:
-        return UIImage(icon: .event)
-    case .notes:
-        return UIImage(icon: .note)
-    }
 }

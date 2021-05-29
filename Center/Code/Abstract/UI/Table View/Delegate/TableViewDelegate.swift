@@ -31,7 +31,15 @@ public extension TableViewDelegate
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-        model.headerViews?[section]
+        guard let headerViews = model.headerViews else {
+            return nil
+        }
+        
+        if headerViews.count > section {
+            return headerViews[section]
+        } else {
+            return nil
+        }
     }
 }
 

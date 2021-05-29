@@ -89,12 +89,12 @@ public func managedObjectType(for entityType: EntityType) -> NSManagedObject.Typ
 {
     switch entityType
     {
-    case .system:
+    case .system, .nonEntity:
         return System.self
     case .stock:
         return Stock.self
     case .flow:
-        return Flow.self
+        return TransferFlow.self
     case .event:
         return Event.self
     case .conversion:
@@ -111,8 +111,6 @@ public func managedObjectType(for entityType: EntityType) -> NSManagedObject.Typ
         return Condition.self
     case .unit:
         return Unit.self
-    case .nonEntity:
-        return Entity.self
     }
 }
 
@@ -125,7 +123,7 @@ public func addObject(of entityType: EntityType, into context: Context) -> Entit
     case .stock:
         return Stock(context: context)
     case .flow:
-        return Flow(context: context)
+        return TransferFlow(context: context)
     case .event:
         return Event(context: context)
     case .conversion:

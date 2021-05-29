@@ -19,7 +19,7 @@ enum ViewControllerType
     case settings // Have a nested enum here
     
     case systemList
-    case systemDetail
+    case systemDetail(system: System?)
     
     case stockList
     case stockDetail
@@ -60,7 +60,7 @@ func viewControllerType(for entityType: EntityType, detail: Bool) -> ViewControl
 {
     switch (entityType, detail)
     {
-    case (.system, true): return .systemDetail
+    case (.system, true): return .systemDetail(system: nil)
     case (.system, false): return .systemList
     case (.stock, true): return .stockDetail
     case (.stock, false): return .stockList
@@ -92,7 +92,7 @@ func entityType(for entity: Entity) -> EntityType?
     {
     case is System: return .system
     case is Stock: return .stock
-    case is Flow: return .flow
+    case is TransferFlow: return .flow
     case is ProcessFlow: return .process
     case is Event: return .event
     case is Conversion: return .conversion
@@ -133,10 +133,10 @@ func entityType(for viewControllerType: ViewControllerType) -> EntityType?
     }
 }
 
-func detailControllerType(for type: ViewControllerType) -> ViewControllerType?
+func detailControllerType(for type: ViewControllerType, entity: NSManagedObject) -> ViewControllerType?
 {
     switch type {
-    case .systemList: return .systemDetail
+    case .systemList: return .systemDetail(system: entity as? System)
     case .stockList: return .stockDetail
     case .flowList: return .flowDetail
     case .eventList: return .eventDetail
@@ -156,6 +156,10 @@ func title(for type: ViewControllerType) -> String
 {
     // TODO: Pluralize if necessary
     return String(describing: type)
+        .split { $0.isUppercase }
+        .first?
+        .localizedCapitalized
+        ?? String(describing: type)
 }
 
 public func makeTableView(from tableViewModel: TableViewModel) -> TableView
@@ -191,6 +195,7 @@ func makeDetailController(type: ViewControllerType, entity: NSManagedObject, con
     let tableViewModel = makeTableViewModel(type: type, context: context, didSelect: didSelect)
     let tableView = makeTableView(from: tableViewModel)
     
+    // TODO: Maybe use the title of the entity?
     viewController.title = title(for: type)
     viewController.view = tableView
     
@@ -238,43 +243,6 @@ func makeListController(
     return controller
 }
 
-func makeDidSelect(
-    type: ViewControllerType,
-    controller: ViewController,
-    context: Context)
--> TableViewSelectionClosure
-{
-    return { selection in
-        
-        guard let typeOfEntity = entityType(for: type) else {
-            return
-        }
-        
-        let typeOfManagedObject = managedObjectType(for: typeOfEntity)
-        
-        guard let entity = getItemInList(
-                at: selection.indexPath,
-                context: context,
-                type: typeOfManagedObject) else {
-            assertionFailure("Failed to find the proper entity at: \(selection.indexPath) for: \(typeOfManagedObject)")
-            return
-        }
-        
-        guard let detailType = detailControllerType(for: type) else {
-            return
-        }
-        
-        let detail = makeDetailController(
-            type: detailType,
-            entity: entity,
-            context: context)
-        
-        controller.navigationController?.pushViewController(
-            detail,
-            animated: true)
-    }
-}
-
 func makeTableViewModel(
     type: ViewControllerType,
     context: Context,
@@ -306,28 +274,48 @@ func makeTableViewDelegate(
 
 func makeHeaderViews(type: ViewControllerType) -> [UIView?]
 {
+    let headerModels = makeHeaderViewModels(type: type)
+    return headerModels.map {
+        makeTableViewSectionHeader(model: $0)
+    }
+}
+
+func makeHeaderViewModels(type: ViewControllerType) -> [TableViewHeaderModel]
+{
     switch type {
-    case .systemList: return []
+    case .systemDetail:
+        return SystemDetailSectionHeader.allCases.map {
+            makeHeaderViewModel(sectionHeader: $0)
+        }
     default:
         return []
     }
 }
 
+func makeHeaderViewModel(sectionHeader: SectionHeader) -> TableViewHeaderModel
+{
+    TableViewHeaderModel(
+        hasDisclosureTriangle: hasDisclosureTriangle(sectionHeader: sectionHeader),
+        image: image(sectionHeader: sectionHeader),
+        title: title(sectionHeader: sectionHeader),
+        hasSearchButton: hasSearchButton(sectionHeader: sectionHeader),
+        hasLinkButton: hasLinkButton(sectionHeader: sectionHeader),
+        hasAddButton: hasAddButton(sectionHeader: sectionHeader),
+        hasEditButton: hasEditButton(sectionHeader: sectionHeader))
+}
+
 func makeSectionHeaderHeights(type: ViewControllerType) -> [CGFloat]
 {
-    switch type {
-    case .systemList: return []
-    default:
-        return []
-    }
+    return makeEstimatedSectionHeaderHeights(type: type)
 }
 
 func makeEstimatedSectionHeaderHeights(type: ViewControllerType) -> [CGFloat]
 {
     switch type {
-    case .systemList: return []
+    case .systemDetail:
+        return SystemDetailSectionHeader.allCases.count.map { 44 }
     default:
-        return []
+        return [0]
     }
 }
 
@@ -344,9 +332,69 @@ func makeTableViewDataSource(
 func makeCellModelTypes(type: ViewControllerType) -> [TableViewCellModel.Type]
 {
     switch type {
-    case .systemList: return [SystemListCellModel.self]
-    default:
-        return [] // TODO: Add the other cell types
+    case .systemList, .nonType: return [SystemListCellModel.self]
+    case .dashboard:
+        return []
+    case .library:
+        return []
+    case .inbox:
+        return []
+    case .settings:
+        return []
+    case .systemDetail:
+        return [
+            IdealCellModel.self,
+            TitleEditCellModel.self,
+            FlowListCellModel.self,
+            EventListCellModel.self,
+            NoteListCellModel.self
+        ]
+    case .stockList:
+        return []
+    case .stockDetail:
+        return []
+    case .amountDetail:
+        return []
+    case .flowList:
+        return []
+    case .flowDetail:
+        return []
+    case .eventList:
+        return []
+    case .eventDetail:
+        return []
+    case .conditionList:
+        return []
+    case .conditionDetail:
+        return []
+    case .noteList:
+        return []
+    case .noteDetail:
+        return []
+    case .noteInfo:
+        return []
+    case .processList:
+        return []
+    case .processDetail:
+        return []
+    case .conversionList:
+        return []
+    case .conversionDetail:
+        return []
+    case .dimensionList:
+        return []
+    case .unitList:
+        return []
+    case .unitDetail:
+        return []
+    case .symbolList:
+        return []
+    case .symbolDetail:
+        return []
+    case .search:
+        return []
+    case .searchFilter:
+        return []
     }
 }
 
@@ -358,7 +406,62 @@ func makeCellModels(type: ViewControllerType, context: Context) -> [[TableViewCe
         return makeDashboardCellModels(context: context)
     case .library:
         return makeLibraryCellModels(context: context)
-    default:
+    case .nonType:
+        return []
+    case .inbox:
+        return []
+    case .settings:
+        return []
+    case .systemList:
+        return makeSystemsListTableViewCellModels(context: context)
+    case .systemDetail(let system):
+        guard let system = system else { return [] }
+        return makeSystemDetailTableViewDataSourceModels(system: system)
+    case .stockList:
+        return []
+    case .stockDetail:
+        return []
+    case .amountDetail:
+        return []
+    case .flowList:
+        return []
+    case .flowDetail:
+        return []
+    case .eventList:
+        return []
+    case .eventDetail:
+        return []
+    case .conditionList:
+        return []
+    case .conditionDetail:
+        return []
+    case .noteList:
+        return []
+    case .noteDetail:
+        return []
+    case .noteInfo:
+        return []
+    case .processList:
+        return []
+    case .processDetail:
+        return []
+    case .conversionList:
+        return []
+    case .conversionDetail:
+        return []
+    case .dimensionList:
+        return []
+    case .unitList:
+        return []
+    case .unitDetail:
+        return []
+    case .symbolList:
+        return []
+    case .symbolDetail:
+        return []
+    case .search:
+        return []
+    case .searchFilter:
         return []
     }
     
@@ -432,6 +535,8 @@ func makeSearchController(type: ViewControllerType) -> UISearchController
     return makeSearchController(searchBarDelegate: delegate)
 }
 
+// MARK: - Tapping on stuff
+
 func makeAddActionClosure(
     type: ViewControllerType,
     controller: ViewController,
@@ -448,7 +553,7 @@ func makeAddActionClosure(
         
         let entity = addObject(of: typeOfEntity, into: context)
         
-        guard let detailPageType = detailControllerType(for: type) else {
+        guard let detailPageType = detailControllerType(for: type, entity: entity) else {
             return
         }
         
@@ -462,5 +567,44 @@ func makeAddActionClosure(
             detailController,
             animated: true,
             completion: nil)
+    }
+}
+
+func makeDidSelect(
+    type: ViewControllerType,
+    controller: ViewController,
+    context: Context)
+-> TableViewSelectionClosure
+{
+    return { selection in
+        
+        guard let typeOfEntity = entityType(for: type) else {
+            return
+        }
+        
+        let typeOfManagedObject = managedObjectType(for: typeOfEntity)
+        
+        guard let entity = getItemInList(
+                at: selection.indexPath,
+                context: context,
+                type: typeOfManagedObject) else {
+            assertionFailure("Failed to find the proper entity at: \(selection.indexPath) for: \(typeOfManagedObject)")
+            return
+        }
+        
+        guard let detailType = detailControllerType(for: type, entity: entity) else {
+            // TODO: Handle detail controller first?
+            print(selection)
+            return
+        }
+        
+        let detail = makeDetailController(
+            type: detailType,
+            entity: entity,
+            context: context)
+        
+        controller.navigationController?.pushViewController(
+            detail,
+            animated: true)
     }
 }

@@ -9,7 +9,7 @@ import CoreData
 
 func getItemsForList<T: NSManagedObject>(context: Context, type: T.Type) -> [T]
 {
-    let fetchRequest: NSFetchRequest<T> = NSFetchRequest(entityName: NSStringFromClass(T.self))
+    let fetchRequest: NSFetchRequest<T> = NSFetchRequest(entityName: NSStringFromClass(type))
     do {
         return try context.fetch(fetchRequest)
     } catch {
