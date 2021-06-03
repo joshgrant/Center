@@ -37,7 +37,7 @@ open class TabBarControllerDelegate: NSObject, UITabBarControllerDelegate
 }
 
 // This assumes the title on the view controller is set properly...
-public func tabFor(viewController: UIViewController) -> TabBarItem?
+public func tabFor(viewController: UIViewController) -> TabType?
 {
     var viewController: UIViewController? = viewController
     
@@ -48,13 +48,13 @@ public func tabFor(viewController: UIViewController) -> TabBarItem?
     
     switch viewController?.tabBarItem.title
     {
-    case title(tabBarItem: .dashboard):
+    case TabType.dashboard.title:
         return .dashboard
-    case title(tabBarItem: .library):
+    case TabType.library.title:
         return .library
-    case title(tabBarItem: .inbox):
+    case TabType.inbox.title:
         return .inbox
-    case title(tabBarItem: .settings):
+    case TabType.settings.title:
         return .settings
     default:
         if let viewController = viewController
@@ -68,18 +68,3 @@ public func tabFor(viewController: UIViewController) -> TabBarItem?
         return nil
     }
 }
-
-//public func state(forTabBarItem item: TabBarItem) -> TabBarState
-//{
-//    switch item
-//    {
-//    case .dashboard:
-//        return .das
-//    case .library:
-//        return LibraryState(searching: false, child: nil)
-//    case .inbox:
-//        return InboxState()
-//    case .settings:
-//        return SettingsState()
-//    }
-//}

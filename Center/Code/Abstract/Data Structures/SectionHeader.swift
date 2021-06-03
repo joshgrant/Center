@@ -7,76 +7,73 @@
 
 import UIKit
 
-/// Empty protocol to be conformed to by different types. Maybe we could convert
-/// this to a struct or something? 
-protocol SectionHeader { }
-
-func title(sectionHeader: SectionHeader) -> String
+enum SectionHeader: Int
 {
-    if let header = sectionHeader as? SystemDetailSectionHeader
+    case info
+    case suggestedFlows
+    case stocks
+    case flows
+    case events
+    case notes
+    case history
+    case pinned
+    case forecast
+    case priority
+    
+    static var systemDetail: [SectionHeader] {
+        [
+            .info, .stocks, .flows, .events, .notes
+        ]
+    }
+    
+    static var flowDetail: [SectionHeader] {
+        [
+            .info, .events, .history, .notes
+        ]
+    }
+    
+    static var dashboard: [SectionHeader] {
+        [
+            .pinned, .flows, .forecast, .priority
+        ]
+    }
+    
+    var title: String
     {
-        switch header
+        switch self
         {
-        case .info:
-            return "Info"
-        case .suggestedFlows:
-            return "Suggested Flows"
-        case .stocks:
-            return "Stocks"
-        case .flows:
-            return "Flows"
-        case .events:
-            return "Events"
-        case .notes:
-            return "Notes"
+        case .info: return "Info"
+        case .suggestedFlows: return "Suggested Flows"
+        case .stocks: return "Stocks"
+        case .flows: return "Flows"
+        case .events: return "Events"
+        case .notes: return "Notes"
+        case .history: return "History"
+        case .pinned: return "Pinned"
+        case .forecast: return "Forecast"
+        case .priority: return "Priority"
         }
     }
     
-    if let header = sectionHeader as? FlowDetailSectionHeader
+    var icon: Icon?
     {
-        switch header
+        switch self
         {
-        case .info:
-            return "Info"
-        case .events:
-            return "Events"
-        case .notes:
-            return "Notes"
-        case .history:
-            return "History"
+        case .info, .suggestedFlows: return nil
+        case .stocks: return .stock
+        case .flows: return .flow
+        case .events: return .event
+        case .notes: return .note
+        case .pinned: return .pinFill
+        case .forecast: return .forecast
+        case .priority: return .priority
+        case .history: return nil
         }
     }
     
-    return ""
-}
-
-func image(sectionHeader: SectionHeader) -> UIImage?
-{
-    if let header = sectionHeader as? SystemDetailSectionHeader
+    var hasDisclosureTriangle: Bool
     {
-        switch header
-        {
-        case .info, .suggestedFlows:
-            return nil
-        case .stocks:
-            return UIImage(icon: .stock)
-        case .flows:
-            return UIImage(icon: .flow)
-        case .events:
-            return UIImage(icon: .event)
-        case .notes:
-            return UIImage(icon: .note)
-        }
-    }
-    
-    return nil
-}
-
-func hasDisclosureTriangle(sectionHeader: SectionHeader) -> Bool
-{
-    if let header = sectionHeader as? SystemDetailSectionHeader
-    {
-        switch header
+        switch self
         {
         case .info, .suggestedFlows:
             return false
@@ -85,19 +82,14 @@ func hasDisclosureTriangle(sectionHeader: SectionHeader) -> Bool
         }
     }
     
-    return false
-}
-
-func hasSearchButton(sectionHeader: SectionHeader) -> Bool
-{
-    return false
-}
-
-func hasLinkButton(sectionHeader: SectionHeader) -> Bool
-{
-    if let header = sectionHeader as? SystemDetailSectionHeader
+    var hasSearchButton: Bool
     {
-        switch header
+        return false
+    }
+    
+    var hasLinkButton: Bool
+    {
+        switch self
         {
         case .info, .suggestedFlows:
             return false
@@ -106,14 +98,9 @@ func hasLinkButton(sectionHeader: SectionHeader) -> Bool
         }
     }
     
-    return false
-}
-
-func hasAddButton(sectionHeader: SectionHeader) -> Bool
-{
-    if let header = sectionHeader as? SystemDetailSectionHeader
+    var hasAddButton: Bool
     {
-        switch header
+        switch self
         {
         case .info, .suggestedFlows:
             return false
@@ -122,10 +109,8 @@ func hasAddButton(sectionHeader: SectionHeader) -> Bool
         }
     }
     
-    return false
-}
-
-func hasEditButton(sectionHeader: SectionHeader) -> Bool
-{
-    return false
+    var hasEditButton: Bool
+    {
+        return false
+    }
 }

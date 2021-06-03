@@ -7,10 +7,10 @@
 
 import UIKit
 
-func makeSettingsRootViewController() -> UIViewController
-{
-    let controller = ViewController()
-    controller.tabBarItem = makeUITabBarItem(tabBarItem: .settings)
-    controller.title = title(tabBarItem: .settings)
-    return controller
-}
+//func makeSettingsRootViewController() -> UIViewController
+//{
+//    let controller = ViewController()
+//    controller.tabBarItem = makeUITabBarItem(tabBarItem: .settings)
+//    controller.title = title(tabBarItem: .settings)
+//    return controller
+//}

@@ -9,83 +9,6 @@ import Foundation
 import UIKit
 import CoreData
 
-enum ViewControllerType
-{
-    case nonType
-    
-    case dashboard
-    case library
-    case inbox
-    case settings // Have a nested enum here
-    
-    case systemList
-    case systemDetail(system: System?)
-    
-    case stockList
-    case stockDetail
-    
-    case amountDetail
-    
-    case flowList
-    case flowDetail(flow: TransferFlow?)
-    
-    case eventList
-    case eventDetail
-    
-    case conditionList
-    case conditionDetail
-    
-    case noteList
-    case noteDetail
-    case noteInfo
-    
-    case processList
-    case processDetail
-    
-    case conversionList
-    case conversionDetail
-    
-    case dimensionList
-    case unitList
-    case unitDetail
-    
-    case symbolList
-    case symbolDetail
-    
-    case search
-    case searchFilter
-}
-
-func viewControllerType(for entityType: EntityType, detail: Bool, entity: Entity? = nil) -> ViewControllerType?
-{
-    switch (entityType, detail)
-    {
-    case (.system, true): return .systemDetail(system: entity as? System)
-    case (.system, false): return .systemList
-    case (.stock, true): return .stockDetail
-    case (.stock, false): return .stockList
-    case (.flow, true): return .flowDetail(flow: entity as? TransferFlow)
-    case (.flow, false): return .flowList
-    case (.event, true): return .eventDetail
-    case (.event, false): return .eventList
-    case (.process, true): return .processDetail
-    case (.process, false): return .processList
-    case (.conversion, true): return .conversionDetail
-    case (.conversion, false): return .conversionList
-    case (.dimension, false): return .dimensionList
-    case (.dimension, true): return .unitList // TODO: Not ideal
-    case (.symbol, true): return .symbolDetail
-    case (.symbol, false): return .symbolList
-    case (.unit, true): return .unitDetail
-    case (.unit, false): return .unitList
-    case (.note, true): return .noteDetail
-    case (.note, false): return .noteList
-    case (.condition, true): return .conditionDetail
-    case (.condition, false): return .conditionList
-    case (.nonEntity, _): return .systemList
-    }
-}
-
 func entityType(for entity: Entity) -> EntityType?
 {
     switch entity
@@ -106,61 +29,43 @@ func entityType(for entity: Entity) -> EntityType?
     }
 }
 
-func entityType(for viewControllerType: ViewControllerType) -> EntityType?
+func entityType(for page: Page) -> EntityType?
 {
-    switch viewControllerType
-    {
-    case .systemList, .systemDetail: return .system
-    case .stockList, .stockDetail: return .stock
-    case .flowList, .flowDetail: return .flow
-    case .eventList, .eventDetail: return .event
-    case .conditionList, .conditionDetail: return .condition
-    case .noteList, .noteDetail, .noteInfo: return .note
-    case .processList, .processDetail: return .process
-    case .conversionList, .conversionDetail: return .conversion
-    case .dimensionList: return .dimension
-    case .unitList, .unitDetail: return .unit
-    case .symbolList, .symbolDetail: return .symbol
-    case .dashboard,
-         .library,
-         .inbox,
-         .settings,
-         .amountDetail,
-         .search,
-         .searchFilter,
-         .nonType:
-        return .nonEntity
+    if let entityType = page.kind as? EntityType {
+        return entityType
+    } else {
+        return nil
     }
 }
 
-func detailControllerType(for type: ViewControllerType, entity: NSManagedObject) -> ViewControllerType?
-{
-    switch type {
-    case .systemList: return .systemDetail(system: entity as? System)
-    case .stockList: return .stockDetail
-    case .flowList: return .flowDetail(flow: entity as? TransferFlow)
-    case .eventList: return .eventDetail
-    case .noteList: return .noteDetail
-    case .processList: return .processDetail
-    case .conversionList: return .conversionDetail
-    case .conditionList: return .conditionDetail
-    case .unitList: return .unitDetail
-    case .symbolList: return .symbolDetail
-    case .dashboard, .library, .inbox, .settings, .systemDetail, .stockDetail, .amountDetail, .flowDetail, .eventDetail, .conditionDetail, .noteDetail, .noteInfo, .processDetail, .conversionDetail, .dimensionList, .unitDetail, .search, .searchFilter, .symbolDetail, .nonType:
-        return .nonType
-    // TODO: Dimension list?
-    }
-}
+//func detailControllerPage(for type: ViewControllerType, entity: NSManagedObject) -> Page?
+//{
+//    switch type {
+//    case .systemList: return .systemDetail(system: entity as? System)
+//    case .stockList: return .stockDetail
+//    case .flowList: return .flowDetail(flow: entity as? TransferFlow)
+//    case .eventList: return .eventDetail
+//    case .noteList: return .noteDetail
+//    case .processList: return .processDetail
+//    case .conversionList: return .conversionDetail
+//    case .conditionList: return .conditionDetail
+//    case .unitList: return .unitDetail
+//    case .symbolList: return .symbolDetail
+//    case .dashboard, .library, .inbox, .settings, .systemDetail, .stockDetail, .amountDetail, .flowDetail, .eventDetail, .conditionDetail, .noteDetail, .noteInfo, .processDetail, .conversionDetail, .dimensionList, .unitDetail, .search, .searchFilter, .symbolDetail, .nonType:
+//        return .nonType
+//    // TODO: Dimension list?
+//    }
+//}
 
-func title(for type: ViewControllerType) -> String
-{
-    // TODO: Pluralize if necessary
-    return String(describing: type)
-        .split { $0.isUppercase }
-        .first?
-        .localizedCapitalized
-        ?? String(describing: type)
-}
+//func title(for type: ViewControllerType) -> String
+//{
+//    // TODO: Pluralize if necessary
+//    return String(describing: type)
+//        .split { $0.isUppercase }
+//        .first?
+//        .localizedCapitalized
+//        ?? String(describing: type)
+//}
 
 public func makeTableView(from tableViewModel: TableViewModel) -> TableView
 {
@@ -179,6 +84,8 @@ public func makeTableView(from tableViewModel: TableViewModel) -> TableView
     return tableView
 }
 
+// MARK: - Search Controller
+
 public func makeSearchController(searchBarDelegate: UISearchBarDelegate) -> UISearchController
 {
     let searchResultsController = SearchViewController()
@@ -187,23 +94,44 @@ public func makeSearchController(searchBarDelegate: UISearchBarDelegate) -> UISe
     return searchController
 }
 
-func makeDetailController(type: ViewControllerType, entity: NSManagedObject, context: Context) -> ViewController
+// MARK: - Detail Controller
+
+func makeDetailController(page: Page, context: Context) -> ViewController
 {
     let viewController = ViewController()
     
-    let didSelect = makeDidSelect(type: type, controller: viewController, context: context)
-    let tableViewModel = makeTableViewModel(type: type, context: context, didSelect: didSelect)
+    let didSelect = makeDidSelect(page: page, controller: viewController, context: context)
+    let tableViewModel = makeTableViewModel(page: page, context: context, didSelect: didSelect)
     let tableView = makeTableView(from: tableViewModel)
     
     // TODO: Maybe use the title of the entity?
-    viewController.title = title(for: type)
+    viewController.title = page.kind.title
     viewController.view = tableView
     
     return viewController
 }
 
+// Tab Controller
+
+func makeTabController(type: TabType, context: Context) -> NavigationController
+{
+    let page = Page(kind: type)
+    
+    let controller = makeListController(
+        page: page,
+        context: context)
+    
+    controller.tabBarItem = type.tabBarItem
+    
+    let navigationController = NavigationController(rootViewController: controller)
+    
+    return navigationController
+}
+
+// MARK: - List Controller
+
 func makeListController(
-    type: ViewControllerType,
+    page: Page,
     context: Context)
 -> ViewController
 {
@@ -211,13 +139,13 @@ func makeListController(
     
     // TODO: Optional depending on ViewControllerType
     let didSelect = makeDidSelect(
-        type: type,
+        page: page,
         controller: controller,
         context: context)
     
     // TODO: Not necessarily a table view model
     let model = makeTableViewModel(
-        type: type,
+        page: page,
         context: context,
         didSelect: didSelect)
     
@@ -226,25 +154,37 @@ func makeListController(
     controller.view = tableView
     
     // TODO: Only if the the ViewControllerType has a search bar
-    let searchController = makeSearchController(type: type)
+    let searchController = makeSearchController()
     controller.navigationItem.searchController = searchController
     controller.navigationItem.hidesSearchBarWhenScrolling = true
     
+    // TODO: Not every list controller needs an add button? OR is this just for the library?
     let actionClosure = makeAddActionClosure(
-        type: type,
+        page: page,
         controller: controller,
         context: context)
     
     controller.actionClosures.insert(actionClosure)
     controller.navigationItem.rightBarButtonItem = makeListAddButton(actionClosure: actionClosure)
     
-    controller.title = title(for: type)
+    controller.title = page.kind.title
     
     return controller
 }
 
+func shouldUseAddButton(page: Page) -> Bool
+{
+    //    switch type
+    //    {
+    //    case .dashboard, .library, .settings,
+    //    }
+    return true
+}
+
+// MARK: - Table View Model
+
 func makeTableViewModel(
-    type: ViewControllerType,
+    page: Page,
     context: Context,
     didSelect: @escaping TableViewSelectionClosure)
 -> TableViewModel
@@ -252,277 +192,257 @@ func makeTableViewModel(
     TableViewModel(
         style: .grouped,
         delegate: makeTableViewDelegate(
-            type: type,
+            page: page,
             didSelect: didSelect),
         dataSource: makeTableViewDataSource(
-            type: type,
+            page: page,
             context: context),
-        cellModelTypes: makeCellModelTypes(type: type))
+        cellModelTypes: makeCellModelTypes(page: page))
 }
 
+// MARK: - Table View Delegate
+
 func makeTableViewDelegate(
-    type: ViewControllerType,
+    page: Page,
     didSelect: @escaping TableViewSelectionClosure)
 -> TableViewDelegate
 {
     let delegateModel = TableViewDelegateModel(
-        headerViews: makeHeaderViews(type: type),
-        sectionHeaderHeights: makeSectionHeaderHeights(type: type),
-        estimatedSectionHeaderHeights: makeEstimatedSectionHeaderHeights(type: type),
+        headerViews: page.makeHeaderViews(),
+        sectionHeaderHeights: makeSectionHeaderHeights(page: page),
+        estimatedSectionHeaderHeights: makeEstimatedSectionHeaderHeights(page: page),
         didSelect: didSelect)
     return TableViewDelegate(model: delegateModel)
 }
 
-func makeHeaderViews(type: ViewControllerType) -> [UIView?]
-{
-    let headerModels = makeHeaderViewModels(type: type)
-    return headerModels.map {
-        makeTableViewSectionHeader(model: $0)
-    }
-}
+// MARK: - Header Views
 
-func makeHeaderViewModels(type: ViewControllerType) -> [TableViewHeaderModel]
-{
-    switch type {
-    case .systemDetail:
-        return SystemDetailSectionHeader.allCases.map {
-            makeHeaderViewModel(sectionHeader: $0)
-        }
-    case .flowDetail:
-        return FlowDetailSectionHeader.allCases.map {
-            makeHeaderViewModel(sectionHeader: $0)
-        }
-    default:
-        return []
-    }
-}
+//func makeHeaderViews(page: Page) -> [UIView?]
+//{
+//    let headerModels = makeHeaderViewModels(type: type)
+//    return headerModels.map {
+//        makeTableViewSectionHeader(model: $0)
+//    }
+//}
+
+// MARK: - Header View Models
+
+//func makeHeaderViewModels(page: Page) -> [TableViewHeaderModel]
+//{
+//    switch type {
+//    case .systemDetail:
+//        return SystemDetailSectionHeader.allCases.map {
+//            makeHeaderViewModel(sectionHeader: $0)
+//        }
+//    case .flowDetail:
+//        return FlowDetailSectionHeader.allCases.map {
+//            makeHeaderViewModel(sectionHeader: $0)
+//        }
+//    case .dashboard:
+//        return DashboardSectionHeader.allCases.map {
+//            makeHeaderViewModel(sectionHeader: $0)
+//        }
+//    default:
+//        return []
+//    }
+//}
+
+// MARK: - Header View Model
 
 func makeHeaderViewModel(sectionHeader: SectionHeader) -> TableViewHeaderModel
 {
     TableViewHeaderModel(
-        hasDisclosureTriangle: hasDisclosureTriangle(sectionHeader: sectionHeader),
-        image: image(sectionHeader: sectionHeader),
-        title: title(sectionHeader: sectionHeader),
-        hasSearchButton: hasSearchButton(sectionHeader: sectionHeader),
-        hasLinkButton: hasLinkButton(sectionHeader: sectionHeader),
-        hasAddButton: hasAddButton(sectionHeader: sectionHeader),
-        hasEditButton: hasEditButton(sectionHeader: sectionHeader))
+        hasDisclosureTriangle: sectionHeader.hasDisclosureTriangle,
+        image: sectionHeader.icon?.getImage(),
+        title: sectionHeader.title,
+        hasSearchButton: sectionHeader.hasSearchButton,
+        hasLinkButton: sectionHeader.hasLinkButton,
+        hasAddButton: sectionHeader.hasAddButton,
+        hasEditButton: sectionHeader.hasEditButton)
 }
 
-func makeSectionHeaderHeights(type: ViewControllerType) -> [CGFloat]
+// MARK: - Header Heights
+
+func makeSectionHeaderHeights(page: Page) -> [CGFloat]
 {
-    return makeEstimatedSectionHeaderHeights(type: type)
+    return makeEstimatedSectionHeaderHeights(page: page)
 }
 
-func makeEstimatedSectionHeaderHeights(type: ViewControllerType) -> [CGFloat]
+// MARK: - Estimated Header Heights
+
+func makeEstimatedSectionHeaderHeights(page: Page) -> [CGFloat]
 {
-    switch type {
-    case .systemDetail:
-        return SystemDetailSectionHeader.allCases.count.map { 44 }
-    case .flowDetail:
-        return FlowDetailSectionHeader.allCases.count.map { 44 }
-    default:
-        return [0]
+    if let tab = page.kind as? TabType
+    {
+        switch tab
+        {
+        case .dashboard:
+            return SectionHeader.dashboard.count.map { 44 }
+        case .library, .settings, .inbox:
+            return [0]
+        }
     }
+    
+    if let entity = page.kind as? EntityType
+    {
+        switch (entity, page.modifier)
+        {
+        case (.system, .detail):
+            return SectionHeader.systemDetail.count.map { 44 }
+        case (.flow, .detail):
+            return SectionHeader.flowDetail.count.map { 44 }
+        case (_, .list):
+            return [0]
+        default:
+            assertionFailure("Passed an unhandled entity to section heights: \(page)")
+            return []
+        }
+    }
+    
+    preconditionFailure("Should not reach here")
 }
+
+// MARK: - Data Source
 
 func makeTableViewDataSource(
-    type: ViewControllerType,
+    page: Page,
     context: Context)
 -> TableViewDataSource
 {
-    let cellModels = makeCellModels(type: type, context: context)
+    let cellModels = makeCellModels(page: page, context: context)
     let dataSourceModel = TableViewDataSourceModel(cellModels: cellModels)
     return TableViewDataSource(model: dataSourceModel)
 }
 
-func makeCellModelTypes(type: ViewControllerType) -> [TableViewCellModel.Type]
-{
-    switch type {
-    case .systemList, .nonType:
-        return [SystemListCellModel.self]
-    case .dashboard:
-        return []
-    case .library:
-        return []
-    case .inbox:
-        return []
-    case .settings:
-        return []
-    case .systemDetail:
-        return [
-            IdealCellModel.self,
-            TitleEditCellModel.self,
-            FlowListCellModel.self,
-            EventListCellModel.self,
-            NoteListCellModel.self
-        ]
-    case .stockList:
-        return []
-    case .stockDetail:
-        return []
-    case .amountDetail:
-        return []
-    case .flowList:
-        return [FlowListCellModel.self]
-    case .flowDetail:
-        return [
-            TitleEditCellModel.self,
-            DetailCellModel.self
-        ]
-    case .eventList:
-        return []
-    case .eventDetail:
-        return []
-    case .conditionList:
-        return []
-    case .conditionDetail:
-        return []
-    case .noteList:
-        return []
-    case .noteDetail:
-        return []
-    case .noteInfo:
-        return []
-    case .processList:
-        return []
-    case .processDetail:
-        return []
-    case .conversionList:
-        return []
-    case .conversionDetail:
-        return []
-    case .dimensionList:
-        return []
-    case .unitList:
-        return []
-    case .unitDetail:
-        return []
-    case .symbolList:
-        return []
-    case .symbolDetail:
-        return []
-    case .search:
-        return []
-    case .searchFilter:
-        return []
-    }
-}
+// MARK: - Cell Model Types
 
-func makeCellModels(type: ViewControllerType, context: Context) -> [[TableViewCellModel]]
+func makeCellModelTypes(page: Page) -> [TableViewCellModel.Type]
 {
-    switch type
+    if let tab = page.kind as? TabType
     {
-    case .dashboard:
-        return makeDashboardCellModels(context: context)
-    case .library:
-        return makeLibraryCellModels(context: context)
-    case .nonType:
-        return []
-    case .inbox:
-        return []
-    case .settings:
-        return []
-    case .systemList:
-        return makeSystemsListTableViewCellModels(context: context)
-    case .systemDetail(let system):
-        guard let system = system else { return [] }
-        return makeSystemDetailTableViewDataSourceModels(system: system)
-    case .stockList:
-        return []
-    case .stockDetail:
-        return []
-    case .amountDetail:
-        return []
-    case .flowList:
-        let flows = getItemsForList(context: context, type: TransferFlow.self)
-        let cellModels: [FlowListCellModel] = flows.map {
-            FlowListCellModel(
-                title: $0.title,
-                fromName: $0.inflowForStock?.title ?? "None",
-                toName: $0.outflowForStock?.title ?? "None", flowAmount: $0.amount)
-            
-        }
-        return [cellModels]
-    case .flowDetail(let flow):
-        guard let flow = flow else { return [] }
-        // TODO: The subscriptions and history cells are hard coded
-        return [
-            [
-                TitleEditCellModel(text: flow.title, placeholder: "Title"),
-                DetailCellModel(title: "Amount", detail: "\(flow.amount)"),
-                DetailCellModel(title: "From", detail: flow.from?.title ?? "None"),
-                DetailCellModel(title: "To", detail: flow.to?.title ?? "None"),
-                DetailCellModel(title: "Duration", detail:
-                                    "\(flow.duration)")
-            ],
-            [
-                DetailCellModel(title: "Subscriptions", detail: "2 flows")
-            ],
-            [
-                DetailCellModel(title: "April 1, 2020", detail: "-9.99"),
-                DetailCellModel(title: "March 1, 2020", detail: "-9.99")
+        switch tab
+        {
+        case .dashboard:
+            return [
+                PinnedListCellModel.self,
+                EventListCellModel.self,
+                FlowListCellModel.self
             ]
-        ] as! [[TableViewCellModel]]
-    case .eventList:
-        return []
-    case .eventDetail:
-        return []
-    case .conditionList:
-        return []
-    case .conditionDetail:
-        return []
-    case .noteList:
-        return []
-    case .noteDetail:
-        return []
-    case .noteInfo:
-        return []
-    case .processList:
-        return []
-    case .processDetail:
-        return []
-    case .conversionList:
-        return []
-    case .conversionDetail:
-        return []
-    case .dimensionList:
-        return []
-    case .unitList:
-        return []
-    case .unitDetail:
-        return []
-    case .symbolList:
-        return []
-    case .symbolDetail:
-        return []
-    case .search:
-        return []
-    case .searchFilter:
-        return []
+        case .library:
+            return [LibraryCellModel.self]
+        case .settings:
+            return []
+        case .inbox:
+            return []
+        }
     }
     
-    //    guard let typeOfEntity = entityType(for: type) else {
-    //        return []
-    //    }
-    //
-    //    let typeOfManagedObject = managedObjectType(for: typeOfEntity)
-    //
-    //    let entities = getItemsForList(
-    //        context: context,
-    //        type: typeOfManagedObject)
-    //    let cellModels: [TableViewCellModel] = entities.map { object in
-    //
-    //        switch type
-    //        {
-    //        case .library:
-    //            return makeLibraryCellModels(context: context)
-    //        default:
-    //            return nil
-    //        }
-    //    }
-    //
-    //    return [cellModels]
+    if let entity = page.kind as? EntityType
+    {
+        switch (entity, page.modifier)
+        {
+        case (.system, .list):
+            return [SystemListCellModel.self]
+        case (.system, .detail):
+            return [
+                IdealCellModel.self,
+                TitleEditCellModel.self,
+                FlowListCellModel.self,
+                EventListCellModel.self,
+                NoteListCellModel.self
+            ]
+        case (.flow, .list):
+            return [FlowListCellModel.self]
+        case (.flow, .detail):
+            return [
+                TitleEditCellModel.self,
+                DetailCellModel.self
+            ]
+        default:
+            assertionFailure("Unhandled cell model type: \(page)")
+            return []
+        }
+    }
+    
+    preconditionFailure("Should not reach here")
+}
+
+// MARK: - Cell Models
+
+func makeCellModels(page: Page, context: Context) -> [[TableViewCellModel]]
+{
+    if let tab = page.kind as? TabType
+    {
+        switch tab
+        {
+        case .dashboard:
+            return [
+                makePinnedModels(context: context),
+                [],
+                makeForecastModels(context: context),
+                []
+            ]
+        case .library:
+            let cellModels = EntityType.libraryVisible.map {
+                makeLibraryCellModel(for: $0, context: context)
+            }
+            return [cellModels]
+        case .inbox:
+            return []
+        case .settings:
+            return []
+        }
+    }
+    
+    if let entity = page.kind as? EntityType
+    {
+        switch (entity, page.modifier)
+        {
+        case (.system, .list):
+            return makeSystemsListTableViewCellModels(context: context)
+        case (.system, .detail(let system)):
+            guard let system = system as? System else
+            {
+                assertionFailure("Failed to convert the entity to a system: \(page)")
+                return []
+            }
+            return makeSystemDetailTableViewDataSourceModels(system: system)
+        case (.flow, .list):
+            let flows = getItemsForList(context: context, type: TransferFlow.self)
+            let cellModels: [FlowListCellModel] = flows.map {
+                FlowListCellModel(
+                    title: $0.title,
+                    fromName: $0.inflowForStock?.title ?? "None",
+                    toName: $0.outflowForStock?.title ?? "None", flowAmount: $0.amount)
+                
+            }
+            return [cellModels]
+        case (.flow, .detail(let flow)):
+            guard let flow = flow as? TransferFlow else { return [] }
+            // TODO: The subscriptions and history cells are hard coded
+            return [
+                [
+                    TitleEditCellModel(text: flow.title, placeholder: "Title"),
+                    DetailCellModel(title: "Amount", detail: "\(flow.amount)"),
+                    DetailCellModel(title: "From", detail: flow.from?.title ?? "None"),
+                    DetailCellModel(title: "To", detail: flow.to?.title ?? "None"),
+                    DetailCellModel(title: "Duration", detail: "\(flow.duration)")
+                ],
+                [
+                    DetailCellModel(title: "Subscriptions", detail: "2 flows")
+                ],
+                [
+                    DetailCellModel(title: "April 1, 2020", detail: "-9.99"),
+                    DetailCellModel(title: "March 1, 2020", detail: "-9.99")
+                ]
+            ] as! [[TableViewCellModel]]
+        default:
+            assertionFailure("Unhandled cell model creation: \(page)")
+            return []
+        }
+    }
+    
+    return []
 }
 
 func cellModelType(for entityType: EntityType) -> AnyClass
@@ -541,6 +461,8 @@ func cellModelType(for entityType: EntityType) -> AnyClass
         return SystemListCellModel.cellClass // TODO: Add other cell types
     }
 }
+
+// MARK: - Cell Model
 
 func makeCellModel(for type: AnyClass, object: NSManagedObject) -> TableViewCellModel?
 {
@@ -566,7 +488,7 @@ func makeCellModel(for type: AnyClass, object: NSManagedObject) -> TableViewCell
 /**
  Not to be confused with the `makeSearchController:delegate ` function.
  */
-func makeSearchController(type: ViewControllerType) -> UISearchController
+func makeSearchController() -> UISearchController
 {
     let delegate = SearchBarDelegate()
     return makeSearchController(searchBarDelegate: delegate)
@@ -575,7 +497,7 @@ func makeSearchController(type: ViewControllerType) -> UISearchController
 // MARK: - Tapping on stuff
 
 func makeAddActionClosure(
-    type: ViewControllerType,
+    page: Page,
     controller: ViewController,
     context: Context)
 -> ActionClosure
@@ -584,19 +506,17 @@ func makeAddActionClosure(
         // TODO: How to customize action controller by type?
         // TODO: We need to route the list page to the detail pages..
         
-        guard let typeOfEntity = entityType(for: type) else {
+        guard let typeOfEntity = page.kind as? EntityType else {
             return
         }
         
-        let entity = addObject(of: typeOfEntity, into: context)
-        
-        guard let detailPageType = detailControllerType(for: type, entity: entity) else {
-            return
-        }
+        let entity = typeOfEntity.insertNewEntity(into: context)
+        let page = Page(
+            kind: typeOfEntity,
+            modifier: .detail(entity: entity))
         
         let detailController = makeDetailController(
-            type: detailPageType,
-            entity: entity,
+            page: page,
             context: context)
         
         // TODO: Use the completion with the action closure
@@ -607,19 +527,31 @@ func makeAddActionClosure(
     }
 }
 
+// TODO: A function that returns the "created" controller
+// for use in navigation instead of doing the creation and
+// navigation here
 func makeDidSelect(
-    type: ViewControllerType,
+    page: Page,
     controller: ViewController,
     context: Context)
 -> TableViewSelectionClosure
 {
+    if let kind = page.kind as? TabType, kind == .dashboard
+    {
+        return makeDashboardRootViewDidSelectAction(controller: controller, context: context)
+    }
+    else if let kind = page.kind as? TabType, kind == .library
+    {
+        return makeLibraryRootViewControllerSelectionClosure(controller: controller, context: context)
+    }
+    
     return { selection in
         
-        guard let typeOfEntity = entityType(for: type) else {
+        guard let typeOfEntity = page.kind as? EntityType else {
             return
         }
         
-        let typeOfManagedObject = managedObjectType(for: typeOfEntity)
+        let typeOfManagedObject = typeOfEntity.managedObjectType
         
         guard let entity = getItemInList(
                 at: selection.indexPath,
@@ -629,15 +561,10 @@ func makeDidSelect(
             return
         }
         
-        guard let detailType = detailControllerType(for: type, entity: entity) else {
-            // TODO: Handle detail controller first?
-            print(selection)
-            return
-        }
+        let detailPage = Page(kind: typeOfEntity, modifier: .detail(entity: entity))
         
         let detail = makeDetailController(
-            type: detailType,
-            entity: entity,
+            page: detailPage,
             context: context)
         
         controller.navigationController?.pushViewController(

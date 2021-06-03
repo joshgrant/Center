@@ -11,18 +11,12 @@ func makeLibraryRootViewControllerSelectionClosure(controller: ViewController, c
 {
     return { selection in
         
-        guard let entityType = EntityType(rawValue: selection.indexPath.row) else {
-            assertionFailure("Failed to create an `EntityType` from a selection's indexPath.row")
-            return
-        }
+        let entityType = EntityType.libraryVisible[selection.indexPath.row]
         
-        guard let viewControllerType = viewControllerType(for: entityType, detail: false) else {
-            assertionFailure("Failed to get a valid view controller type from: \(entityType)")
-            return
-        }
+        let page = Page(kind: entityType, modifier: .list)
         
         let detailViewController = makeListController(
-            type: viewControllerType,
+            page: page,
             context: context)
         
         controller
@@ -36,76 +30,10 @@ func makeLibraryRootViewControllerSelectionClosure(controller: ViewController, c
     }
 }
 
-func makeLibraryRootViewController(context: Context) -> UIViewController
-{
-    let controller = ViewController()
-    
-    let didSelect = makeLibraryRootViewControllerSelectionClosure(
-        controller: controller,
-        context: context)
-    let tableViewModel = makeLibraryTableViewModel(
-        context: context,
-        didSelect: didSelect)
-    let tableView = makeTableView(from: tableViewModel)
-    
-    controller.view = tableView
-    controller.tabBarItem = makeUITabBarItem(tabBarItem: .library)
-    
-    //    let delegate = LibrarySearchBarDelegate()
-    let delegate = SearchBarDelegate()
-    let searchController = makeSearchController(searchBarDelegate: delegate)
-    controller.navigationItem.searchController = searchController
-    controller.navigationItem.hidesSearchBarWhenScrolling = true
-    controller.title = title(tabBarItem: .library)
-    
-    let navigationController = NavigationController(rootViewController: controller)
-    return navigationController
-}
-
-func makeLibraryTableDelegate(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewDelegate
-{
-    let model = TableViewDelegateModel(
-        headerViews: nil,
-        sectionHeaderHeights: nil,
-        estimatedSectionHeaderHeights: nil,
-        didSelect: didSelect)
-    
-    return TableViewDelegate(model: model)
-}
-
-func makeLibraryTableViewCellModelTypes() -> [TableViewCellModel.Type]
-{
-    [LibraryCellModel.self]
-}
-
-func makeLibraryTableData(context: Context) -> TableViewDataSourceModel
-{
-    let models = makeLibraryCellModels(context: context)
-    return TableViewDataSourceModel(cellModels: models)
-}
-
-func makeLibraryTableViewModel(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewModel
-{
-    TableViewModel(
-        style: .grouped,
-        delegate: makeLibraryTableDelegate(context: context, didSelect: didSelect),
-        dataSource: makeTableViewDataSource(type: .library, context: context),
-        cellModelTypes: makeLibraryTableViewCellModelTypes())
-}
-
-public func makeLibraryCellModels(context: Context) -> [[TableViewCellModel]]
-{
-    let cellModels = EntityType.allCases.map {
-        makeLibraryCellModel(for: $0, context: context)
-    }
-    
-    return [cellModels]
-}
-
 func makeLibraryCellModel(for entityType: EntityType, context: Context) -> LibraryCellModel
 {
     LibraryCellModel(
-        image: imageForEntityType(entityType),
-        title: titleForEntityType(entityType),
-        count: countForEntityType(entityType, context: context))
+        image: entityType.icon.getImage(),
+        title: entityType.title,
+        count: entityType.count(in: context))
 }

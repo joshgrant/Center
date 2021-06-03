@@ -35,22 +35,22 @@ open class TabBarController: UITabBarController
 
 func makeTabBarControllers(context: Context) -> [UIViewController]
 {
-    TabBarItem.allCases.map {
-        makeViewController(tabBarItem: $0, context: context)
+    TabType.allCases.map {
+        makeTabController(type: $0, context: context)
     }
 }
 
-func makeViewController(tabBarItem: TabBarItem, context: Context) -> UIViewController
-{
-    switch tabBarItem
-    {
-    case .dashboard:
-        return makeDashboardRootViewController(context: context)
-    case .library:
-        return makeLibraryRootViewController(context: context)
-    case .inbox:
-        return makeInboxRootViewController()
-    case .settings:
-        return makeSettingsRootViewController()
-    }
-}
+//func makeViewController(tabBarItem: TabType, context: Context) -> UIViewController
+//{
+//    switch tabBarItem
+//    {
+//    case .dashboard:
+//        return makeDashboardRootViewController(context: context)
+//    case .library:
+//        return makeLibraryRootViewController(context: context)
+//    case .inbox:
+//        return makeInboxRootViewController()
+//    case .settings:
+//        return makeSettingsRootViewController()
+//    }
+//}

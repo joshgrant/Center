@@ -7,10 +7,10 @@
 
 import UIKit
 
-func makeInboxRootViewController() -> UIViewController
-{
-    let controller = ViewController()
-    controller.tabBarItem = makeUITabBarItem(tabBarItem: .inbox)
-    controller.title = title(tabBarItem: .inbox)
-    return controller
-}
+//func makeInboxRootViewController() -> UIViewController
+//{
+//    let controller = ViewController()
+//    controller.tabBarItem = makeUITabBarItem(tabBarItem: .inbox)
+//    controller.title = title(tabBarItem: .inbox)
+//    return controller
+//}

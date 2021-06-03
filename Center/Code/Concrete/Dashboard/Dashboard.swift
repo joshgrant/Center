@@ -6,176 +6,152 @@
 //
 
 import UIKit
+//
+//func makeDashboardTableViewCellModelTypes() -> [TableViewCellModel.Type]
+//{
+//    [PinnedListCellModel.self, EventListCellModel.self]
+//}
 
-func makeDashboardTableViewCellModelTypes() -> [TableViewCellModel.Type]
-{
-    [PinnedListCellModel.self, EventListCellModel.self]
-}
+//func makeDashboardTableViewHeaderModels(context: Context) -> [TableViewHeaderModel]
+//{
+//    DashboardSectionHeader.allCases.map {
+//        makeTableViewHeaderModel(dashboardSectionHeader: $0)
+//    }
+//}
 
-func makeDashboardTableViewHeaderModels(context: Context) -> [TableViewHeaderModel]
-{
-    DashboardSectionHeader.allCases.map {
-        makeTableViewHeaderModel(dashboardSectionHeader: $0)
-    }
-}
+//func makeDashboardTableViewHeaderViews(context: Context) -> [UIView?]
+//{
+//    let models = makeDashboardTableViewHeaderModels(context: context)
+//    return models.map {
+//        makeTableViewSectionHeader(model: $0)
+//    }
+//}
 
-func makeDashboardTableViewHeaderViews(context: Context) -> [UIView?]
-{
-    let models = makeDashboardTableViewHeaderModels(context: context)
-    return models.map {
-        makeTableViewSectionHeader(model: $0)
-    }
-}
+//func makeDashboardTableViewDelegateModel(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewDelegateModel
+//{
+//    let headerHeights: [CGFloat] = DashboardSectionHeader.allCases.count.map { 44 }
+//
+//    return TableViewDelegateModel(
+//        headerViews: makeDashboardTableViewHeaderViews(context: context),
+//        sectionHeaderHeights: headerHeights,
+//        estimatedSectionHeaderHeights: headerHeights,
+//        didSelect: didSelect)
+//}
 
-func makeDashboardTableViewDelegateModel(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewDelegateModel
-{
-    let headerHeights: [CGFloat] = DashboardSectionHeader.allCases.count.map { 44 }
-    
-    return TableViewDelegateModel(
-        headerViews: makeDashboardTableViewHeaderViews(context: context),
-        sectionHeaderHeights: headerHeights,
-        estimatedSectionHeaderHeights: headerHeights,
-        didSelect: didSelect)
-}
+//func makeDashboardTableViewDelegate(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewDelegate
+//{
+//    let delegateModel = makeDashboardTableViewDelegateModel(context: context, didSelect: didSelect)
+//    return TableViewDelegate(model: delegateModel)
+//}
 
-func makeDashboardTableViewDelegate(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewDelegate
-{
-    let delegateModel = makeDashboardTableViewDelegateModel(context: context, didSelect: didSelect)
-    return TableViewDelegate(model: delegateModel)
-}
+//func makeDashboardTableViewDataSource(context: Context) -> TableViewDataSource
+//{
+//    let cellModels = makeDashboardCellModels(context: context)
+//    let dataSourceModel = TableViewDataSourceModel(cellModels: cellModels)
+//    return TableViewDataSource(model: dataSourceModel)
+//}
 
-func makeDashboardTableViewDataSource(context: Context) -> TableViewDataSource
-{
-    let cellModels = makeDashboardCellModels(context: context)
-    let dataSourceModel = TableViewDataSourceModel(cellModels: cellModels)
-    return TableViewDataSource(model: dataSourceModel)
-}
-
-func makeDashboardTableViewModel(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewModel
-{
-    TableViewModel(
-        style: .grouped,
-        delegate: makeDashboardTableViewDelegate(context: context, didSelect: didSelect),
-        dataSource: makeDashboardTableViewDataSource(context: context),
-        cellModelTypes: makeDashboardTableViewCellModelTypes())
-}
+//func makeDashboardTableViewModel(context: Context, didSelect: @escaping TableViewSelectionClosure) -> TableViewModel
+//{
+//    TableViewModel(
+//        style: .grouped,
+//        delegate: makeDashboardTableViewDelegate(context: context, didSelect: didSelect),
+//        dataSource: makeDashboardTableViewDataSource(context: context),
+//        cellModelTypes: makeDashboardTableViewCellModelTypes())
+//}
 
 
-func makeDashboardRootViewController(context: Context) -> UIViewController
-{
-    let controller = ViewController()
-    // TODO: Datasource and delegate are weak references...
-    // We need to keep them in memory...
-    let didSelect = makeDashboardRootViewDidSelectAction(
-        controller: controller,
-        context: context)
-    let tableViewModel = makeDashboardTableViewModel(
-        context: context,
-        didSelect: didSelect)
-    let tableView = makeTableView(from: tableViewModel)
-    
-    controller.view = tableView
-    controller.tabBarItem = makeUITabBarItem(tabBarItem: .dashboard)
-    
-    let delegate = SearchBarDelegate()
-    let searchController = makeSearchController(searchBarDelegate: delegate)
-    controller.navigationItem.searchController = searchController
-    controller.navigationItem.hidesSearchBarWhenScrolling = true
-    controller.navigationItem.title = "45% Balanced"
-    
-    let navigationController = NavigationController(rootViewController: controller)
-    
-    return navigationController
-}
+//func makeDashboardRootViewController(context: Context) -> UIViewController
+//{
+//    let controller = ViewController()
+//    // TODO: Datasource and delegate are weak references...
+//    // We need to keep them in memory...
+//    let didSelect = makeDashboardRootViewDidSelectAction(
+//        controller: controller,
+//        context: context)
+//    let tableViewModel = makeDashboardTableViewModel(
+//        context: context,
+//        didSelect: didSelect)
+//    let tableView = makeTableView(from: tableViewModel)
+//
+//    controller.view = tableView
+//    controller.tabBarItem = makeUITabBarItem(tabBarItem: .dashboard)
+//
+//    let delegate = SearchBarDelegate()
+//    let searchController = makeSearchController(searchBarDelegate: delegate)
+//    controller.navigationItem.searchController = searchController
+//    controller.navigationItem.hidesSearchBarWhenScrolling = true
+//    controller.navigationItem.title = "45% Balanced"
+//
+//    let navigationController = NavigationController(rootViewController: controller)
+//
+//    return navigationController
+//}
 
 func makeDashboardRootViewDidSelectAction(controller: ViewController, context: Context) -> TableViewSelectionClosure
 {
     return { selection in
-        guard let section = DashboardSectionHeader(rawValue: selection.indexPath.section) else {
-            assertionFailure("Selected a row that doesn't exist: \(selection)")
-            return
-        }
+        let section = SectionHeader.dashboard[selection.indexPath.section]
         
         let row = selection.indexPath.row
+        
+        var entity: Entity?
         
         switch section
         {
         case .pinned:
-            handleTappedDashboardPinnedItem(
-                controller: controller,
-                context: context,
-                row: row)
+            let pins = getPinnedObjects(context: context)
+            entity = pins[row]
         case .flows:
-            handleTappedDashboardFlow(at: row)
+            return
         case .forecast:
-            handleTappedDashboardForecastFlow(at: row)
+            let forecasts = getForecastedEvents(context: context)
+            entity = forecasts[row]
         case .priority:
-            handleTappedDashboardPriority(at: row)
+            return
+        default:
+            return
         }
+        
+        guard let entity = entity else { return }
+        
+        guard let _controller = viewController(
+                for: entity,
+                context: context) else { return }
+        
+        controller
+            .navigationController?
+            .pushViewController(_controller, animated: true)
     }
 }
 
-func makeDashboardCellModels(context: Context) -> [[TableViewCellModel]]
-{
-    [
-        makePinnedModels(context: context),
-        [],
-        makeForecastModels(context: context),
-        []
-    ]
-}
 
-func title(dashboardSectionHeader: DashboardSectionHeader) -> String
-{
-    switch dashboardSectionHeader
-    {
-    case .pinned:
-        return "Pinned"
-    case .flows:
-        return "Flows"
-    case .forecast:
-        return "Forecast"
-    case .priority:
-        return "Priority"
-    }
-}
+//func makeTableViewHeaderModel(dashboardSectionHeader: DashboardSectionHeader) -> TableViewHeaderModel
+//{
+//    let _title = title(dashboardSectionHeader: dashboardSectionHeader)
+//    let _icon = icon(dashboardSectionHeader: dashboardSectionHeader)
+//    return TableViewHeaderModel(
+//        title: _title,
+//        icon: _icon)
+//}
 
-func icon(dashboardSectionHeader: DashboardSectionHeader) -> Icon
-{
-    switch dashboardSectionHeader
-    {
-    case .pinned:
-        return .pinFill
-    case .flows:
-        return .flow
-    case .forecast:
-        return .forecast
-    case .priority:
-        return .priority
-    }
-}
-
-func makeTableViewHeaderModel(dashboardSectionHeader: DashboardSectionHeader) -> TableViewHeaderModel
-{
-    let _title = title(dashboardSectionHeader: dashboardSectionHeader)
-    let _icon = icon(dashboardSectionHeader: dashboardSectionHeader)
-    return TableViewHeaderModel(
-        title: _title,
-        icon: _icon)
-}
-
-func makeForecastModels(context: Context) -> [TableViewCellModel]
+func getForecastedEvents(context: Context) -> [Event]
 {
     let fetchRequest = makeDateSourcesFetchRequest()
     do {
         let sources = try context.fetch(fetchRequest)
         let events = Event.eventsFromSources(sources)
-        let cells = EventListCellModel.eventCellModelsFrom(events: events)
-        return cells
+        return events
     } catch {
         assertionFailure(error.localizedDescription)
         return []
     }
+}
+
+func makeForecastModels(context: Context) -> [TableViewCellModel]
+{
+    let events = getForecastedEvents(context: context)
+    return EventListCellModel.eventCellModelsFrom(events: events)
 }
 
 func makePinnedModels(context: Context) -> [TableViewCellModel]
@@ -205,36 +181,36 @@ func getPinnedObjects(context: Context) -> [Entity]
 // and return it from each function. Therefore, it must be a struct.
 // How can we contain all state? Nested structs? maybe a singleton class? 
 
-func handleTappedDashboardPinnedItem(controller: ViewController, context: Context, row: Int)
-{
-    // Find the appropriate object
-    // Find the relevant view controller
-    // Push the view controller on the stack
-    
-    let pins = getPinnedObjects(context: context)
-    let selectedPin = pins[row]
-    print(selectedPin)
-    guard let _controller = viewController(for: selectedPin, context: context)
-    else { return }
-    
-    controller
-        .navigationController?
-        .pushViewController(_controller, animated: true)
-    // I feel like these are "side effects" that modify the state indirectly, instead of returning a new state
-    // How can we return a new state and have it properly push the new controller onto the stack?
-//    appState
-//        .controller?
-//        .navigationController?
-//        .pushViewController(controller, animated: true)
+//func handleTappedDashboardPinnedItem(controller: ViewController, context: Context, row: Int)
+//{
+//    // Find the appropriate object
+//    // Find the relevant view controller
+//    // Push the view controller on the stack
 //
-//    AppState.transition(to: selectedPin)
-    
-//    appState.controller = controller
-    ///
-//    return appState
-    
-    // TODO: Shoud notify about changes for the app state
-}
+//    let pins = getPinnedObjects(context: context)
+//    let selectedPin = pins[row]
+//    print(selectedPin)
+//    guard let _controller = viewController(for: selectedPin, context: context)
+//    else { return }
+//
+//    controller
+//        .navigationController?
+//        .pushViewController(_controller, animated: true)
+//    // I feel like these are "side effects" that modify the state indirectly, instead of returning a new state
+//    // How can we return a new state and have it properly push the new controller onto the stack?
+////    appState
+////        .controller?
+////        .navigationController?
+////        .pushViewController(controller, animated: true)
+////
+////    AppState.transition(to: selectedPin)
+//
+////    appState.controller = controller
+//    ///
+////    return appState
+//
+//    // TODO: Shoud notify about changes for the app state
+//}
 
 func viewController(for pin: Entity, context: Context) -> ViewController?
 {
@@ -243,32 +219,30 @@ func viewController(for pin: Entity, context: Context) -> ViewController?
         return nil
     }
     
-    guard let type = viewControllerType(for: entityType, detail: true, entity: pin) else {
-        assertionFailure("The entity type doesn't correspond with a view controller type")
-        return nil
-    }
+    let page = Page(
+        kind: entityType,
+        modifier: .detail(entity: pin))
     
     return makeDetailController(
-        type: type,
-        entity: pin,
+        page: page,
         context: context)
 }
 
-func handleTappedDashboardFlow(at row: Int)
-{
-    // Find the selected flow
-    // Open up the flow detail page for that flow
-    // Takes in an app state, and returns a new app state
-}
-
-func handleTappedDashboardForecastFlow(at row: Int)
-{
-    // Find the relevant event
-    // Open up the event detail page
-}
-
-func handleTappedDashboardPriority(at row: Int)
-{
-    // Find the relevant system
-    // Open up the system detail page
-}
+//func handleTappedDashboardFlow(at row: Int)
+//{
+//    // Find the selected flow
+//    // Open up the flow detail page for that flow
+//    // Takes in an app state, and returns a new app state
+//}
+//
+//func handleTappedDashboardForecastFlow(at row: Int)
+//{
+//    // Find the relevant event
+//    // Open up the event detail page
+//}
+//
+//func handleTappedDashboardPriority(at row: Int)
+//{
+//    // Find the relevant system
+//    // Open up the system detail page
+//}
