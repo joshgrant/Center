@@ -102,7 +102,7 @@ enum EntityType
     
     func count(in context: Context) -> Int
     {
-        let request: NSFetchRequest<Entity> = managedObjectType.fetchRequest()
+        let request: NSFetchRequest<NSFetchRequestResult> = managedObjectType.fetchRequest()
         request.includesPropertyValues = false
         request.includesSubentities = false
         do {

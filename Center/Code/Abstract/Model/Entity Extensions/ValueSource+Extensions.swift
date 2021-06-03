@@ -9,7 +9,8 @@ import Foundation
 
 public extension ValueSource
 {
-    override var computedValue: Any {
+    override var computedValue: Any
+    {
         value
     }
 }

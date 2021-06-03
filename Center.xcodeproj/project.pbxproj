@@ -20,12 +20,10 @@
 		0303E380251DBE360060BCB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E37F251DBE360060BCB5 /* AppDelegate.swift */; };
 		0303E38B251DBEDF0060BCB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303E38A251DBEDF0060BCB5 /* SceneDelegate.swift */; };
 		0303E44F251DC7CD0060BCB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0303E44E251DC7CD0060BCB5 /* LaunchScreen.storyboard */; };
-		030F5DAD26512F110078177D /* FlowDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DAC26512F110078177D /* FlowDetail.swift */; };
 		030F5DAF26512F4C0078177D /* FlowList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DAE26512F4C0078177D /* FlowList.swift */; };
 		030F5DB5265137340078177D /* DetailCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DB4265137340078177D /* DetailCellModel.swift */; };
 		030F5DB7265137620078177D /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DB6265137620078177D /* DetailCell.swift */; };
 		030F5DBD26513BB40078177D /* HistoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DBC26513BB40078177D /* HistoryListCell.swift */; };
-		030F5DC026513D670078177D /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DBF26513D670078177D /* AddButton.swift */; };
 		030F5DC226513E0D0078177D /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DC126513E0D0078177D /* List.swift */; };
 		030F5DC6265142770078177D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F5DC5265142770078177D /* Router.swift */; };
 		033436732535ABE10028F9A9 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03866599251F2B9C00418C54 /* Icon.swift */; };
@@ -125,7 +123,6 @@
 		03AF228C252F32BC00468AB4 /* FlowDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF228B252F32BC00468AB4 /* FlowDetailInteractor.swift */; };
 		03AF229C252F337000468AB4 /* LibraryDetailListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF229B252F337000468AB4 /* LibraryDetailListInteractor.swift */; };
 		03AF22A5252F33EA00468AB4 /* SystemDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF22A4252F33EA00468AB4 /* SystemDetailInteractor.swift */; };
-		03AF22AE252F356600468AB4 /* StockDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF22AD252F356600468AB4 /* StockDetailViewModel.swift */; };
 		03AF22B7252F35A800468AB4 /* StateListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF22B6252F35A800468AB4 /* StateListCellModel.swift */; };
 		03AF22BF252F35C900468AB4 /* LibraryListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF21EF252F2AB400468AB4 /* LibraryListCellModel.swift */; };
 		03AF22D5252F35CD00468AB4 /* FlowListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2201252F2ADA00468AB4 /* FlowListCellModel.swift */; };
@@ -138,9 +135,7 @@
 		03AF231B252F35E200468AB4 /* ConditionDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2233252F2FE100468AB4 /* ConditionDetailViewModel.swift */; };
 		03AF232A252F35E600468AB4 /* FilterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2245252F30AE00468AB4 /* FilterDetailViewModel.swift */; };
 		03AF2339252F35E800468AB4 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF224E252F310100468AB4 /* SearchViewModel.swift */; };
-		03AF2341252F35EB00468AB4 /* FlowDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2271252F31C600468AB4 /* FlowDetailViewModel.swift */; };
 		03AF2351252F362D00468AB4 /* NoteListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2350252F362D00468AB4 /* NoteListCellModel.swift */; };
-		03AF235A252F365D00468AB4 /* StockDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2359252F365D00468AB4 /* StockDetailInteractor.swift */; };
 		03AF2363252F43BC00468AB4 /* AmountDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2362252F43BC00468AB4 /* AmountDetailInteractor.swift */; };
 		03AF2393252F57E300468AB4 /* EventListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AF2392252F57E300468AB4 /* EventListCell.swift */; };
 		03C015A025301E860006F67E /* scratch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C0159F25301E860006F67E /* scratch.swift */; };
@@ -154,6 +149,13 @@
 		03C59194253608A600020FD2 /* ActionClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C59193253608A600020FD2 /* ActionClosure.swift */; };
 		03C5919825360B4800020FD2 /* IdealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5919725360B4800020FD2 /* IdealCell.swift */; };
 		03C5919C25360B5000020FD2 /* IdealCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C5919B25360B5000020FD2 /* IdealCellModel.swift */; };
+		03CA79642668AA8400513DAC /* Unit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA79632668AA8400513DAC /* Unit+Extensions.swift */; };
+		03CA79662668AF6B00513DAC /* NSSet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA79652668AF6B00513DAC /* NSSet+Extensions.swift */; };
+		03CA79682668BEC500513DAC /* State+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA79672668BEC500513DAC /* State+Extensions.swift */; };
+		03CA796A2668CCAA00513DAC /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA79692668CCAA00513DAC /* UIBarButtonItem+Extensions.swift */; };
+		03CA79ED2668D84C00513DAC /* StockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA79EC2668D84C00513DAC /* StockDetailViewController.swift */; };
+		03CA79EF2668DB6000513DAC /* Dimension+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA79EE2668DB6000513DAC /* Dimension+Extensions.swift */; };
+		03CA79F1266941CE00513DAC /* FlowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CA79F0266941CE00513DAC /* FlowDetailViewController.swift */; };
 		03E94B182521B09400DE2340 /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E94B172521B09400DE2340 /* SpacerView.swift */; };
 		03F0FE022651205A00F9F7F0 /* SystemListStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F0FE012651205A00F9F7F0 /* SystemListStateMachine.swift */; };
 		03F0FE042651207300F9F7F0 /* SettingsStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F0FE032651207300F9F7F0 /* SettingsStateMachine.swift */; };
@@ -214,12 +216,10 @@
 		0303E436251DC4610060BCB5 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		0303E43E251DC4950060BCB5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		0303E44E251DC7CD0060BCB5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		030F5DAC26512F110078177D /* FlowDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDetail.swift; sourceTree = "<group>"; };
 		030F5DAE26512F4C0078177D /* FlowList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowList.swift; sourceTree = "<group>"; };
 		030F5DB4265137340078177D /* DetailCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCellModel.swift; sourceTree = "<group>"; };
 		030F5DB6265137620078177D /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		030F5DBC26513BB40078177D /* HistoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListCell.swift; sourceTree = "<group>"; };
-		030F5DBF26513D670078177D /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		030F5DC126513E0D0078177D /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		030F5DC5265142770078177D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		03122F7E252C200900ECBEBF /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
@@ -316,15 +316,12 @@
 		03AF224E252F310100468AB4 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		03AF2258252F313800468AB4 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		03AF2268252F316500468AB4 /* SearchResultListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListCellModel.swift; sourceTree = "<group>"; };
-		03AF2271252F31C600468AB4 /* FlowDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDetailViewModel.swift; sourceTree = "<group>"; };
 		03AF227A252F31F700468AB4 /* EventListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListCellModel.swift; sourceTree = "<group>"; };
 		03AF228B252F32BC00468AB4 /* FlowDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDetailInteractor.swift; sourceTree = "<group>"; };
 		03AF229B252F337000468AB4 /* LibraryDetailListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDetailListInteractor.swift; sourceTree = "<group>"; };
 		03AF22A4252F33EA00468AB4 /* SystemDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemDetailInteractor.swift; sourceTree = "<group>"; };
-		03AF22AD252F356600468AB4 /* StockDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewModel.swift; sourceTree = "<group>"; };
 		03AF22B6252F35A800468AB4 /* StateListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateListCellModel.swift; sourceTree = "<group>"; };
 		03AF2350252F362D00468AB4 /* NoteListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCellModel.swift; sourceTree = "<group>"; };
-		03AF2359252F365D00468AB4 /* StockDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailInteractor.swift; sourceTree = "<group>"; };
 		03AF2362252F43BC00468AB4 /* AmountDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountDetailInteractor.swift; sourceTree = "<group>"; };
 		03AF236B252F485100468AB4 /* ConditionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionType.swift; sourceTree = "<group>"; };
 		03AF237B252F535400468AB4 /* Entity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+Extensions.swift"; sourceTree = "<group>"; };
@@ -340,6 +337,13 @@
 		03C59193253608A600020FD2 /* ActionClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionClosure.swift; sourceTree = "<group>"; };
 		03C5919725360B4800020FD2 /* IdealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdealCell.swift; sourceTree = "<group>"; };
 		03C5919B25360B5000020FD2 /* IdealCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdealCellModel.swift; sourceTree = "<group>"; };
+		03CA79632668AA8400513DAC /* Unit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unit+Extensions.swift"; sourceTree = "<group>"; };
+		03CA79652668AF6B00513DAC /* NSSet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSet+Extensions.swift"; sourceTree = "<group>"; };
+		03CA79672668BEC500513DAC /* State+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "State+Extensions.swift"; sourceTree = "<group>"; };
+		03CA79692668CCAA00513DAC /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
+		03CA79EC2668D84C00513DAC /* StockDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewController.swift; sourceTree = "<group>"; };
+		03CA79EE2668DB6000513DAC /* Dimension+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dimension+Extensions.swift"; sourceTree = "<group>"; };
+		03CA79F0266941CE00513DAC /* FlowDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowDetailViewController.swift; sourceTree = "<group>"; };
 		03CE247A251F4FCD00CE699A /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		03CE2483251F555A00CE699A /* SearchBarDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarDelegateProtocol.swift; sourceTree = "<group>"; };
 		03CE24C8251F5FB400CE699A /* TableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModel.swift; sourceTree = "<group>"; };
@@ -407,6 +411,7 @@
 				03CE24DC251F60E000CE699A /* Array+Extensions.swift */,
 				03742E132530338F00FD3932 /* Int+Extensions.swift */,
 				036DF0D2265F6CD000F9727E /* Bundle+Extensions.swift */,
+				03CA79652668AF6B00513DAC /* NSSet+Extensions.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -426,6 +431,7 @@
 				03E94B2D2521B6D600DE2340 /* UIColor+Extensions.swift */,
 				038665A7251F2E2800418C54 /* UIImage+Extensions.swift */,
 				03E94B252521B1D900DE2340 /* UIView+Extensions.swift */,
+				03CA79692668CCAA00513DAC /* UIBarButtonItem+Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -492,6 +498,7 @@
 		030F5D91265128320078177D /* Condition */ = {
 			isa = PBXGroup;
 			children = (
+				037E0C4A252C9D45008B2CB5 /* Condition+Extensions.swift */,
 				03AF2222252F2F7300468AB4 /* ConditionListCellModel.swift */,
 				03AF2233252F2FE100468AB4 /* ConditionDetailViewModel.swift */,
 			);
@@ -501,6 +508,7 @@
 		030F5D922651284A0078177D /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				036B6C63252EE49900A8C1D1 /* Event+Extensions.swift */,
 				03AF2392252F57E300468AB4 /* EventListCell.swift */,
 				03AF227A252F31F700468AB4 /* EventListCellModel.swift */,
 				03AF2212252F2B6800468AB4 /* EventDetailViewModel.swift */,
@@ -519,6 +527,7 @@
 		030F5D94265128540078177D /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				036DF0DA266214DD00F9727E /* TransferFlow+Extensions.swift */,
 				030F5DAB26512F000078177D /* Detail */,
 				030F5DAA26512EF90078177D /* List */,
 			);
@@ -693,6 +702,7 @@
 		030F5DA626512EC40078177D /* Symbol */ = {
 			isa = PBXGroup;
 			children = (
+				0312301E252C666200ECBEBF /* Symbol+Extensions.swift */,
 			);
 			path = Symbol;
 			sourceTree = "<group>";
@@ -714,8 +724,7 @@
 		030F5DA926512EEC0078177D /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				03AF2359252F365D00468AB4 /* StockDetailInteractor.swift */,
-				03AF22AD252F356600468AB4 /* StockDetailViewModel.swift */,
+				03CA79EC2668D84C00513DAC /* StockDetailViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -733,9 +742,8 @@
 		030F5DAB26512F000078177D /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				030F5DAC26512F110078177D /* FlowDetail.swift */,
 				03AF228B252F32BC00468AB4 /* FlowDetailInteractor.swift */,
-				03AF2271252F31C600468AB4 /* FlowDetailViewModel.swift */,
+				03CA79F0266941CE00513DAC /* FlowDetailViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -752,7 +760,6 @@
 		030F5DBE26513D570078177D /* UI Abstractions */ = {
 			isa = PBXGroup;
 			children = (
-				030F5DBF26513D670078177D /* AddButton.swift */,
 				030F5DC126513E0D0078177D /* List.swift */,
 				030F5DC5265142770078177D /* Router.swift */,
 			);
@@ -794,23 +801,20 @@
 		03122FFA252C65AA00ECBEBF /* Entity Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				037E0C4A252C9D45008B2CB5 /* Condition+Extensions.swift */,
+				03CA79EE2668DB6000513DAC /* Dimension+Extensions.swift */,
 				03122FFB252C65B700ECBEBF /* Contact+Extensions.swift */,
 				036B6C6D252EE51900A8C1D1 /* DynamicSource+Extensions.swift */,
 				03AF237B252F535400468AB4 /* Entity+Extensions.swift */,
-				036B6C63252EE49900A8C1D1 /* Event+Extensions.swift */,
 				037E0C67252C9FC4008B2CB5 /* History+Extensions.swift */,
 				03123032252C669600ECBEBF /* ImageBlock+Searchable.swift */,
 				037E0C79252CA038008B2CB5 /* Net+Extensions.swift */,
 				037E0C8B252CA065008B2CB5 /* ProcessFlow+Extensions.swift */,
 				036B6C77252EE91A00A8C1D1 /* RangeSource+Extensions.swift */,
 				036B6C4F252EE31600A8C1D1 /* Source+Extensions.swift */,
-				037E0C95252CA0B3008B2CB5 /* Stock+Extensions.swift */,
-				0312301E252C666200ECBEBF /* Symbol+Extensions.swift */,
-				035B99F3252F72030080785C /* System+Extensions.swift */,
+				03CA79672668BEC500513DAC /* State+Extensions.swift */,
 				03123028252C668C00ECBEBF /* TextBlock+Searchable.swift */,
+				03CA79632668AA8400513DAC /* Unit+Extensions.swift */,
 				036B6C81252EE9FA00A8C1D1 /* ValueSource+Extensions.swift */,
-				036DF0DA266214DD00F9727E /* TransferFlow+Extensions.swift */,
 			);
 			path = "Entity Extensions";
 			sourceTree = "<group>";
@@ -928,6 +932,7 @@
 		0386652F251F277400418C54 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				035B99F3252F72030080785C /* System+Extensions.swift */,
 				03C591732535E79000020FD2 /* Detail */,
 				03C591702535E78C00020FD2 /* List */,
 			);
@@ -937,6 +942,7 @@
 		03866530251F278100418C54 /* Stock */ = {
 			isa = PBXGroup;
 			children = (
+				037E0C95252CA0B3008B2CB5 /* Stock+Extensions.swift */,
 				030F5DA926512EEC0078177D /* Detail */,
 				030F5DA826512EE90078177D /* List */,
 			);
@@ -1249,6 +1255,7 @@
 				033436ED2535ACC40028F9A9 /* IdealType.swift in Sources */,
 				033436EE2535ACC40028F9A9 /* Order.swift in Sources */,
 				033436EF2535ACC40028F9A9 /* Priority.swift in Sources */,
+				03CA79642668AA8400513DAC /* Unit+Extensions.swift in Sources */,
 				033436F02535ACC40028F9A9 /* SourceType.swift in Sources */,
 				033436F12535ACC40028F9A9 /* TextSize.swift in Sources */,
 				033436F22535ACC40028F9A9 /* TextStyle.swift in Sources */,
@@ -1260,7 +1267,6 @@
 				033436CC2535ACB70028F9A9 /* Filter.swift in Sources */,
 				033436CD2535ACB70028F9A9 /* Database.swift in Sources */,
 				034B7B232535DCEB00EB84D1 /* SystemListCell.swift in Sources */,
-				030F5DAD26512F110078177D /* FlowDetail.swift in Sources */,
 				033436CE2535ACB70028F9A9 /* Database+Extensions.swift in Sources */,
 				033436CF2535ACB70028F9A9 /* DemoGenerator.swift in Sources */,
 				030F5DAF26512F4C0078177D /* FlowList.swift in Sources */,
@@ -1283,7 +1289,7 @@
 				033436DE2535ACB70028F9A9 /* TextBlock+Searchable.swift in Sources */,
 				033436DF2535ACB70028F9A9 /* ValueSource+Extensions.swift in Sources */,
 				03AF22A5252F33EA00468AB4 /* SystemDetailInteractor.swift in Sources */,
-				03AF2341252F35EB00468AB4 /* FlowDetailViewModel.swift in Sources */,
+				03CA79F1266941CE00513DAC /* FlowDetailViewController.swift in Sources */,
 				037C6DCE253EC440005230A1 /* TabBarStateMachine.swift in Sources */,
 				0334368F2535AC3B0028F9A9 /* Observer.swift in Sources */,
 				0334368A2535AC3B0028F9A9 /* CollectionView.swift in Sources */,
@@ -1303,20 +1309,19 @@
 				03AF2351252F362D00468AB4 /* NoteListCellModel.swift in Sources */,
 				0301CE6D2538533E00B9CBF9 /* Application.swift in Sources */,
 				036DF0DB266214DD00F9727E /* TransferFlow+Extensions.swift in Sources */,
-				030F5DC026513D670078177D /* AddButton.swift in Sources */,
 				034AE0E4253228690052E223 /* TableViewDelegateModel.swift in Sources */,
+				03CA79ED2668D84C00513DAC /* StockDetailViewController.swift in Sources */,
 				030F5DC6265142770078177D /* Router.swift in Sources */,
 				034AE15725322E470052E223 /* TableViewDataSource+Functions.swift in Sources */,
 				033436792535ABE10028F9A9 /* UIView+Extensions.swift in Sources */,
 				03C591672535E21C00020FD2 /* SystemList.swift in Sources */,
 				03AF231B252F35E200468AB4 /* ConditionDetailViewModel.swift in Sources */,
-				03AF235A252F365D00468AB4 /* StockDetailInteractor.swift in Sources */,
 				03C015A025301E860006F67E /* scratch.swift in Sources */,
 				03AF2363252F43BC00468AB4 /* AmountDetailInteractor.swift in Sources */,
 				03AF228C252F32BC00468AB4 /* FlowDetailInteractor.swift in Sources */,
 				033436892535AC3B0028F9A9 /* ObserverForSceneUpdatesEventResponder.swift in Sources */,
 				03C591812535F7CC00020FD2 /* TableViewHeader.swift in Sources */,
-				03AF22AE252F356600468AB4 /* StockDetailViewModel.swift in Sources */,
+				03CA79EF2668DB6000513DAC /* Dimension+Extensions.swift in Sources */,
 				035B99B5252F6E8B0080785C /* PinnedListCellModel.swift in Sources */,
 				036DF0D926620B4600F9727E /* SectionHeader.swift in Sources */,
 				034B7B172535CFFC00EB84D1 /* SearchBarDelegate.swift in Sources */,
@@ -1354,13 +1359,16 @@
 				03AF232A252F35E600468AB4 /* FilterDetailViewModel.swift in Sources */,
 				034AE14525322E200052E223 /* LibraryList.swift in Sources */,
 				03C591902536079800020FD2 /* TitleEditCellModel.swift in Sources */,
+				03CA79682668BEC500513DAC /* State+Extensions.swift in Sources */,
 				030F5DB5265137340078177D /* DetailCellModel.swift in Sources */,
 				034AE0DB2532282A0052E223 /* TableViewDataSourceModel.swift in Sources */,
 				0303E38B251DBEDF0060BCB5 /* SceneDelegate.swift in Sources */,
 				03C591752535E79A00020FD2 /* SystemDetail.swift in Sources */,
 				036DF0E126623EF800F9727E /* TabType.swift in Sources */,
 				03866583251F298D00418C54 /* FilterViewController.swift in Sources */,
+				03CA796A2668CCAA00513DAC /* UIBarButtonItem+Extensions.swift in Sources */,
 				03F0FE062651208500F9F7F0 /* InboxStateMachine.swift in Sources */,
+				03CA79662668AF6B00513DAC /* NSSet+Extensions.swift in Sources */,
 				03AF2303252F35D900468AB4 /* SearchResultListCellModel.swift in Sources */,
 				03AF2313252F35DF00468AB4 /* EventDetailViewModel.swift in Sources */,
 				03AF22F4252F35D600468AB4 /* HistoryListCellModel.swift in Sources */,

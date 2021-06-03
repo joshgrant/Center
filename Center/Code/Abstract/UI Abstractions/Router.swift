@@ -38,35 +38,6 @@ func entityType(for page: Page) -> EntityType?
     }
 }
 
-//func detailControllerPage(for type: ViewControllerType, entity: NSManagedObject) -> Page?
-//{
-//    switch type {
-//    case .systemList: return .systemDetail(system: entity as? System)
-//    case .stockList: return .stockDetail
-//    case .flowList: return .flowDetail(flow: entity as? TransferFlow)
-//    case .eventList: return .eventDetail
-//    case .noteList: return .noteDetail
-//    case .processList: return .processDetail
-//    case .conversionList: return .conversionDetail
-//    case .conditionList: return .conditionDetail
-//    case .unitList: return .unitDetail
-//    case .symbolList: return .symbolDetail
-//    case .dashboard, .library, .inbox, .settings, .systemDetail, .stockDetail, .amountDetail, .flowDetail, .eventDetail, .conditionDetail, .noteDetail, .noteInfo, .processDetail, .conversionDetail, .dimensionList, .unitDetail, .search, .searchFilter, .symbolDetail, .nonType:
-//        return .nonType
-//    // TODO: Dimension list?
-//    }
-//}
-
-//func title(for type: ViewControllerType) -> String
-//{
-//    // TODO: Pluralize if necessary
-//    return String(describing: type)
-//        .split { $0.isUppercase }
-//        .first?
-//        .localizedCapitalized
-//        ?? String(describing: type)
-//}
-
 public func makeTableView(from tableViewModel: TableViewModel) -> TableView
 {
     let tableView = TableView(frame: .zero, style: tableViewModel.style)
@@ -108,7 +79,43 @@ func makeDetailController(page: Page, context: Context) -> ViewController
     viewController.title = page.kind.title
     viewController.view = tableView
     
+    viewController.navigationItem.rightBarButtonItems = rightBarButtonItems(page: page)
+    
     return viewController
+}
+
+func rightBarButtonItems(page: Page) -> [UIBarButtonItem]?
+{
+    if let entity = page.kind as? EntityType
+    {
+        switch (entity, page.modifier)
+        {
+        case (_, .detail(let entity)):
+            
+            // This is being released too soon?
+            let togglePinAction = entity.togglePinAction()
+            
+            return [
+                // TODO: Add target and action
+                // TODO: Set the pin to filled if the system is pinned
+                UIBarButtonItem(
+                    image: Icon.copy.getImage(),
+                    style: .plain,
+                    target: nil,
+                    action: nil),
+                UIBarButtonItem(
+                    image: entity.isPinned
+                        ? Icon.pinFill.getImage()
+                        : Icon.pin.getImage(),
+                    style: .plain,
+                    target: togglePinAction,
+                    action: #selector(togglePinAction.perform(sender:)))]
+        default:
+            return nil
+        }
+    }
+    
+    return nil
 }
 
 // Tab Controller
@@ -159,13 +166,19 @@ func makeListController(
     controller.navigationItem.hidesSearchBarWhenScrolling = true
     
     // TODO: Not every list controller needs an add button? OR is this just for the library?
-    let actionClosure = makeAddActionClosure(
-        page: page,
-        controller: controller,
-        context: context)
     
-    controller.actionClosures.insert(actionClosure)
-    controller.navigationItem.rightBarButtonItem = makeListAddButton(actionClosure: actionClosure)
+    if shouldUseAddButton(page: page)
+    {
+        let actionClosure = makeAddActionClosure(
+            page: page,
+            controller: controller,
+            context: context)
+        
+        controller.actionClosures.insert(actionClosure)
+        controller.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            systemItem: .add,
+            actionClosure: actionClosure)
+    }
     
     controller.title = page.kind.title
     
@@ -174,11 +187,16 @@ func makeListController(
 
 func shouldUseAddButton(page: Page) -> Bool
 {
-    //    switch type
-    //    {
-    //    case .dashboard, .library, .settings,
-    //    }
-    return true
+    if case .list = page.modifier
+    {
+        return true
+    }
+    else if let tab = page.kind as? TabType, case .inbox = tab
+    {
+        return true
+    }
+    
+    return false
 }
 
 // MARK: - Table View Model
@@ -214,38 +232,6 @@ func makeTableViewDelegate(
         didSelect: didSelect)
     return TableViewDelegate(model: delegateModel)
 }
-
-// MARK: - Header Views
-
-//func makeHeaderViews(page: Page) -> [UIView?]
-//{
-//    let headerModels = makeHeaderViewModels(type: type)
-//    return headerModels.map {
-//        makeTableViewSectionHeader(model: $0)
-//    }
-//}
-
-// MARK: - Header View Models
-
-//func makeHeaderViewModels(page: Page) -> [TableViewHeaderModel]
-//{
-//    switch type {
-//    case .systemDetail:
-//        return SystemDetailSectionHeader.allCases.map {
-//            makeHeaderViewModel(sectionHeader: $0)
-//        }
-//    case .flowDetail:
-//        return FlowDetailSectionHeader.allCases.map {
-//            makeHeaderViewModel(sectionHeader: $0)
-//        }
-//    case .dashboard:
-//        return DashboardSectionHeader.allCases.map {
-//            makeHeaderViewModel(sectionHeader: $0)
-//        }
-//    default:
-//        return []
-//    }
-//}
 
 // MARK: - Header View Model
 
@@ -291,6 +277,8 @@ func makeEstimatedSectionHeaderHeights(page: Page) -> [CGFloat]
             return SectionHeader.systemDetail.count.map { 44 }
         case (.flow, .detail):
             return SectionHeader.flowDetail.count.map { 44 }
+        case (.stock, .detail):
+            return SectionHeader.stockDetail.count.map { 44 }
         case (_, .list):
             return [0]
         default:
@@ -350,6 +338,14 @@ func makeCellModelTypes(page: Page) -> [TableViewCellModel.Type]
                 FlowListCellModel.self,
                 EventListCellModel.self,
                 NoteListCellModel.self
+            ]
+        case (.stock, .list):
+            return [DetailCellModel.self]
+        case (.stock, .detail):
+            return [
+                TitleEditCellModel.self,
+                DetailCellModel.self,
+                FlowListCellModel.self
             ]
         case (.flow, .list):
             return [FlowListCellModel.self]
@@ -418,7 +414,10 @@ func makeCellModels(page: Page, context: Context) -> [[TableViewCellModel]]
             }
             return [cellModels]
         case (.flow, .detail(let flow)):
-            guard let flow = flow as? TransferFlow else { return [] }
+            guard let flow = flow as? TransferFlow else {
+                assertionFailure("Failed to get a flow")
+                return []
+            }
             // TODO: The subscriptions and history cells are hard coded
             return [
                 [
@@ -436,6 +435,45 @@ func makeCellModels(page: Page, context: Context) -> [[TableViewCellModel]]
                     DetailCellModel(title: "March 1, 2020", detail: "-9.99")
                 ]
             ] as! [[TableViewCellModel]]
+        case (.stock, .list):
+            let stocks = getItemsForList(context: context, type: Stock.self)
+            let cellModels: [DetailCellModel] = stocks.map {
+                DetailCellModel(
+                    title: $0.title,
+                    detail: $0.amount?.description ?? "None")
+            }
+            return [cellModels]
+        case (.stock, .detail(let stock)):
+            guard let stock = stock as? Stock else {
+                assertionFailure("Failed to get a stock.")
+                return [] }
+            // TODO: Move this to an extension on the Stock class
+            return [
+                [
+                    TitleEditCellModel(text: stock.title, placeholder: "Title"),
+                    DetailCellModel(title: "Type", detail: ""),
+                    DetailCellModel(title: "Dimension", detail: ""),
+                    DetailCellModel(title: "Current", detail: ""), // TODO: Has a sub-title
+                    DetailCellModel(title: "Net", detail: ""),
+                ],
+                stock.unwrappedValidStates.map {
+                    DetailCellModel(
+                        title: $0.title,
+                        detail: "\($0.min)...\($0.max)"
+                    )},
+                stock.inflows?.compactMap { inflow in
+                    FlowListCellModel(title: "Test", fromName: "From", toName: "To", flowAmount: 100)
+                } ?? [],
+                stock.outflows?.compactMap { outflow in
+                    FlowListCellModel(title: "Test", fromName: "From", toName: "To", flowAmount: 20)
+                } ?? [],
+                stock.events?.compactMap { event in
+                    DetailCellModel(title: "Event", detail: "Detail")
+                } ?? [],
+                stock.history?.compactMap { history in
+                    DetailCellModel(title: "History", detail: "Suppose")
+                } ?? []
+            ]
         default:
             assertionFailure("Unhandled cell model creation: \(page)")
             return []
@@ -519,12 +557,55 @@ func makeAddActionClosure(
             page: page,
             context: context)
         
+        let navigationController = NavigationController(rootViewController: detailController)
+        
+        let cancelActionClosure = makeCancelActionClosure(page: page, controller: navigationController)
+        let doneActionClosure = makeDoneActionClosure(page: page, controller: navigationController, context: context)
+        
+        let cancelButton = makeCancelBarButtonItem(actionClosure: cancelActionClosure)
+        let doneButton = makeDoneBarButtonItem(actionClosure: doneActionClosure)
+        
+        detailController.navigationItem.leftBarButtonItem = cancelButton
+        detailController.navigationItem.rightBarButtonItem = doneButton
+        
+        controller.actionClosures.insert(cancelActionClosure)
+        controller.actionClosures.insert(doneActionClosure)
+        
         // TODO: Use the completion with the action closure
         controller.navigationController?.present(
-            detailController,
+            navigationController,
             animated: true,
             completion: nil)
     }
+}
+
+func makeCancelActionClosure(page: Page, controller: NavigationController) -> ActionClosure
+{
+    return ActionClosure { sender in
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+func makeDoneActionClosure(page: Page, controller: NavigationController, context: Context) -> ActionClosure
+{
+    return ActionClosure { sender in
+        
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+func makeCancelBarButtonItem(actionClosure: ActionClosure) -> UIBarButtonItem
+{
+    UIBarButtonItem(
+        systemItem: .cancel,
+        actionClosure: actionClosure)
+}
+
+func makeDoneBarButtonItem(actionClosure: ActionClosure) -> UIBarButtonItem
+{
+    UIBarButtonItem(
+        systemItem: .done,
+        actionClosure: actionClosure)
 }
 
 // TODO: A function that returns the "created" controller
@@ -544,7 +625,27 @@ func makeDidSelect(
     {
         return makeLibraryRootViewControllerSelectionClosure(controller: controller, context: context)
     }
-    
+    else if case .detail(_) = page.modifier
+    {
+        return { selection in
+            print("Selected a detail page: \(selection)")
+        }
+    }
+    else if case .list = page.modifier
+    {
+        return makeListSelectionClosure(
+            page: page,
+            context: context,
+            controller: controller)
+    } else {
+        return { selection in
+            print("Unhandled selection")
+        }
+    }
+}
+
+func makeListSelectionClosure(page: Page, context: Context, controller: ViewController) -> TableViewSelectionClosure
+{
     return { selection in
         
         guard let typeOfEntity = page.kind as? EntityType else {

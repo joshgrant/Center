@@ -9,7 +9,7 @@ import Foundation
 
 typealias ActionPerformClosure = ((_ sender: Any) -> Void)
 
-class ActionClosure
+public class ActionClosure
 {
     var id: UUID = .init()
     var performClosure: ActionPerformClosure
@@ -35,12 +35,12 @@ class ActionClosure
 
 extension ActionClosure: Hashable
 {
-    static func == (lhs: ActionClosure, rhs: ActionClosure) -> Bool
+    public static func == (lhs: ActionClosure, rhs: ActionClosure) -> Bool
     {
         lhs.id == rhs.id
     }
     
-    func hash(into hasher: inout Hasher)
+    public func hash(into hasher: inout Hasher)
     {
         hasher.combine(id)
     }

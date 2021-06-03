@@ -16,7 +16,7 @@ protocol Pageable
 
 struct Page
 {
-    enum Modifier
+    enum Modifier: Equatable
     {
         case list
         case detail(entity: Entity)
@@ -31,7 +31,7 @@ struct Page
     {
         let models = makeHeaderViewModels()
         return models.map {
-            makeTableViewSectionHeader(model: $0)
+            $0.makeTableViewSectionHeader()
         }
     }
     
@@ -40,15 +40,20 @@ struct Page
         switch (kind, modifier)
         {
         case (EntityType.system, .detail):
-            return SectionHeader.systemDetail.map {
-                makeHeaderViewModel(sectionHeader: $0)
-            }
+//            return SectionHeader.systemDetail.map {
+//                makeHeaderViewModel(sectionHeader: $0)
+//            }
+            break
         case (EntityType.flow, .detail):
             return SectionHeader.flowDetail.map {
                 makeHeaderViewModel(sectionHeader: $0)
             }
         case (TabType.dashboard, _):
             return SectionHeader.dashboard.map {
+                makeHeaderViewModel(sectionHeader: $0)
+            }
+        case (EntityType.stock, .detail):
+            return SectionHeader.stockDetail.map {
                 makeHeaderViewModel(sectionHeader: $0)
             }
         default:

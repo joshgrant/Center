@@ -23,8 +23,13 @@ extension PinnedListCellModel
 {
     static func pinnedCellModels(from entities: [Entity]) -> [PinnedListCellModel]
     {
-        entities.map {
-            PinnedListCellModel(title: $0.title)
+        entities.compactMap {
+            if let entity = $0 as? Named {
+                return PinnedListCellModel(title: entity.title)
+            } else {
+                assertionFailure("We shouldn't be able to pin non-named entities.")
+                return nil
+            }
         }
     }
 }

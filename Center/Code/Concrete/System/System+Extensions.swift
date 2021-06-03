@@ -8,10 +8,3 @@
 import Foundation
 
 extension System: Named { }
-
-extension System
-{
-    public override var title: String {
-        unwrappedName ?? ""
-    }
-}

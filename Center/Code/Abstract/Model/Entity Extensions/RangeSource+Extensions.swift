@@ -9,7 +9,8 @@ import Foundation
 
 public extension RangeSource
 {
-    override var computedValue: Any {
+    override var computedValue: Any
+    {
         return min ... max
     }
 }

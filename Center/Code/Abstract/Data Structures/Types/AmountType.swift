@@ -14,6 +14,22 @@ public enum AmountType: Int16
     case boolean
 }
 
+extension AmountType: CustomStringConvertible
+{
+    public var description: String
+    {
+        switch self
+        {
+        case .boolean:
+            return "Boolean"
+        case .decimal:
+            return "Decimal"
+        case .integer:
+            return "Integer"
+        }
+    }
+}
+
 extension AmountType: FallbackProtocol
 {
     static let fallback: AmountType = .integer

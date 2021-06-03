@@ -109,5 +109,6 @@ public func createContext() -> Context
     populateDatabaseWithWaterSystem(context: _context)
     populateDatabaseWithBirthdayPartyEvent(context: _context)
     populateDatabaseWithFlow(context: _context)
+    populateDatabaseWithStock(context: _context)
     return _context
 }

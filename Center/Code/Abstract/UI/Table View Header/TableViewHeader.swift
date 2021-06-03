@@ -8,53 +8,6 @@
 import Foundation
 import UIKit
 
-public func makeMainStackView(headerModel: TableViewHeaderModel) -> UIStackView
-{
-    let mainStackView = UIStackView()
-    mainStackView.axis = .horizontal
-    mainStackView.alignment = .center
-    mainStackView.spacing = 5
-    
-    mainStackView.addArrangedSubview(Spacer(width: 5))
-    
-    if headerModel.hasDisclosureTriangle
-    {
-        mainStackView.addArrangedSubview(makeDisclosureButton())
-    }
-    
-    if let image = headerModel.image
-    {
-        mainStackView.addArrangedSubview(makeImageView(image: image))
-    }
-    
-    mainStackView.addArrangedSubview(makeTitleView(headerModel: headerModel))
-    mainStackView.addArrangedSubview(Spacer())
-    
-    if headerModel.hasSearchButton
-    {
-        mainStackView.addArrangedSubview(makeSearchButton())
-    }
-    
-    if headerModel.hasLinkButton
-    {
-        mainStackView.addArrangedSubview(makeLinkButton())
-    }
-    
-    if headerModel.hasAddButton
-    {
-        mainStackView.addArrangedSubview(makeAddButton())
-    }
-    
-    if headerModel.hasEditButton
-    {
-        mainStackView.addArrangedSubview(makeEditButton())
-    }
-    
-    mainStackView.addArrangedSubview(Spacer(width: 5))
-    
-    return mainStackView
-}
-
 public func makeDisclosureButton() -> UIButton
 {
     let button = UIButton()
@@ -69,19 +22,6 @@ public func makeImageView(image: UIImage) -> UIImageView
     let imageView = UIImageView(image: image)
     imageView.tintColor = UIColor.tableViewHeaderIcon
     return imageView
-}
-
-public func makeTitleView(headerModel: TableViewHeaderModel) -> UILabel
-{
-    let label = UILabel()
-    
-    label.font = .systemFont(ofSize: 13)
-    label.textColor = UIColor.tableViewHeaderFont
-    
-    label.text = headerModel.title
-    label.text = headerModel.title.localizedUppercase
-    
-    return label
 }
 
 public func makeSearchButton() -> UIButton

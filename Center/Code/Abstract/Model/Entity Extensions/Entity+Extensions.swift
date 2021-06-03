@@ -56,7 +56,10 @@ public extension Entity
 
 public extension Entity
 {
-    @objc var title: String {
-        return "Abstract Entity - No Title"
+    func togglePinAction() -> ActionClosure
+    {
+        ActionClosure { selector in
+            self.isPinned.toggle()
+        }
     }
 }

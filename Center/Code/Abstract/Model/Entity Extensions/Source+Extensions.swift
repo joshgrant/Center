@@ -9,8 +9,17 @@ import Foundation
 
 public extension Source
 {
-    @objc var computedValue: Any {
+    @objc var computedValue: Any
+    {
         assertionFailure("Override this property in your subclass")
         return -1
+    }
+}
+
+extension Source
+{
+    public override var description: String
+    {
+        return "\(computedValue)"
     }
 }

@@ -33,4 +33,14 @@ public extension Named
             }
         }
     }
+    
+    var title: String
+    {
+        get {
+            unwrappedName ?? ""
+        }
+        set {
+            unwrappedName = newValue
+        }
+    }
 }

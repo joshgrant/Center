@@ -40,7 +40,6 @@ func makeSystemDetailTableViewDataSourceModels(system: System) -> [[TableViewCel
         [],
         [],
         [],
-        [],
         []
     ]
 }

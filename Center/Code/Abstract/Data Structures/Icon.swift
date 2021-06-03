@@ -39,6 +39,7 @@ public enum Icon: String
     case checkBoxEmpty = "circle"
     case checkBoxFilled = "checkmark.circle"
     case priority = "exclamationmark.triangle.fill" // or remove the fill
+    case state = "square.on.circle"
     
     case arrowDown = "arrowtriangle.down.fill"
     case arrowRight = "arrowtriangle.right.fill"

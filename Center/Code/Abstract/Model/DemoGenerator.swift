@@ -85,6 +85,24 @@ public func populateDatabaseWithBirthdayPartyEvent(context: Context)
     return transferFlow
 }
 
+@discardableResult private func makeDefaultStock(context: Context) -> Stock
+{
+    let stock = Stock(context: context)
+    
+    stock.title = "Cashews"
+    
+    let amount = ValueSource(context: context)
+    amount.value = 100
+    
+    let ideal = ValueSource(context: context)
+    ideal.value = 50
+    
+    stock.amount = amount
+    stock.ideal = ideal
+
+    return stock
+}
+
 public func populateDatabaseWithWaterSystem(context: Context)
 {
     makeWaterSystem(context: context)
@@ -93,4 +111,9 @@ public func populateDatabaseWithWaterSystem(context: Context)
 public func populateDatabaseWithFlow(context: Context)
 {
     makeDefaultFlow(context: context)
+}
+
+public func populateDatabaseWithStock(context: Context)
+{
+    makeDefaultStock(context: context)
 }
