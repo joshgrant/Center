@@ -87,7 +87,7 @@ Flows can also have delays as well as ramp-up and ramp-down conditions. For exam
 
 ### Events
 
-At the most basic, events monitor stocks level and trigger flows. Events are crucial to having a system operate semi-autonomously. However, it's important to note that events do not monitor flow states but only stock levels. Events use conditions to check the stock level whenever it changes and possibly trigger a flow. Some stocks that can be measured:
+At the most basic, events monitor stock levels and trigger flows. Events are crucial to having a system operate semi-autonomously. However, it's important to note that events do not monitor flow states but only stock levels. Events use conditions to check the stock level whenever it changes and possibly trigger a flow. Some stocks that can be measured:
 * The current date
 * The uptime of the program
 * HealthKit data
